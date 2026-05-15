@@ -49,7 +49,7 @@ def require(condition: bool, message: str) -> None:
 
 def verify(attempt_root: Path) -> dict[str, Any]:
     attempt_root = attempt_root.resolve()
-    artifact_dir = attempt_root / "artifacts"
+    artifact_dir = attempt_root if (attempt_root / "expected_artifact.json").exists() else attempt_root / "artifacts"
     summary_path = artifact_dir / "expected_artifact.json"
     input_path = artifact_dir / "expected_input.png"
     mask_path = artifact_dir / "expected_mask.png"
@@ -150,11 +150,13 @@ def main() -> int:
         default=".",
         help="Attempt root containing artifacts/expected_artifact.json and PNG artifacts.",
     )
+    parser.add_argument("--artifact-dir", type=Path, help="Artifact directory to validate directly.")
+    parser.add_argument("--check-only", action="store_true")
     parser.add_argument("--json", action="store_true", help="Emit machine-readable JSON only.")
     args = parser.parse_args()
 
     try:
-        result = verify(Path(args.attempt_root))
+        result = verify(args.artifact_dir if args.artifact_dir else Path(args.attempt_root))
     except AssertionError as exc:
         failure = {"task_id": TASK_ID, "status": "fail", "error": str(exc)}
         print(json.dumps(failure, ensure_ascii=False, indent=2), file=sys.stderr)

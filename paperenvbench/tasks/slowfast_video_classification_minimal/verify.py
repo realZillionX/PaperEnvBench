@@ -284,6 +284,8 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--artifact-dir", default=str(pathlib.Path(__file__).resolve().parent / "artifacts"))
     parser.add_argument("--repo-dir", default=str(pathlib.Path(__file__).resolve().parent / "repo"))
+    parser.add_argument("--check-only", action="store_true")
+    parser.add_argument("--json", action="store_true")
     parser.add_argument("--generate", action="store_true")
     args = parser.parse_args()
 

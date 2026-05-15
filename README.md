@@ -1,29 +1,24 @@
 # PaperEnvBench
 
-PaperEnvBench 是面向 AI 论文代码仓环境自动配置的 benchmark。它不以“仓库能 import”为主成功标准，而以最小可验证复现为主目标：agent 需要生成安装方案、执行环境配置、处理失败、产出 artifact，并由隐藏评测器判定 L0–L4 分数。
+PaperEnvBench 是面向 AI 论文代码仓环境自动配置的 benchmark。它不以“仓库能 import”为主成功标准，而以最小可验证复现为主目标：agent 需要分析仓库、生成安装方案、执行环境配置、处理失败、产出 artifact，并由 evaluator 判定 L0–L4 分数。
 
-## 当前状态
+本仓库是独立 Git 仓库，父级研究工作区不属于发布范围。仓库不 vendor 上游论文源码；每个任务通过固定 commit、gold 安装脚本、requirements lock、日志、expected artifact 和 verifier 描述可验证复现边界。
 
-本仓库是 PaperEnvBench 的独立 Git 仓库，远程为 `https://github.com/realZillionX/PaperEnvBench.git`。父级研究工作区不属于本仓库发布范围。
+## Status
 
-`paperenvbench/registries/task_registry.yaml` 已固化 50 个有效主任务，Dev / Val / Test 数量为 20 / 10 / 20。主 registry 只记录有效任务和 gold 构建状态，不记录拒绝候选或临时调研信息。
+- 50 个主任务已固化，Dev / Val / Test 为 20 / 10 / 20。
+- 任务覆盖 10 类模态：音频 / 语音、图像分类 / 表征学习、检测 / 分割、视频理解 / 生成、视觉语言 / 多模态、LLM / NLP、Diffusion / Generation、Graph / Recommender、Reinforcement Learning / Simulation、Scientific / Geometry / 3D。
+- 50 个任务均包含标准 gold 包：`meta.yaml`、`taxonomy.yaml`、`gold_install.sh`、`requirements_lock.txt`、`verify.py`、`expected_output.json`、`scoring.yaml`、日志和 `artifacts/expected_artifact.*`。
+- 所有 task verifier 已统一支持 `--check-only --json`。
+- `paperenvbench.evaluator` 可对 agent attempt 目录生成 `score.json`，并可选择更新 `paperenvbench/registries/trajectory_registry.yaml`。
+- `repo_profile.json -> install_plan.json -> failure_report.json -> score.json` 工具链已固定。
 
-当前已补齐 50 个标准 gold 任务包：音频 / 语音类 5 题、图像分类 / 表征学习类 5 题、检测 / 分割类 6 题、视频理解 / 视频生成类 5 题、视觉语言 / 多模态类 6 题、LLM / NLP 类 6 题、Diffusion / Generation 类 5 题、Graph / Recommender 类 4 题、Reinforcement Learning / Simulation 类 4 题、Scientific / Geometry / 3D 类 4 题。
-
-当前基线验证：
-
-```bash
-python3 tools/paper_repo_env/validate_task_package.py
-# ok registry=50 tasks=50
-```
-
-50 个任务的 `verify.py --check-only` sweep 已全部通过。
-
-## 目录约定
+## Layout
 
 ```text
 paperenvbench/
   taxonomy.yaml
+  evaluator.py
   registries/
     task_registry.yaml
     trajectory_registry.yaml
@@ -46,18 +41,98 @@ paperenvbench/
         gold_verify.log
       artifacts/
         expected_artifact.*
+tools/paper_repo_env/
+  inspect_repo.py
+  build_install_plan.py
+  write_failure_report.py
+  evaluate_attempt.py
+  validate_task_package.py
 ```
 
-本仓库不 vendor 上游论文仓库源码；每个任务通过固定 commit、安装脚本、requirements lock、日志、expected artifact 和 verifier 描述可验证复现边界。部分任务的 `--check-only` verifier 使用已纳入仓库的 gold artifact 做 artifact-level 验证，clean-room rebuild 由后续 hidden evaluator runner 统一编排。
+## Validation
 
-## 数据边界
-
-Gold solution、hidden verifier 和 Test trajectory 不得进入 agent 上下文。Dev trajectory 可以用于 ICOPD 的 on-policy 经验提炼；Val 只用于阈值、提示结构和实验设置选择；Test 只用于最终报告。
-
-## 本地校验
+Run the structural check:
 
 ```bash
 python3 tools/paper_repo_env/validate_task_package.py
+# ok registry=50 tasks=50
 ```
 
-该命令验证 50 个主任务的 split / taxonomy 配额，并检查全部 ready gold 任务包的标准文件、YAML / JSON、`gold_install.sh` 语法和 `verify.py` 编译。
+Run the full packaged-artifact verifier sweep:
+
+```bash
+python3 tools/paper_repo_env/validate_task_package.py --run-verifiers
+# ok registry=50 tasks=50
+```
+
+The verifier sweep executes each task from its own task directory as:
+
+```bash
+python3 verify.py --check-only --json
+```
+
+## Attempt Contract
+
+An agent attempt directory should contain these files when available:
+
+```text
+repo_profile.json
+install_plan.json
+failure_report.json
+attempt.log
+artifacts/
+trajectory.json
+score.json
+```
+
+The evaluator accepts partial attempts, but L4 requires a verifier-accepted artifact bundle.
+
+## Toolchain
+
+Generate a repository profile:
+
+```bash
+python3 tools/paper_repo_env/inspect_repo.py /path/to/repo --output repo_profile.json
+```
+
+Build an installation plan:
+
+```bash
+python3 tools/paper_repo_env/build_install_plan.py repo_profile.json --task-id <task_id> --output install_plan.json
+```
+
+Evaluate an attempt:
+
+```bash
+python3 tools/paper_repo_env/evaluate_attempt.py \
+  --task-id <task_id> \
+  --attempt-dir /path/to/attempt \
+  --output /path/to/attempt/score.json
+```
+
+Create or refresh a failure report after a failed attempt:
+
+```bash
+python3 tools/paper_repo_env/write_failure_report.py \
+  --attempt-dir /path/to/attempt \
+  --task-id <task_id>
+```
+
+Update the trajectory registry only for attempts that should become benchmark records:
+
+```bash
+python3 tools/paper_repo_env/evaluate_attempt.py \
+  --task-id <task_id> \
+  --attempt-dir /path/to/attempt \
+  --model <model_name> \
+  --condition <condition_name> \
+  --update-registry
+```
+
+## Scoring
+
+The evaluator reports continuous sub-scores for repository analysis、install、import、entrypoint、semantic 和 safety。`Level` uses cumulative gates：L4 requires L0–L3 to pass and the semantic artifact check to pass. Safety does not raise `Level`，but severe violations can cap the final level.
+
+## Data Boundary
+
+Gold install scripts、hidden verifier behavior 和 Test trajectory must not enter agent context. Dev trajectory can be used for ICOPD experience extraction；Val is for prompt and threshold selection；Test is final-report only. Secrets must be passed through temporary environment variables and must not be written into logs、trajectory、registry or reports.

@@ -46,6 +46,7 @@ def verify(attempt_root: Path) -> dict[str, Any]:
             "outputs/dino_vit_feature_minimal/feature_summary.json",
             "outputs/feature_summary.json",
             "artifacts/expected_artifact.json",
+            "expected_artifact.json",
             "feature_summary.json",
         ],
         "DINO feature summary JSON",
@@ -56,6 +57,7 @@ def verify(attempt_root: Path) -> dict[str, Any]:
             "outputs/dino_vit_feature_minimal/dino_synthetic_input.png",
             "outputs/dino_synthetic_input.png",
             "artifacts/expected_artifact.png",
+            "expected_artifact.png",
             "dino_synthetic_input.png",
         ],
         "synthetic input image artifact",
@@ -138,11 +140,13 @@ def main() -> int:
         default=".",
         help="Attempt root containing outputs/dino_vit_feature_minimal, or the task root containing artifacts/.",
     )
+    parser.add_argument("--artifact-dir", type=Path, help="Artifact directory to validate directly.")
+    parser.add_argument("--check-only", action="store_true")
     parser.add_argument("--json", action="store_true", help="Emit machine-readable JSON only.")
     args = parser.parse_args()
 
     try:
-        result = verify(Path(args.attempt_root))
+        result = verify(args.artifact_dir if args.artifact_dir else Path(args.attempt_root))
     except AssertionError as exc:
         failure = {"task_id": "dino_vit_feature_minimal", "status": "fail", "error": str(exc)}
         print(json.dumps(failure, ensure_ascii=False, indent=2), file=sys.stderr)

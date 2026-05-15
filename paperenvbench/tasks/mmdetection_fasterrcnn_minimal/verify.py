@@ -217,6 +217,7 @@ def main() -> int:
     parser.add_argument("--output-dir", default=os.environ.get("PAPERENVBENCH_OUTPUT_DIR", "artifacts"))
     parser.add_argument("--artifact-name", default="expected_artifact.json")
     parser.add_argument("--check-only", action="store_true")
+    parser.add_argument("--json", action="store_true")
     args = parser.parse_args()
 
     repo_dir = pathlib.Path(args.repo_dir).resolve()

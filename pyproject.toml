@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "paperenvbench"
+version = "0.1.0"
+description = "Benchmark tooling for AI paper-repository environment reproduction."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "PyYAML>=6.0",
+]
+
+[project.scripts]
+paperenvbench-evaluate = "paperenvbench.evaluator:main"
+
+[tool.setuptools.packages.find]
+include = ["paperenvbench*"]

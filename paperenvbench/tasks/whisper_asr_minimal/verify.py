@@ -53,6 +53,7 @@ def verify(attempt_root: Path) -> dict[str, Any]:
             "whisper_sine.json",
             "artifacts/expected_artifact.json",
             "artifacts/whisper_sine.json",
+            "expected_artifact.json",
         ],
         "Whisper JSON output",
     )
@@ -63,6 +64,7 @@ def verify(attempt_root: Path) -> dict[str, Any]:
             "whisper_sine.txt",
             "artifacts/expected_artifact.txt",
             "artifacts/whisper_sine.txt",
+            "expected_artifact.txt",
         ],
         "Whisper TXT output",
     )
@@ -78,6 +80,9 @@ def verify(attempt_root: Path) -> dict[str, Any]:
             "artifacts/whisper_sine.tsv",
             "artifacts/whisper_sine.vtt",
             "artifacts/whisper_sine.srt",
+            "expected_artifact.tsv",
+            "expected_artifact.vtt",
+            "expected_artifact.srt",
         ],
     )
 
@@ -123,11 +128,13 @@ def main() -> int:
         default=str(TASK_ROOT),
         help="Attempt root containing outputs/whisper_smoke, or the task root containing artifacts/.",
     )
+    parser.add_argument("--artifact-dir", type=Path, help="Artifact directory to validate directly.")
+    parser.add_argument("--check-only", action="store_true")
     parser.add_argument("--json", action="store_true", help="Emit machine-readable JSON only.")
     args = parser.parse_args()
 
     try:
-        result = verify(Path(args.attempt_root))
+        result = verify(args.artifact_dir if args.artifact_dir else Path(args.attempt_root))
     except AssertionError as exc:
         failure = {"task_id": "whisper_asr_minimal", "status": "fail", "error": str(exc)}
         print(json.dumps(failure, ensure_ascii=False, indent=2), file=sys.stderr)

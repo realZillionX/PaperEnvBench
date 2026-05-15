@@ -59,6 +59,21 @@ def check_command(command: list[str]) -> None:
     subprocess.check_call(command, stdout=subprocess.DEVNULL)
 
 
+def verify_cli_contract(task_root: Path, task_id: str) -> None:
+    text = (task_root / "verify.py").read_text(encoding="utf-8", errors="replace")
+    missing = [flag for flag in ["--check-only", "--json"] if flag not in text]
+    if missing:
+        raise SystemExit(f"{task_id}: verify.py missing CLI flags: {missing}")
+
+
+def run_check_only(task_root: Path, task_id: str) -> None:
+    subprocess.check_call(
+        [sys.executable, "verify.py", "--check-only", "--json"],
+        cwd=task_root,
+        stdout=subprocess.DEVNULL,
+    )
+
+
 def validate_registry(root: Path) -> dict[str, Any]:
     taxonomy = load_yaml(root / "paperenvbench/taxonomy.yaml")
     registry = load_yaml(root / "paperenvbench/registries/task_registry.yaml")
@@ -98,7 +113,7 @@ def validate_registry(root: Path) -> dict[str, Any]:
     return registry
 
 
-def validate_task(root: Path, task_id: str) -> None:
+def validate_task(root: Path, task_id: str, run_verifier: bool = False) -> None:
     task_root = root / "paperenvbench/tasks" / task_id
     if not task_root.exists():
         raise SystemExit(f"{task_id}: task directory does not exist")
@@ -118,6 +133,9 @@ def validate_task(root: Path, task_id: str) -> None:
 
     check_command(["bash", "-n", str(task_root / "gold_install.sh")])
     check_command([sys.executable, "-m", "py_compile", str(task_root / "verify.py")])
+    verify_cli_contract(task_root, task_id)
+    if run_verifier:
+        run_check_only(task_root, task_id)
 
 
 def resolve_task_ids(root: Path, registry: dict[str, Any], requested: list[str]) -> list[str]:
@@ -134,13 +152,14 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Validate PaperEnvBench registry and gold task package structure.")
     parser.add_argument("--root", type=Path, default=Path.cwd())
     parser.add_argument("--task", action="append", default=[], help="Task id to validate. Defaults to all ready tasks.")
+    parser.add_argument("--run-verifiers", action="store_true", help="Run every selected verify.py --check-only --json.")
     args = parser.parse_args()
 
     root = args.root.resolve()
     registry = validate_registry(root)
     task_ids = resolve_task_ids(root, registry, args.task)
     for task_id in task_ids:
-        validate_task(root, task_id)
+        validate_task(root, task_id, run_verifier=args.run_verifiers)
 
     print(f"ok registry=50 tasks={len(task_ids)}")
 

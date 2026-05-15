@@ -318,6 +318,7 @@ def main() -> int:
     parser.add_argument("--output-dir", default=os.environ.get("PAPERENVBENCH_OUTPUT_DIR", "artifacts"))
     parser.add_argument("--artifact-name", default="expected_artifact.json")
     parser.add_argument("--check-only", action="store_true")
+    parser.add_argument("--json", action="store_true")
     args = parser.parse_args()
 
     repo_dir = pathlib.Path(args.repo_dir)
@@ -327,8 +328,7 @@ def main() -> int:
 
     try:
         if args.check_only or not model_ready:
-            artifact_dir = output_dir if (output_dir / args.artifact_name).exists() else TASK_ROOT / "artifacts"
-            result = validate_artifact(artifact_dir, args.artifact_name)
+            result = validate_artifact(output_dir, args.artifact_name)
             result["mode"] = "check_only"
         else:
             artifact_path = run_model(repo_dir, checkpoint_path, output_dir)

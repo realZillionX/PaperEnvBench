@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import subprocess
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -240,6 +241,8 @@ def inspect_repo(repo: Path) -> dict[str, Any]:
     entrypoints = detect_entrypoints(repo, pyproject)
     dependencies = detect_dependencies(repo, pyproject, readme_text)
     return {
+        "schema_version": "paperenvbench.repo_profile.v1",
+        "generated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
         "repo_name": repo.name,
         "repo_path": str(repo),
         "repo_commit": run_git(repo, ["rev-parse", "--short", "HEAD"]),

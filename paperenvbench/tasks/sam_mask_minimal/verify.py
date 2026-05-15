@@ -64,6 +64,7 @@ def verify(artifact_dir: Path) -> dict[str, Any]:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--artifact-dir", default=str(TASK_ROOT / "artifacts"))
+    parser.add_argument("--check-only", action="store_true")
     parser.add_argument("--json", action="store_true")
     args = parser.parse_args()
 
