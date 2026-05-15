@@ -1,0 +1,42 @@
+/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/repo/groundingdino/models/GroundingDINO/ms_deform_attn.py:31: UserWarning: Failed to load custom C++ ops. Running on CPU mode Only!
+  warnings.warn("Failed to load custom C++ ops. Running on CPU mode Only!")
+UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at /pytorch/aten/src/ATen/native/TensorShape.cpp:4322.)
+FutureWarning: The `device` argument is deprecated and will be removed in v5 of Transformers.
+UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+final text_encoder_type: bert-base-uncased
+{
+  "artifact_path": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/artifacts/expected_artifact.json",
+  "artifact_sha256": "7bc728bb21c20caa85027a84f8e46d84c6a68790f2f1da41d8c970c0d208bee5",
+  "checks": {
+    "annotated_png_written": true,
+    "at_least_one_box": true,
+    "boxes_are_finite": true,
+    "boxes_in_image_bounds": true,
+    "checkpoint_loaded": true,
+    "expected_phrases_present": true,
+    "input_png_matches": true,
+    "nonzero_box_area": true,
+    "repo_commit_matches": true,
+    "scores_are_finite": true,
+    "uses_groundingdino_model_forward": true,
+    "uses_text_phrase_extraction": true
+  },
+  "mode": "model_run",
+  "observed": {
+    "phrases": [
+      "blue circle",
+      "green strip",
+      "red square",
+      "blue circle",
+      "red square"
+    ],
+    "repo_commit": "856dde20aee659246248e20734ef9ba5214f5e44",
+    "selected_count": 5,
+    "top_score": 0.7176281214
+  },
+  "status": "pass",
+  "success_level": "L4",
+  "task_id": "groundingdino_phrase_grounding_minimal"
+}

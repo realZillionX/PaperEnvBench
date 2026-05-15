@@ -1,0 +1,21 @@
+taxonomy:
+  modality:
+    primary: object_detection_segmentation
+    secondary:
+      - checkpoint_loading
+      - output_artifact
+  environment_challenges:
+    - checkpoint_download
+    - system_package_missing
+    - torch_cuda_matrix
+    - hardware_pressure
+  verification_type:
+    - checkpoint_loading
+    - single_sample_inference
+    - output_artifact
+    - semantic_check
+  expected_skill_routes:
+    - global_reproducibility_safety
+    - vision_segmentation_env_setup
+    - checkpoint_validation
+    - torch_cuda_matrix_solver

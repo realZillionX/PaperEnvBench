@@ -1,0 +1,9 @@
+primary_failure_tags:
+  - system_package_missing
+  - checkpoint_download
+  - torch_cuda_matrix
+  - entrypoint_ambiguity
+anti_patterns:
+  - "Treating CLI help as final success without running transcription."
+  - "Downloading checkpoint implicitly without recording cache path."
+  - "Assuming GPU is required for the tiny smoke test."

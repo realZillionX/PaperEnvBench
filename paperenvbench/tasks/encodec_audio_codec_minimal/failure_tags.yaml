@@ -1,0 +1,18 @@
+primary_failure_tags:
+  - checkpoint_download
+  - torch_cuda_matrix
+  - hidden_dependency
+  - entrypoint_ambiguity
+  - package_name_collision
+observed_failure_evidence:
+  - tag: package_name_collision
+    evidence: "A run-root encodec/ clone shadows the installed encodec package; gold_install.sh clones into src/encodec."
+  - tag: hidden_dependency
+    evidence: "torchaudio.save required torchcodec in the observed Python 3.12 / torchaudio 2.11 environment; verify.py writes PCM WAV with the standard wave module."
+  - tag: checkpoint_download
+    evidence: "EncodecModel.encodec_model_24khz downloads encodec_24khz-d7cc33bc.th from dl.fbaipublicfiles.com on first use."
+anti_patterns:
+  - "Accepting import success without running encode and decode on audio."
+  - "Cloning the repository into a run-root encodec/ directory and then importing encodec from that same root."
+  - "Assuming torchaudio can write WAV without checking backend or torchcodec availability."
+  - "Treating the 48 kHz HQ model as the CPU minimal path."

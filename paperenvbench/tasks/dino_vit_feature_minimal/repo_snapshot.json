@@ -1,0 +1,95 @@
+{
+  "branch": "detached",
+  "checkpoint": {
+    "exists": true,
+    "size_bytes": 86710517
+  },
+  "dirty": false,
+  "gold_outputs": {
+    "outputs/dino_vit_feature_minimal/dino_synthetic_input.png": {
+      "size_bytes": 1850
+    },
+    "outputs/dino_vit_feature_minimal/feature_summary.json": {
+      "size_bytes": 1884
+    }
+  },
+  "key_files": {
+    "README.md": {
+      "exists": true,
+      "size_bytes": 22561
+    },
+    "eval_knn.py": {
+      "exists": true,
+      "size_bytes": 11128
+    },
+    "eval_linear.py": {
+      "exists": true,
+      "size_bytes": 13256
+    },
+    "hubconf.py": {
+      "exists": true,
+      "size_bytes": 5653
+    },
+    "main_dino.py": {
+      "exists": true,
+      "size_bytes": 22945
+    },
+    "utils.py": {
+      "exists": true,
+      "size_bytes": 28039
+    },
+    "vision_transformer.py": {
+      "exists": true,
+      "size_bytes": 11150
+    }
+  },
+  "observed_remote_path": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/dino_vit_feature_minimal/repo",
+  "package_manager": "venv+pip",
+  "python_entrypoints": [
+    {
+      "name": "vision_transformer.vit_small",
+      "target": "vision_transformer:vit_small",
+      "type": "module_function"
+    },
+    {
+      "name": "hubconf.dino_vits16",
+      "target": "hubconf:dino_vits16",
+      "type": "torch_hub_callable"
+    }
+  ],
+  "remote_path_alias": "paper-repro:runs/paperenvbench/image/dino_vit_feature_minimal/repo",
+  "repo_commit": "7c446df",
+  "repo_commit_full": "7c446df5b9f45747937fb0d72314eb9f7b66930a",
+  "repo_name": "dino",
+  "repo_url": "https://github.com/facebookresearch/dino.git",
+  "snapshot_command": "inspire notebook exec paper-repro-ci-prep --cwd paper-repro:runs/paperenvbench/image/dino_vit_feature_minimal",
+  "task_id": "dino_vit_feature_minimal",
+  "taxonomy_hints": {
+    "environment_challenges": [
+      "checkpoint_download",
+      "torch_cuda_matrix",
+      "hidden_dependency",
+      "entrypoint_ambiguity"
+    ],
+    "expected_skill_routes": [
+      "global_reproducibility_safety",
+      "checkpoint_validation",
+      "torch_cuda_matrix_solver",
+      "minimal_entrypoint_discovery"
+    ],
+    "modality": {
+      "primary": "image_classification_representation",
+      "secondary": [
+        "checkpoint_loading",
+        "feature_extraction",
+        "vision_transformer"
+      ]
+    },
+    "verification_type": [
+      "checkpoint_loading",
+      "single_sample_inference",
+      "semantic_check",
+      "output_artifact"
+    ]
+  }
+}

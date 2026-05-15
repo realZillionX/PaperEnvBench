@@ -1,0 +1,121 @@
+/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/audio/silero_vad_speech_activity/repo/src/silero_vad/utils_vad.py:143: UserWarning: torchaudio.sox_effects.sox_effects.apply_effects_file has been deprecated. This deprecation is part of a large refactoring effort to transition TorchAudio into a maintenance phase. Please see https://github.com/pytorch/audio/issues/3902 for more information. It will be removed from the 2.9 release. 
+  wav, sr = torchaudio.sox_effects.apply_effects_file(path, effects=effects)
+/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/audio/silero_vad_speech_activity/.venv/lib/python3.12/site-packages/torchaudio/_backend/utils.py:213: UserWarning: In 2.9, this function's implementation will be changed to use torchaudio.load_with_torchcodec` under the hood. Some parameters like ``normalize``, ``format``, ``buffer_size``, and ``backend`` will be ignored. We recommend that you port your code to rely directly on TorchCodec's decoder instead: https://docs.pytorch.org/torchcodec/stable/generated/torchcodec.decoders.AudioDecoder.html#torchcodec.decoders.AudioDecoder.
+  warnings.warn(
+/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/audio/silero_vad_speech_activity/.venv/lib/python3.12/site-packages/torchaudio/_backend/ffmpeg.py:88: UserWarning: torio.io._streaming_media_decoder.StreamingMediaDecoder has been deprecated. This deprecation is part of a large refactoring effort to transition TorchAudio into a maintenance phase. The decoding and encoding capabilities of PyTorch for both audio and video are being consolidated into TorchCodec. Please see https://github.com/pytorch/audio/issues/3902 for more information. It will be removed from the 2.9 release. 
+  s = torchaudio.io.StreamReader(src, format, None, buffer_size)
+{
+  "checks": {
+    "packaged_jit_model_loaded": true,
+    "repo_commit_matches": true,
+    "speech_timestamps_nonempty": true,
+    "total_speech_duration_positive": true,
+    "vad_probability_above_threshold": true
+  },
+  "input_audio": {
+    "duration_sec": 60.0,
+    "num_samples": 960000,
+    "path": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/audio/silero_vad_speech_activity/repo/tests/data/test.wav",
+    "sample_rate": 16000,
+    "sha256": "89f17d9c94c4b31eb320f424628bcbc920abaddbee6e2760fd868bfb1d9a2e47"
+  },
+  "model_assets": {
+    "jit_path": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/audio/silero_vad_speech_activity/repo/src/silero_vad/data/silero_vad.jit",
+    "jit_sha256": "e1122837f4154c511485fe0b9c64455f7b929c96fbb8d79fbdb336383ebd3720",
+    "torch_hub_used": false
+  },
+  "package_versions": {
+    "silero-vad": "6.2.1",
+    "torch": "2.8.0+cpu",
+    "torchaudio": "2.8.0+cpu"
+  },
+  "python": "3.12.3",
+  "repo_commit": "980b17e9d56463e51393a8d92ded473f1b17896a",
+  "speech_segment_count": 19,
+  "speech_timestamps": [
+    {
+      "end": 2.0,
+      "start": 0.0
+    },
+    {
+      "end": 4.7,
+      "start": 2.7
+    },
+    {
+      "end": 6.9,
+      "start": 5.0
+    },
+    {
+      "end": 13.3,
+      "start": 9.3
+    },
+    {
+      "end": 15.1,
+      "start": 13.5
+    },
+    {
+      "end": 15.9,
+      "start": 15.3
+    },
+    {
+      "end": 17.9,
+      "start": 16.3
+    },
+    {
+      "end": 19.6,
+      "start": 18.4
+    },
+    {
+      "end": 32.6,
+      "start": 20.3
+    },
+    {
+      "end": 35.6,
+      "start": 32.7
+    },
+    {
+      "end": 37.6,
+      "start": 35.7
+    },
+    {
+      "end": 38.9,
+      "start": 38.0
+    },
+    {
+      "end": 43.3,
+      "start": 39.9
+    },
+    {
+      "end": 44.6,
+      "start": 43.6
+    },
+    {
+      "end": 46.8,
+      "start": 45.0
+    },
+    {
+      "end": 50.0,
+      "start": 48.8
+    },
+    {
+      "end": 54.2,
+      "start": 51.1
+    },
+    {
+      "end": 57.4,
+      "start": 54.5
+    },
+    {
+      "end": 59.6,
+      "start": 57.5
+    }
+  ],
+  "success_level": "L4",
+  "task_id": "silero_vad_speech_activity",
+  "total_speech_duration_sec": 48.4,
+  "vad_probability": {
+    "max": 0.99999857,
+    "mean": 0.77833134,
+    "num_frames": 1875
+  }
+}

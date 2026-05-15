@@ -1,0 +1,32 @@
+assets:
+  - asset_id: slowfast_repo_snapshot
+    type: source_repo
+    required: true
+    source: git
+    url: https://github.com/facebookresearch/SlowFast
+    commit: 287ec0076846560f44a9327e931a5a2360240533
+    cached_path: paper-repro:runs/paperenvbench/video/slowfast_video_classification_minimal/repo
+  - asset_id: slowfast_expected_artifact
+    type: output_artifact
+    required: true
+    source: generated_by_verify
+    cached_path: paper-repro:runs/paperenvbench/video/slowfast_video_classification_minimal/artifacts/expected_artifact.json
+    local_path: artifacts/expected_artifact.json
+    checksum_sha256: ad1bae52354024b44d3082b83ac8a8bc4118dc51176a306162aecb0512d1de91
+    size_bytes: 2810
+  - asset_id: slowfast_clip_preview
+    type: video_frame_preview
+    required: true
+    source: generated_by_verify
+    cached_path: paper-repro:runs/paperenvbench/video/slowfast_video_classification_minimal/artifacts/expected_clip_preview.ppm
+    local_path: artifacts/expected_clip_preview.ppm
+    checksum_sha256: 2471bfd2b17b4f6b34bdc720558dabebb8c5840f5218c44824321ce63cccc6c8
+    size_bytes: 3085
+  - asset_id: slowfast_native_import_probe
+    type: failure_evidence
+    required: true
+    source: generated_by_gold_install
+    cached_path: paper-repro:runs/paperenvbench/video/slowfast_video_classification_minimal/logs/native_import_probe.log
+    local_path: logs/native_import_probe.log
+    checksum_sha256: 4c1df042d8aa5e96ac4e97fbcbc156e6e795f8a9989a77a98c427aa8d8c324cb
+    size_bytes: 1490

@@ -1,0 +1,51 @@
+task_id: pytorchvideo_classification_minimal
+paper_title: "PyTorchVideo: A deep learning library for video understanding"
+repo_url: https://github.com/facebookresearch/pytorchvideo
+commit: f3142bb05cdb56af0704ab6f0adfb0c7bbafe4a0
+paper_url: null
+license: Apache-2.0
+split: dev
+modality:
+  primary: video_understanding_generation
+  secondary:
+    - video_classification
+    - action_recognition
+    - single_clip_inference
+environment_challenges:
+  - torch_cuda_matrix
+  - hidden_dependency
+  - system_package_missing
+  - checkpoint_download
+  - entrypoint_ambiguity
+  - verification_ambiguity
+verification:
+  type:
+    - import_graph
+    - single_sample_inference
+    - output_artifact
+    - semantic_check
+  command: python verify.py
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4_fallback

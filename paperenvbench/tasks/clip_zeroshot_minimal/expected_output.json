@@ -1,0 +1,32 @@
+{
+  "task_id": "clip_zeroshot_minimal",
+  "source": {
+    "notebook": "paper-repro-ci-prep",
+    "remote_cwd_alias": "paper-repro",
+    "repo_path": "paper-repro:repos/CLIP",
+    "repo_commit": "d05afc436d78f1c48dc0dbf8e5980a9d471f35f6",
+    "venv": "paper-repro:envs/paper-repro-cpu",
+    "smoke_log": "paper-repro:logs/20_clip_smoke.log",
+    "output_dir": "paper-repro:outputs/clip_smoke"
+  },
+  "expected_files": {
+    "probabilities": "artifacts/expected_artifact.json",
+    "image": "artifacts/expected_artifact.png"
+  },
+  "gold_payload": {
+    "a white image with a black square": 0.9996488094329834,
+    "a photo of a dog": 4.988279033568688e-05,
+    "a handwritten equation": 0.0003012118104379624
+  },
+  "acceptance": {
+    "probabilities_sum_to_one": true,
+    "top_label": "a white image with a black square",
+    "min_top_probability": 0.5,
+    "requires_nonempty_image_artifact": true
+  },
+  "checksums": {
+    "expected_artifact_json_sha256": "521d65e2ce3f7b4277aab140c41a0758cbb5f04a7e6a30dbd237f34dec80bfa1",
+    "expected_artifact_png_sha256": "2f8b89489c2a188e3e689466fe6b2fe0db2d261388c43871e1b9086104904263",
+    "checkpoint_sha256": "40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af"
+  }
+}

@@ -1,0 +1,15 @@
+scoring:
+  L0_repository_analysis: 0.10
+  L1_install_success: 0.20
+  L2_import_success: 0.20
+  L3_minimal_entry_success: 0.25
+  L4_semantic_verification: 0.15
+  reproducibility: 0.05
+  safety: 0.05
+main_success_level: L4
+semantic_checks:
+  - summary_json_exists
+  - speech_timestamps_nonempty
+  - vad_probability_above_threshold
+  - packaged_jit_model_loaded
+  - repo_commit_matches

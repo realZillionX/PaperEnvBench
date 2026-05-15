@@ -1,0 +1,21 @@
+assets:
+  - asset_id: mmaction2_repo_snapshot
+    type: git_repo
+    source: https://github.com/open-mmlab/mmaction2
+    commit: a5a167dff2399e2d182a60332325f9c0d4663517
+    local_path: repo_snapshot.json
+  - asset_id: synthetic_action_video
+    type: generated_video
+    source: verify.py
+    local_path: artifacts/synthetic_action.mp4
+    cached_path: paper-repro:runs/paperenvbench/video/mmaction2_recognition_minimal/artifacts/synthetic_action.mp4
+  - asset_id: expected_artifact_json
+    type: expected_output
+    source: verify.py
+    local_path: artifacts/expected_artifact.json
+    cached_path: paper-repro:runs/paperenvbench/video/mmaction2_recognition_minimal/artifacts/expected_artifact.json
+  - asset_id: mmcv_native_binary_probe
+    type: diagnostic_log
+    source: gold_install.sh
+    local_path: logs/mmcv_native_binary_probe.log
+    cached_path: paper-repro:runs/paperenvbench/video/mmaction2_recognition_minimal/logs/mmcv_native_binary_probe.log

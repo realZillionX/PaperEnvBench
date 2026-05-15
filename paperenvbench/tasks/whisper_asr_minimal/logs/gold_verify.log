@@ -1,0 +1,8 @@
+whisper_asr_minimal gold verify
+repo_commit=04f449b
+json=outputs/whisper_smoke/whisper_sine.json size=46
+txt=outputs/whisper_smoke/whisper_sine.txt size=0
+tsv=outputs/whisper_smoke/whisper_sine.tsv size=15
+vtt=outputs/whisper_smoke/whisper_sine.vtt size=8
+transcript_text_repr=''
+semantic_checks=PASS

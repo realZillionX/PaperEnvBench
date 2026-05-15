@@ -1,0 +1,25 @@
+taxonomy:
+  modality:
+    primary: object_detection_segmentation
+    secondary:
+      - object_detection
+      - detection_transformer
+      - checkpoint_loading
+      - output_artifact
+  environment_challenges:
+    - checkpoint_download
+    - torch_cuda_matrix
+    - hidden_dependency
+    - entrypoint_ambiguity
+    - verification_ambiguity
+  verification_type:
+    - checkpoint_loading
+    - single_sample_inference
+    - output_artifact
+    - semantic_check
+  expected_skill_routes:
+    - global_reproducibility_safety
+    - vision_segmentation_env_setup
+    - torch_cuda_matrix_solver
+    - minimal_entrypoint_discovery
+    - checkpoint_validation

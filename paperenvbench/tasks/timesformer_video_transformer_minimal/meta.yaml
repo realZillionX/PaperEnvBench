@@ -1,0 +1,55 @@
+task_id: timesformer_video_transformer_minimal
+paper_title: "Is Space-Time Attention All You Need for Video Understanding?"
+repo_url: https://github.com/facebookresearch/TimeSformer
+commit: a5ef29a7b7264baff199a30b3306ac27de901133
+commit_short: a5ef29a
+paper_url: https://arxiv.org/abs/2102.05095
+license: CC-BY-NC-4.0
+split: test
+modality:
+  primary: video_understanding_generation
+  secondary:
+    - video_classification
+    - video_transformer
+    - divided_space_time_attention
+    - synthetic_video
+    - output_artifact
+environment_challenges:
+  - stale_readme
+  - hidden_dependency
+  - python_version_conflict
+  - checkpoint_download
+  - entrypoint_ambiguity
+  - verification_ambiguity
+verification:
+  type:
+    - single_sample_inference
+    - output_artifact
+    - semantic_check
+  command: python verify.py --repo-dir repo --output-dir artifacts --json
+  minimum_success_level: L4_fallback
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4_fallback

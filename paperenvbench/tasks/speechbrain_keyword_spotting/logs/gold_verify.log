@@ -1,0 +1,37 @@
+CategoricalEncoder.expect_len was never called: assuming category count of 12 to be correct! Sanity check your encoder using `.expect_len`. Ensure that downstream code also uses the correct size. If you are sure this does not apply to you, use `.ignore_len`.
+{
+  "audio": {
+    "duration_sec": 1.0,
+    "kind": "synthetic_440hz_sine",
+    "path": "artifacts/expected_artifact.wav",
+    "sample_rate": 16000
+  },
+  "checks": {
+    "audio_exists": true,
+    "model_loaded": true,
+    "num_classes_positive": true,
+    "prediction_label_nonempty": true,
+    "score_finite": true
+  },
+  "commit": "8a89ebad72af734b75bbd37565ae96a6819e146b",
+  "device": "cpu",
+  "model_revision": "b0cec0fb42423936ca0da2724ce52d82eb807e20",
+  "model_source": "speechbrain/google_speech_command_xvector",
+  "prediction": {
+    "index": 2,
+    "label": "up",
+    "num_classes": 12,
+    "prob_shape": [
+      1,
+      12
+    ],
+    "score": -0.6478177309036255
+  },
+  "repo_url": "https://github.com/speechbrain/speechbrain",
+  "seed": 20260515,
+  "task_id": "speechbrain_keyword_spotting",
+  "versions": {
+    "python": "3.12.3",
+    "torch": "2.11.0+cpu"
+  }
+}

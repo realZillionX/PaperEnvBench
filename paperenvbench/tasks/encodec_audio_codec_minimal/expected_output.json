@@ -1,0 +1,26 @@
+{
+  "channels": 1,
+  "codes_shape": [
+    1,
+    2,
+    75
+  ],
+  "decoded_shape": [
+    1,
+    1,
+    24000
+  ],
+  "encoded_frame_count": 1,
+  "input_duration_s": 1.0,
+  "input_wav": "artifacts/synthetic_input.wav",
+  "model": "encodec_model_24khz",
+  "reconstructed_wav": "artifacts/expected_artifact.wav",
+  "reconstruction_mse": 0.0005368107813410461,
+  "repo_commit": "0e2d0aed29362c8e8f52494baf3e6f99056b214f",
+  "sample_rate": 24000,
+  "success": true,
+  "target_bandwidth_kbps": 1.5,
+  "task_id": "encodec_audio_codec_minimal",
+  "torch_version": "2.12.0+cu130",
+  "torchaudio_version": "2.11.0+cu130"
+}

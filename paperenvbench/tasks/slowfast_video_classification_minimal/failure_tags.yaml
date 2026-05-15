@@ -1,0 +1,24 @@
+primary_failure_tags:
+  - stale_readme
+  - hidden_dependency
+  - torch_cuda_matrix
+  - checkpoint_download
+  - system_package_missing
+  - entrypoint_ambiguity
+  - verification_ambiguity
+observed_gold_issues:
+  - tag: hidden_dependency
+    issue: "packaged PyTorchVideo release is missing symbols expected by current SlowFast"
+    evidence: "Native import probe records missing cat_all_gather and related distributed helpers."
+  - tag: hidden_dependency
+    issue: "classification import path touches unused Detectron2 ROIAlign"
+    evidence: "Verifier installs a process-local ROIAlign shim and records that full checkpoint inference is not claimed."
+  - tag: checkpoint_download
+    issue: "full Kinetics checkpoint inference is outside the CPU gold path"
+    evidence: "The gold route validates official config, uniform_crop, two-pathway tensor construction, and CPU model forward with initialized weights."
+anti_patterns:
+  - "Treating `import slowfast` as sufficient when the model builder and two-pathway forward path are not executed."
+  - "Claiming full Kinetics checkpoint inference without recording checkpoint URL, checksum, config, and class output."
+  - "Patching the pinned repository source instead of isolating compatibility shims in the verifier."
+  - "Replacing SlowFast with a torchvision or PyTorchVideo model without executing the pinned SlowFast repository model path."
+  - "Using Docker to hide Python, PyTorch, Detectron2, or PyTorchVideo compatibility boundaries."

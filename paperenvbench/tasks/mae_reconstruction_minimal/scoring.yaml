@@ -1,0 +1,23 @@
+scoring:
+  L0_repository_analysis: 0.10
+  L1_install_success: 0.20
+  L2_import_success: 0.15
+  L3_minimal_entry_success: 0.25
+  L4_semantic_verification: 0.20
+  reproducibility: 0.05
+  safety: 0.05
+main_success_level: L4_cpu_forward_reconstruction
+level_definitions:
+  L0_repository_analysis: "Identify MAE entry points, dependency drift risks, checkpoint optionality, and CPU-compatible verification route."
+  L1_install_success: "Create an isolated venv, clone the pinned MAE repo, and install pinned torch, torchvision, timm, NumPy, and Pillow dependencies."
+  L2_import_success: "Import timm and MAE model code after applying compatibility shims for qk_scale and np.float."
+  L3_minimal_entry_success: "Run the MAE encoder, decoder, and reconstruction loss on one synthetic image tensor."
+  L4_semantic_verification: "Produce a reconstruction grid PNG and summary JSON with finite loss, expected latent and prediction shapes, expected mask ratio, and non-empty artifact."
+semantic_checks:
+  - repo_commit_matches
+  - loss_is_finite
+  - latent_shape_matches
+  - prediction_shape_matches
+  - mask_ratio_matches
+  - reconstruction_shape_matches
+  - artifact_png_nonempty

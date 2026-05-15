@@ -1,0 +1,117 @@
+++ pwd
++ RUN_ROOT='/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/detection/detectron2_maskrcnn_minimal'
++ ENV_DIR='/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/detection/detectron2_maskrcnn_minimal/.venv'
++ '/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/detection/detectron2_maskrcnn_minimal/.venv/bin/python' -
+model_final_a54504.pkl: 0.00B [00:00, ?B/s]model_final_a54504.pkl:   0%|          | 8.19k/178M [00:00<3:17:43, 15.0kB/s]model_final_a54504.pkl:   0%|          | 41.0k/178M [00:00<41:50, 70.8kB/s]  model_final_a54504.pkl:   0%|          | 98.3k/178M [00:00<18:43, 158kB/s] model_final_a54504.pkl:   0%|          | 197k/178M [00:00<09:14, 321kB/s] model_final_a54504.pkl:   0%|          | 328k/178M [00:01<05:35, 530kB/s]model_final_a54504.pkl:   0%|          | 508k/178M [00:01<03:35, 823kB/s]model_final_a54504.pkl:   0%|          | 819k/178M [00:01<02:07, 1.39MB/s]model_final_a54504.pkl:   1%|          | 1.28M/178M [00:01<01:19, 2.22MB/s]model_final_a54504.pkl:   1%|          | 2.03M/178M [00:01<00:48, 3.66MB/s]model_final_a54504.pkl:   2%|▏         | 3.18M/178M [00:01<00:29, 5.83MB/s]model_final_a54504.pkl:   3%|▎         | 4.98M/178M [00:01<00:18, 9.30MB/s]model_final_a54504.pkl:   4%|▍         | 7.00M/178M [00:01<00:13, 12.4MB/s]model_final_a54504.pkl:   5%|▌         | 9.19M/178M [00:01<00:11, 15.1MB/s]model_final_a54504.pkl:   6%|▌         | 11.0M/178M [00:02<00:10, 16.0MB/s]model_final_a54504.pkl:   7%|▋         | 13.1M/178M [00:02<00:09, 17.3MB/s]model_final_a54504.pkl:   8%|▊         | 15.1M/178M [00:02<00:08, 18.3MB/s]model_final_a54504.pkl:  10%|▉         | 17.0M/178M [00:02<00:08, 18.3MB/s]model_final_a54504.pkl:  11%|█         | 19.1M/178M [00:02<00:08, 19.3MB/s]model_final_a54504.pkl:  12%|█▏        | 21.0M/178M [00:02<00:08, 19.1MB/s]model_final_a54504.pkl:  13%|█▎        | 23.0M/178M [00:02<00:08, 19.3MB/s]model_final_a54504.pkl:  14%|█▍        | 25.0M/178M [00:02<00:07, 19.6MB/s]model_final_a54504.pkl:  15%|█▌        | 27.0M/178M [00:02<00:07, 19.6MB/s]model_final_a54504.pkl:  16%|█▋        | 29.0M/178M [00:02<00:07, 19.7MB/s]model_final_a54504.pkl:  17%|█▋        | 31.0M/178M [00:03<00:07, 19.8MB/s]model_final_a54504.pkl:  19%|█▊        | 33.0M/178M [00:03<00:07, 19.7MB/s]model_final_a54504.pkl:  20%|█▉        | 35.1M/178M [00:03<00:07, 19.9MB/s]model_final_a54504.pkl:  21%|██        | 37.1M/178M [00:03<00:07, 19.9MB/s]model_final_a54504.pkl:  22%|██▏       | 39.0M/178M [00:03<00:07, 19.7MB/s]model_final_a54504.pkl:  23%|██▎       | 41.1M/178M [00:03<00:06, 19.9MB/s]model_final_a54504.pkl:  24%|██▍       | 43.1M/178M [00:03<00:06, 19.9MB/s]model_final_a54504.pkl:  25%|██▌       | 45.1M/178M [00:03<00:06, 19.8MB/s]model_final_a54504.pkl:  27%|██▋       | 47.1M/178M [00:03<00:06, 20.0MB/s]model_final_a54504.pkl:  28%|██▊       | 49.1M/178M [00:03<00:06, 19.8MB/s]model_final_a54504.pkl:  29%|██▊       | 51.1M/178M [00:04<00:06, 19.9MB/s]model_final_a54504.pkl:  30%|██▉       | 53.1M/178M [00:04<00:06, 19.9MB/s]model_final_a54504.pkl:  31%|███       | 55.1M/178M [00:04<00:06, 19.8MB/s]model_final_a54504.pkl:  32%|███▏      | 57.1M/178M [00:04<00:06, 20.1MB/s]model_final_a54504.pkl:  33%|███▎      | 59.1M/178M [00:04<00:05, 19.8MB/s]model_final_a54504.pkl:  34%|███▍      | 61.1M/178M [00:04<00:05, 19.9MB/s]model_final_a54504.pkl:  35%|███▌      | 63.1M/178M [00:04<00:05, 20.0MB/s]model_final_a54504.pkl:  37%|███▋      | 65.1M/178M [00:04<00:05, 19.9MB/s]model_final_a54504.pkl:  38%|███▊      | 67.1M/178M [00:04<00:05, 19.8MB/s]model_final_a54504.pkl:  39%|███▉      | 69.1M/178M [00:04<00:05, 20.1MB/s]model_final_a54504.pkl:  40%|███▉      | 71.1M/178M [00:05<00:05, 19.8MB/s]model_final_a54504.pkl:  41%|████      | 73.0M/178M [00:05<00:05, 19.7MB/s]model_final_a54504.pkl:  42%|████▏     | 75.1M/178M [00:05<00:05, 19.9MB/s]model_final_a54504.pkl:  43%|████▎     | 77.1M/178M [00:05<00:05, 19.8MB/s]model_final_a54504.pkl:  45%|████▍     | 79.1M/178M [00:05<00:04, 20.0MB/s]model_final_a54504.pkl:  46%|████▌     | 81.1M/178M [00:05<00:04, 20.0MB/s]model_final_a54504.pkl:  47%|████▋     | 83.1M/178M [00:05<00:04, 19.8MB/s]model_final_a54504.pkl:  48%|████▊     | 85.1M/178M [00:05<00:04, 20.0MB/s]model_final_a54504.pkl:  49%|████▉     | 87.1M/178M [00:05<00:04, 19.9MB/s]model_final_a54504.pkl:  50%|█████     | 89.1M/178M [00:05<00:04, 19.9MB/s]model_final_a54504.pkl:  51%|█████▏    | 91.2M/178M [00:06<00:04, 20.0MB/s]model_final_a54504.pkl:  52%|█████▏    | 93.1M/178M [00:06<00:04, 19.8MB/s]model_final_a54504.pkl:  53%|█████▎    | 95.1M/178M [00:06<00:04, 19.8MB/s]model_final_a54504.pkl:  55%|█████▍    | 97.1M/178M [00:06<00:04, 19.9MB/s]model_final_a54504.pkl:  56%|█████▌    | 99.1M/178M [00:06<00:03, 19.8MB/s]model_final_a54504.pkl:  57%|█████▋    | 101M/178M [00:06<00:03, 20.1MB/s] model_final_a54504.pkl:  58%|█████▊    | 103M/178M [00:06<00:03, 20.0MB/s]model_final_a54504.pkl:  59%|█████▉    | 105M/178M [00:06<00:03, 19.8MB/s]model_final_a54504.pkl:  60%|██████    | 107M/178M [00:06<00:03, 20.1MB/s]model_final_a54504.pkl:  61%|██████▏   | 109M/178M [00:06<00:03, 19.9MB/s]model_final_a54504.pkl:  63%|██████▎   | 111M/178M [00:07<00:03, 19.9MB/s]model_final_a54504.pkl:  64%|██████▎   | 113M/178M [00:07<00:03, 20.0MB/s]model_final_a54504.pkl:  65%|██████▍   | 115M/178M [00:07<00:03, 19.8MB/s]model_final_a54504.pkl:  66%|██████▌   | 117M/178M [00:07<00:03, 19.8MB/s]model_final_a54504.pkl:  67%|██████▋   | 119M/178M [00:07<00:02, 19.9MB/s]model_final_a54504.pkl:  68%|██████▊   | 121M/178M [00:07<00:02, 19.8MB/s]model_final_a54504.pkl:  69%|██████▉   | 123M/178M [00:07<00:02, 20.0MB/s]model_final_a54504.pkl:  70%|███████   | 125M/178M [00:07<00:02, 19.9MB/s]model_final_a54504.pkl:  71%|███████▏  | 127M/178M [00:07<00:02, 19.8MB/s]model_final_a54504.pkl:  73%|███████▎  | 129M/178M [00:07<00:02, 19.9MB/s]model_final_a54504.pkl:  74%|███████▍  | 131M/178M [00:08<00:02, 19.8MB/s]model_final_a54504.pkl:  75%|███████▍  | 133M/178M [00:08<00:02, 20.0MB/s]model_final_a54504.pkl:  76%|███████▌  | 135M/178M [00:08<00:02, 20.0MB/s]model_final_a54504.pkl:  77%|███████▋  | 137M/178M [00:08<00:02, 19.9MB/s]model_final_a54504.pkl:  78%|███████▊  | 139M/178M [00:08<00:01, 19.9MB/s]model_final_a54504.pkl:  79%|███████▉  | 141M/178M [00:08<00:01, 20.0MB/s]model_final_a54504.pkl:  81%|████████  | 143M/178M [00:08<00:01, 19.9MB/s]model_final_a54504.pkl:  82%|████████▏ | 145M/178M [00:08<00:01, 19.9MB/s]model_final_a54504.pkl:  83%|████████▎ | 147M/178M [00:08<00:01, 20.0MB/s]model_final_a54504.pkl:  84%|████████▍ | 149M/178M [00:08<00:01, 19.8MB/s]model_final_a54504.pkl:  85%|████████▌ | 151M/178M [00:09<00:01, 20.0MB/s]model_final_a54504.pkl:  86%|████████▌ | 153M/178M [00:09<00:01, 19.9MB/s]model_final_a54504.pkl:  87%|████████▋ | 155M/178M [00:09<00:01, 19.8MB/s]model_final_a54504.pkl:  88%|████████▊ | 157M/178M [00:09<00:01, 20.0MB/s]model_final_a54504.pkl:  90%|████████▉ | 159M/178M [00:09<00:00, 20.0MB/s]model_final_a54504.pkl:  91%|█████████ | 161M/178M [00:09<00:00, 19.9MB/s]model_final_a54504.pkl:  92%|█████████▏| 163M/178M [00:09<00:00, 20.0MB/s]model_final_a54504.pkl:  93%|█████████▎| 165M/178M [00:09<00:00, 19.8MB/s]model_final_a54504.pkl:  94%|█████████▍| 167M/178M [00:09<00:00, 19.9MB/s]model_final_a54504.pkl:  95%|█████████▌| 169M/178M [00:09<00:00, 19.8MB/s]model_final_a54504.pkl:  96%|█████████▋| 171M/178M [00:10<00:00, 19.8MB/s]model_final_a54504.pkl:  97%|█████████▋| 173M/178M [00:10<00:00, 20.1MB/s]model_final_a54504.pkl:  99%|█████████▊| 175M/178M [00:10<00:00, 19.9MB/s]model_final_a54504.pkl: 100%|█████████▉| 177M/178M [00:10<00:00, 19.9MB/s]model_final_a54504.pkl: 178MB [00:10, 17.1MB/s]                           
+/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/detection/detectron2_maskrcnn_minimal/.venv/lib/python3.12/site-packages/torch/functional.py:505: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at /pytorch/aten/src/ATen/native/TensorShape.cpp:4382.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+W0515 17:24:46.931000 298599 torch/fx/_symbolic_trace.py:56] is_fx_tracing will return true for both fx.symbolic_trace and torch.export. Please use is_fx_tracing_symbolic_tracing() for specifically fx.symbolic_trace or torch.compiler.is_compiling() for specifically torch.export/compile.
+{
+  "checkpoint_url": "https://dl.fbaipublicfiles.com/detectron2/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_1x/137260431/model_final_a54504.pkl",
+  "checks": {
+    "all_checks_passed": true,
+    "boxes_finite": true,
+    "checkpoint_url_resolved": true,
+    "mask_pixels_positive": true,
+    "native_extension_imported": true,
+    "prediction_count_positive": true,
+    "scores_finite": true
+  },
+  "code_path": [
+    "detectron2.model_zoo.get_config_file",
+    "detectron2.model_zoo.get_checkpoint_url",
+    "detectron2.engine.DefaultPredictor",
+    "DetectionCheckpointer.load",
+    "GeneralizedRCNN.inference",
+    "RPN, ROIHeads, MaskRCNNConvUpsampleHead"
+  ],
+  "config": "COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_1x.yaml",
+  "cuda_available": false,
+  "detectron2_version": "0.6",
+  "expected_shape_mask": {
+    "boxes_xyxy": [
+      [
+        40.0,
+        34.0,
+        124.0,
+        118.0
+      ]
+    ],
+    "mask_path": "artifacts/expected_mask.png",
+    "mask_pixels": 7056,
+    "mask_sha256": "a745d5a0231f1cf14d5cfc3589a8dc73f1cbe0982edc17a717ebf44d29c64b6b"
+  },
+  "input": {
+    "channels": 3,
+    "height": 160,
+    "path": "artifacts/expected_input.png",
+    "sha256": "1ff61eef520e6c6966f5cffc6cf990ac4a76865768790e478fa31cddc49e5db9",
+    "width": 160
+  },
+  "native_extension": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/detection/detectron2_maskrcnn_minimal/repo/detectron2/_C.cpython-312-x86_64-linux-gnu.so",
+  "overlay": {
+    "path": "artifacts/expected_overlay.png",
+    "sha256": "b98701205b899244d1ac3a9eb4430e2d892210e55418955d1a8c0c017ba9b07f"
+  },
+  "prediction": {
+    "num_instances": 5,
+    "top_boxes_xyxy": [
+      [
+        151.05841064453125,
+        158.5069580078125,
+        160.0,
+        159.98822021484375
+      ],
+      [
+        0.2596898078918457,
+        157.90060424804688,
+        8.465106964111328,
+        159.99310302734375
+      ],
+      [
+        149.41201782226562,
+        157.2813262939453,
+        160.0,
+        159.9758758544922
+      ],
+      [
+        154.7747039794922,
+        155.19564819335938,
+        159.9860382080078,
+        159.92788696289062
+      ],
+      [
+        0.05716705322265625,
+        157.88047790527344,
+        8.346789360046387,
+        159.99842834472656
+      ]
+    ],
+    "top_classes": [
+      0,
+      0,
+      0,
+      0,
+      73
+    ],
+    "top_mask_pixels": [
+      8,
+      16,
+      28,
+      24,
+      16
+    ],
+    "top_scores": [
+      0.012972930446267128,
+      0.009353727102279663,
+      0.006218478549271822,
+      0.004663440864533186,
+      0.0040036956779658794
+    ]
+  },
+  "repo": "facebookresearch/detectron2",
+  "repo_commit": "e0ec4e189d438848521aee7926f9900e114229f5",
+  "success_level": "L4",
+  "task_id": "detectron2_maskrcnn_minimal",
+  "torch_version": "2.12.0+cpu"
+}

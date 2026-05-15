@@ -1,0 +1,56 @@
+task_id: slowfast_video_classification_minimal
+paper_title: "SlowFast Networks for Video Recognition"
+repo_url: https://github.com/facebookresearch/SlowFast
+commit: 287ec0076846560f44a9327e931a5a2360240533
+commit_short: 287ec00
+paper_url: https://arxiv.org/abs/1812.03982
+license: Apache-2.0
+split: val
+modality:
+  primary: video_understanding_generation
+  secondary:
+    - video_classification
+    - clip_inference
+    - two_pathway_video_model
+    - output_artifact
+environment_challenges:
+  - torch_cuda_matrix
+  - hidden_dependency
+  - stale_readme
+  - checkpoint_download
+  - system_package_missing
+  - entrypoint_ambiguity
+  - verification_ambiguity
+verification:
+  type:
+    - import_graph
+    - single_sample_inference
+    - output_artifact
+    - semantic_check
+  command: python verify.py
+  minimum_success_level: L4_fallback
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4_fallback

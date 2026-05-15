@@ -1,0 +1,6 @@
+{
+  "score": 1.0128719806671143,
+  "mask_pixels": 14637,
+  "image": "outputs/sam_smoke/test_image.png",
+  "mask": "outputs/sam_smoke/mask.png"
+}

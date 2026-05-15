@@ -1,0 +1,52 @@
+task_id: detectron2_maskrcnn_minimal
+paper_title: "Detectron2 / Mask R-CNN"
+repo_url: https://github.com/facebookresearch/detectron2
+commit: e0ec4e189d438848521aee7926f9900e114229f5
+paper_url: https://arxiv.org/abs/1703.06870
+license: Apache-2.0
+split: dev
+modality:
+  primary: object_detection_segmentation
+  secondary:
+    - instance_segmentation
+    - native_extension
+    - checkpoint_loading
+    - output_artifact
+environment_challenges:
+  - native_extension_build
+  - system_package_missing
+  - hidden_dependency
+  - torch_cuda_matrix
+  - checkpoint_download
+verification:
+  type:
+    - checkpoint_loading
+    - single_sample_inference
+    - output_artifact
+    - semantic_check
+  command: python verify.py
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  package_manager:
+    - apt
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4

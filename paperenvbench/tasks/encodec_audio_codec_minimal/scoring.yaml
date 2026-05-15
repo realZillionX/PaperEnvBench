@@ -1,0 +1,15 @@
+scoring:
+  L0_repository_analysis: 0.10
+  L1_install_success: 0.20
+  L2_import_success: 0.20
+  L3_minimal_entry_success: 0.25
+  L4_semantic_verification: 0.15
+  reproducibility: 0.05
+  safety: 0.05
+main_success_level: L4
+semantic_checks:
+  - encodec_model_24khz_loads
+  - synthetic_audio_encoded
+  - decoded_audio_shape_valid
+  - reconstruction_mse_finite_and_below_0_5
+  - expected_artifact_wav_exists

@@ -1,0 +1,50 @@
+task_id: groundingdino_phrase_grounding_minimal
+paper_title: "Grounding DINO: Marrying DINO with Grounded Pre-Training for Open-Set Object Detection"
+repo_url: https://github.com/IDEA-Research/GroundingDINO
+commit: 856dde20aee659246248e20734ef9ba5214f5e44
+paper_url: https://arxiv.org/abs/2303.05499
+license: Apache-2.0
+split: test
+modality:
+  primary: object_detection_segmentation
+  secondary:
+    - vision_language_multimodal
+    - checkpoint_loading
+    - output_artifact
+environment_challenges:
+  - native_extension_build
+  - checkpoint_download
+  - torch_cuda_matrix
+  - hidden_dependency
+  - python_version_conflict
+verification:
+  type:
+    - checkpoint_loading
+    - single_sample_inference
+    - output_artifact
+    - semantic_check
+  command: python verify.py --repo-dir repo --checkpoint-path models/groundingdino_swint_ogc.pth --output-dir artifacts
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4

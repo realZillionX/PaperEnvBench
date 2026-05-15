@@ -1,0 +1,71 @@
+{
+  "task_id": "slowfast_video_classification_minimal",
+  "required_artifact": "expected_artifact.json",
+  "required_side_artifact": "expected_clip_preview.ppm",
+  "expected_repo_commit": "287ec0076846560f44a9327e931a5a2360240533",
+  "expected_success_level": "L4_fallback",
+  "semantic_thresholds": {
+    "expected_logits_shape": [
+      1,
+      5
+    ],
+    "expected_slow_pathway_shape": [
+      1,
+      3,
+      2,
+      32,
+      32
+    ],
+    "expected_fast_pathway_shape": [
+      1,
+      3,
+      8,
+      32,
+      32
+    ],
+    "expected_top_class": 4,
+    "probability_sum_tolerance": 1e-06,
+    "min_preview_size_bytes": 1024
+  },
+  "required_fields": [
+    "task_id",
+    "repo_commit",
+    "fallback_reason",
+    "official_repo_code_paths",
+    "input",
+    "output",
+    "checks",
+    "success_level"
+  ],
+  "gold_observed": {
+    "success_level": "L4_fallback",
+    "python": "3.12.3",
+    "package_versions": {
+      "torch": "2.12.0+cpu",
+      "torchvision": "0.27.0+cpu",
+      "pytorchvideo": "0.1.5",
+      "fvcore": "0.1.5.post20221221",
+      "yacs": "0.1.8",
+      "numpy": "2.4.4"
+    },
+    "native_import_error": "ImportError: cannot import name 'cat_all_gather' from 'pytorchvideo.layers.distributed'",
+    "runtime_shims": [
+      "cat_all_gather",
+      "get_local_process_group",
+      "get_local_rank",
+      "get_local_size",
+      "init_distributed_training",
+      "detectron2.layers.ROIAlign",
+      "pytorchvideo.losses.soft_target_cross_entropy"
+    ],
+    "logits_sha256": "c12b1ae028aaf024b0fd6af64116fd2d425454497a711cf16d9b8072b8680e07",
+    "top_class": 4,
+    "top_probability": 0.2005783021,
+    "probability_sum": 1.0,
+    "artifact_sha256": "ad1bae52354024b44d3082b83ac8a8bc4118dc51176a306162aecb0512d1de91",
+    "preview_sha256": "2471bfd2b17b4f6b34bdc720558dabebb8c5840f5218c44824321ce63cccc6c8",
+    "gold_install_log_sha256": "3b30bbf460b0a5be9439a43a06ad59353ded74b5eeda3d6e3e022fab4cba9db6",
+    "gold_verify_log_sha256": "433b32951f173dde42261f8a4ea50951224a9ec874bfe6a74ef74cfb28767aef",
+    "requirements_lock_sha256": "b34310d5b743de5c7442c33e742e83f7582956d4cb14afcdb1a338a817701ad2"
+  }
+}

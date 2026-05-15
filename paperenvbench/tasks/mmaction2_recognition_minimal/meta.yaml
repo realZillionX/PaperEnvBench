@@ -1,0 +1,53 @@
+task_id: mmaction2_recognition_minimal
+paper_title: "MMAction2: OpenMMLab's Next Generation Video Understanding Toolbox and Benchmark"
+repo_url: https://github.com/open-mmlab/mmaction2
+commit: a5a167dff2399e2d182a60332325f9c0d4663517
+paper_url: https://arxiv.org/abs/2008.00207
+license: Apache-2.0
+split: test
+modality:
+  primary: video_understanding_generation
+  secondary:
+    - action_recognition
+    - synthetic_video
+    - openmmlab
+    - output_artifact
+environment_challenges:
+  - native_extension_build
+  - torch_cuda_matrix
+  - hidden_dependency
+  - system_package_missing
+  - checkpoint_download
+  - entrypoint_ambiguity
+  - verification_ambiguity
+verification:
+  type:
+    - import_graph
+    - single_sample_inference
+    - output_artifact
+    - semantic_check
+  command: python verify.py
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4_fallback

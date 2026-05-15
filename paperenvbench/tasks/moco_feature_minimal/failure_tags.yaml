@@ -1,0 +1,22 @@
+primary_failure_tags:
+  - checkpoint_download
+  - torch_cuda_matrix
+  - stale_readme
+  - entrypoint_ambiguity
+  - verification_ambiguity
+observed_failures:
+  - tag: stale_readme
+    evidence: "Current upstream main HEAD 8976944da9c6b94cbd9158d7ebe50912aef807ef has an empty tree, so a historical code-bearing commit must be pinned."
+    mitigation: "gold_install.sh checks out 7397dfe146c7ca6bbb58e9c382498069178ba764, the MIT relicense commit with the original 17-file MoCo tree."
+  - tag: torch_cuda_matrix
+    evidence: "The original README points to older PyTorch ImageNet training code and the training forward path hard-codes DDP and CUDA labels."
+    mitigation: "gold_install.sh installs a matched CPU torch / torchvision pair and verify.py exercises encoder_q directly on CPU."
+  - tag: checkpoint_download
+    evidence: "The README's pretrained MoCo checkpoints are public remote assets and are unnecessary for a minimal environment-verification task."
+    mitigation: "verify.py performs deterministic random-initialized encoder feature extraction instead of requiring checkpoint download."
+anti_patterns:
+  - "Using the current upstream main branch without noticing that its tree is empty."
+  - "Treating README inspection or import moco as L4 success."
+  - "Calling MoCo.forward on CPU without adapting the DDP-only all_gather and .cuda() labels path."
+  - "Installing latest torch without a matching torchvision wheel."
+  - "Requiring ImageNet or a pretrained checkpoint for the CPU minimal smoke."

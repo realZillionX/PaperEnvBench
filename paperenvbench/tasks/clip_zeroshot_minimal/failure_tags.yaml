@@ -1,0 +1,9 @@
+primary_failure_tags:
+  - torch_cuda_matrix
+  - checkpoint_download
+  - hidden_dependency
+  - verification_ambiguity
+anti_patterns:
+  - "Accepting import success without running image-text scoring."
+  - "Installing latest torchvision without checking the torch matrix."
+  - "Using remote image URLs in hidden verification instead of cached assets."

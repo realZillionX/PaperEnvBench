@@ -1,0 +1,17 @@
+scoring:
+  L0_repository_analysis: 0.10
+  L1_install_success: 0.20
+  L2_import_success: 0.20
+  L3_minimal_entry_success: 0.25
+  L4_semantic_verification: 0.15
+  reproducibility: 0.05
+  safety: 0.05
+main_success_level: L4
+semantic_checks:
+  - detectron2_native_extension_imported
+  - official_maskrcnn_config_loaded
+  - official_checkpoint_loaded
+  - cpu_inference_returns_instances
+  - prediction_boxes_scores_masks_are_finite
+  - expected_artifact_json_exists
+  - expected_input_mask_overlay_exist

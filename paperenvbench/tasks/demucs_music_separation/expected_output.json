@@ -1,0 +1,29 @@
+{
+  "task_id": "demucs_music_separation",
+  "expected_success_level": "L4_fallback",
+  "model": "demucs_unittest",
+  "device": "cpu",
+  "input": {
+    "kind": "synthetic_stereo_wav",
+    "sample_rate": 44100,
+    "duration_sec": 0.25,
+    "frames": 11025
+  },
+  "required_artifacts": [
+    "artifacts/expected_artifact.wav",
+    "artifacts/expected_artifact.json",
+    "artifacts/verification_result.json"
+  ],
+  "semantic_requirements": {
+    "channels": 2,
+    "sample_rate": 44100,
+    "frames": 11025,
+    "min_size_bytes": 1000,
+    "peak_abs_pcm_gt": 0
+  },
+  "notes": [
+    "The exact waveform hash is not a scoring requirement because the built-in unittest model initializes weights at runtime.",
+    "CLI help and import-only checks are insufficient for L4."
+  ]
+}
+

@@ -1,0 +1,35 @@
+{
+  "task_id": "moco_feature_minimal",
+  "expected_success_level": "L4_cpu_encoder_forward",
+  "model": "MoCo ResNet-50 encoder_q",
+  "device": "cpu",
+  "input": {
+    "kind": "synthetic_rgb_tensor",
+    "shape": [
+      1,
+      3,
+      224,
+      224
+    ],
+    "generation": "deterministic meshgrid with sinusoidal third channel"
+  },
+  "required_artifacts": [
+    "artifacts/expected_artifact.json",
+    "artifacts/verification_result.json"
+  ],
+  "semantic_requirements": {
+    "repo_commit": "7397dfe146c7ca6bbb58e9c382498069178ba764",
+    "feature_shape": [
+      1,
+      128
+    ],
+    "feature_all_finite": true,
+    "normalized_feature_norm_abs_tolerance": 0.000001,
+    "checkpoint_download_required": false,
+    "gpu_required": false
+  },
+  "notes": [
+    "The exact raw feature values are tied to the pinned torch / torchvision versions and are recorded in artifacts/expected_artifact.json.",
+    "The upstream training forward path is not used because it assumes DistributedDataParallel and CUDA."
+  ]
+}

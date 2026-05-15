@@ -1,0 +1,49 @@
+{
+  "task_id": "detectron2_maskrcnn_minimal",
+  "source": {
+    "notebook": "paper-repro-ci-prep",
+    "workspace": "CPU资源空间",
+    "remote_cwd_alias": "paper-repro",
+    "remote_run_dir": "paper-repro:runs/paperenvbench/detection/detectron2_maskrcnn_minimal",
+    "repo_path": "paper-repro:runs/paperenvbench/detection/detectron2_maskrcnn_minimal/repo",
+    "repo_commit": "e0ec4e189d438848521aee7926f9900e114229f5",
+    "venv": "paper-repro:runs/paperenvbench/detection/detectron2_maskrcnn_minimal/.venv",
+    "install_log": "paper-repro:runs/paperenvbench/detection/detectron2_maskrcnn_minimal/logs/gold_install.log",
+    "verify_log": "paper-repro:runs/paperenvbench/detection/detectron2_maskrcnn_minimal/logs/gold_verify.log"
+  },
+  "expected_files": {
+    "summary": "artifacts/expected_artifact.json",
+    "input": "artifacts/expected_input.png",
+    "mask": "artifacts/expected_mask.png",
+    "overlay": "artifacts/expected_overlay.png"
+  },
+  "gold_payload": {
+    "success_level": "L4",
+    "detectron2_version": "0.6",
+    "torch_version": "2.12.0+cpu",
+    "config": "COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_1x.yaml",
+    "checkpoint_url": "https://dl.fbaipublicfiles.com/detectron2/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_1x/137260431/model_final_a54504.pkl",
+    "checkpoint_sha256": "95628d657763c4c090bb2675be922a8aa179a4f1eaa071854902c442ec5f7df9",
+    "num_instances": 5,
+    "top_score": 0.012972930446267128,
+    "top_mask_pixels": 8,
+    "expected_shape_mask_pixels": 7056
+  },
+  "acceptance": {
+    "requires_native_extension": true,
+    "requires_checkpoint_load": true,
+    "requires_nonempty_prediction": true,
+    "requires_positive_predicted_mask_pixels": true,
+    "requires_finite_boxes_and_scores": true,
+    "requires_nonempty_overlay_png": true
+  },
+  "checksums": {
+    "expected_artifact_json_sha256": "e86e2e69775fda5bc15dfa69a4e1fc246af59409e0ade2e89681f52dc0c5b68c",
+    "expected_input_png_sha256": "1ff61eef520e6c6966f5cffc6cf990ac4a76865768790e478fa31cddc49e5db9",
+    "expected_mask_png_sha256": "a745d5a0231f1cf14d5cfc3589a8dc73f1cbe0982edc17a717ebf44d29c64b6b",
+    "expected_overlay_png_sha256": "b98701205b899244d1ac3a9eb4430e2d892210e55418955d1a8c0c017ba9b07f",
+    "gold_install_log_sha256": "e63584e7ecccaa0daea67df0483cb0747e76eee0c0a801b0917f5cfa8f8bae6a",
+    "gold_verify_log_sha256": "3bca9ea45d885bef1673884cf62431d950010a9d4009b661e752bbdabba38459",
+    "requirements_lock_sha256": "487e3e272ec9dc4b6a1195cbd07f7a37c894ab8f10b3b6b34ae05be0cc996639"
+  }
+}

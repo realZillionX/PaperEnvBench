@@ -1,0 +1,51 @@
+task_id: speechbrain_keyword_spotting
+paper_title: "SpeechBrain: A General-Purpose Speech Toolkit"
+repo_url: https://github.com/speechbrain/speechbrain
+commit: 8a89ebad72af734b75bbd37565ae96a6819e146b
+paper_url: https://arxiv.org/abs/2106.04624
+license: Apache-2.0
+split: test
+modality:
+  primary: audio_speech
+  secondary:
+    - keyword_spotting
+    - checkpoint_loading
+    - pretrained_inference
+environment_challenges:
+  - checkpoint_download
+  - torch_cuda_matrix
+  - hidden_dependency
+  - dataset_asset_missing
+  - verification_ambiguity
+verification:
+  type:
+    - import_graph
+    - single_sample_inference
+    - output_artifact
+    - semantic_check
+  command: python verify.py
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+    - huggingface_model_name
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4

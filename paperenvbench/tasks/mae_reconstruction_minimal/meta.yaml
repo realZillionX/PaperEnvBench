@@ -1,0 +1,53 @@
+task_id: mae_reconstruction_minimal
+paper_title: "Masked Autoencoders Are Scalable Vision Learners"
+repo_url: https://github.com/facebookresearch/mae
+commit: efb2a8062c206524e35e47d04501ed4f544c0ae8
+commit_short: efb2a80
+paper_url: https://arxiv.org/abs/2111.06377
+license: CC-BY-NC-4.0
+split: test
+modality:
+  primary: image_classification_representation
+  secondary:
+    - masked_image_modeling
+    - reconstruction
+    - vision_transformer
+environment_challenges:
+  - python_version_conflict
+  - hidden_dependency
+  - torch_cuda_matrix
+  - entrypoint_ambiguity
+  - verification_ambiguity
+verification:
+  type:
+    - import_graph
+    - single_sample_inference
+    - output_artifact
+    - semantic_check
+  command: python verify.py
+  minimum_success_level: L4_cpu_forward_reconstruction
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4

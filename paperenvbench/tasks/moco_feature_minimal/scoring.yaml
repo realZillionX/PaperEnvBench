@@ -1,0 +1,23 @@
+scoring:
+  L0_repository_analysis: 0.10
+  L1_install_success: 0.20
+  L2_import_success: 0.15
+  L3_minimal_entry_success: 0.25
+  L4_semantic_verification: 0.20
+  reproducibility: 0.05
+  safety: 0.05
+main_success_level: L4_cpu_encoder_forward
+level_definitions:
+  L0_repository_analysis: "Identify the historical code-bearing commit, MoCo builder entry point, public checkpoint route, DDP-only training assumptions, and torch / torchvision compatibility risk."
+  L1_install_success: "Create an isolated venv, install a matched CPU torch / torchvision pair, and check out the pinned repository."
+  L2_import_success: "Import torch, torchvision, and moco.builder from the pinned repository."
+  L3_minimal_entry_success: "Instantiate a MoCo ResNet-50 encoder and run one synthetic RGB tensor through encoder_q on CPU."
+  L4_semantic_verification: "Write a JSON artifact proving feature shape, finite values, normalized feature norm, deterministic checksum, and pinned commit match."
+semantic_checks:
+  - repo_commit_matches
+  - moco_builder_imports
+  - encoder_q_runs_on_cpu
+  - feature_shape_is_1x128
+  - feature_values_are_finite
+  - normalized_feature_norm_is_one
+  - verification_result_json_exists

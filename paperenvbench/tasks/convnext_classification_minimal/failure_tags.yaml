@@ -1,0 +1,13 @@
+primary_failure_tags:
+  - torch_cuda_matrix
+  - python_version_conflict
+  - hidden_dependency
+  - entrypoint_ambiguity
+  - checkpoint_download
+  - verification_ambiguity
+anti_patterns:
+  - "Treating README evaluation text as success without importing the repository model code."
+  - "Downloading a large ImageNet checkpoint when a CPU toy forward is enough for the minimal verifier."
+  - "Running only timm's built-in ConvNeXt implementation instead of the pinned repository source."
+  - "Installing GPU-only torch wheels before proving the CPU path fails."
+  - "Using Docker to hide missing Python dependency or path setup issues."

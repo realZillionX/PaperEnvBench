@@ -1,0 +1,28 @@
+{
+  "commit": "8a89ebad72af734b75bbd37565ae96a6819e146b",
+  "commit_date": "2026-05-13T10:03:30-04:00",
+  "commit_subject": "Fix device handling for MPS (#3055)",
+  "default_remote_head_observed": "8a89ebad72af734b75bbd37565ae96a6819e146b",
+  "hardware_verified": {
+    "device": "cpu",
+    "gpu_required": false
+  },
+  "install_mode": "editable install from fixed commit with explicit PyTorch CPU wheels",
+  "license_file_exists": true,
+  "package_files": [
+    "pyproject.toml",
+    "requirements.txt",
+    "speechbrain/version.txt"
+  ],
+  "pretrained_model": "speechbrain/google_speech_command_xvector",
+  "pretrained_model_revision": "b0cec0fb42423936ca0da2724ce52d82eb807e20",
+  "repo_url": "https://github.com/speechbrain/speechbrain",
+  "remote_run_dir": "paper-repro:runs/paperenvbench/audio/speechbrain_keyword_spotting",
+  "source_branch": "develop",
+  "task_recipe_files": [
+    "recipes/Google-speech-commands/README.md",
+    "recipes/Google-speech-commands/train.py",
+    "recipes/Google-speech-commands/hparams/xvect.yaml"
+  ],
+  "verification_entrypoint": "speechbrain.inference.classifiers.EncoderClassifier.from_hparams"
+}

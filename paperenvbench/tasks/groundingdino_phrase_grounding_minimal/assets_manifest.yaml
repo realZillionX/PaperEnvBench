@@ -1,0 +1,44 @@
+assets:
+  - asset_id: groundingdino_repo_snapshot
+    type: source_repo
+    required: true
+    source: git
+    url: https://github.com/IDEA-Research/GroundingDINO
+    commit: 856dde20aee659246248e20734ef9ba5214f5e44
+    cached_path: paper-repro:runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/repo
+  - asset_id: groundingdino_swint_checkpoint
+    type: checkpoint
+    required: true
+    source: github_release
+    url: https://github.com/IDEA-Research/GroundingDINO/releases/download/v0.1.0-alpha/groundingdino_swint_ogc.pth
+    cached_path: paper-repro:runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/models/groundingdino_swint_ogc.pth
+    checksum_sha256: 3b3ca2563c77c69f651d7bd133e97139c186df06231157a64c507099c52bc799
+    size_bytes: 693997677
+  - asset_id: bert_base_uncased_text_encoder
+    type: tokenizer_and_language_model
+    required: true
+    source: transformers_hub
+    name: bert-base-uncased
+    cached_path: transformers_cache_on_paper-repro-ci-prep
+    used_by: groundingdino.models.GroundingDINO.groundingdino.GroundingDINO
+  - asset_id: synthetic_phrase_grounding_input
+    type: image
+    required: true
+    source: generated_by_verify
+    cached_path: paper-repro:runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/artifacts/expected_input.png
+    local_path: artifacts/expected_input.png
+    checksum_sha256: b4fab73ad0198aac5b926378e7e07955e4204fd55eca27be1f0c65c6968f9aed
+  - asset_id: groundingdino_expected_annotation
+    type: image
+    required: true
+    source: generated_by_verify
+    cached_path: paper-repro:runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/artifacts/expected_annotated.png
+    local_path: artifacts/expected_annotated.png
+    checksum_sha256: 8a80a8cde0fa5fa7b40c86290b764a646e5593899dae6fb755ca75e39a71bb15
+  - asset_id: groundingdino_phrase_grounding_summary
+    type: output_artifact
+    required: true
+    source: generated_by_verify
+    cached_path: paper-repro:runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/artifacts/expected_artifact.json
+    local_path: artifacts/expected_artifact.json
+    checksum_sha256: 7bc728bb21c20caa85027a84f8e46d84c6a68790f2f1da41d8c970c0d208bee5

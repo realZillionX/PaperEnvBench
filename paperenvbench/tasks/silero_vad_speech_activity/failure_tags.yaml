@@ -1,0 +1,11 @@
+primary_failure_tags:
+  - torch_cuda_matrix
+  - system_package_missing
+  - hidden_dependency
+  - entrypoint_ambiguity
+  - verification_ambiguity
+anti_patterns:
+  - "Treating package import as success without running VAD inference."
+  - "Using torch.hub implicitly without recording where model weights were cached."
+  - "Testing only synthetic sine audio that produces no speech timestamps."
+  - "Installing GPU-only torch wheels before proving the CPU path fails."

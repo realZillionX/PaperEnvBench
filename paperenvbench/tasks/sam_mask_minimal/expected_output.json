@@ -1,0 +1,35 @@
+{
+  "task_id": "sam_mask_minimal",
+  "source": {
+    "notebook": "paper-repro-ci-prep",
+    "remote_cwd_alias": "paper-repro",
+    "repo_path": "paper-repro:repos/segment-anything",
+    "repo_commit": "dca509fe793f601edb92606367a655c15ac00fdf",
+    "venv": "paper-repro:envs/paper-repro-cpu",
+    "smoke_log": "paper-repro:logs/30_sam_smoke.log",
+    "output_dir": "paper-repro:outputs/sam_smoke"
+  },
+  "expected_files": {
+    "summary": "artifacts/expected_artifact.json",
+    "mask": "artifacts/expected_artifact.png",
+    "input": "artifacts/expected_input.png"
+  },
+  "gold_payload": {
+    "score": 1.0128719806671143,
+    "mask_pixels": 14637,
+    "image": "outputs/sam_smoke/test_image.png",
+    "mask": "outputs/sam_smoke/mask.png"
+  },
+  "acceptance": {
+    "score_must_be_finite": true,
+    "mask_pixels_min": 1000,
+    "mask_pixels_max": 60000,
+    "requires_nonempty_mask_png": true
+  },
+  "checksums": {
+    "expected_artifact_json_sha256": "38b5b90eb3a7c9e0a112adae7a9da6cc551d189e6af497ff9a387cd99a34299f",
+    "expected_artifact_png_sha256": "79090435d45049ea4a34535746994c5c526764efecb72c222de4c6158f00bbc2",
+    "expected_input_png_sha256": "020a843b7db79ef6ad7cf58fe3bae979256efaad5d7b00058b786a09a5850928",
+    "checkpoint_sha256": "ec2df62732614e57411cdcf32a23ffdf28910380d03139ee0f4fcbe91eb8c912"
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "checks": {
+    "bbox_overlap_function_executed": true,
+    "detections_match_synthetic_targets": true,
+    "matrix_nms_function_executed": true,
+    "mmdet_version_imported": true,
+    "native_faster_rcnn_blocker_recorded": true,
+    "repo_commit_matches": true,
+    "visualization_artifact_written": true
+  },
+  "input": {
+    "gt_boxes_xyxy": [
+      [
+        12.0,
+        10.0,
+        60.0,
+        58.0
+      ],
+      [
+        70.0,
+        20.0,
+        110.0,
+        76.0
+      ]
+    ],
+    "image_size": [
+      128,
+      96
+    ],
+    "pred_boxes_xyxy": [
+      [
+        14.0,
+        12.0,
+        59.0,
+        55.0
+      ],
+      [
+        68.0,
+        22.0,
+        112.0,
+        78.0
+      ],
+      [
+        6.0,
+        5.0,
+        32.0,
+        30.0
+      ]
+    ],
+    "pred_labels": [
+      0,
+      1,
+      0
+    ],
+    "pred_scores": [
+      0.9300000072,
+      0.8399999738,
+      0.1800000072
+    ]
+  },
+  "native_faster_rcnn_config": {
+    "config": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/detection/mmdetection_fasterrcnn_minimal/repo/configs/_base_/models/faster-rcnn_r50_fpn.py",
+    "error": null,
+    "error_type": null,
+    "model_type": "FasterRCNN",
+    "ok": true
+  },
+  "native_mmcv_ops": {
+    "error": "ModuleNotFoundError: No module named 'mmcv._ext'",
+    "error_type": "ModuleNotFoundError",
+    "expected_blocker": true,
+    "ok": false,
+    "ops": [
+      "RoIAlign",
+      "nms"
+    ]
+  },
+  "official_repo_code_paths": [
+    "mmdet/__init__.py",
+    "configs/_base_/models/faster-rcnn_r50_fpn.py",
+    "mmdet/evaluation/functional/bbox_overlaps.py",
+    "mmdet/models/layers/matrix_nms.py"
+  ],
+  "output": {
+    "iou_matrix": [
+      [
+        0.83984375,
+        0.0
+      ],
+      [
+        0.0,
+        0.8490566015
+      ],
+      [
+        0.1566170752,
+        0.0
+      ]
+    ],
+    "iou_matrix_sha256": "fc640619271e1e752851ef07adae52ebc1792829233f78b13b43ab04e49a4454",
+    "kept_detections": [
+      {
+        "bbox": [
+          14.0,
+          12.0,
+          59.0,
+          55.0
+        ],
+        "best_iou": 0.83984375,
+        "best_target": 0,
+        "label": 0,
+        "mask_pixels": 1935,
+        "rank": 0,
+        "score_after_matrix_nms": 0.9300000072,
+        "source_index": 0
+      },
+      {
+        "bbox": [
+          68.0,
+          22.0,
+          112.0,
+          78.0
+        ],
+        "best_iou": 0.8490566015,
+        "best_target": 1,
+        "label": 1,
+        "mask_pixels": 2464,
+        "rank": 1,
+        "score_after_matrix_nms": 0.8399999738,
+        "source_index": 1
+      }
+    ],
+    "kept_labels": [
+      0,
+      1
+    ],
+    "visualization": {
+      "channels": 3,
+      "format": "ppm_p6",
+      "height": 96,
+      "sha256": "1e62cdaec725fcffbf4ac3b7a832a6d90649c44758100cf97f6ee9f9062c36f6",
+      "size_bytes": 36878,
+      "width": 128
+    }
+  },
+  "package_versions": {
+    "mmcv": "2.1.0",
+    "mmdet": "3.3.0",
+    "mmengine": "0.10.7",
+    "numpy": "1.26.4",
+    "torch": "2.8.0+cpu",
+    "torchvision": "0.23.0+cpu"
+  },
+  "python": "3.12.3",
+  "repo_commit": "cfd5d3a985b0249de009b67d04f37263e11cdf3d",
+  "success_level": "L4_fallback",
+  "task_id": "mmdetection_fasterrcnn_minimal"
+}

@@ -1,0 +1,56 @@
+{
+  "task_id": "mmdetection_fasterrcnn_minimal",
+  "required_artifact": "expected_artifact.json",
+  "required_side_artifact": "expected_detection.ppm",
+  "expected_repo_commit": "cfd5d3a985b0249de009b67d04f37263e11cdf3d",
+  "expected_success_level": "L4_fallback",
+  "semantic_thresholds": {
+    "expected_iou_shape": [
+      3,
+      2
+    ],
+    "min_match_iou": 0.72,
+    "expected_kept_source_indices": [
+      0,
+      1
+    ],
+    "min_visualization_size_bytes": 1024
+  },
+  "required_fields": [
+    "task_id",
+    "repo_commit",
+    "native_faster_rcnn_config",
+    "native_mmcv_ops",
+    "official_repo_code_paths",
+    "input",
+    "output",
+    "checks",
+    "success_level"
+  ],
+  "gold_observed": {
+    "success_level": "L4_fallback",
+    "python": "3.12.3",
+    "package_versions": {
+      "torch": "2.8.0+cpu",
+      "torchvision": "0.23.0+cpu",
+      "mmcv": "2.1.0",
+      "mmengine": "0.10.7",
+      "mmdet": "3.3.0",
+      "numpy": "1.26.4"
+    },
+    "native_faster_rcnn_config_ok": true,
+    "native_mmcv_ops_error": "ModuleNotFoundError: No module named 'mmcv._ext'",
+    "iou_matrix_sha256": "fc640619271e1e752851ef07adae52ebc1792829233f78b13b43ab04e49a4454",
+    "kept_source_indices": [
+      0,
+      1
+    ],
+    "best_ious": [
+      0.83984375,
+      0.8490566015
+    ],
+    "visualization_sha256": "1e62cdaec725fcffbf4ac3b7a832a6d90649c44758100cf97f6ee9f9062c36f6",
+    "visualization_size_bytes": 36878,
+    "artifact_sha256": "ca2d20e5fa2863b664938d4edb3b4141bd7cfc9e5c862d3da3727708ebe9f287"
+  }
+}

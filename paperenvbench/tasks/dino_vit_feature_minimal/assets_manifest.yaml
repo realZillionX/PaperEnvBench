@@ -1,0 +1,19 @@
+assets:
+  - asset_id: dino_deitsmall16_pretrain
+    type: checkpoint
+    required: true
+    url: https://dl.fbaipublicfiles.com/dino/dino_deitsmall16_pretrain/dino_deitsmall16_pretrain.pth
+    cached_path: paper-repro:runs/paperenvbench/image/dino_vit_feature_minimal/checkpoints/dino_deitsmall16_pretrain.pth
+    checksum:
+      algorithm: sha256
+      value: 1566d50496f27f52f07fea6094fa29b2fdd6fae89da65bdd3ebc3b24ef6b7eb7
+    size_bytes: 86710517
+  - asset_id: deterministic_synthetic_rgb_gradient
+    type: image
+    required: true
+    generated_by: gold_install.sh
+    cached_path: paper-repro:runs/paperenvbench/image/dino_vit_feature_minimal/outputs/dino_vit_feature_minimal/dino_synthetic_input.png
+    checksum:
+      algorithm: sha256
+      value: 2c64003e797bd3c41a31d28f54349b9ad24094ee7bd523207b1eca0688266772
+    size_bytes: 1850

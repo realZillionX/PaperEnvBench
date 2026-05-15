@@ -1,0 +1,10 @@
+primary_failure_tags:
+  - checkpoint_download
+  - torch_cuda_matrix
+  - hidden_dependency
+  - entrypoint_ambiguity
+anti_patterns:
+  - "Treating a successful import of vision_transformer as L4 without running a feature forward pass."
+  - "Using ImageNet or a GPU-only training path for the minimal CPU smoke test."
+  - "Assuming torchvision is required for the core ViT feature path; the gold route uses vision_transformer.py directly."
+  - "Ignoring the internal pip torch CUDA dependency fan-out even though the actual smoke runs on CPU."

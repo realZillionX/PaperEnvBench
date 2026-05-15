@@ -1,0 +1,61 @@
+{
+  "task_id": "silero_vad_speech_activity",
+  "repo_url": "https://github.com/snakers4/silero-vad",
+  "commit": "980b17e9d56463e51393a8d92ded473f1b17896a",
+  "commit_short": "980b17e",
+  "default_branch": "master",
+  "snapshot_observed_at": "2026-05-15T16:32:00+08:00",
+  "source_tree": {
+    "package_manager": "pip",
+    "build_backend": "hatchling.build",
+    "python_requires": ">=3.8",
+    "project_file": "pyproject.toml",
+    "module": "silero_vad",
+    "primary_entrypoints": [
+      "silero_vad.load_silero_vad",
+      "silero_vad.read_audio",
+      "silero_vad.get_speech_timestamps"
+    ]
+  },
+  "dependencies_declared": [
+    "packaging",
+    "torch>=1.12.0",
+    "torchaudio>=0.12.0"
+  ],
+  "optional_dependencies_used_by_gold": [
+    "soundfile"
+  ],
+  "packaged_assets": [
+    {
+      "path": "src/silero_vad/data/silero_vad.jit",
+      "type": "jit_model",
+      "size_bytes": 2270714,
+      "sha256": "e1122837f4154c511485fe0b9c64455f7b929c96fbb8d79fbdb336383ebd3720"
+    },
+    {
+      "path": "src/silero_vad/data/silero_vad.onnx",
+      "type": "onnx_model",
+      "size_bytes": 2327526
+    },
+    {
+      "path": "tests/data/test.wav",
+      "type": "audio_fixture",
+      "size_bytes": 1953808,
+      "sha256": "89f17d9c94c4b31eb320f424628bcbc920abaddbee6e2760fd868bfb1d9a2e47"
+    }
+  ],
+  "verification_contract": {
+    "input_audio": "tests/data/test.wav",
+    "output_artifact": "speech_activity_summary.json",
+    "semantic_thresholds": {
+      "min_speech_segment_count": 1,
+      "min_total_speech_duration_sec": 0.5,
+      "min_vad_max_probability": 0.5
+    }
+  },
+  "torch_hub_strategy": {
+    "used_by_gold": false,
+    "reason": "The fixed repository snapshot packages JIT and ONNX model assets under src/silero_vad/data, so hidden verification can avoid implicit hub downloads.",
+    "if_used_by_agent": "Record TORCH_HOME or ~/.cache/torch/hub path and any network failure in the attempt log."
+  }
+}

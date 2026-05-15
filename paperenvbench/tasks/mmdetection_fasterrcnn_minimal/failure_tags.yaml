@@ -1,0 +1,13 @@
+primary_failure_tags:
+  - native_extension_build
+  - torch_cuda_matrix
+  - python_version_conflict
+  - hidden_dependency
+  - checkpoint_download
+  - verification_ambiguity
+anti_patterns:
+  - "Treating `import mmdet` as sufficient when Faster R-CNN config execution fails on missing `mmcv._ext`."
+  - "Installing `mmcv-lite` without recording that native `mmcv` ops are unavailable."
+  - "Downloading a large COCO checkpoint before proving a reduced CPU config path can execute."
+  - "Switching to a non-OpenMMLab detector without preserving evidence from the pinned MMDetection repository."
+  - "Using Docker to hide the Python, torch, and mmcv compatibility boundary."

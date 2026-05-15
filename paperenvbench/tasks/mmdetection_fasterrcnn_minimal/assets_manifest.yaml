@@ -1,0 +1,38 @@
+assets:
+  - asset_id: mmdetection_repo_snapshot
+    type: source_repo
+    required: true
+    source: git
+    url: https://github.com/open-mmlab/mmdetection
+    commit: cfd5d3a985b0249de009b67d04f37263e11cdf3d
+    cached_path: paper-repro:runs/paperenvbench/detection/mmdetection_fasterrcnn_minimal/repo
+  - asset_id: synthetic_detection_visualization
+    type: image
+    required: true
+    source: generated_by_verify
+    cached_path: paper-repro:runs/paperenvbench/detection/mmdetection_fasterrcnn_minimal/artifacts/expected_detection.ppm
+    local_path: artifacts/expected_detection.ppm
+    checksum_sha256: 1e62cdaec725fcffbf4ac3b7a832a6d90649c44758100cf97f6ee9f9062c36f6
+    size_bytes: 36878
+  - asset_id: mmdetection_detection_summary
+    type: output_artifact
+    required: true
+    source: generated_by_verify
+    cached_path: paper-repro:runs/paperenvbench/detection/mmdetection_fasterrcnn_minimal/artifacts/expected_artifact.json
+    local_path: artifacts/expected_artifact.json
+    checksum_sha256: ca2d20e5fa2863b664938d4edb3b4141bd7cfc9e5c862d3da3727708ebe9f287
+    size_bytes: 3275
+  - asset_id: native_mmcv_dryrun_probe_log
+    type: failure_evidence
+    required: true
+    source: generated_by_gold_install
+    cached_path: paper-repro:runs/paperenvbench/detection/mmdetection_fasterrcnn_minimal/logs/native_mmcv_dryrun_probe.log
+    local_path: logs/native_mmcv_dryrun_probe.log
+    checksum_sha256: c73d0fd20bd041746a8228af53c991c27f9071101c35b47c81b8b67c0c6192ee
+  - asset_id: native_mmcv_ops_probe_log
+    type: failure_evidence
+    required: true
+    source: generated_by_gold_install
+    cached_path: paper-repro:runs/paperenvbench/detection/mmdetection_fasterrcnn_minimal/logs/native_mmcv_ops_probe.log
+    local_path: logs/native_mmcv_ops_probe.log
+    checksum_sha256: ebcea9a570096dfc0f517b684dd22126bb40b1397f6af3cc8fc294ea9614e9dd

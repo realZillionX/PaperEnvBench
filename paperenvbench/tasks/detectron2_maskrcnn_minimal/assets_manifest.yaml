@@ -1,0 +1,22 @@
+assets:
+  - asset_id: detectron2_maskrcnn_r50_fpn_1x_checkpoint
+    type: checkpoint
+    required: true
+    url: https://dl.fbaipublicfiles.com/detectron2/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_1x/137260431/model_final_a54504.pkl
+    cached_path: /root/.torch/iopath_cache/detectron2/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_1x/137260431/model_final_a54504.pkl
+    sha256: 95628d657763c4c090bb2675be922a8aa179a4f1eaa071854902c442ec5f7df9
+  - asset_id: synthetic_rgb_input
+    type: image
+    required: true
+    local_path: artifacts/expected_input.png
+    sha256: 1ff61eef520e6c6966f5cffc6cf990ac4a76865768790e478fa31cddc49e5db9
+  - asset_id: synthetic_shape_mask
+    type: image
+    required: true
+    local_path: artifacts/expected_mask.png
+    sha256: a745d5a0231f1cf14d5cfc3589a8dc73f1cbe0982edc17a717ebf44d29c64b6b
+  - asset_id: prediction_overlay
+    type: image
+    required: true
+    local_path: artifacts/expected_overlay.png
+    sha256: b98701205b899244d1ac3a9eb4430e2d892210e55418955d1a8c0c017ba9b07f

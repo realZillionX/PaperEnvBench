@@ -1,0 +1,29 @@
+-e git+https://github.com/facebookresearch/pytorchvideo.git@f3142bb05cdb56af0704ab6f0adfb0c7bbafe4a0#egg=pytorchvideo
+Jinja2==3.1.6
+MarkupSafe==3.0.3
+PyYAML==6.0.3
+av==17.0.1
+filelock==3.29.0
+fsspec==2026.4.0
+fvcore==0.1.5.post20221221
+iopath==0.1.10
+mpmath==1.3.0
+networkx==3.6.1
+numpy==2.4.4
+packaging==26.2
+parameterized==0.9.0
+pillow==12.2.0
+portalocker==3.2.0
+setuptools==82.0.1
+sympy==1.14.0
+tabulate==0.10.0
+termcolor==3.3.0
+torch==2.8.0+cpu
+torchvision==0.23.0+cpu
+tqdm==4.67.3
+typing_extensions==4.15.0
+wheel==0.47.0
+yacs==0.1.8
+# Source repository is installed editable from the pinned checkout.
+# repo=https://github.com/facebookresearch/pytorchvideo.git
+# commit=f3142bb05cdb56af0704ab6f0adfb0c7bbafe4a0

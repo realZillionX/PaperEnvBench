@@ -1,0 +1,10 @@
+{
+  "artifact_dir": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/video/slowfast_video_classification_minimal/artifacts",
+  "observed": {
+    "expected_artifact.json": "ad1bae52354024b44d3082b83ac8a8bc4118dc51176a306162aecb0512d1de91",
+    "expected_clip_preview.ppm": "2471bfd2b17b4f6b34bdc720558dabebb8c5840f5218c44824321ce63cccc6c8"
+  },
+  "status": "pass",
+  "success_level": "L4_fallback",
+  "task_id": "slowfast_video_classification_minimal"
+}

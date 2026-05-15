@@ -1,0 +1,74 @@
+{
+  "task_id": "videomae_classification_minimal",
+  "expected_success_level": "L4_fallback_cpu_synthetic_video_forward",
+  "model": "vit_small_patch16_224",
+  "device": "cpu",
+  "input": {
+    "kind": "deterministic_synthetic_rgb_video",
+    "batch": 1,
+    "channels": 3,
+    "frames": 4,
+    "height": 32,
+    "width": 32,
+    "tubelet_size": 2,
+    "num_classes": 5
+  },
+  "required_artifacts": [
+    "artifacts/synthetic_video_strip.png",
+    "artifacts/expected_artifact.json",
+    "artifacts/verification_result.json"
+  ],
+  "semantic_requirements": {
+    "repo_commit": "14ef8d856287c94ef1f985fe30f958eb4ec2c55d",
+    "video_shape": [
+      1,
+      3,
+      4,
+      32,
+      32
+    ],
+    "features_shape": [
+      1,
+      384
+    ],
+    "logits_shape": [
+      1,
+      5
+    ],
+    "patch_embed_kernel": [
+      2,
+      16,
+      16
+    ],
+    "num_temporal_spatial_tokens": 8,
+    "logits_must_be_finite": true,
+    "probabilities_sum_to_one": true,
+    "artifact_png_min_size_bytes": 200
+  },
+  "gold_observed": {
+    "video_mean": 0.47187498,
+    "video_std": 0.31332016,
+    "features_mean": 0.00000004,
+    "features_std": 1.00130415,
+    "logits": [
+      -1.02504861,
+      -0.31114405,
+      -0.32340351,
+      0.03906628,
+      -0.27763441
+    ],
+    "probabilities": [
+      0.09931649,
+      0.20279916,
+      0.20032813,
+      0.28784624,
+      0.20971002
+    ],
+    "top_class": 3,
+    "synthetic_video_strip_sha256": "3dbf5ab0b53b72501e18a575d2e14ea2fc37baf334236bf88c5ed86f4acb0bb0"
+  },
+  "notes": [
+    "Exact floating-point logits are recorded for reproducibility but should not be the only scoring criterion across PyTorch builds.",
+    "L4 requires executing the real pinned VideoMAE classification model path, not only importing the repo."
+  ]
+}

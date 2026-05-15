@@ -1,0 +1,134 @@
+{
+  "checks": {
+    "backbone_is_resnet": true,
+    "config_loaded": true,
+    "features_have_variance": true,
+    "head_is_tsn_head": true,
+    "parameter_count_large_enough": true,
+    "pipeline_decoded_video": true,
+    "prediction_shape_matches": true,
+    "recognizer_built_from_registry": true,
+    "repo_commit_matches": true,
+    "scores_are_finite": true,
+    "scores_are_normalized": true,
+    "synthetic_video_written": true
+  },
+  "config": "configs/recognition/tsn/tsn_imagenet-pretrained-r50_8xb32-1x1x3-100e_kinetics400-rgb.py",
+  "fallback": {
+    "native_mmcv": {
+      "binary_probe_log": "logs/mmcv_native_binary_probe.log",
+      "binary_probe_mentions_no_wheel": true,
+      "error": "ModuleNotFoundError: No module named 'mmcv._ext'",
+      "error_type": "ModuleNotFoundError",
+      "expected_blocker": true,
+      "native_mmcv_ops_available": false
+    },
+    "success_level_reason": "CPU Python 3.12 uses mmcv-lite and random-initialized TSN weights; no native mmcv wheel or pretrained Kinetics checkpoint is required for the gold artifact.",
+    "used": true
+  },
+  "model": {
+    "backbone": "ResNet",
+    "head": "TSNHead",
+    "num_classes": 5,
+    "parameter_count": 23518277,
+    "type": "Recognizer2D"
+  },
+  "official_repo_code_paths": [
+    "configs/recognition/tsn/tsn_imagenet-pretrained-r50_8xb32-1x1x3-100e_kinetics400-rgb.py",
+    "mmaction/datasets/transforms/loading.py",
+    "mmaction/datasets/transforms/formatting.py",
+    "mmaction/models/recognizers/recognizer2d.py",
+    "mmaction/models/backbones/resnet.py",
+    "mmaction/models/heads/tsn_head.py"
+  ],
+  "output": {
+    "feature_stats": {
+      "max": 46.576499939,
+      "mean": 3.2095849514,
+      "min": 0.0,
+      "shape": [
+        3,
+        2048,
+        7,
+        7
+      ],
+      "std": 4.1562695503
+    },
+    "pred_label": 1,
+    "score_sum": 1.0,
+    "scores": [
+      0.0105343554,
+      0.6262723804,
+      0.0003798775,
+      0.0395672321,
+      0.3232462704
+    ],
+    "top5_indices": [
+      1,
+      4,
+      3,
+      0,
+      2
+    ],
+    "top5_scores": [
+      0.6262723804,
+      0.3232462704,
+      0.0395672321,
+      0.0105343554,
+      0.0003798775
+    ]
+  },
+  "package_versions": {
+    "decord": "0.6.0",
+    "importlib_metadata": "8.7.0",
+    "mmaction2": "1.2.0",
+    "mmcv-lite": "2.1.0",
+    "mmengine": "0.10.7",
+    "opencv-python-headless": "4.11.0.86",
+    "torch": "2.8.0+cpu",
+    "torchvision": "0.23.0+cpu"
+  },
+  "pipeline": {
+    "gold_types": [
+      "DecordInit",
+      "SampleFrames",
+      "DecordDecode",
+      "Resize",
+      "CenterCrop",
+      "FormatShape",
+      "PackActionInputs"
+    ],
+    "input_tensor_mean": 0.2691732645,
+    "input_tensor_shape": [
+      1,
+      3,
+      3,
+      224,
+      224
+    ],
+    "input_tensor_std": 0.1841380447,
+    "original_types": [
+      "DecordInit",
+      "SampleFrames",
+      "DecordDecode",
+      "Resize",
+      "TenCrop",
+      "FormatShape",
+      "PackActionInputs"
+    ]
+  },
+  "python": "3.12.3",
+  "repo_commit": "a5a167dff2399e2d182a60332325f9c0d4663517",
+  "repo_url": "https://github.com/open-mmlab/mmaction2",
+  "success_level": "L4_fallback",
+  "task_id": "mmaction2_recognition_minimal",
+  "video": {
+    "fps": 8.0,
+    "frames": 16,
+    "height": 96,
+    "path": "artifacts/synthetic_action.mp4",
+    "sha256": "fd0320e40d43b53c34d8771e2e087632207b5f25f6aaf1c9790dc53535457888",
+    "size_bytes": 11992,
+    "width": 128
+  }
+}

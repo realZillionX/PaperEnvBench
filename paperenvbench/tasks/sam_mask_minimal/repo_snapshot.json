@@ -1,0 +1,47 @@
+{
+  "task_id": "sam_mask_minimal",
+  "repo_name": "segment-anything",
+  "repo_url": "https://github.com/facebookresearch/segment-anything",
+  "repo_commit": "dca509fe793f601edb92606367a655c15ac00fdf",
+  "repo_commit_short": "dca509f",
+  "package_manager": "pip",
+  "dependency_files": [
+    "setup.py"
+  ],
+  "entrypoints": [
+    {
+      "type": "python_api",
+      "name": "sam_model_registry",
+      "target": "segment_anything"
+    },
+    {
+      "type": "python_api",
+      "name": "SamPredictor",
+      "target": "segment_anything"
+    },
+    {
+      "type": "script",
+      "name": "scripts/amg.py",
+      "target": "scripts/amg.py"
+    }
+  ],
+  "observed_environment": {
+    "notebook": "paper-repro-ci-prep",
+    "remote_cwd_alias": "paper-repro",
+    "python": "3.12",
+    "device": "cpu"
+  },
+  "asset_dependencies": [
+    {
+      "type": "checkpoint",
+      "name": "sam_vit_b_01ec64.pth",
+      "cached_path": "paper-repro:models/sam/sam_vit_b_01ec64.pth",
+      "sha256": "ec2df62732614e57411cdcf32a23ffdf28910380d03139ee0f4fcbe91eb8c912"
+    }
+  ],
+  "validated_outputs": {
+    "remote_output_dir": "paper-repro:outputs/sam_smoke",
+    "local_artifact_dir": "paperenvbench/tasks/sam_mask_minimal/artifacts",
+    "success_level": "L4"
+  }
+}

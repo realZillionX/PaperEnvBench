@@ -1,0 +1,25 @@
+primary_failure_tags:
+  - native_extension_build
+  - torch_cuda_matrix
+  - hidden_dependency
+  - system_package_missing
+  - checkpoint_download
+  - entrypoint_ambiguity
+  - verification_ambiguity
+observed_gold_issues:
+  - tag: native_extension_build
+    issue: "native mmcv wheel unavailable for Python 3.12"
+    evidence: "logs/mmcv_native_binary_probe.log records that mmcv==2.1.0 has no Python 3.12 binary wheel from PyPI."
+    mitigation: "gold_install.sh installs mmcv-lite==2.1.0 and avoids code paths that execute native mmcv.ops kernels."
+  - tag: hidden_dependency
+    issue: "importlib_metadata backport imported on Python 3.12"
+    evidence: "MMACTION2 imports importlib_metadata in mmaction/utils/dependency.py even on Python 3.12."
+    mitigation: "gold_install.sh installs importlib_metadata==8.7.0 explicitly."
+  - tag: checkpoint_download
+    issue: "pretrained checkpoint intentionally omitted for CPU gold"
+    evidence: "The gold task uses a synthetic video and random-initialized TSN head, so no Kinetics checkpoint download is needed."
+    mitigation: "verify.py sets cfg.model.backbone.pretrained=None and checks semantic properties of the CPU forward pass."
+  - tag: system_package_missing
+    issue: "video decode runtime needed for the official pipeline"
+    evidence: "The official test pipeline starts with DecordInit and DecordDecode."
+    mitigation: "gold_install.sh installs decord==0.6.0 and opencv-python-headless==4.11.0.86."

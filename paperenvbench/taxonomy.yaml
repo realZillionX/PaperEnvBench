@@ -1,0 +1,83 @@
+version: 0.1.0
+updated_at: "2026-05-15"
+modality_axis:
+  audio_speech:
+    indicators: ["wav", "mp3", "asr", "tts", "mel", "spectrogram", "torchaudio", "librosa"]
+    common_dependencies: ["ffmpeg", "libsndfile", "soundfile", "torchaudio"]
+  image_classification_representation:
+    indicators: ["torchvision", "PIL", "classification", "embedding", "CLIP"]
+    common_dependencies: ["torch", "torchvision", "Pillow", "opencv-python"]
+  object_detection_segmentation:
+    indicators: ["mask", "bbox", "COCO", "mmdet", "detectron2", "SAM"]
+    common_dependencies: ["pycocotools", "opencv-python", "mmcv", "mmdet"]
+  video_understanding_generation:
+    indicators: ["mp4", "frames", "decord", "PyAV", "temporal"]
+    common_dependencies: ["ffmpeg", "decord", "av", "opencv-python"]
+  vision_language_multimodal:
+    indicators: ["image-text", "processor", "tokenizer", "BLIP", "LLaVA", "CLIP"]
+    common_dependencies: ["transformers", "tokenizers", "sentencepiece", "Pillow", "accelerate"]
+  llm_nlp:
+    indicators: ["tokenizer", "generate", "finetune", "evaluation harness", "datasets"]
+    common_dependencies: ["transformers", "datasets", "tokenizers", "sentencepiece", "accelerate"]
+  diffusion_generation:
+    indicators: ["diffusion", "UNet", "VAE", "scheduler", "safetensors"]
+    common_dependencies: ["diffusers", "xformers", "safetensors", "accelerate"]
+  graph_learning_recommender:
+    indicators: ["graph", "node", "edge", "PyG", "DGL"]
+    common_dependencies: ["torch-geometric", "dgl", "torch-scatter", "torch-sparse"]
+  reinforcement_learning_simulation:
+    indicators: ["gym", "mujoco", "atari", "env", "simulator"]
+    common_dependencies: ["gymnasium", "mujoco", "ale-py"]
+  scientific_geometry_3d:
+    indicators: ["mesh", "point cloud", "NeRF", "3DGS", "CUDA kernel"]
+    common_dependencies: ["cmake", "ninja", "open3d", "trimesh"]
+failure_mechanism_axis:
+  - python_version_conflict
+  - torch_cuda_matrix
+  - native_extension_build
+  - system_package_missing
+  - hidden_dependency
+  - stale_readme
+  - checkpoint_download
+  - dataset_asset_missing
+  - entrypoint_ambiguity
+  - verification_ambiguity
+  - hardware_pressure
+  - docker_only_instruction
+  - package_name_collision
+  - api_or_license_gate
+verification_entry_axis:
+  - cli_help
+  - import_graph
+  - single_sample_inference
+  - checkpoint_loading
+  - output_artifact
+  - metric_smoke_test
+  - training_smoke_test
+  - semantic_check
+skill_route_axis:
+  L0:
+    - global_reproducibility_safety
+  L1:
+    - dependency_file_parser
+    - minimal_entrypoint_discovery
+    - verify_script_constructor
+  L2:
+    - torch_cuda_matrix_solver
+    - native_extension_repair
+    - system_package_resolver
+    - checkpoint_validation
+    - hidden_dependency_inferer
+  L3:
+    - audio_env_setup
+    - vision_language_env_setup
+    - vision_segmentation_env_setup
+    - video_env_setup
+    - diffusion_env_setup
+    - graph_learning_env_setup
+    - rl_simulation_env_setup
+    - geometry_3d_env_setup
+  L4:
+    - classify_task_and_route_skills
+    - resolve_skill_conflict
+    - decide_repair_after_failure

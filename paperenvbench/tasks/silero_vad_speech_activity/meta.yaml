@@ -1,0 +1,50 @@
+task_id: silero_vad_speech_activity
+paper_title: "Silero VAD: pre-trained enterprise-grade Voice Activity Detector"
+repo_url: https://github.com/snakers4/silero-vad
+commit: 980b17e9d56463e51393a8d92ded473f1b17896a
+paper_url: null
+license: MIT
+split: val
+modality:
+  primary: audio_speech
+  secondary:
+    - voice_activity_detection
+    - checkpoint_loading
+    - single_sample_inference
+environment_challenges:
+  - torch_cuda_matrix
+  - system_package_missing
+  - hidden_dependency
+  - entrypoint_ambiguity
+  - verification_ambiguity
+verification:
+  type:
+    - import_graph
+    - single_sample_inference
+    - output_artifact
+    - semantic_check
+  command: python verify.py
+hardware:
+  gpu_required: false
+  gpu_optional: false
+  min_vram_gb: 0
+platform_constraints:
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified

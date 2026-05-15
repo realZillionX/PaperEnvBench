@@ -1,0 +1,43 @@
+{
+  "task_id": "clip_zeroshot_minimal",
+  "repo_name": "CLIP",
+  "repo_url": "https://github.com/openai/CLIP",
+  "repo_commit": "d05afc436d78f1c48dc0dbf8e5980a9d471f35f6",
+  "repo_commit_short": "d05afc4",
+  "package_manager": "pip",
+  "dependency_files": [
+    "setup.py",
+    "requirements.txt"
+  ],
+  "entrypoints": [
+    {
+      "type": "python_api",
+      "name": "clip.load",
+      "target": "clip"
+    },
+    {
+      "type": "python_api",
+      "name": "clip.tokenize",
+      "target": "clip"
+    }
+  ],
+  "observed_environment": {
+    "notebook": "paper-repro-ci-prep",
+    "remote_cwd_alias": "paper-repro",
+    "python": "3.12",
+    "device": "cpu"
+  },
+  "asset_dependencies": [
+    {
+      "type": "checkpoint",
+      "name": "ViT-B/32",
+      "cached_path": "paper-repro:models/clip/ViT-B-32.pt",
+      "sha256": "40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af"
+    }
+  ],
+  "validated_outputs": {
+    "remote_output_dir": "paper-repro:outputs/clip_smoke",
+    "local_artifact_dir": "paperenvbench/tasks/clip_zeroshot_minimal/artifacts",
+    "success_level": "L4"
+  }
+}

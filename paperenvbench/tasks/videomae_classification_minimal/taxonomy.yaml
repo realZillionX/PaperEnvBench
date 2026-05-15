@@ -1,0 +1,25 @@
+taxonomy:
+  modality:
+    primary: video_understanding_generation
+    secondary:
+      - action_classification
+      - video_transformer
+      - masked_video_modeling
+  environment_challenges:
+    - python_version_conflict
+    - torch_cuda_matrix
+    - hidden_dependency
+    - checkpoint_download
+    - entrypoint_ambiguity
+    - verification_ambiguity
+  verification_type:
+    - import_graph
+    - single_sample_inference
+    - output_artifact
+    - semantic_check
+  expected_skill_routes:
+    - global_reproducibility_safety
+    - video_env_setup
+    - checkpoint_validation
+    - torch_cuda_matrix_solver
+    - minimal_entrypoint_discovery

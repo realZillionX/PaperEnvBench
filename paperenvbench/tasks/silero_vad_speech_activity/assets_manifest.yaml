@@ -1,0 +1,21 @@
+assets:
+  - asset_id: silero_vad_jit_model
+    type: checkpoint
+    required: true
+    source: repo_snapshot
+    repo_path: src/silero_vad/data/silero_vad.jit
+    cached_path: paper-repro:runs/paperenvbench/audio/silero_vad_speech_activity/repo/src/silero_vad/data/silero_vad.jit
+    checksum_sha256: e1122837f4154c511485fe0b9c64455f7b929c96fbb8d79fbdb336383ebd3720
+  - asset_id: silero_vad_test_wav
+    type: audio
+    required: true
+    source: repo_snapshot
+    repo_path: tests/data/test.wav
+    cached_path: paper-repro:runs/paperenvbench/audio/silero_vad_speech_activity/repo/tests/data/test.wav
+    checksum_sha256: 89f17d9c94c4b31eb320f424628bcbc920abaddbee6e2760fd868bfb1d9a2e47
+  - asset_id: silero_vad_summary_json
+    type: output_artifact
+    required: true
+    cached_path: paper-repro:runs/paperenvbench/audio/silero_vad_speech_activity/artifacts/speech_activity_summary.json
+    local_path: artifacts/expected_artifact.json
+    checksum_sha256: ad6b5703d34284fba6002e77eb3596901f1cf541c6008c21f4df49f6b226eeaf

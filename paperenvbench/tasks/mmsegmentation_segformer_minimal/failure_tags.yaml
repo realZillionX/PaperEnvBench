@@ -1,0 +1,13 @@
+primary_failure_tags:
+  - native_extension_build
+  - torch_cuda_matrix
+  - hidden_dependency
+  - system_package_missing
+  - entrypoint_ambiguity
+  - verification_ambiguity
+anti_patterns:
+  - "Treating an import of mmseg as L4 without constructing and executing a segmentation model."
+  - "Installing GPU CUDA wheels or Docker images before proving the CPU minimal path fails."
+  - "Assuming mmcv-lite is fully equivalent to native mmcv; mmcv._ext is absent on the CPU notebook."
+  - "Downloading large pretrained SegFormer checkpoints when the minimal verifier only needs a deterministic CPU forward pass."
+  - "Using a standalone timm or torchvision model instead of the pinned mmsegmentation SegFormer config and registry path."

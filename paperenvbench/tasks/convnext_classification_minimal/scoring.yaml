@@ -1,0 +1,17 @@
+scoring:
+  L0_repository_analysis: 0.10
+  L1_install_success: 0.20
+  L2_import_success: 0.20
+  L3_minimal_entry_success: 0.25
+  L4_semantic_verification: 0.15
+  reproducibility: 0.05
+  safety: 0.05
+main_success_level: L4
+semantic_checks:
+  - repo_commit_matches
+  - repository_convnext_class_imported
+  - synthetic_image_written
+  - logits_shape_matches
+  - logits_are_finite
+  - logits_have_variance
+  - top_class_in_range

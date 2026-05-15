@@ -1,0 +1,75 @@
+{
+  "task_id": "convnext_classification_minimal",
+  "repo_url": "https://github.com/facebookresearch/ConvNeXt",
+  "commit": "048efcea897d999aed302f2639b6270aedf8d4c8",
+  "commit_short": "048efce",
+  "default_branch": "main",
+  "snapshot_observed_at": "2026-05-16T01:00:00+08:00",
+  "source_tree": {
+    "package_manager": "pip",
+    "build_backend": null,
+    "project_file": null,
+    "module": "models.convnext",
+    "primary_entrypoints": [
+      "models.convnext.ConvNeXt",
+      "models.convnext.convnext_tiny",
+      "main.py --model convnext_tiny --eval true"
+    ]
+  },
+  "dependencies_declared": [
+    "torch>=1.8.0",
+    "torchvision>=0.9.0",
+    "timm==0.3.2",
+    "tensorboardX",
+    "six"
+  ],
+  "dependency_notes": {
+    "requirements_file_present": false,
+    "package_metadata_present": false,
+    "official_install_source": "INSTALL.md",
+    "timm_strategy": "The gold installer tried the official timm==0.3.2 pin first. On paper-repro-ci-prep with torch==2.8.0+cpu it failed to import because torch._six is no longer present, so the verified environment uses timm==0.9.16."
+  },
+  "verification_contract": {
+    "input_image": "artifacts/synthetic_convnext_input.ppm",
+    "output_artifact": "artifacts/expected_artifact.json",
+    "model_class": "models.convnext.ConvNeXt",
+    "toy_model_config": {
+      "depths": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "dims": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "num_classes": 10,
+      "input_size": 64
+    },
+    "semantic_thresholds": {
+      "expected_logits_shape": [
+        1,
+        10
+      ],
+      "min_logits_std": 1e-8
+    }
+  },
+  "checkpoint_strategy": {
+    "used_by_gold": false,
+    "reason": "The public ImageNet checkpoints are large and unnecessary for the minimal CPU environment verifier; the gold route validates the repository model implementation with a deterministic toy forward.",
+    "if_used_by_agent": "Record checkpoint URL, cache path, file size, checksum, and any network failure."
+  },
+  "gold_environment": {
+    "python": "3.12.3",
+    "torch": "2.8.0+cpu",
+    "torchvision": "0.23.0+cpu",
+    "timm": "0.9.16",
+    "tensorboardX": "2.6.4",
+    "six": "1.17.0"
+  },
+  "observed_remote_path": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/convnext_classification_minimal/repo",
+  "remote_path_alias": "paper-repro:runs/paperenvbench/image/convnext_classification_minimal/repo"
+}

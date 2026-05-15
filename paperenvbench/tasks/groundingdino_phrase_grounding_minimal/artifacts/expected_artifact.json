@@ -1,0 +1,158 @@
+{
+  "caption": "red square. blue circle. green strip.",
+  "checkpoint": {
+    "filename": "groundingdino_swint_ogc.pth",
+    "sha256": "3b3ca2563c77c69f651d7bd133e97139c186df06231157a64c507099c52bc799",
+    "size_bytes": 693997677
+  },
+  "checks": {
+    "annotated_png_written": true,
+    "at_least_one_box": true,
+    "boxes_are_finite": true,
+    "boxes_in_image_bounds": true,
+    "checkpoint_loaded": true,
+    "expected_phrases_present": true,
+    "input_png_matches": true,
+    "nonzero_box_area": true,
+    "repo_commit_matches": true,
+    "scores_are_finite": true,
+    "uses_groundingdino_model_forward": true,
+    "uses_text_phrase_extraction": true
+  },
+  "detections": [
+    {
+      "area_pixels": 8823.6357,
+      "box_cxcywh": [
+        0.769250989,
+        0.4915615618,
+        0.2916380465,
+        0.3939509988
+      ],
+      "box_xyxy": [
+        199.4982,
+        70.7007,
+        292.8224,
+        165.2489
+      ],
+      "phrase": "blue circle",
+      "rank": 0,
+      "score": 0.7176281214
+    },
+    {
+      "area_pixels": 6334.9756,
+      "box_cxcywh": [
+        0.5230385661,
+        0.8595668077,
+        0.8492113352,
+        0.0971331894
+      ],
+      "box_xyxy": [
+        31.4985,
+        194.64,
+        303.2462,
+        217.952
+      ],
+      "phrase": "green strip",
+      "rank": 1,
+      "score": 0.6157356501
+    },
+    {
+      "area_pixels": 13431.8477,
+      "box_cxcywh": [
+        0.3336745203,
+        0.5090838671,
+        0.3652670979,
+        0.4788109064
+      ],
+      "box_xyxy": [
+        48.3331,
+        64.7228,
+        165.2186,
+        179.6374
+      ],
+      "phrase": "red square",
+      "rank": 2,
+      "score": 0.5867436528
+    },
+    {
+      "area_pixels": 8137.8892,
+      "box_cxcywh": [
+        0.7727993727,
+        0.4941259325,
+        0.28851524,
+        0.367266804
+      ],
+      "box_xyxy": [
+        201.1334,
+        74.5182,
+        293.4583,
+        162.6622
+      ],
+      "phrase": "blue circle",
+      "rank": 3,
+      "score": 0.0547079965
+    },
+    {
+      "area_pixels": 29008.3984,
+      "box_cxcywh": [
+        0.5259692669,
+        0.5128480196,
+        0.7969021201,
+        0.4739772677
+      ],
+      "box_xyxy": [
+        40.8058,
+        66.2063,
+        295.8145,
+        179.9608
+      ],
+      "phrase": "red square",
+      "rank": 4,
+      "score": 0.0543538332
+    }
+  ],
+  "input": {
+    "height": 240,
+    "path": "artifacts/expected_input.png",
+    "sha256": "b4fab73ad0198aac5b926378e7e07955e4204fd55eca27be1f0c65c6968f9aed",
+    "tensor_shape": [
+      3,
+      192,
+      256
+    ],
+    "transform": "groundingdino.datasets.transforms.Compose(RandomResize([256]), ToTensor, Normalize)",
+    "width": 320
+  },
+  "load_state_dict": {
+    "missing_keys": 0,
+    "unexpected_keys": 2
+  },
+  "output_tensors": {
+    "pred_boxes_shape": [
+      1,
+      900,
+      4
+    ],
+    "pred_logits_shape": [
+      1,
+      900,
+      256
+    ],
+    "selected_count": 5
+  },
+  "repo_commit": "856dde20aee659246248e20734ef9ba5214f5e44",
+  "runtime": {
+    "build_seconds": 1.8332,
+    "device": "cpu",
+    "forward_seconds": 0.5846,
+    "load_seconds": 0.9508,
+    "python": "3.12.3",
+    "torch": "2.8.0+cpu"
+  },
+  "success_level": "L4",
+  "task_id": "groundingdino_phrase_grounding_minimal",
+  "thresholds": {
+    "box_threshold": 0.05,
+    "text_threshold": 0.05
+  }
+}

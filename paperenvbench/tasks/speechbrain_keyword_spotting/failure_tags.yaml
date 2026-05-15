@@ -1,0 +1,14 @@
+primary_failure_tags:
+  - checkpoint_download
+  - torch_cuda_matrix
+  - hidden_dependency
+  - dataset_asset_missing
+  - verification_ambiguity
+anti_patterns:
+  - "Running the Google Speech Commands training recipe instead of the pretrained single-sample inference path."
+  - "Installing default PyPI torch wheels on CPU and accidentally pulling large CUDA dependencies."
+  - "Treating import success as semantic success without loading the keyword spotting checkpoint."
+  - "Relying on Hugging Face latest model state without recording the observed revision."
+fallbacks:
+  - "If Hugging Face is unavailable, keep the source install and import checks but mark L4 semantic verification blocked by asset availability."
+  - "If the platform PyPI mirror serves stale or broken simple-index links, use public PyPI for non-torch dependencies and https://download.pytorch.org/whl/cpu for CPU torch wheels."

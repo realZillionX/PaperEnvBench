@@ -1,0 +1,23 @@
+primary_failure_tags:
+  - native_extension_build
+  - checkpoint_download
+  - torch_cuda_matrix
+  - hidden_dependency
+  - python_version_conflict
+  - verification_ambiguity
+observed_gold_issues:
+  - tag: hidden_dependency
+    issue: "internal PyPI mirror returned a wheel URL 404"
+    evidence: "The SII internal PyPI mirror advertised requests==2.34.2 but returned HTTP 404 for the wheel URL. The gold installer pins requests==2.32.5 and uses PyPI for non-torch packages."
+  - tag: hidden_dependency
+    issue: "pip build isolation could not see preinstalled torch"
+    evidence: "GroundingDINO setup.py imports torch during editable metadata generation. PEP 517 build isolation hid the already installed torch package, so the gold installer uses --no-build-isolation."
+  - tag: native_extension_build
+    issue: "CPU notebook has no CUDA extension build path"
+    evidence: "setup.py prints CPU-only mode when CUDA_HOME is unavailable; model forward succeeds through the repository's PyTorch MultiScaleDeformableAttention fallback."
+anti_patterns:
+  - "Treating import groundingdino as success without loading the SwinT checkpoint."
+  - "Running a generic object detector or a Hugging Face wrapper instead of the pinned repository model code."
+  - "Ignoring the text branch; phrase grounding must call the repository tokenizer and get_phrases_from_posmap path."
+  - "Forcing Docker or CUDA-only instructions before proving the CPU path fails."
+  - "Skipping output artifact validation or only checking that a JSON file exists."

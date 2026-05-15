@@ -1,0 +1,34 @@
+{
+  "task_id": "whisper_asr_minimal",
+  "source": {
+    "notebook": "paper-repro-ci-prep",
+    "remote_cwd_alias": "paper-repro",
+    "repo_path": "paper-repro:repos/whisper",
+    "repo_commit": "04f449b",
+    "venv": "paper-repro:envs/paper-repro-cpu",
+    "smoke_log": "paper-repro:logs/10_whisper_smoke.log",
+    "output_dir": "paper-repro:outputs/whisper_smoke"
+  },
+  "expected_files": {
+    "json": "outputs/whisper_smoke/whisper_sine.json",
+    "txt": "outputs/whisper_smoke/whisper_sine.txt",
+    "side_artifacts": [
+      "outputs/whisper_smoke/whisper_sine.tsv",
+      "outputs/whisper_smoke/whisper_sine.vtt"
+    ]
+  },
+  "gold_payload": {
+    "text": "",
+    "segments": [],
+    "language": "en"
+  },
+  "acceptance": {
+    "json_must_parse": true,
+    "json_text_field_type": "str",
+    "json_segments_field_type": "list",
+    "language": "en",
+    "txt_must_exist": true,
+    "txt_matches_json_text_after_whitespace_normalization": true,
+    "requires_nonempty_side_artifact": true
+  }
+}

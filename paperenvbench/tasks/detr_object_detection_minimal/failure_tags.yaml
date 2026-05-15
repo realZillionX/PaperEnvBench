@@ -1,0 +1,13 @@
+primary_failure_tags:
+  - checkpoint_download
+  - torch_cuda_matrix
+  - hidden_dependency
+  - entrypoint_ambiguity
+  - verification_ambiguity
+anti_patterns:
+  - "Treating DETR import success as task success without loading the pinned R50 checkpoint."
+  - "Using torchvision or transformers DETR implementations instead of the pinned facebookresearch/detr source tree."
+  - "Skipping the postprocessor and reporting raw normalized boxes as final detections."
+  - "Installing CUDA-only torch wheels before proving the CPU path fails."
+  - "Downloading an extra ImageNet ResNet checkpoint when the DETR checkpoint already contains backbone weights."
+  - "Using Docker to hide Python dependency or path setup failures."

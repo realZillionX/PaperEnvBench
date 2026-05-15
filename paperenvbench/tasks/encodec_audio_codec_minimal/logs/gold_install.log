@@ -1,0 +1,117 @@
+[gold_install] start 2026-05-15T16:35:51+00:00
+[gold_install] pwd=/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction
+Cloning into 'src/encodec'...
+HEAD is now at 0e2d0ae Add 🤗 Transformers usage and info (#60)
+global.index-url='http://nexus.sii.shaipower.online/repository/pypi/simple'
+global.trusted-host='nexus.sii.shaipower.online'
+Looking in indexes: http://nexus.sii.shaipower.online/repository/pypi/simple
+Requirement already satisfied: pip in ./.venv/lib/python3.12/site-packages (24.0)
+Collecting pip
+  Using cached http://nexus.sii.shaipower.online/repository/pypi/packages/pip/26.1.1/pip-26.1.1-py3-none-any.whl (1.8 MB)
+Collecting setuptools
+  Using cached http://nexus.sii.shaipower.online/repository/pypi/packages/setuptools/82.0.1/setuptools-82.0.1-py3-none-any.whl (1.0 MB)
+Collecting wheel
+  Using cached http://nexus.sii.shaipower.online/repository/pypi/packages/wheel/0.47.0/wheel-0.47.0-py3-none-any.whl (32 kB)
+Collecting packaging>=24.0 (from wheel)
+  Using cached http://nexus.sii.shaipower.online/repository/pypi/packages/packaging/26.2/packaging-26.2-py3-none-any.whl (100 kB)
+Installing collected packages: setuptools, pip, packaging, wheel
+  Attempting uninstall: pip
+    Found existing installation: pip 24.0
+    Uninstalling pip-24.0:
+      Successfully uninstalled pip-24.0
+Successfully installed packaging-26.2 pip-26.1.1 setuptools-82.0.1 wheel-0.47.0
+Looking in indexes: http://nexus.sii.shaipower.online/repository/pypi/simple
+Obtaining file:///inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper%20Reproduction/runs/paperenvbench/audio/encodec_audio_codec_minimal/src/encodec
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Collecting numpy (from encodec==0.1.2a3)
+  Using cached numpy-2.4.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.6 MB)
+Collecting torch (from encodec==0.1.2a3)
+  Using cached torch-2.12.0-cp312-cp312-manylinux_2_28_x86_64.whl (532.3 MB)
+Collecting torchaudio (from encodec==0.1.2a3)
+  Using cached torchaudio-2.11.0-cp312-cp312-manylinux_2_28_x86_64.whl (1.8 MB)
+Collecting einops (from encodec==0.1.2a3)
+  Using cached einops-0.8.2-py3-none-any.whl (65 kB)
+Collecting filelock (from torch->encodec==0.1.2a3)
+  Using cached filelock-3.29.0-py3-none-any.whl (39 kB)
+Collecting typing-extensions>=4.10.0 (from torch->encodec==0.1.2a3)
+  Using cached typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+Collecting setuptools<82 (from torch->encodec==0.1.2a3)
+  Using cached setuptools-81.0.0-py3-none-any.whl (1.1 MB)
+Collecting sympy>=1.13.3 (from torch->encodec==0.1.2a3)
+  Using cached sympy-1.14.0-py3-none-any.whl (6.3 MB)
+Collecting networkx>=2.5.1 (from torch->encodec==0.1.2a3)
+  Using cached networkx-3.6.1-py3-none-any.whl (2.1 MB)
+Collecting jinja2 (from torch->encodec==0.1.2a3)
+  Using cached jinja2-3.1.6-py3-none-any.whl (134 kB)
+Collecting fsspec>=0.8.5 (from torch->encodec==0.1.2a3)
+  Using cached fsspec-2026.4.0-py3-none-any.whl (203 kB)
+Collecting cuda-toolkit==13.0.2 (from cuda-toolkit[cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch->encodec==0.1.2a3)
+  Using cached cuda_toolkit-13.0.2-py2.py3-none-any.whl (2.4 kB)
+Collecting nvidia-cublas<=13.1.1.3,>=13.1.0.3 (from torch->encodec==0.1.2a3)
+  Using cached nvidia_cublas-13.1.1.3-py3-none-manylinux_2_27_x86_64.whl (423.1 MB)
+Collecting cuda-bindings<14,>=13.0.3 (from torch->encodec==0.1.2a3)
+  Using cached cuda_bindings-13.2.0-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (6.3 MB)
+Collecting nvidia-cudnn-cu13==9.20.0.48 (from torch->encodec==0.1.2a3)
+  Using cached nvidia_cudnn_cu13-9.20.0.48-py3-none-manylinux_2_27_x86_64.whl (366.2 MB)
+Collecting nvidia-cusparselt-cu13==0.8.1 (from torch->encodec==0.1.2a3)
+  Using cached nvidia_cusparselt_cu13-0.8.1-py3-none-manylinux2014_x86_64.whl (170.1 MB)
+Collecting nvidia-nccl-cu13==2.29.7 (from torch->encodec==0.1.2a3)
+  Using cached nvidia_nccl_cu13-2.29.7-py3-none-manylinux_2_18_x86_64.whl (206.0 MB)
+Collecting nvidia-nvshmem-cu13==3.4.5 (from torch->encodec==0.1.2a3)
+  Using cached nvidia_nvshmem_cu13-3.4.5-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (60.4 MB)
+Collecting triton==3.7.0 (from torch->encodec==0.1.2a3)
+  Using cached triton-3.7.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (201.5 MB)
+Collecting nvidia-cuda-runtime==13.0.96.* (from cuda-toolkit[cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch->encodec==0.1.2a3)
+  Using cached nvidia_cuda_runtime-13.0.96-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (2.2 MB)
+Collecting nvidia-cufft==12.0.0.61.* (from cuda-toolkit[cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch->encodec==0.1.2a3)
+  Using cached nvidia_cufft-12.0.0.61-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (214.1 MB)
+Collecting nvidia-cufile==1.15.1.6.* (from cuda-toolkit[cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch->encodec==0.1.2a3)
+  Using cached nvidia_cufile-1.15.1.6-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (1.2 MB)
+Collecting nvidia-cuda-cupti==13.0.85.* (from cuda-toolkit[cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch->encodec==0.1.2a3)
+  Using cached nvidia_cuda_cupti-13.0.85-py3-none-manylinux_2_25_x86_64.whl (10.7 MB)
+Collecting nvidia-curand==10.4.0.35.* (from cuda-toolkit[cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch->encodec==0.1.2a3)
+  Using cached nvidia_curand-10.4.0.35-py3-none-manylinux_2_27_x86_64.whl (59.5 MB)
+Collecting nvidia-cusolver==12.0.4.66.* (from cuda-toolkit[cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch->encodec==0.1.2a3)
+  Using cached nvidia_cusolver-12.0.4.66-py3-none-manylinux_2_27_x86_64.whl (200.9 MB)
+Collecting nvidia-cusparse==12.6.3.3.* (from cuda-toolkit[cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch->encodec==0.1.2a3)
+  Using cached nvidia_cusparse-12.6.3.3-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (145.9 MB)
+Collecting nvidia-nvjitlink==13.0.88.* (from cuda-toolkit[cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch->encodec==0.1.2a3)
+  Using cached nvidia_nvjitlink-13.0.88-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl (40.7 MB)
+Collecting nvidia-cuda-nvrtc==13.0.88.* (from cuda-toolkit[cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch->encodec==0.1.2a3)
+  Using cached nvidia_cuda_nvrtc-13.0.88-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl (90.2 MB)
+Collecting nvidia-nvtx==13.0.85.* (from cuda-toolkit[cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.2; platform_system == "Linux"->torch->encodec==0.1.2a3)
+  Using cached nvidia_nvtx-13.0.85-py3-none-manylinux1_x86_64.manylinux_2_5_x86_64.whl (148 kB)
+Collecting cuda-pathfinder~=1.1 (from cuda-bindings<14,>=13.0.3->torch->encodec==0.1.2a3)
+  Using cached cuda_pathfinder-1.5.4-py3-none-any.whl (51 kB)
+Collecting mpmath<1.4,>=1.1.0 (from sympy>=1.13.3->torch->encodec==0.1.2a3)
+  Using cached mpmath-1.3.0-py3-none-any.whl (536 kB)
+Collecting MarkupSafe>=2.0 (from jinja2->torch->encodec==0.1.2a3)
+  Using cached markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+Building wheels for collected packages: encodec
+  Building editable for encodec (pyproject.toml): started
+  Building editable for encodec (pyproject.toml): finished with status 'done'
+  Created wheel for encodec: filename=encodec-0.1.2a3-0.editable-py3-none-any.whl size=8520 sha256=000668aa138bbc91d9919838b05ae949b07bf96b93e43d567811b61e9f6a9d52
+  Stored in directory: /tmp/pip-ephem-wheel-cache-6m1yk6zt/wheels/c7/88/b3/9c8d74ef1f2f8e4a29d481835b8bc703a8cfd05d0216e2a179
+Successfully built encodec
+Installing collected packages: torchaudio, nvidia-cusparselt-cu13, mpmath, cuda-toolkit, typing-extensions, triton, sympy, setuptools, nvidia-nvtx, nvidia-nvshmem-cu13, nvidia-nvjitlink, nvidia-nccl-cu13, nvidia-curand, nvidia-cufile, nvidia-cuda-runtime, nvidia-cuda-nvrtc, nvidia-cuda-cupti, numpy, networkx, MarkupSafe, fsspec, filelock, einops, cuda-pathfinder, nvidia-cusparse, nvidia-cufft, nvidia-cublas, jinja2, cuda-bindings, nvidia-cusolver, nvidia-cudnn-cu13, torch, encodec
+  Attempting uninstall: setuptools
+    Found existing installation: setuptools 82.0.1
+    Uninstalling setuptools-82.0.1:
+      Successfully uninstalled setuptools-82.0.1
+
+Successfully installed MarkupSafe-3.0.3 cuda-bindings-13.2.0 cuda-pathfinder-1.5.4 cuda-toolkit-13.0.2 einops-0.8.2 encodec-0.1.2a3 filelock-3.29.0 fsspec-2026.4.0 jinja2-3.1.6 mpmath-1.3.0 networkx-3.6.1 numpy-2.4.4 nvidia-cublas-13.1.1.3 nvidia-cuda-cupti-13.0.85 nvidia-cuda-nvrtc-13.0.88 nvidia-cuda-runtime-13.0.96 nvidia-cudnn-cu13-9.20.0.48 nvidia-cufft-12.0.0.61 nvidia-cufile-1.15.1.6 nvidia-curand-10.4.0.35 nvidia-cusolver-12.0.4.66 nvidia-cusparse-12.6.3.3 nvidia-cusparselt-cu13-0.8.1 nvidia-nccl-cu13-2.29.7 nvidia-nvjitlink-13.0.88 nvidia-nvshmem-cu13-3.4.5 nvidia-nvtx-13.0.85 setuptools-81.0.0 sympy-1.14.0 torch-2.12.0 torchaudio-2.11.0 triton-3.7.0 typing-extensions-4.15.0
+No broken requirements found.
+encodec_file /inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/audio/encodec_audio_codec_minimal/src/encodec/encodec/__init__.py
+encodec_version 0.1.2a3
+torch 2.12.0+cu130
+torchaudio 2.11.0+cu130
+numpy 2.4.4
+einops 0.8.2
+[gold_install] done 2026-05-15T16:37:00+00:00

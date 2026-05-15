@@ -1,0 +1,28 @@
+assets:
+  - asset_id: dinov2_source_repo
+    type: git_repository
+    required: true
+    url: https://github.com/facebookresearch/dinov2
+    commit: 7b187bd4df8efce2cbcbbb67bd01532c19bf4c9c
+    cached_path: paper-repro:runs/paperenvbench/image/dinov2_feature_minimal/repo
+    checksum: null
+  - asset_id: synthetic_rgb_image
+    type: image
+    required: true
+    generated_by: verify.py
+    cached_path: paper-repro:runs/paperenvbench/image/dinov2_feature_minimal/artifacts/synthetic_input.png
+    local_path: artifacts/synthetic_input.png
+    checksum_sha256: 07e26b281c1a40ca578c81c9c849d82df6b4c05d333acd67ad220e7989367db9
+  - asset_id: dinov2_random_init_feature_artifact
+    type: output_artifact
+    required: true
+    cached_path: paper-repro:runs/paperenvbench/image/dinov2_feature_minimal/artifacts/expected_artifact.json
+    local_path: artifacts/expected_artifact.json
+    checksum_sha256: bb9f72c52699fe251976dff7015ff43210b7be3fd68a3a7c91830387389e119d
+  - asset_id: pretrained_dinov2_vits14_weights
+    type: checkpoint
+    required: false
+    source: https://dl.fbaipublicfiles.com/dinov2/
+    risk: checkpoint_download_or_network_control
+    note: "The minimal CPU gold path intentionally uses pretrained=False to avoid requiring public hub downloads."
+    checksum: null

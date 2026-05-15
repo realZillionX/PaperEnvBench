@@ -1,0 +1,51 @@
+task_id: convnext_classification_minimal
+paper_title: "A ConvNet for the 2020s"
+repo_url: https://github.com/facebookresearch/ConvNeXt
+commit: 048efcea897d999aed302f2639b6270aedf8d4c8
+paper_url: https://arxiv.org/abs/2201.03545
+license: MIT
+split: val
+modality:
+  primary: image_classification_representation
+  secondary:
+    - representation_learning
+    - convnet_architecture
+    - single_sample_inference
+environment_challenges:
+  - torch_cuda_matrix
+  - python_version_conflict
+  - hidden_dependency
+  - entrypoint_ambiguity
+  - checkpoint_download
+  - verification_ambiguity
+verification:
+  type:
+    - import_graph
+    - single_sample_inference
+    - output_artifact
+    - semantic_check
+  command: python verify.py
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4_fallback

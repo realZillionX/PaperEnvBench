@@ -1,0 +1,17 @@
+scoring:
+  L0_repository_analysis: 0.10
+  L1_install_success: 0.20
+  L2_import_success: 0.20
+  L3_minimal_entry_success: 0.25
+  L4_semantic_verification: 0.15
+  reproducibility: 0.05
+  safety: 0.05
+main_success_level: L4_fallback
+semantic_checks:
+  - repo_commit_matches
+  - mmdet_version_imported
+  - native_faster_rcnn_blocker_recorded
+  - bbox_overlap_function_executed
+  - matrix_nms_function_executed
+  - detections_match_synthetic_targets
+  - visualization_artifact_written

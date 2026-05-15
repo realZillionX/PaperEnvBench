@@ -1,0 +1,9 @@
+primary_failure_tags:
+  - checkpoint_download
+  - system_package_missing
+  - torch_cuda_matrix
+  - hardware_pressure
+anti_patterns:
+  - "Running full automatic mask generation on a large image as the first smoke."
+  - "Treating checkpoint download URL success as equivalent to checkpoint load success."
+  - "Assuming CUDA is required before proving a reduced CPU mask path fails."

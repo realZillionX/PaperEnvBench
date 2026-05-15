@@ -1,0 +1,45 @@
+{
+  "task_id": "convnext_classification_minimal",
+  "required_artifact": "expected_artifact.json",
+  "required_side_artifact": "synthetic_convnext_input.ppm",
+  "expected_repo_commit": "048efcea897d999aed302f2639b6270aedf8d4c8",
+  "semantic_thresholds": {
+    "expected_logits_shape": [
+      1,
+      10
+    ],
+    "min_logits_std": 1e-8
+  },
+  "required_fields": [
+    "task_id",
+    "repo_commit",
+    "input_image",
+    "model",
+    "output",
+    "checks"
+  ],
+  "gold_observed": {
+    "success_level": "L4_fallback",
+    "python": "3.12.3",
+    "package_versions": {
+      "torch": "2.8.0+cpu",
+      "torchvision": "0.23.0+cpu",
+      "timm": "0.9.16",
+      "tensorboardX": "2.6.4",
+      "six": "1.17.0"
+    },
+    "input_image_sha256": "4b25b9580a17e2b6233a6e28603ea8e120a4b8c76c12e1ebf4001adfbcc5910e",
+    "input_image_size_bytes": 12301,
+    "parameter_count": 62642,
+    "logits_shape": [
+      1,
+      10
+    ],
+    "logits_mean": 0.0047829291,
+    "logits_std": 0.1520326287,
+    "logits_sha256": "735e3da642e0f7d3bced38363b32aa6a3eddf6755047479eb099825e4f2538b0",
+    "top_class": 3,
+    "top_probability": 0.1275861114,
+    "artifact_sha256": "8b76df6ff6b05f55e00b0f0a5a77d074dcf8beaf6c7a79d615a402dce63d7420"
+  }
+}

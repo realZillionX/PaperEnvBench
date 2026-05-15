@@ -1,0 +1,24 @@
+taxonomy:
+  modality:
+    primary: audio_speech
+    secondary:
+      - audio_codec
+      - checkpoint_loading
+      - cli_inference
+  environment_challenges:
+    - checkpoint_download
+    - torch_cuda_matrix
+    - hidden_dependency
+    - entrypoint_ambiguity
+    - package_name_collision
+  verification_type:
+    - import_graph
+    - single_sample_inference
+    - output_artifact
+    - semantic_check
+  expected_skill_routes:
+    - global_reproducibility_safety
+    - audio_env_setup
+    - torch_cuda_matrix_solver
+    - checkpoint_validation
+    - minimal_entrypoint_discovery

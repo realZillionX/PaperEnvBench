@@ -1,0 +1,54 @@
+task_id: demucs_music_separation
+paper_title: "Hybrid Transformers for Music Source Separation"
+repo_url: https://github.com/facebookresearch/demucs
+commit: e976d93ecc3865e5757426930257e200846a520a
+commit_short: e976d93
+paper_url: https://arxiv.org/abs/2211.08553
+license: MIT
+split: dev
+modality:
+  primary: audio_speech
+  secondary:
+    - source_separation
+    - cli_inference
+    - checkpoint_loading
+environment_challenges:
+  - system_package_missing
+  - python_version_conflict
+  - torch_cuda_matrix
+  - checkpoint_download
+  - entrypoint_ambiguity
+verification:
+  type:
+    - cli_help
+    - single_sample_inference
+    - output_artifact
+    - semantic_check
+  command: python verify.py
+  minimum_success_level: L4_fallback
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  package_manager:
+    - venv
+    - pip
+    - apt
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: validated_l4_cpu_fallback

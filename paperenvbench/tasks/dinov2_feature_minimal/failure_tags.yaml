@@ -1,0 +1,22 @@
+primary_failure_tags:
+  - torch_cuda_matrix
+  - hidden_dependency
+  - hardware_pressure
+  - checkpoint_download
+  - entrypoint_ambiguity
+  - verification_ambiguity
+observed_failures:
+  - tag: hardware_pressure
+    evidence: "requirements.txt pins torch==2.0.0, torchvision==0.15.0, xformers==0.0.18, and cuml-cu11 through CUDA-oriented extra indexes."
+    mitigation: "gold_install.sh installs a Python 3.12-compatible CPU torch/torchvision pair first, then installs the pinned repo with --no-deps."
+  - tag: hidden_dependency
+    evidence: "DINOv2 imports xFormers-aware attention blocks but can fall back when XFORMERS_DISABLED=1."
+    mitigation: "gold_install.sh and verify.py set XFORMERS_DISABLED=1 before import and inference."
+  - tag: checkpoint_download
+    evidence: "Hub backbones default to pretrained=True and call torch.hub.load_state_dict_from_url."
+    mitigation: "verify.py calls dinov2_vits14(pretrained=False), records the fallback, and still executes real CPU feature extraction."
+anti_patterns:
+  - "Installing the upstream requirements.txt verbatim on the CPU notebook."
+  - "Treating import dinov2 as L4 success without running a ViT forward pass."
+  - "Letting torch.hub download checkpoints implicitly without recording cache paths and network failures."
+  - "Requiring xFormers or CUDA for the minimal CPU feature extraction path."

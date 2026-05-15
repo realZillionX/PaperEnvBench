@@ -1,0 +1,53 @@
+{
+  "task_id": "pytorchvideo_classification_minimal",
+  "required_artifact": "expected_artifact.json",
+  "required_side_artifacts": [
+    "expected_clip.pt",
+    "expected_frame.ppm",
+    "expected_logits.pt"
+  ],
+  "expected_repo_commit": "f3142bb05cdb56af0704ab6f0adfb0c7bbafe4a0",
+  "success_level": "L4_fallback",
+  "semantic_thresholds": {
+    "expected_logits_shape": [1, 400],
+    "min_logits_std": 0.000001,
+    "max_probability_sum_error": 0.00001
+  },
+  "required_fields": [
+    "task_id",
+    "success_level",
+    "repo_commit",
+    "package_versions",
+    "fallback",
+    "model",
+    "input_video",
+    "representative_frame",
+    "output",
+    "checks"
+  ],
+  "gold_observed": {
+    "python": "3.12.3",
+    "package_versions": {
+      "torch": "2.8.0+cpu",
+      "torchvision": "0.23.0+cpu",
+      "pytorchvideo": "0.1.5",
+      "av": "17.0.1",
+      "fvcore": "0.1.5.post20221221",
+      "iopath": "0.1.10"
+    },
+    "artifact_sha256": "8aa30f0408d690e3dbfaac8ca39c7f0867424f384c2946f6d0904146966d6ba2",
+    "clip_sha256": "1df30c9cecd698f14ffd4567a78bccdac4d6fb59b9b403c20f8b8259f45fa6a1",
+    "frame_sha256": "07cf73b53df31dad34abae48bd77e24f27cf54d675ed15b8987ee2cc7c51310d",
+    "logits_file_sha256": "ca59d08a602a1a2f10085ee0cb6d4c2742aebb42aebaaaadd04087c05cad29e5",
+    "logits_sha256": "fdb147329f70000b9424febe3ed94b475176aa55fb6305af51085d72b7f6c22a",
+    "model_type": "pytorchvideo.models.net.Net",
+    "parameter_count": 32454096,
+    "input_video_shape": [1, 3, 8, 224, 224],
+    "logits_shape": [1, 400],
+    "logits_mean": -0.0016731356,
+    "logits_std": 0.0133117707,
+    "top_class": 219,
+    "top_probability": 0.0025999949,
+    "probability_sum_max_abs_error": 0.0000000596
+  }
+}

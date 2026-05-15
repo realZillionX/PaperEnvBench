@@ -1,0 +1,23 @@
+primary_failure_tags:
+  - python_version_conflict
+  - torch_cuda_matrix
+  - hidden_dependency
+  - checkpoint_download
+  - entrypoint_ambiguity
+  - verification_ambiguity
+observed_failures:
+  - tag: checkpoint_download
+    evidence: "Upstream MODEL_ZOO.md points finetuned classification checkpoints to Google Drive links, which are unsuitable as mandatory CPU-notebook assets for a minimal reproducible task."
+    mitigation: "The gold verifier records this as L4_fallback and validates the pinned repository's VideoMAE classification forward path with initialized weights."
+  - tag: torch_cuda_matrix
+    evidence: "The CPU notebook resolves CUDA-enabled torch wheels from the internal PyPI index even for CPU-only execution."
+    mitigation: "gold_install.sh pins torch==2.4.1 and torchvision==0.19.1 in an isolated venv, then forces device=cpu in verify.py."
+  - tag: hidden_dependency
+    evidence: "The upstream install guide lists timm, decord, einops, TensorboardX, and deepspeed for full training, but the minimal classification model path only needs timm plus PyTorch."
+    mitigation: "gold_install.sh installs the minimal verified dependency set and avoids decord/deepspeed because the verifier uses a deterministic in-memory video tensor."
+anti_patterns:
+  - "Treating import modeling_finetune as L4 success."
+  - "Running distributed finetuning or pretraining to satisfy a minimal CPU classification task."
+  - "Requiring Kinetics, Something-Something V2, or Google Drive checkpoints for the minimal verifier."
+  - "Using a random video without recording the seed and expected tensor or logits shape checks."
+  - "Checking only logits shape while ignoring Conv3d tubelet patch embedding and artifact generation."

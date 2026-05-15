@@ -1,0 +1,23 @@
+taxonomy:
+  modality:
+    primary: image_classification_representation
+    secondary:
+      - self_supervised_representation
+      - resnet_feature_extraction
+      - checkpoint_optional
+  environment_challenges:
+    - checkpoint_download
+    - torch_cuda_matrix
+    - stale_readme
+    - entrypoint_ambiguity
+    - verification_ambiguity
+  verification_type:
+    - import_graph
+    - single_sample_inference
+    - output_artifact
+    - semantic_check
+  expected_skill_routes:
+    - global_reproducibility_safety
+    - checkpoint_validation
+    - torch_cuda_matrix_solver
+    - minimal_entrypoint_discovery

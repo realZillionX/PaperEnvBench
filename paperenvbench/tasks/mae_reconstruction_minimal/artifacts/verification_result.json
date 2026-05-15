@@ -1,0 +1,73 @@
+{
+  "artifacts": {
+    "image_grid": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/mae_reconstruction_minimal/artifacts/expected_artifact.png",
+    "image_grid_sha256": "13d0d3a3e267be96a3bd08328c880fb3a9ac5c7a1f2962eea8db446ef4c92bb7",
+    "summary": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/mae_reconstruction_minimal/artifacts/expected_artifact.json",
+    "synthetic_input": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/mae_reconstruction_minimal/artifacts/synthetic_input.png"
+  },
+  "checks": {
+    "artifact_png_nonempty": true,
+    "latent_shape_matches": true,
+    "loss_is_finite": true,
+    "mask_ratio_matches": true,
+    "prediction_shape_matches": true,
+    "reconstruction_shape_matches": true,
+    "repo_commit_matches": true
+  },
+  "compatibility_shims": [
+    "numpy.float_alias_for_mae_pos_embed",
+    "timm_block_qk_scale_none_adapter"
+  ],
+  "environment": {
+    "device": "cpu",
+    "numpy": "1.26.4",
+    "python": "3.12.3",
+    "timm": "0.6.13",
+    "torch": "2.4.1+cu121"
+  },
+  "model": {
+    "img_size": 32,
+    "mask_ratio": 0.5,
+    "name": "mae_vit_base_patch16_dec512d8b",
+    "norm_pix_loss": true,
+    "patch_size": 16,
+    "seed": 123
+  },
+  "observed": {
+    "blended_mean": 0.43328357,
+    "latent_mean": 0.0,
+    "latent_shape": [
+      1,
+      3,
+      768
+    ],
+    "latent_std": 1.00021708,
+    "loss": 1.81612229,
+    "mask": [
+      [
+        1,
+        1,
+        0,
+        0
+      ]
+    ],
+    "masked_patches": 2,
+    "num_patches": 4,
+    "prediction_mean": -0.04427441,
+    "prediction_shape": [
+      1,
+      4,
+      768
+    ],
+    "prediction_std": 0.92233223,
+    "reconstruction_mean": 0.28358296,
+    "reconstruction_std": 0.37980926
+  },
+  "repo": {
+    "commit": "efb2a8062c206524e35e47d04501ed4f544c0ae8",
+    "url": "https://github.com/facebookresearch/mae"
+  },
+  "success": true,
+  "success_level": "L4_cpu_forward_reconstruction",
+  "task_id": "mae_reconstruction_minimal"
+}

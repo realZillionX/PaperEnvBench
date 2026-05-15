@@ -1,0 +1,5 @@
+python 3.12.3
+torch 2.12.0+cpu
+torchvision 0.27.0+cpu
+pytorchvideo 0.1.5
+slowfast_repo_import_probe=see native_import_probe.log

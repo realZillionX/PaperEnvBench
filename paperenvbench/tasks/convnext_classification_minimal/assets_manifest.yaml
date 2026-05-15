@@ -1,0 +1,22 @@
+assets:
+  - asset_id: convnext_repo_snapshot
+    type: source_repo
+    required: true
+    source: git
+    url: https://github.com/facebookresearch/ConvNeXt
+    commit: 048efcea897d999aed302f2639b6270aedf8d4c8
+    cached_path: paper-repro:runs/paperenvbench/image/convnext_classification_minimal/repo
+  - asset_id: synthetic_rgb_ppm
+    type: image
+    required: true
+    source: generated_by_verify
+    cached_path: paper-repro:runs/paperenvbench/image/convnext_classification_minimal/artifacts/synthetic_convnext_input.ppm
+    local_path: artifacts/synthetic_convnext_input.ppm
+    checksum_sha256: 4b25b9580a17e2b6233a6e28603ea8e120a4b8c76c12e1ebf4001adfbcc5910e
+  - asset_id: convnext_logits_summary
+    type: output_artifact
+    required: true
+    source: generated_by_verify
+    cached_path: paper-repro:runs/paperenvbench/image/convnext_classification_minimal/artifacts/expected_artifact.json
+    local_path: artifacts/expected_artifact.json
+    checksum_sha256: 8b76df6ff6b05f55e00b0f0a5a77d074dcf8beaf6c7a79d615a402dce63d7420

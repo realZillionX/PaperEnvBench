@@ -1,0 +1,7 @@
+Please update your PyTorchVideo to latest master
+{
+  "artifact": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/video/slowfast_video_classification_minimal/artifacts/expected_artifact.json",
+  "status": "generated",
+  "success_level": "L4_fallback",
+  "task_id": "slowfast_video_classification_minimal"
+}

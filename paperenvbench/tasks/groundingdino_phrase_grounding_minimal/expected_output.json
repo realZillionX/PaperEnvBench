@@ -1,0 +1,95 @@
+{
+  "task_id": "groundingdino_phrase_grounding_minimal",
+  "required_artifact": "expected_artifact.json",
+  "required_side_artifacts": [
+    "expected_input.png",
+    "expected_annotated.png"
+  ],
+  "expected_repo_commit": "856dde20aee659246248e20734ef9ba5214f5e44",
+  "expected_checkpoint": {
+    "filename": "groundingdino_swint_ogc.pth",
+    "size_bytes": 693997677,
+    "sha256": "3b3ca2563c77c69f651d7bd133e97139c186df06231157a64c507099c52bc799"
+  },
+  "semantic_thresholds": {
+    "box_threshold": 0.05,
+    "text_threshold": 0.05,
+    "expected_pred_logits_shape": [
+      1,
+      900,
+      256
+    ],
+    "expected_pred_boxes_shape": [
+      1,
+      900,
+      4
+    ],
+    "required_phrases": [
+      "red square",
+      "blue circle",
+      "green strip"
+    ],
+    "min_selected_detections": 3,
+    "min_nonzero_box_area": 1.0
+  },
+  "required_fields": [
+    "task_id",
+    "repo_commit",
+    "checkpoint",
+    "runtime",
+    "input",
+    "caption",
+    "thresholds",
+    "detections",
+    "output_tensors",
+    "checks",
+    "success_level"
+  ],
+  "gold_observed": {
+    "success_level": "L4",
+    "python": "3.12.3",
+    "package_versions": {
+      "torch": "2.8.0+cpu",
+      "torchvision": "0.23.0+cpu",
+      "transformers": "4.41.2",
+      "timm": "0.9.16",
+      "supervision": "0.22.0"
+    },
+    "input_image_sha256": "b4fab73ad0198aac5b926378e7e07955e4204fd55eca27be1f0c65c6968f9aed",
+    "annotated_image_sha256": "8a80a8cde0fa5fa7b40c86290b764a646e5593899dae6fb755ca75e39a71bb15",
+    "artifact_sha256": "7bc728bb21c20caa85027a84f8e46d84c6a68790f2f1da41d8c970c0d208bee5",
+    "selected_count": 5,
+    "top_detections": [
+      {
+        "phrase": "blue circle",
+        "score": 0.7176281214,
+        "box_xyxy": [
+          199.4982,
+          70.7007,
+          292.8224,
+          165.2489
+        ]
+      },
+      {
+        "phrase": "green strip",
+        "score": 0.6157356501,
+        "box_xyxy": [
+          31.4985,
+          194.64,
+          303.2462,
+          217.952
+        ]
+      },
+      {
+        "phrase": "red square",
+        "score": 0.5867436528,
+        "box_xyxy": [
+          48.3331,
+          64.7228,
+          165.2186,
+          179.6374
+        ]
+      }
+    ]
+  }
+}

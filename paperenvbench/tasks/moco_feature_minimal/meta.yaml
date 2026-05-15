@@ -1,0 +1,53 @@
+task_id: moco_feature_minimal
+paper_title: "Momentum Contrast for Unsupervised Visual Representation Learning"
+repo_url: https://github.com/facebookresearch/moco
+commit: 7397dfe146c7ca6bbb58e9c382498069178ba764
+commit_short: 7397dfe
+paper_url: https://arxiv.org/abs/1911.05722
+license: MIT
+split: test
+modality:
+  primary: image_classification_representation
+  secondary:
+    - self_supervised_representation
+    - resnet_feature_extraction
+    - checkpoint_optional
+environment_challenges:
+  - checkpoint_download
+  - torch_cuda_matrix
+  - stale_readme
+  - entrypoint_ambiguity
+  - verification_ambiguity
+verification:
+  type:
+    - import_graph
+    - single_sample_inference
+    - output_artifact
+    - semantic_check
+  command: python verify.py
+  minimum_success_level: L4_cpu_encoder_forward
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4

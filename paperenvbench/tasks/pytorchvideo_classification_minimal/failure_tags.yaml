@@ -1,0 +1,19 @@
+primary_failure_tags:
+  - torch_cuda_matrix
+  - hidden_dependency
+  - system_package_missing
+  - checkpoint_download
+  - entrypoint_ambiguity
+  - verification_ambiguity
+observed_gold_issues:
+  - tag: verification_ambiguity
+    issue: "default tiny synthetic clip was too small for the model head"
+    evidence: "A 64x64 clip failed at the slow_r50 7x7 spatial pool; the verified gold path uses a deterministic 224x224 clip."
+  - tag: checkpoint_download
+    issue: "checkpoint intentionally omitted for CPU gold"
+    evidence: "The gold path uses the pinned local torch hub model with pretrained=False and records the fallback boundary."
+anti_patterns:
+  - "Treating PyTorchVideo import as success without running the local hub model."
+  - "Downloading Kinetics checkpoints before proving the synthetic CPU model path."
+  - "Using an external video dataset when deterministic synthetic video is sufficient for the gold verifier."
+  - "Using a non-local torch hub model instead of the pinned repository checkout."

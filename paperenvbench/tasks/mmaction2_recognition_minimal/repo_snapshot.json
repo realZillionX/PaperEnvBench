@@ -1,0 +1,73 @@
+{
+  "task_id": "mmaction2_recognition_minimal",
+  "repo_url": "https://github.com/open-mmlab/mmaction2",
+  "commit": "a5a167dff2399e2d182a60332325f9c0d4663517",
+  "commit_short": "a5a167d",
+  "commit_date": "2026-03-18 12:04:49 +0800",
+  "commit_subject": "Merge pull request #2919 from Dai-Wenxun/main",
+  "default_branch": "main",
+  "snapshot_observed_at": "2026-05-16T01:49:00+08:00",
+  "source_tree": {
+    "package_manager": "pip",
+    "project_file": "pyproject.toml",
+    "module": "mmaction",
+    "version": "1.2.0",
+    "primary_entrypoints": [
+      "mmaction.registry.MODELS.build",
+      "mmengine.dataset.Compose",
+      "configs/recognition/tsn/tsn_imagenet-pretrained-r50_8xb32-1x1x3-100e_kinetics400-rgb.py",
+      "mmaction.models.recognizers.recognizer2d.Recognizer2D",
+      "mmaction.models.heads.tsn_head.TSNHead"
+    ]
+  },
+  "dependencies_declared": {
+    "requirements/runtime.txt": [
+      "decord>=0.4.1",
+      "einops",
+      "matplotlib",
+      "numpy",
+      "opencv-contrib-python",
+      "Pillow",
+      "scipy",
+      "torch>=1.8",
+      "torchvision",
+      "tqdm"
+    ],
+    "requirements/mminstall.txt": [
+      "mmcv>=2.0.0,<2.2.0",
+      "mmengine>=0.7.1,<1.0.0"
+    ]
+  },
+  "dependency_notes": {
+    "torch_strategy": "CPU-only torch==2.8.0 and torchvision==0.23.0 are installed from https://download.pytorch.org/whl/cpu.",
+    "mmcv_strategy": "gold_install.sh probes native mmcv==2.1.0 binary availability and records the Python 3.12 wheel boundary, then installs mmcv-lite==2.1.0.",
+    "hidden_dependency": "MMACTION2 imports importlib_metadata from mmaction/utils/dependency.py, so importlib_metadata==8.7.0 is installed explicitly.",
+    "video_strategy": "decord==0.6.0 and opencv-python-headless==4.11.0.86 support the synthetic MP4 pipeline without system ffmpeg."
+  },
+  "verification_contract": {
+    "synthetic_video": "artifacts/synthetic_action.mp4",
+    "output_artifact": "artifacts/expected_artifact.json",
+    "success_level": "L4_fallback",
+    "semantic_thresholds": {
+      "expected_input_tensor_shape": [1, 3, 3, 224, 224],
+      "expected_score_shape": [5],
+      "max_score_sum_error": 1e-6,
+      "min_feature_std": 1e-4
+    }
+  },
+  "fallback_boundary": {
+    "used_by_gold": true,
+    "reason": "Native mmcv binary installation is unavailable for Python 3.12 on the CPU notebook; the gold path uses mmcv-lite and executes TSN config, Decord pipeline, and Recognizer2D prediction without native mmcv.ops.",
+    "evidence_log": "logs/mmcv_native_binary_probe.log"
+  },
+  "gold_environment": {
+    "notebook": "paper-repro-ci-prep",
+    "remote_path_alias": "paper-repro:runs/paperenvbench/video/mmaction2_recognition_minimal",
+    "python": "3.12.3",
+    "torch": "2.8.0+cpu",
+    "torchvision": "0.23.0+cpu",
+    "mmcv-lite": "2.1.0",
+    "mmengine": "0.10.7",
+    "mmaction2": "1.2.0"
+  }
+}

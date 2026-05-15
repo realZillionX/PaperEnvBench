@@ -1,0 +1,85 @@
+{
+  "branch": "main",
+  "dirty": false,
+  "gold_outputs": {
+    "outputs/whisper_smoke/whisper_sine.json": {
+      "size_bytes": 46
+    },
+    "outputs/whisper_smoke/whisper_sine.srt": {
+      "size_bytes": 0
+    },
+    "outputs/whisper_smoke/whisper_sine.tsv": {
+      "size_bytes": 15
+    },
+    "outputs/whisper_smoke/whisper_sine.txt": {
+      "size_bytes": 0
+    },
+    "outputs/whisper_smoke/whisper_sine.vtt": {
+      "size_bytes": 8
+    }
+  },
+  "key_files": {
+    "README.md": {
+      "exists": true,
+      "size_bytes": 8246
+    },
+    "pyproject.toml": {
+      "exists": true,
+      "size_bytes": 1418
+    },
+    "whisper/__init__.py": {
+      "exists": true,
+      "size_bytes": 7432
+    },
+    "whisper/audio.py": {
+      "exists": true,
+      "size_bytes": 4945
+    },
+    "whisper/transcribe.py": {
+      "exists": true,
+      "size_bytes": 30366
+    }
+  },
+  "observed_remote_path": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/repos/whisper",
+  "package_manager": "pip",
+  "python_entrypoints": [
+    {
+      "name": "whisper",
+      "target": "whisper.transcribe:cli",
+      "type": "console_script"
+    }
+  ],
+  "remote_path_alias": "paper-repro:repos/whisper",
+  "repo_commit": "04f449b",
+  "repo_commit_full": "04f449b8a437f1bbd3dba5c9f826aca972e7709a",
+  "repo_name": "whisper",
+  "repo_url": "https://github.com/openai/whisper.git",
+  "snapshot_command": "inspire notebook exec paper-repro-ci-prep --cwd paper-repro",
+  "task_id": "whisper_asr_minimal",
+  "taxonomy_hints": {
+    "environment_challenges": [
+      "system_package_missing",
+      "checkpoint_download",
+      "torch_cuda_matrix",
+      "entrypoint_ambiguity"
+    ],
+    "expected_skill_routes": [
+      "global_reproducibility_safety",
+      "audio_env_setup",
+      "checkpoint_validation",
+      "minimal_entrypoint_discovery"
+    ],
+    "modality": {
+      "primary": "audio_speech",
+      "secondary": [
+        "checkpoint_loading",
+        "cli_inference"
+      ]
+    },
+    "verification_type": [
+      "cli_help",
+      "single_sample_inference",
+      "output_artifact"
+    ]
+  }
+}

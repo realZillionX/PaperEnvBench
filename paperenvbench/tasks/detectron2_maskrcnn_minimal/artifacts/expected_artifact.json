@@ -1,0 +1,109 @@
+{
+  "checkpoint_url": "https://dl.fbaipublicfiles.com/detectron2/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_1x/137260431/model_final_a54504.pkl",
+  "checks": {
+    "all_checks_passed": true,
+    "boxes_finite": true,
+    "checkpoint_url_resolved": true,
+    "mask_pixels_positive": true,
+    "native_extension_imported": true,
+    "prediction_count_positive": true,
+    "scores_finite": true
+  },
+  "code_path": [
+    "detectron2.model_zoo.get_config_file",
+    "detectron2.model_zoo.get_checkpoint_url",
+    "detectron2.engine.DefaultPredictor",
+    "DetectionCheckpointer.load",
+    "GeneralizedRCNN.inference",
+    "RPN, ROIHeads, MaskRCNNConvUpsampleHead"
+  ],
+  "config": "COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_1x.yaml",
+  "cuda_available": false,
+  "detectron2_version": "0.6",
+  "expected_shape_mask": {
+    "boxes_xyxy": [
+      [
+        40.0,
+        34.0,
+        124.0,
+        118.0
+      ]
+    ],
+    "mask_path": "artifacts/expected_mask.png",
+    "mask_pixels": 7056,
+    "mask_sha256": "a745d5a0231f1cf14d5cfc3589a8dc73f1cbe0982edc17a717ebf44d29c64b6b"
+  },
+  "input": {
+    "channels": 3,
+    "height": 160,
+    "path": "artifacts/expected_input.png",
+    "sha256": "1ff61eef520e6c6966f5cffc6cf990ac4a76865768790e478fa31cddc49e5db9",
+    "width": 160
+  },
+  "native_extension": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/detection/detectron2_maskrcnn_minimal/repo/detectron2/_C.cpython-312-x86_64-linux-gnu.so",
+  "overlay": {
+    "path": "artifacts/expected_overlay.png",
+    "sha256": "b98701205b899244d1ac3a9eb4430e2d892210e55418955d1a8c0c017ba9b07f"
+  },
+  "prediction": {
+    "num_instances": 5,
+    "top_boxes_xyxy": [
+      [
+        151.05841064453125,
+        158.5069580078125,
+        160.0,
+        159.98822021484375
+      ],
+      [
+        0.2596898078918457,
+        157.90060424804688,
+        8.465106964111328,
+        159.99310302734375
+      ],
+      [
+        149.41201782226562,
+        157.2813262939453,
+        160.0,
+        159.9758758544922
+      ],
+      [
+        154.7747039794922,
+        155.19564819335938,
+        159.9860382080078,
+        159.92788696289062
+      ],
+      [
+        0.05716705322265625,
+        157.88047790527344,
+        8.346789360046387,
+        159.99842834472656
+      ]
+    ],
+    "top_classes": [
+      0,
+      0,
+      0,
+      0,
+      73
+    ],
+    "top_mask_pixels": [
+      8,
+      16,
+      28,
+      24,
+      16
+    ],
+    "top_scores": [
+      0.012972930446267128,
+      0.009353727102279663,
+      0.006218478549271822,
+      0.004663440864533186,
+      0.0040036956779658794
+    ]
+  },
+  "repo": "facebookresearch/detectron2",
+  "repo_commit": "e0ec4e189d438848521aee7926f9900e114229f5",
+  "success_level": "L4",
+  "task_id": "detectron2_maskrcnn_minimal",
+  "torch_version": "2.12.0+cpu"
+}

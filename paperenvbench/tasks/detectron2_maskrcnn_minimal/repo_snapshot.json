@@ -1,0 +1,91 @@
+{
+  "task_id": "detectron2_maskrcnn_minimal",
+  "repo_name": "detectron2",
+  "repo_url": "https://github.com/facebookresearch/detectron2",
+  "repo_commit": "e0ec4e189d438848521aee7926f9900e114229f5",
+  "repo_commit_short": "e0ec4e1",
+  "repo_commit_date": "2026-05-14 20:27:36 -0700",
+  "repo_commit_subject": "Suppress type errors for Pyre upgrade",
+  "package_manager": "pip",
+  "system_packages": [
+    "build-essential",
+    "python3.12-dev"
+  ],
+  "dependency_files": [
+    "pyproject.toml",
+    "setup.py",
+    "requirements.txt"
+  ],
+  "entrypoints": [
+    {
+      "type": "python_api",
+      "name": "model_zoo.get_config_file",
+      "target": "detectron2.model_zoo"
+    },
+    {
+      "type": "python_api",
+      "name": "DefaultPredictor",
+      "target": "detectron2.engine"
+    },
+    {
+      "type": "native_extension",
+      "name": "detectron2._C",
+      "target": "detectron2/_C.cpython-312-x86_64-linux-gnu.so"
+    },
+    {
+      "type": "model_config",
+      "name": "mask_rcnn_R_50_FPN_1x",
+      "target": "COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_1x.yaml"
+    }
+  ],
+  "observed_environment": {
+    "notebook": "paper-repro-ci-prep",
+    "workspace": "CPU资源空间",
+    "project": "CI-情境智能",
+    "compute_group": "CPU资源-2",
+    "quota": "0,20,80",
+    "image": "sandbox-base:ubuntu24.04-py3.12-1.0.0",
+    "remote_cwd_alias": "paper-repro",
+    "python": "3.12.3",
+    "device": "cpu",
+    "torch": "2.12.0+cpu",
+    "torchvision": "0.27.0+cpu",
+    "detectron2": "0.6"
+  },
+  "install_obstacles": [
+    {
+      "failure": "PEP 517 build isolation could not import torch from setup.py",
+      "resolution": "install torch first and use pip install -e repo --no-build-isolation"
+    },
+    {
+      "failure": "base image had no gcc/g++ compiler",
+      "resolution": "apt-get install -y build-essential"
+    },
+    {
+      "failure": "native extension build could not find Python.h",
+      "resolution": "apt-get install -y python3.12-dev"
+    },
+    {
+      "failure": "internal PyPI returned 404 for fonttools wheel",
+      "resolution": "install matplotlib and iopath from https://pypi.org/simple, then install detectron2 with --no-deps"
+    }
+  ],
+  "asset_dependencies": [
+    {
+      "type": "checkpoint",
+      "name": "model_final_a54504.pkl",
+      "url": "https://dl.fbaipublicfiles.com/detectron2/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_1x/137260431/model_final_a54504.pkl",
+      "cached_path": "/root/.torch/iopath_cache/detectron2/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_1x/137260431/model_final_a54504.pkl",
+      "sha256": "95628d657763c4c090bb2675be922a8aa179a4f1eaa071854902c442ec5f7df9"
+    }
+  ],
+  "validated_outputs": {
+    "remote_run_dir": "paper-repro:runs/paperenvbench/detection/detectron2_maskrcnn_minimal",
+    "local_artifact_dir": "paperenvbench/tasks/detectron2_maskrcnn_minimal/artifacts",
+    "success_level": "L4",
+    "expected_artifact_sha256": "e86e2e69775fda5bc15dfa69a4e1fc246af59409e0ade2e89681f52dc0c5b68c",
+    "expected_input_sha256": "1ff61eef520e6c6966f5cffc6cf990ac4a76865768790e478fa31cddc49e5db9",
+    "expected_mask_sha256": "a745d5a0231f1cf14d5cfc3589a8dc73f1cbe0982edc17a717ebf44d29c64b6b",
+    "expected_overlay_sha256": "b98701205b899244d1ac3a9eb4430e2d892210e55418955d1a8c0c017ba9b07f"
+  }
+}

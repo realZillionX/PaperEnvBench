@@ -1,0 +1,102 @@
+version: 0.1.0
+updated_at: "2026-05-15"
+skills:
+  - skill_id: global_reproducibility_safety
+    version: v1
+    level: L0
+    source: human_static_seed
+    status: active
+    path: skills/paper-repro-env/structured_skills/global_reproducibility_safety_v1.yaml
+    evidence_trajectories: []
+    performance_summary:
+      used_count: 0
+      success_gain_mean: null
+      negative_transfer_count: 0
+  - skill_id: minimal_entrypoint_discovery
+    version: v1
+    level: L1
+    source: cpu_seed_trajectory
+    status: active
+    path: skills/paper-repro-env/structured_skills/minimal_entrypoint_discovery_v1.yaml
+    evidence_trajectories:
+      - task_id: whisper_asr_minimal
+      - task_id: clip_zeroshot_minimal
+      - task_id: sam_mask_minimal
+    performance_summary:
+      used_count: 0
+      success_gain_mean: null
+      negative_transfer_count: 0
+  - skill_id: checkpoint_validation
+    version: v1
+    level: L2
+    source: cpu_seed_trajectory
+    status: active
+    path: skills/paper-repro-env/structured_skills/checkpoint_validation_v1.yaml
+    evidence_trajectories:
+      - task_id: whisper_asr_minimal
+      - task_id: clip_zeroshot_minimal
+      - task_id: sam_mask_minimal
+    performance_summary:
+      used_count: 0
+      success_gain_mean: null
+      negative_transfer_count: 0
+  - skill_id: torch_cuda_matrix_solver
+    version: v1
+    level: L2
+    source: human_static_seed
+    status: candidate
+    path: skills/paper-repro-env/structured_skills/torch_cuda_matrix_solver_v1.yaml
+    evidence_trajectories: []
+    performance_summary:
+      used_count: 0
+      success_gain_mean: null
+      negative_transfer_count: 0
+  - skill_id: audio_env_setup
+    version: v1
+    level: L3
+    source: cpu_seed_trajectory
+    status: active
+    path: skills/paper-repro-env/structured_skills/audio_env_setup_v1.yaml
+    evidence_trajectories:
+      - task_id: whisper_asr_minimal
+    performance_summary:
+      used_count: 0
+      success_gain_mean: null
+      negative_transfer_count: 0
+  - skill_id: vision_language_env_setup
+    version: v1
+    level: L3
+    source: cpu_seed_trajectory
+    status: active
+    path: skills/paper-repro-env/structured_skills/vision_language_env_setup_v1.yaml
+    evidence_trajectories:
+      - task_id: clip_zeroshot_minimal
+    performance_summary:
+      used_count: 0
+      success_gain_mean: null
+      negative_transfer_count: 0
+  - skill_id: vision_segmentation_env_setup
+    version: v1
+    level: L3
+    source: cpu_seed_trajectory
+    status: active
+    path: skills/paper-repro-env/structured_skills/vision_segmentation_env_setup_v1.yaml
+    evidence_trajectories:
+      - task_id: sam_mask_minimal
+    performance_summary:
+      used_count: 0
+      success_gain_mean: null
+      negative_transfer_count: 0
+  - skill_id: system_package_resolver
+    version: v1
+    level: L2
+    source: cpu_seed_trajectory
+    status: active
+    path: skills/paper-repro-env/structured_skills/system_package_resolver_v1.yaml
+    evidence_trajectories:
+      - task_id: whisper_asr_minimal
+      - task_id: sam_mask_minimal
+    performance_summary:
+      used_count: 0
+      success_gain_mean: null
+      negative_transfer_count: 0

@@ -1,0 +1,42 @@
+{
+  "attempt_root": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/dino_vit_feature_minimal",
+  "checks": {
+    "checkpoint_loaded_strictly": true,
+    "feature_hash_matches": true,
+    "feature_shape": [
+      1,
+      384
+    ],
+    "nondegenerate_feature_stats": true,
+    "summary_json_exists": "outputs/dino_vit_feature_minimal/feature_summary.json",
+    "synthetic_image_exists": "outputs/dino_vit_feature_minimal/dino_synthetic_input.png"
+  },
+  "observed": {
+    "checkpoint_sha256": "1566d50496f27f52f07fea6094fa29b2fdd6fae89da65bdd3ebc3b24ef6b7eb7",
+    "feature": {
+      "first8": [
+        -2.142385959625244,
+        3.536695718765259,
+        -3.4510207176208496,
+        3.4299347400665283,
+        1.2418476343154907,
+        3.1168887615203857,
+        -13.497405052185059,
+        -0.1589641571044922
+      ],
+      "l2_norm": 94.5024185180664,
+      "max": 16.00970458984375,
+      "mean": -0.054445505142211914,
+      "min": -16.41043472290039,
+      "sha256_rounded_6": "72c9982428dc590c6ead83b6e8f3cd0216c1a533645033c4293fb6fcfcdf9eb8",
+      "shape": [
+        1,
+        384
+      ],
+      "std": 4.822248935699463
+    },
+    "repo_commit": "7c446df5b9f45747937fb0d72314eb9f7b66930a"
+  },
+  "status": "pass",
+  "task_id": "dino_vit_feature_minimal"
+}

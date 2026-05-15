@@ -1,0 +1,11 @@
+assets:
+  - asset_id: whisper_tiny_checkpoint
+    type: checkpoint
+    required: true
+    cached_path: paper-repro:models/whisper/
+    checksum: null
+  - asset_id: synthetic_sine_audio
+    type: audio
+    required: true
+    cached_path: paper-repro:outputs/whisper_smoke/whisper_sine.wav
+    checksum: null

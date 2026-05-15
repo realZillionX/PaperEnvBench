@@ -1,0 +1,19 @@
+{
+  "repo_url": "https://github.com/facebookresearch/pytorchvideo",
+  "clone_url": "https://github.com/facebookresearch/pytorchvideo.git",
+  "commit": "f3142bb05cdb56af0704ab6f0adfb0c7bbafe4a0",
+  "commit_short": "f3142bb",
+  "branch_observed": "main",
+  "observed_at_utc": "2026-05-15T17:00:00Z",
+  "selection_reason": "Current upstream HEAD was selected and pinned after live git ls-remote and remote clone verification. It includes setup.py, hubconf.py, and pytorchvideo.models.hub.slow_r50 for CPU single clip inference with pretrained=False.",
+  "install_surface": {
+    "setup.py": true,
+    "pyproject.toml": false,
+    "requirements.txt": false,
+    "editable_install": true
+  },
+  "entrypoints": [
+    "hubconf.py",
+    "pytorchvideo.models.hub.slow_r50"
+  ]
+}

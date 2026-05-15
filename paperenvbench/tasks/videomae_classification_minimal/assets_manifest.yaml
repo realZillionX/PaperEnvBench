@@ -1,0 +1,21 @@
+assets:
+  - asset_id: videomae_source_repo
+    type: git_repository
+    required: true
+    url: https://github.com/MCG-NJU/VideoMAE
+    commit: 14ef8d856287c94ef1f985fe30f958eb4ec2c55d
+    cached_path: paper-repro:runs/paperenvbench/video/videomae_classification_minimal/VideoMAE
+    checksum: null
+  - asset_id: deterministic_synthetic_video_strip
+    type: image
+    required: true
+    generated_by: verify.py
+    cached_path: paper-repro:runs/paperenvbench/video/videomae_classification_minimal/artifacts/synthetic_video_strip.png
+    checksum: sha256:3dbf5ab0b53b72501e18a575d2e14ea2fc37baf334236bf88c5ed86f4acb0bb0
+  - asset_id: videomae_finetuned_checkpoints
+    type: checkpoint
+    required: false
+    source: MODEL_ZOO.md Google Drive checkpoint links
+    risk: large_download_or_network_control
+    note: "Not required for this CPU minimal task; verification uses initialized VideoMAE classification weights and checks the pinned repo video transformer forward path."
+    checksum: null

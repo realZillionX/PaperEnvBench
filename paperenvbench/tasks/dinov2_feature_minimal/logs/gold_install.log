@@ -1,0 +1,118 @@
+[gold_install] run_root=/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/dinov2_feature_minimal
+[gold_install] repo_dir=/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/dinov2_feature_minimal/repo
+[gold_install] venv_dir=/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/dinov2_feature_minimal/venv
+[gold_install] commit=7b187bd4df8efce2cbcbbb67bd01532c19bf4c9c
+HEAD is now at 7b187bd Merge pull request #584 from facebookresearch/add_copyright_headers
+7b187bd4df8efce2cbcbbb67bd01532c19bf4c9c
+Looking in indexes: http://nexus.sii.shaipower.online/repository/pypi/simple
+Requirement already satisfied: pip in ./venv/lib/python3.12/site-packages (24.0)
+Collecting pip
+  Using cached http://nexus.sii.shaipower.online/repository/pypi/packages/pip/26.1.1/pip-26.1.1-py3-none-any.whl (1.8 MB)
+Collecting setuptools
+  Using cached http://nexus.sii.shaipower.online/repository/pypi/packages/setuptools/82.0.1/setuptools-82.0.1-py3-none-any.whl (1.0 MB)
+Collecting wheel
+  Using cached http://nexus.sii.shaipower.online/repository/pypi/packages/wheel/0.47.0/wheel-0.47.0-py3-none-any.whl (32 kB)
+Collecting packaging>=24.0 (from wheel)
+  Using cached http://nexus.sii.shaipower.online/repository/pypi/packages/packaging/26.2/packaging-26.2-py3-none-any.whl (100 kB)
+Installing collected packages: setuptools, pip, packaging, wheel
+  Attempting uninstall: pip
+    Found existing installation: pip 24.0
+    Uninstalling pip-24.0:
+      Successfully uninstalled pip-24.0
+Successfully installed packaging-26.2 pip-26.1.1 setuptools-82.0.1 wheel-0.47.0
+Writing to /root/.config/pip/pip.conf
+Writing to /root/.config/pip/pip.conf
+Looking in indexes: https://download.pytorch.org/whl/cpu
+Collecting torch==2.8.0
+  Using cached torch-2.8.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (29 kB)
+Collecting torchvision==0.23.0
+  Using cached torchvision-0.23.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (6.1 kB)
+Collecting filelock (from torch==2.8.0)
+  Using cached filelock-3.29.0-py3-none-any.whl.metadata (2.0 kB)
+Collecting typing-extensions>=4.10.0 (from torch==2.8.0)
+  Using cached typing_extensions-4.15.0-py3-none-any.whl.metadata (3.3 kB)
+Requirement already satisfied: setuptools in ./venv/lib/python3.12/site-packages (from torch==2.8.0) (82.0.1)
+Collecting sympy>=1.13.3 (from torch==2.8.0)
+  Using cached sympy-1.14.0-py3-none-any.whl.metadata (12 kB)
+Collecting networkx (from torch==2.8.0)
+  Using cached networkx-3.6.1-py3-none-any.whl.metadata (6.8 kB)
+Collecting jinja2 (from torch==2.8.0)
+  Using cached jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting fsspec (from torch==2.8.0)
+  Using cached fsspec-2026.4.0-py3-none-any.whl.metadata (10 kB)
+Collecting numpy (from torchvision==0.23.0)
+  Using cached numpy-2.4.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+Collecting pillow!=8.3.*,>=5.3.0 (from torchvision==0.23.0)
+  Using cached pillow-12.2.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (8.8 kB)
+Collecting mpmath<1.4,>=1.1.0 (from sympy>=1.13.3->torch==2.8.0)
+  Using cached mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+Collecting MarkupSafe>=2.0 (from jinja2->torch==2.8.0)
+  Using cached markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+Using cached torch-2.8.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl (183.9 MB)
+Using cached torchvision-0.23.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl (1.9 MB)
+Using cached pillow-12.2.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (7.1 MB)
+Using cached sympy-1.14.0-py3-none-any.whl (6.3 MB)
+Using cached mpmath-1.3.0-py3-none-any.whl (536 kB)
+Using cached typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+Using cached filelock-3.29.0-py3-none-any.whl (39 kB)
+Using cached fsspec-2026.4.0-py3-none-any.whl (203 kB)
+Using cached jinja2-3.1.6-py3-none-any.whl (134 kB)
+Using cached markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+Using cached networkx-3.6.1-py3-none-any.whl (2.1 MB)
+Using cached numpy-2.4.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.6 MB)
+Installing collected packages: mpmath, typing-extensions, sympy, pillow, numpy, networkx, MarkupSafe, fsspec, filelock, jinja2, torch, torchvision
+
+Successfully installed MarkupSafe-3.0.3 filelock-3.29.0 fsspec-2026.4.0 jinja2-3.1.6 mpmath-1.3.0 networkx-3.6.1 numpy-2.4.4 pillow-12.2.0 sympy-1.14.0 torch-2.8.0+cpu torchvision-0.23.0+cpu typing-extensions-4.15.0
+Looking in indexes: http://nexus.sii.shaipower.online/repository/pypi/simple
+Requirement already satisfied: numpy==2.4.4 in ./venv/lib/python3.12/site-packages (2.4.4)
+Collecting Pillow==12.1.0
+  Using cached pillow-12.1.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (7.0 MB)
+Collecting omegaconf==2.3.0
+  Using cached omegaconf-2.3.0-py3-none-any.whl (79 kB)
+Collecting PyYAML==6.0.3
+  Using cached pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+Collecting antlr4-python3-runtime==4.9.* (from omegaconf==2.3.0)
+  Using cached antlr4_python3_runtime-4.9.3-py3-none-any.whl
+Installing collected packages: antlr4-python3-runtime, PyYAML, Pillow, omegaconf
+  Attempting uninstall: Pillow
+    Found existing installation: pillow 12.2.0
+    Uninstalling pillow-12.2.0:
+      Successfully uninstalled pillow-12.2.0
+
+Successfully installed Pillow-12.1.0 PyYAML-6.0.3 antlr4-python3-runtime-4.9.3 omegaconf-2.3.0
+Looking in indexes: http://nexus.sii.shaipower.online/repository/pypi/simple
+Obtaining file:///inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper%20Reproduction/runs/paperenvbench/image/dinov2_feature_minimal/repo
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: dinov2
+  Building editable for dinov2 (pyproject.toml): started
+  Building editable for dinov2 (pyproject.toml): finished with status 'done'
+  Created wheel for dinov2: filename=dinov2-0.0.1-0.editable-py3-none-any.whl size=14411 sha256=ad76c1d977a74cb36d741094057df85240abcb6ad7c1357b1d0e907f8bb91aca
+  Stored in directory: /tmp/pip-ephem-wheel-cache-ls_u8dqd/wheels/c6/e1/ed/5a8d2c2e3e2e5f069f9fec1a5631125a9329c9c1dc23fe3ace
+Successfully built dinov2
+Installing collected packages: dinov2
+Successfully installed dinov2-0.0.1
+/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/dinov2_feature_minimal/repo/dinov2/layers/swiglu_ffn.py:45: UserWarning: xFormers is disabled (SwiGLU)
+  warnings.warn("xFormers is disabled (SwiGLU)")
+/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/dinov2_feature_minimal/repo/dinov2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/dinov2_feature_minimal/repo/dinov2/layers/attention.py:29: UserWarning: xFormers is disabled (Attention)
+  warnings.warn("xFormers is disabled (Attention)")
+/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/dinov2_feature_minimal/repo/dinov2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/dinov2_feature_minimal/repo/dinov2/layers/block.py:35: UserWarning: xFormers is disabled (Block)
+  warnings.warn("xFormers is disabled (Block)")
+/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/dinov2_feature_minimal/repo/dinov2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+dinov2 0.0.1
+torch 2.8.0+cpu cuda_available False
+xformers_disabled 1
+model_embed_dim 384
+repo_module dinov2/models/vision_transformer
+[gold_install] wrote /inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/dinov2_feature_minimal/requirements_lock.txt

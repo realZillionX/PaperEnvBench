@@ -1,0 +1,337 @@
+version: 0.2.0
+updated_at: "2026-05-16"
+assets:
+  - asset_id: whisper_tiny_checkpoint
+    task_id: whisper_asr_minimal
+    type: checkpoint
+    required: true
+    source_url: null
+    checksum: null
+    cached_path: paper-repro:models/whisper/
+    local_artifact_path: paperenvbench/tasks/whisper_asr_minimal/artifacts/
+    status: gold_verified
+  - asset_id: demucs_unittest_cpu_artifact
+    task_id: demucs_music_separation
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum: null
+    cached_path: paper-repro:runs/paperenvbench/audio/demucs_music_separation/artifacts/expected_artifact.wav
+    local_artifact_path: paperenvbench/tasks/demucs_music_separation/artifacts/expected_artifact.wav
+    status: gold_verified
+  - asset_id: silero_vad_packaged_jit_model
+    task_id: silero_vad_speech_activity
+    type: checkpoint
+    required: true
+    source_url: repo_snapshot:src/silero_vad/data/silero_vad.jit
+    checksum_sha256: e1122837f4154c511485fe0b9c64455f7b929c96fbb8d79fbdb336383ebd3720
+    cached_path: paper-repro:runs/paperenvbench/audio/silero_vad_speech_activity/repo/src/silero_vad/data/silero_vad.jit
+    local_artifact_path: paperenvbench/tasks/silero_vad_speech_activity/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: encodec_24khz_checkpoint
+    task_id: encodec_audio_codec_minimal
+    type: checkpoint
+    required: true
+    source_url: https://dl.fbaipublicfiles.com/encodec/v0/encodec_24khz-d7cc33bc.th
+    checksum: null
+    cached_path: paper-repro:runs/paperenvbench/audio/encodec_audio_codec_minimal/torch_home/hub/checkpoints/encodec_24khz-d7cc33bc.th
+    local_artifact_path: paperenvbench/tasks/encodec_audio_codec_minimal/artifacts/expected_artifact.wav
+    status: gold_verified
+  - asset_id: speechbrain_google_speech_command_xvector
+    task_id: speechbrain_keyword_spotting
+    type: checkpoint
+    required: true
+    source_url: https://huggingface.co/speechbrain/google_speech_command_xvector
+    revision: b0cec0fb42423936ca0da2724ce52d82eb807e20
+    checksum: null
+    cached_path: paper-repro:runs/paperenvbench/audio/speechbrain_keyword_spotting/artifacts/pretrained_google_speech_command_xvector
+    local_artifact_path: paperenvbench/tasks/speechbrain_keyword_spotting/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: clip_vit_b_32_checkpoint
+    task_id: clip_zeroshot_minimal
+    type: checkpoint
+    required: true
+    source_url: null
+    checksum: null
+    cached_path: paper-repro:models/clip/ViT-B-32.pt
+    local_artifact_path: paperenvbench/tasks/clip_zeroshot_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: sam_vit_b_checkpoint
+    task_id: sam_mask_minimal
+    type: checkpoint
+    required: true
+    source_url: null
+    checksum: null
+    cached_path: paper-repro:models/sam/sam_vit_b_01ec64.pth
+    local_artifact_path: paperenvbench/tasks/sam_mask_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: moco_cpu_encoder_feature_artifact
+    task_id: moco_feature_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum: null
+    cached_path: paper-repro:runs/paperenvbench/image/moco_feature_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/moco_feature_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: dinov2_cpu_feature_artifact
+    task_id: dinov2_feature_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: bb9f72c52699fe251976dff7015ff43210b7be3fd68a3a7c91830387389e119d
+    cached_path: paper-repro:runs/paperenvbench/image/dinov2_feature_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/dinov2_feature_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: convnext_cpu_logits_artifact
+    task_id: convnext_classification_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: 8b76df6ff6b05f55e00b0f0a5a77d074dcf8beaf6c7a79d615a402dce63d7420
+    cached_path: paper-repro:runs/paperenvbench/image/convnext_classification_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/convnext_classification_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: dino_deitsmall16_pretrain_checkpoint
+    task_id: dino_vit_feature_minimal
+    type: checkpoint
+    required: true
+    source_url: https://dl.fbaipublicfiles.com/dino/dino_deitsmall16_pretrain/dino_deitsmall16_pretrain.pth
+    checksum_sha256: 1566d50496f27f52f07fea6094fa29b2fdd6fae89da65bdd3ebc3b24ef6b7eb7
+    cached_path: paper-repro:runs/paperenvbench/image/dino_vit_feature_minimal/checkpoints/dino_deitsmall16_pretrain.pth
+    local_artifact_path: paperenvbench/tasks/dino_vit_feature_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: mae_reconstruction_artifact
+    task_id: mae_reconstruction_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: 13d0d3a3e267be96a3bd08328c880fb3a9ac5c7a1f2962eea8db446ef4c92bb7
+    cached_path: paper-repro:runs/paperenvbench/image/mae_reconstruction_minimal/artifacts/expected_artifact.png
+    local_artifact_path: paperenvbench/tasks/mae_reconstruction_minimal/artifacts/expected_artifact.png
+    status: gold_verified
+  - asset_id: detr_r50_checkpoint
+    task_id: detr_object_detection_minimal
+    type: checkpoint
+    required: true
+    source_url: https://dl.fbaipublicfiles.com/detr/detr-r50-e632da11.pth
+    checksum_sha256: e632da11ec76ae67bac2f8579fbed3724e08dead7d200ca13e019b197784eadc
+    cached_path: paper-repro:runs/paperenvbench/detection/detr_object_detection_minimal/checkpoints/hub/checkpoints/detr-r50-e632da11.pth
+    local_artifact_path: paperenvbench/tasks/detr_object_detection_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: detr_coco_input_image
+    task_id: detr_object_detection_minimal
+    type: input_image
+    required: true
+    source_url: http://images.cocodataset.org/val2017/000000039769.jpg
+    checksum_sha256: dea9e7ef97386345f7cff32f9055da4982da5471c48d575146c796ab4563b04e
+    cached_path: paper-repro:runs/paperenvbench/detection/detr_object_detection_minimal/artifacts/expected_input.jpg
+    local_artifact_path: paperenvbench/tasks/detr_object_detection_minimal/artifacts/expected_input.jpg
+    status: gold_verified
+  - asset_id: detr_detection_overlay
+    task_id: detr_object_detection_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: 2cb2996249ee03b4156e02c55601824c50c9b3a2dd500d2ff4e10cf038833a6b
+    cached_path: paper-repro:runs/paperenvbench/detection/detr_object_detection_minimal/artifacts/expected_detection_overlay.jpg
+    local_artifact_path: paperenvbench/tasks/detr_object_detection_minimal/artifacts/expected_detection_overlay.jpg
+    status: gold_verified
+  - asset_id: detectron2_maskrcnn_r50_fpn_checkpoint
+    task_id: detectron2_maskrcnn_minimal
+    type: checkpoint
+    required: true
+    source_url: https://dl.fbaipublicfiles.com/detectron2/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_1x/137260431/model_final_a54504.pkl
+    checksum_sha256: 95628d657763c4c090bb2675be922a8aa179a4f1eaa071854902c442ec5f7df9
+    cached_path: paper-repro:runs/paperenvbench/detection/detectron2_maskrcnn_minimal/.torch/iopath_cache/detectron2/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_1x/137260431/model_final_a54504.pkl
+    local_artifact_path: paperenvbench/tasks/detectron2_maskrcnn_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: detectron2_maskrcnn_artifacts
+    task_id: detectron2_maskrcnn_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: e86e2e69775fda5bc15dfa69a4e1fc246af59409e0ade2e89681f52dc0c5b68c
+    cached_path: paper-repro:runs/paperenvbench/detection/detectron2_maskrcnn_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/detectron2_maskrcnn_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: mmsegmentation_segformer_artifact
+    task_id: mmsegmentation_segformer_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: d5b045b00630bec5200601735456feb0e4e4578a71b4a9258d92e1b11b12f461
+    cached_path: paper-repro:runs/paperenvbench/detection/mmsegmentation_segformer_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/mmsegmentation_segformer_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: mmsegmentation_segformer_mask
+    task_id: mmsegmentation_segformer_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: ba9e0a55e80b5bd3d5c17b84502e01f12391964720211380ee6042909c7c2068
+    cached_path: paper-repro:runs/paperenvbench/detection/mmsegmentation_segformer_minimal/artifacts/expected_mask.png
+    local_artifact_path: paperenvbench/tasks/mmsegmentation_segformer_minimal/artifacts/expected_mask.png
+    status: gold_verified
+  - asset_id: mmsegmentation_mmcv_native_probe_log
+    task_id: mmsegmentation_segformer_minimal
+    type: failure_evidence_log
+    required: true
+    source_url: null
+    checksum_sha256: 5160fc7ba401ef1d6806978b4d9ded6d48d83f1f80083339d5cce5bd78a6d2b7
+    cached_path: paper-repro:runs/paperenvbench/detection/mmsegmentation_segformer_minimal/logs/mmcv_native_binary_probe.log
+    local_artifact_path: paperenvbench/tasks/mmsegmentation_segformer_minimal/logs/mmcv_native_binary_probe.log
+    status: gold_verified
+  - asset_id: groundingdino_swint_checkpoint
+    task_id: groundingdino_phrase_grounding_minimal
+    type: checkpoint
+    required: true
+    source_url: https://github.com/IDEA-Research/GroundingDINO/releases/download/v0.1.0-alpha/groundingdino_swint_ogc.pth
+    checksum_sha256: 3b3ca2563c77c69f651d7bd133e97139c186df06231157a64c507099c52bc799
+    cached_path: paper-repro:runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/models/groundingdino_swint_ogc.pth
+    local_artifact_path: paperenvbench/tasks/groundingdino_phrase_grounding_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: groundingdino_phrase_grounding_artifact
+    task_id: groundingdino_phrase_grounding_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: 7bc728bb21c20caa85027a84f8e46d84c6a68790f2f1da41d8c970c0d208bee5
+    cached_path: paper-repro:runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/groundingdino_phrase_grounding_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: groundingdino_annotated_image
+    task_id: groundingdino_phrase_grounding_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: 8a80a8cde0fa5fa7b40c86290b764a646e5593899dae6fb755ca75e39a71bb15
+    cached_path: paper-repro:runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/artifacts/expected_annotated.png
+    local_artifact_path: paperenvbench/tasks/groundingdino_phrase_grounding_minimal/artifacts/expected_annotated.png
+    status: gold_verified
+  - asset_id: mmdetection_detection_summary
+    task_id: mmdetection_fasterrcnn_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: ca2d20e5fa2863b664938d4edb3b4141bd7cfc9e5c862d3da3727708ebe9f287
+    cached_path: paper-repro:runs/paperenvbench/detection/mmdetection_fasterrcnn_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/mmdetection_fasterrcnn_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: mmdetection_detection_visualization
+    task_id: mmdetection_fasterrcnn_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: 1e62cdaec725fcffbf4ac3b7a832a6d90649c44758100cf97f6ee9f9062c36f6
+    cached_path: paper-repro:runs/paperenvbench/detection/mmdetection_fasterrcnn_minimal/artifacts/expected_detection.ppm
+    local_artifact_path: paperenvbench/tasks/mmdetection_fasterrcnn_minimal/artifacts/expected_detection.ppm
+    status: gold_verified
+  - asset_id: mmdetection_native_mmcv_probe_logs
+    task_id: mmdetection_fasterrcnn_minimal
+    type: failure_evidence_log
+    required: true
+    source_url: null
+    checksum_sha256: ebcea9a570096dfc0f517b684dd22126bb40b1397f6af3cc8fc294ea9614e9dd
+    cached_path: paper-repro:runs/paperenvbench/detection/mmdetection_fasterrcnn_minimal/logs/native_mmcv_ops_probe.log
+    local_artifact_path: paperenvbench/tasks/mmdetection_fasterrcnn_minimal/logs/native_mmcv_ops_probe.log
+    status: gold_verified
+  - asset_id: pytorchvideo_slow_r50_synthetic_clip
+    task_id: pytorchvideo_classification_minimal
+    type: input_video_tensor
+    required: true
+    source_url: null
+    checksum_sha256: 1df30c9cecd698f14ffd4567a78bccdac4d6fb59b9b403c20f8b8259f45fa6a1
+    cached_path: paper-repro:runs/paperenvbench/video/pytorchvideo_classification_minimal/artifacts/expected_clip.pt
+    local_artifact_path: paperenvbench/tasks/pytorchvideo_classification_minimal/artifacts/expected_clip.pt
+    status: gold_verified
+  - asset_id: pytorchvideo_slow_r50_logits
+    task_id: pytorchvideo_classification_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: ca59d08a602a1a2f10085ee0cb6d4c2742aebb42aebaaaadd04087c05cad29e5
+    cached_path: paper-repro:runs/paperenvbench/video/pytorchvideo_classification_minimal/artifacts/expected_logits.pt
+    local_artifact_path: paperenvbench/tasks/pytorchvideo_classification_minimal/artifacts/expected_logits.pt
+    status: gold_verified
+  - asset_id: pytorchvideo_slow_r50_summary
+    task_id: pytorchvideo_classification_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: 8aa30f0408d690e3dbfaac8ca39c7f0867424f384c2946f6d0904146966d6ba2
+    cached_path: paper-repro:runs/paperenvbench/video/pytorchvideo_classification_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/pytorchvideo_classification_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: videomae_synthetic_video_forward_summary
+    task_id: videomae_classification_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: c96cf8182532a1b7d766a204a92de522b0916ba16b2596415bb511137db1cefc
+    cached_path: paper-repro:runs/paperenvbench/video/videomae_classification_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/videomae_classification_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: videomae_synthetic_video_strip
+    task_id: videomae_classification_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: 3dbf5ab0b53b72501e18a575d2e14ea2fc37baf334236bf88c5ed86f4acb0bb0
+    cached_path: paper-repro:runs/paperenvbench/video/videomae_classification_minimal/artifacts/synthetic_video_strip.png
+    local_artifact_path: paperenvbench/tasks/videomae_classification_minimal/artifacts/synthetic_video_strip.png
+    status: gold_verified
+  - asset_id: timesformer_divided_attention_summary
+    task_id: timesformer_video_transformer_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: ca4b52a1c8608177418d57d950881228c376ed86b406f4b842f1b4952b9b518e
+    cached_path: paper-repro:runs/paperenvbench/video/timesformer_video_transformer_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/timesformer_video_transformer_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: slowfast_video_classification_summary
+    task_id: slowfast_video_classification_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: ad1bae52354024b44d3082b83ac8a8bc4118dc51176a306162aecb0512d1de91
+    cached_path: paper-repro:runs/paperenvbench/video/slowfast_video_classification_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/slowfast_video_classification_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: slowfast_clip_preview
+    task_id: slowfast_video_classification_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: 2471bfd2b17b4f6b34bdc720558dabebb8c5840f5218c44824321ce63cccc6c8
+    cached_path: paper-repro:runs/paperenvbench/video/slowfast_video_classification_minimal/artifacts/expected_clip_preview.ppm
+    local_artifact_path: paperenvbench/tasks/slowfast_video_classification_minimal/artifacts/expected_clip_preview.ppm
+    status: gold_verified
+  - asset_id: mmaction2_recognition_summary
+    task_id: mmaction2_recognition_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: 1cfcfa8992fdf60cfb5fabc4845a7aba4397357b183d065ec69287cfdb55469d
+    cached_path: paper-repro:runs/paperenvbench/video/mmaction2_recognition_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/mmaction2_recognition_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: mmaction2_synthetic_action_video
+    task_id: mmaction2_recognition_minimal
+    type: input_video
+    required: true
+    source_url: null
+    checksum_sha256: fd0320e40d43b53c34d8771e2e087632207b5f25f6aaf1c9790dc53535457888
+    cached_path: paper-repro:runs/paperenvbench/video/mmaction2_recognition_minimal/artifacts/synthetic_action.mp4
+    local_artifact_path: paperenvbench/tasks/mmaction2_recognition_minimal/artifacts/synthetic_action.mp4
+    status: gold_verified
+  - asset_id: mmaction2_mmcv_native_probe_log
+    task_id: mmaction2_recognition_minimal
+    type: failure_evidence_log
+    required: true
+    source_url: null
+    checksum_sha256: 5160fc7ba401ef1d6806978b4d9ded6d48d83f1f80083339d5cce5bd78a6d2b7
+    cached_path: paper-repro:runs/paperenvbench/video/mmaction2_recognition_minimal/logs/mmcv_native_binary_probe.log
+    local_artifact_path: paperenvbench/tasks/mmaction2_recognition_minimal/logs/mmcv_native_binary_probe.log
+    status: gold_verified

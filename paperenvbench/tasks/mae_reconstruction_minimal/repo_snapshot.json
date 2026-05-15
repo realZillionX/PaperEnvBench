@@ -1,0 +1,46 @@
+{
+  "task_id": "mae_reconstruction_minimal",
+  "repo_url": "https://github.com/facebookresearch/mae",
+  "commit": "efb2a8062c206524e35e47d04501ed4f544c0ae8",
+  "commit_short": "efb2a80",
+  "commit_date": "2022-04-20T12:23:29-07:00",
+  "commit_author": "Xinlei Chen",
+  "commit_subject": "Fix typos in instructions",
+  "license": "CC-BY-NC-4.0",
+  "paper": {
+    "primary_title": "Masked Autoencoders Are Scalable Vision Learners",
+    "primary_url": "https://arxiv.org/abs/2111.06377"
+  },
+  "entrypoints": {
+    "model_module": "models_mae.py",
+    "model_factory": "mae_vit_base_patch16_dec512d8b",
+    "pretrain_script": "main_pretrain.py",
+    "finetune_script": "main_finetune.py",
+    "demo": "demo/mae_visualize.ipynb",
+    "minimal_command": "venv/bin/python verify.py"
+  },
+  "dependency_files": [
+    "README.md",
+    "PRETRAIN.md",
+    "FINETUNE.md"
+  ],
+  "observed_environment": {
+    "platform": "Inspire CPU Notebook paper-repro-ci-prep",
+    "workspace": "CPU资源空间",
+    "compute_group": "CPU资源-2",
+    "quota": "0,20,80",
+    "image": "sandbox-base:ubuntu24.04-py3.12-1.0.0",
+    "python": "3.12.3"
+  },
+  "install_notes": [
+    "The upstream README says the repo is based on timm==0.3.2, but that version imports torch._six and is incompatible with modern PyTorch on Python 3.12.",
+    "The validated route uses torch==2.4.1, torchvision==0.19.1, timm==0.6.13, and runtime shims for qk_scale=None and np.float.",
+    "No pretrained checkpoint is needed for this CPU minimal task because the verifier exercises the MAE forward reconstruction path with initialized weights."
+  ],
+  "validated_outputs": {
+    "remote_run_root": "paper-repro:runs/paperenvbench/image/mae_reconstruction_minimal",
+    "artifact": "artifacts/expected_artifact.png",
+    "summary": "artifacts/expected_artifact.json",
+    "success_level": "L4_cpu_forward_reconstruction"
+  }
+}

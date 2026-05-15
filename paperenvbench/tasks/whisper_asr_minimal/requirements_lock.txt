@@ -1,0 +1,30 @@
+# Captured from paper-repro-ci-prep with:
+# inspire notebook exec paper-repro-ci-prep --cwd paper-repro "envs/paper-repro-cpu/bin/python -m pip freeze | grep -Ei 'openai|whisper|torch|torchaudio|numpy|numba|tiktoken|more-itertools|ffmpeg-python|triton|typing_extensions|filelock|sympy|networkx|jinja2|fsspec|llvmlite|regex|requests|tqdm|setuptools|wheel|pip|certifi|charset|idna|urllib3|mpmath|MarkupSafe' | sort"
+# Editable install with no version control (openai-whisper==20250625)
+-e /inspire/ssd/project/exploration-topic/tongjingqi-CZXS25110029/paper-reproduction/repos/whisper
+Jinja2==3.1.6
+MarkupSafe==3.0.3
+certifi==2026.4.22
+charset-normalizer==3.4.7
+filelock==3.29.0
+fsspec==2026.4.0
+idna==3.15
+llvmlite==0.47.0
+more-itertools==11.0.2
+mpmath==1.3.0
+networkx==3.6.1
+numba==0.65.1
+numpy==2.4.4
+regex==2026.5.9
+requests==2.34.1
+setuptools==70.2.0
+sympy==1.14.0
+tiktoken==0.12.0
+torch==2.12.0+cpu
+torchaudio==2.11.0+cpu
+torchvision==0.27.0+cpu
+tqdm==4.67.3
+triton==3.7.0
+typing_extensions==4.15.0
+urllib3==2.7.0
+wheel==0.47.0

@@ -1,0 +1,49 @@
+task_id: dino_vit_feature_minimal
+paper_title: "Emerging Properties in Self-Supervised Vision Transformers"
+repo_url: https://github.com/facebookresearch/dino
+commit: 7c446df5b9f45747937fb0d72314eb9f7b66930a
+paper_url: https://arxiv.org/abs/2104.14294
+license: Apache-2.0
+split: dev
+modality:
+  primary: image_classification_representation
+  secondary:
+    - checkpoint_loading
+    - feature_extraction
+    - vision_transformer
+environment_challenges:
+  - checkpoint_download
+  - torch_cuda_matrix
+  - hidden_dependency
+  - entrypoint_ambiguity
+verification:
+  type:
+    - checkpoint_loading
+    - single_sample_inference
+    - semantic_check
+    - output_artifact
+  command: python verify.py
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4

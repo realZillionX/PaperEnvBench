@@ -1,0 +1,43 @@
+/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/detection/detr_object_detection_minimal/venv/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/detection/detr_object_detection_minimal/venv/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+  warnings.warn(msg)
+{
+  "artifact_dir": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/detection/detr_object_detection_minimal/artifacts",
+  "checks": {
+    "boxes_finite": true,
+    "cat_detected_for_coco_image": true,
+    "checkpoint_file_exists": true,
+    "checkpoint_sha256_matches": true,
+    "coco_input_image_available": true,
+    "high_confidence_boxes_within_tolerance": true,
+    "high_confidence_detection_count": true,
+    "overlay_written": true,
+    "pred_boxes_shape_matches": true,
+    "pred_logits_shape_matches": true,
+    "repo_commit_matches": true,
+    "repository_model_loaded": true,
+    "scores_finite": true
+  },
+  "observed": {
+    "checkpoint_sha256": "e632da11ec76ae67bac2f8579fbed3724e08dead7d200ca13e019b197784eadc",
+    "input_sha256": "dea9e7ef97386345f7cff32f9055da4982da5471c48d575146c796ab4563b04e",
+    "num_high_confidence_cats": 2,
+    "repo_commit": "29901c51d7fe8712168b8d0d64351170bc0f83e0",
+    "top_detection": {
+      "box_xyxy": [
+        342.9054,
+        36.8522,
+        639.5816,
+        368.1479
+      ],
+      "label_id": 17,
+      "label_name": "cat",
+      "rank": 1,
+      "score": 0.999036
+    }
+  },
+  "status": "pass",
+  "success_level": "L4",
+  "task_id": "detr_object_detection_minimal"
+}

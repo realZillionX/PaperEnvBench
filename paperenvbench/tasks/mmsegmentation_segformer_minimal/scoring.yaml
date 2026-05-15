@@ -1,0 +1,20 @@
+scoring:
+  L0_repository_analysis: 0.10
+  L1_install_success: 0.20
+  L2_import_success: 0.20
+  L3_minimal_entry_success: 0.25
+  L4_semantic_verification: 0.15
+  reproducibility: 0.05
+  safety: 0.05
+main_success_level: L4_fallback
+semantic_checks:
+  - repo_commit_matches
+  - segformer_config_loaded
+  - model_built_from_mmseg_registry
+  - logits_shape_matches
+  - logits_are_finite
+  - logits_have_variance
+  - probabilities_are_normalized
+  - mask_png_exists
+  - mask_pixels_match_input
+  - mmcv_ops_stub_not_called

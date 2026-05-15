@@ -1,0 +1,55 @@
+{
+  "task_id": "demucs_music_separation",
+  "repo_url": "https://github.com/facebookresearch/demucs",
+  "commit": "e976d93ecc3865e5757426930257e200846a520a",
+  "commit_short": "e976d93",
+  "commit_date": "2023-11-16 13:32:35 +0100",
+  "commit_author": "William Dye",
+  "commit_subject": "Minor documentation updates (#565)",
+  "license": "MIT",
+  "paper": {
+    "primary_title": "Hybrid Transformers for Music Source Separation",
+    "primary_url": "https://arxiv.org/abs/2211.08553",
+    "related_title": "Hybrid Spectrogram and Waveform Source Separation",
+    "related_url": "https://arxiv.org/abs/2111.03600"
+  },
+  "entrypoints": {
+    "console_script": "demucs=demucs.separate:main",
+    "module": "demucs.separate",
+    "help_command": "demucs --help",
+    "minimal_command": "demucs -n demucs_unittest --two-stems vocals --other-method none --segment 1 -d cpu --shifts 0 -j 0 -o <out> <wav>"
+  },
+  "dependency_files": [
+    "setup.py",
+    "requirements_minimal.txt",
+    "requirements.txt",
+    "environment-cpu.yml",
+    "environment-cuda.yml"
+  ],
+  "observed_environment": {
+    "platform": "Inspire CPU Notebook paper-repro-ci-prep",
+    "workspace": "CPU\u8d44\u6e90\u7a7a\u95f4",
+    "compute_group": "CPU\u8d44\u6e90-2",
+    "quota": "0,20,80",
+    "image": "sandbox-base:ubuntu24.04-py3.12-1.0.0",
+    "python": "3.12.3",
+    "ffmpeg": "6.1.1-3ubuntu5"
+  },
+  "install_notes": [
+    "The upstream minimal requirements pin torchaudio>=0.8,<2.1, which conflicts with Python 3.12 wheel availability.",
+    "The validated route installs torch==2.4.1 and torchaudio==2.4.1 first, then installs the pinned repository with --no-deps.",
+    "Running from the run root can shadow the installed package because the cloned repository directory is named demucs; verify.py forces sys.path to the repo root before importing."
+  ],
+  "asset_notes": [
+    "Default htdemucs checkpoint download is not required for this CPU minimal task.",
+    "The verifier uses demucs.pretrained.demucs_unittest and checks a real separated WAV artifact."
+  ],
+  "validated_outputs": {
+    "remote_run_root": "paper-repro:runs/paperenvbench/audio/demucs_music_separation",
+    "input": "input/synthetic_mix.wav",
+    "artifact": "artifacts/expected_artifact.wav",
+    "summary": "artifacts/expected_artifact.json",
+    "success_level": "L4_fallback"
+  }
+}
+

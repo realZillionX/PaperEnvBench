@@ -1,0 +1,18 @@
+{
+  "task_id": "mmaction2_recognition_minimal",
+  "expected_success_level": "L4_fallback",
+  "required_artifact": "expected_artifact.json",
+  "required_side_artifacts": [
+    "synthetic_action.mp4"
+  ],
+  "semantic_thresholds": {
+    "expected_input_tensor_shape": [1, 3, 3, 224, 224],
+    "expected_top5_indices": [1, 4, 3, 0, 2],
+    "max_score_sum_error": 1e-6,
+    "min_feature_std": 1e-4
+  },
+  "gold_observed": {
+    "artifact_sha256": "1cfcfa8992fdf60cfb5fabc4845a7aba4397357b183d065ec69287cfdb55469d",
+    "video_sha256": "fd0320e40d43b53c34d8771e2e087632207b5f25f6aaf1c9790dc53535457888"
+  }
+}

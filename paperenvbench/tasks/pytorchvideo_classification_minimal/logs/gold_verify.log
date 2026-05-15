@@ -1,0 +1,86 @@
+{
+  "checks": {
+    "hubconf_exists": true,
+    "logits_are_finite": true,
+    "logits_artifact_written": true,
+    "logits_have_variance": true,
+    "logits_shape_matches": true,
+    "model_is_eval": true,
+    "model_loaded_from_local_hub": true,
+    "probabilities_are_normalized": true,
+    "repo_commit_matches": true,
+    "representative_frame_written": true,
+    "synthetic_clip_written": true,
+    "top_class_in_range": true
+  },
+  "fallback": {
+    "av_installed": true,
+    "checkpoint_download_attempted": false,
+    "external_video_decode_required": false,
+    "reason": "The CPU gold path does not download Kinetics checkpoints or external videos. It uses the pinned repository's local torch hub slow_r50 builder with pretrained=False and a deterministic synthetic video clip.",
+    "used": true
+  },
+  "input_video": {
+    "dtype": "torch.float32",
+    "path": "artifacts/expected_clip.pt",
+    "sha256": "1df30c9cecd698f14ffd4567a78bccdac4d6fb59b9b403c20f8b8259f45fa6a1",
+    "shape": [
+      1,
+      3,
+      8,
+      224,
+      224
+    ],
+    "size_bytes": 4818643,
+    "value_max": 1.0,
+    "value_min": 0.0
+  },
+  "model": {
+    "loader": "torch.hub.load(local repo, slow_r50, pretrained=False)",
+    "parameter_count": 32454096,
+    "training": false,
+    "type": "pytorchvideo.models.net.Net"
+  },
+  "output": {
+    "forward_elapsed_s": 0.3108568192,
+    "logits_file_sha256": "ca59d08a602a1a2f10085ee0cb6d4c2742aebb42aebaaaadd04087c05cad29e5",
+    "logits_max": 0.0376342647,
+    "logits_mean": -0.0016731356,
+    "logits_min": -0.0414234251,
+    "logits_path": "artifacts/expected_logits.pt",
+    "logits_sha256": "fdb147329f70000b9424febe3ed94b475176aa55fb6305af51085d72b7f6c22a",
+    "logits_shape": [
+      1,
+      400
+    ],
+    "logits_std": 0.0133117707,
+    "probability_sum_max_abs_error": 5.96e-08,
+    "top_class": 219,
+    "top_probability": 0.0025999949
+  },
+  "package_versions": {
+    "av": "17.0.1",
+    "fvcore": "0.1.5.post20221221",
+    "iopath": "0.1.10",
+    "pytorchvideo": "0.1.5",
+    "torch": "2.8.0+cpu",
+    "torchvision": "0.23.0+cpu"
+  },
+  "paper_title": "PyTorchVideo: A deep learning library for video understanding",
+  "platform": "Linux-5.15.0-119-generic-x86_64-with-glibc2.39",
+  "python": "3.12.3",
+  "repo_commit": "f3142bb05cdb56af0704ab6f0adfb0c7bbafe4a0",
+  "repo_commit_short": "f3142bb",
+  "repo_url": "https://github.com/facebookresearch/pytorchvideo",
+  "representative_frame": {
+    "channels": 3,
+    "format": "ppm_p6",
+    "height": 224,
+    "path": "artifacts/expected_frame.ppm",
+    "sha256": "07cf73b53df31dad34abae48bd77e24f27cf54d675ed15b8987ee2cc7c51310d",
+    "size_bytes": 150543,
+    "width": 224
+  },
+  "success_level": "L4_fallback",
+  "task_id": "pytorchvideo_classification_minimal"
+}

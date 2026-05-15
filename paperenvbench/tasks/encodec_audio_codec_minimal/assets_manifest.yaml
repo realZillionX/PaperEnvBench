@@ -1,0 +1,20 @@
+assets:
+  - asset_id: encodec_24khz_checkpoint
+    type: checkpoint
+    required: true
+    source_url: https://dl.fbaipublicfiles.com/encodec/v0/encodec_24khz-d7cc33bc.th
+    cached_path: paper-repro:runs/paperenvbench/audio/encodec_audio_codec_minimal/torch_home/hub/checkpoints/encodec_24khz-d7cc33bc.th
+    checksum: null
+    risk: External checkpoint download is required on first verification run.
+  - asset_id: synthetic_1s_sine_input
+    type: audio
+    required: true
+    generated_by: verify.py
+    cached_path: paper-repro:runs/paperenvbench/audio/encodec_audio_codec_minimal/artifacts/synthetic_input.wav
+    checksum: null
+  - asset_id: encodec_reconstructed_wav
+    type: audio
+    required: true
+    generated_by: verify.py
+    cached_path: paper-repro:runs/paperenvbench/audio/encodec_audio_codec_minimal/artifacts/expected_artifact.wav
+    checksum: null

@@ -1,0 +1,60 @@
+{
+  "task_id": "moco_feature_minimal",
+  "repo_url": "https://github.com/facebookresearch/moco",
+  "commit": "7397dfe146c7ca6bbb58e9c382498069178ba764",
+  "commit_short": "7397dfe",
+  "commit_date": "2023-01-18 07:37:33 -0800",
+  "commit_author": "Suraj Subramanian",
+  "commit_subject": "Relicense MoCo under MIT (#135)",
+  "current_upstream_head": {
+    "commit": "8976944da9c6b94cbd9158d7ebe50912aef807ef",
+    "tree_file_count": 0,
+    "subject": "Remove ex-employee folders from fbcode/scripts",
+    "risk": "Current main is not usable as a source checkout for this benchmark task."
+  },
+  "license": "MIT",
+  "paper": {
+    "primary_title": "Momentum Contrast for Unsupervised Visual Representation Learning",
+    "primary_url": "https://arxiv.org/abs/1911.05722",
+    "related_title": "Improved Baselines with Momentum Contrastive Learning",
+    "related_url": "https://arxiv.org/abs/2003.04297"
+  },
+  "entrypoints": {
+    "builder_module": "moco.builder",
+    "builder_class": "moco.builder.MoCo",
+    "training_script": "main_moco.py",
+    "linear_eval_script": "main_lincls.py",
+    "minimal_cpu_route": "instantiate MoCo(torchvision.models.resnet50, dim=128, K=16, mlp=True) and run encoder_q on a synthetic tensor"
+  },
+  "dependency_files": [
+    "README.md",
+    "main_moco.py",
+    "main_lincls.py",
+    "moco/builder.py",
+    "moco/loader.py"
+  ],
+  "observed_environment": {
+    "platform": "Inspire CPU Notebook paper-repro-ci-prep",
+    "workspace": "CPU\u8d44\u6e90\u7a7a\u95f4",
+    "compute_group": "CPU\u8d44\u6e90-2",
+    "quota": "0,20,80",
+    "image": "sandbox-base:ubuntu24.04-py3.12-1.0.0",
+    "python": "3.12.3"
+  },
+  "install_notes": [
+    "The repository has no packaging metadata; the gold route imports from the checked-out repo path rather than pip-installing the repo.",
+    "The README references older PyTorch ImageNet examples, multi-GPU DDP training, ImageNet directory structure, and public pretrained checkpoints.",
+    "The MoCo forward path uses torch.distributed all_gather and creates CUDA labels, so the CPU verifier exercises encoder_q directly.",
+    "The validated dependency route uses CPU torch==2.8.0 and torchvision==0.23.0 from the PyTorch CPU wheel index."
+  ],
+  "asset_notes": [
+    "No ImageNet sample is required; verify.py generates a deterministic synthetic RGB tensor.",
+    "No pretrained checkpoint is required for L4; checkpoint download remains an optional full-task extension."
+  ],
+  "validated_outputs": {
+    "remote_run_root": "paper-repro:runs/paperenvbench/image/moco_feature_minimal",
+    "artifact": "artifacts/expected_artifact.json",
+    "summary": "artifacts/verification_result.json",
+    "success_level": "L4_cpu_encoder_forward"
+  }
+}

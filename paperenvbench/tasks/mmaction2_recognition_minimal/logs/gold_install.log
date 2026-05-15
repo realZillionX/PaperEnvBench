@@ -1,0 +1,201 @@
+[gold_install] run_root=/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/video/mmaction2_recognition_minimal
+[gold_install] repo_dir=/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/video/mmaction2_recognition_minimal/repo
+[gold_install] venv_dir=/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/video/mmaction2_recognition_minimal/.venv
+[gold_install] commit=a5a167dff2399e2d182a60332325f9c0d4663517
+From https://github.com/open-mmlab/mmaction2
+ * branch              a5a167dff2399e2d182a60332325f9c0d4663517 -> FETCH_HEAD
+HEAD is now at a5a167df Merge pull request #2919 from Dai-Wenxun/main
+[gold_install] checked_out=a5a167dff2399e2d182a60332325f9c0d4663517 2026-03-18 12:04:49 +0800 Merge pull request #2919 from Dai-Wenxun/main
+Looking in indexes: http://nexus.sii.shaipower.online/repository/pypi/simple
+Requirement already satisfied: pip in ./.venv/lib/python3.12/site-packages (24.0)
+Collecting pip
+  Using cached http://nexus.sii.shaipower.online/repository/pypi/packages/pip/26.1.1/pip-26.1.1-py3-none-any.whl (1.8 MB)
+Collecting setuptools
+  Using cached http://nexus.sii.shaipower.online/repository/pypi/packages/setuptools/82.0.1/setuptools-82.0.1-py3-none-any.whl (1.0 MB)
+Collecting wheel
+  Using cached http://nexus.sii.shaipower.online/repository/pypi/packages/wheel/0.47.0/wheel-0.47.0-py3-none-any.whl (32 kB)
+Collecting packaging>=24.0 (from wheel)
+  Using cached http://nexus.sii.shaipower.online/repository/pypi/packages/packaging/26.2/packaging-26.2-py3-none-any.whl (100 kB)
+Installing collected packages: setuptools, pip, packaging, wheel
+  Attempting uninstall: pip
+    Found existing installation: pip 24.0
+    Uninstalling pip-24.0:
+      Successfully uninstalled pip-24.0
+Successfully installed packaging-26.2 pip-26.1.1 setuptools-82.0.1 wheel-0.47.0
+Looking in indexes: https://download.pytorch.org/whl/cpu
+Collecting torch==2.8.0
+  Using cached torch-2.8.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (29 kB)
+Collecting torchvision==0.23.0
+  Using cached torchvision-0.23.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (6.1 kB)
+Collecting filelock (from torch==2.8.0)
+  Using cached filelock-3.29.0-py3-none-any.whl.metadata (2.0 kB)
+Collecting typing-extensions>=4.10.0 (from torch==2.8.0)
+  Using cached typing_extensions-4.15.0-py3-none-any.whl.metadata (3.3 kB)
+Requirement already satisfied: setuptools in ./.venv/lib/python3.12/site-packages (from torch==2.8.0) (82.0.1)
+Collecting sympy>=1.13.3 (from torch==2.8.0)
+  Using cached sympy-1.14.0-py3-none-any.whl.metadata (12 kB)
+Collecting networkx (from torch==2.8.0)
+  Using cached networkx-3.6.1-py3-none-any.whl.metadata (6.8 kB)
+Collecting jinja2 (from torch==2.8.0)
+  Using cached jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting fsspec (from torch==2.8.0)
+  Using cached fsspec-2026.4.0-py3-none-any.whl.metadata (10 kB)
+Collecting numpy (from torchvision==0.23.0)
+  Using cached numpy-2.4.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+Collecting pillow!=8.3.*,>=5.3.0 (from torchvision==0.23.0)
+  Using cached pillow-12.2.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (8.8 kB)
+Collecting mpmath<1.4,>=1.1.0 (from sympy>=1.13.3->torch==2.8.0)
+  Using cached mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+Collecting MarkupSafe>=2.0 (from jinja2->torch==2.8.0)
+  Using cached markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+Using cached torch-2.8.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl (183.9 MB)
+Using cached torchvision-0.23.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl (1.9 MB)
+Using cached pillow-12.2.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (7.1 MB)
+Using cached sympy-1.14.0-py3-none-any.whl (6.3 MB)
+Using cached mpmath-1.3.0-py3-none-any.whl (536 kB)
+Using cached typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+Using cached filelock-3.29.0-py3-none-any.whl (39 kB)
+Using cached fsspec-2026.4.0-py3-none-any.whl (203 kB)
+Using cached jinja2-3.1.6-py3-none-any.whl (134 kB)
+Using cached markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+Using cached networkx-3.6.1-py3-none-any.whl (2.1 MB)
+Using cached numpy-2.4.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.6 MB)
+Installing collected packages: mpmath, typing-extensions, sympy, pillow, numpy, networkx, MarkupSafe, fsspec, filelock, jinja2, torch, torchvision
+
+Successfully installed MarkupSafe-3.0.3 filelock-3.29.0 fsspec-2026.4.0 jinja2-3.1.6 mpmath-1.3.0 networkx-3.6.1 numpy-2.4.4 pillow-12.2.0 sympy-1.14.0 torch-2.8.0+cpu torchvision-0.23.0+cpu typing-extensions-4.15.0
+Collecting numpy==1.26.4
+  Using cached numpy-1.26.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (61 kB)
+Collecting opencv-python-headless==4.11.0.86
+  Using cached opencv_python_headless-4.11.0.86-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (20 kB)
+Collecting decord==0.6.0
+  Using cached decord-0.6.0-py3-none-manylinux2010_x86_64.whl.metadata (422 bytes)
+Collecting importlib_metadata==8.7.0
+  Using cached importlib_metadata-8.7.0-py3-none-any.whl.metadata (4.8 kB)
+Requirement already satisfied: pillow in ./.venv/lib/python3.12/site-packages (12.2.0)
+Requirement already satisfied: packaging in ./.venv/lib/python3.12/site-packages (26.2)
+Collecting pyyaml
+  Using cached pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+Collecting addict
+  Using cached addict-2.4.0-py3-none-any.whl.metadata (1.0 kB)
+Collecting yapf
+  Using cached yapf-0.43.0-py3-none-any.whl.metadata (46 kB)
+Collecting rich
+  Using cached rich-15.0.0-py3-none-any.whl.metadata (18 kB)
+Collecting termcolor
+  Using cached termcolor-3.3.0-py3-none-any.whl.metadata (6.5 kB)
+Collecting regex
+  Using cached regex-2026.5.9-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (40 kB)
+Collecting ftfy
+  Using cached ftfy-6.3.1-py3-none-any.whl.metadata (7.3 kB)
+Collecting matplotlib
+  Using cached matplotlib-3.10.9-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (52 kB)
+Collecting scipy
+  Using cached scipy-1.17.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (62 kB)
+Collecting tqdm
+  Using cached tqdm-4.67.3-py3-none-any.whl.metadata (57 kB)
+Collecting requests
+  Using cached requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+Collecting six
+  Using cached six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+Collecting einops
+  Using cached einops-0.8.2-py3-none-any.whl.metadata (13 kB)
+Collecting zipp>=3.20 (from importlib_metadata==8.7.0)
+  Using cached zipp-3.23.1-py3-none-any.whl.metadata (3.6 kB)
+Collecting platformdirs>=3.5.1 (from yapf)
+  Using cached platformdirs-4.9.6-py3-none-any.whl.metadata (4.7 kB)
+Collecting markdown-it-py>=2.2.0 (from rich)
+  Using cached markdown_it_py-4.2.0-py3-none-any.whl.metadata (7.4 kB)
+Collecting pygments<3.0.0,>=2.13.0 (from rich)
+  Using cached pygments-2.20.0-py3-none-any.whl.metadata (2.5 kB)
+Collecting wcwidth (from ftfy)
+  Using cached wcwidth-0.7.0-py3-none-any.whl.metadata (36 kB)
+Collecting contourpy>=1.0.1 (from matplotlib)
+  Using cached contourpy-1.3.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (5.5 kB)
+Collecting cycler>=0.10 (from matplotlib)
+  Using cached cycler-0.12.1-py3-none-any.whl.metadata (3.8 kB)
+Collecting fonttools>=4.22.0 (from matplotlib)
+  Using cached fonttools-4.63.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (118 kB)
+Collecting kiwisolver>=1.3.1 (from matplotlib)
+  Using cached kiwisolver-1.5.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (5.1 kB)
+Collecting pyparsing>=3 (from matplotlib)
+  Using cached pyparsing-3.3.2-py3-none-any.whl.metadata (5.8 kB)
+Collecting python-dateutil>=2.7 (from matplotlib)
+  Using cached python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Collecting charset_normalizer<4,>=2 (from requests)
+  Using cached charset_normalizer-3.4.7-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (40 kB)
+Collecting idna<4,>=2.5 (from requests)
+  Using cached idna-3.15-py3-none-any.whl.metadata (7.7 kB)
+Collecting urllib3<3,>=1.26 (from requests)
+  Using cached urllib3-2.7.0-py3-none-any.whl.metadata (6.9 kB)
+Collecting certifi>=2023.5.7 (from requests)
+  Using cached certifi-2026.4.22-py3-none-any.whl.metadata (2.5 kB)
+Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich)
+  Using cached mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+Using cached numpy-1.26.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.0 MB)
+Using cached opencv_python_headless-4.11.0.86-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (50.0 MB)
+Using cached decord-0.6.0-py3-none-manylinux2010_x86_64.whl (13.6 MB)
+Using cached importlib_metadata-8.7.0-py3-none-any.whl (27 kB)
+Using cached pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+Using cached addict-2.4.0-py3-none-any.whl (3.8 kB)
+Using cached yapf-0.43.0-py3-none-any.whl (256 kB)
+Using cached rich-15.0.0-py3-none-any.whl (310 kB)
+Using cached pygments-2.20.0-py3-none-any.whl (1.2 MB)
+Using cached termcolor-3.3.0-py3-none-any.whl (7.7 kB)
+Using cached regex-2026.5.9-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (801 kB)
+Using cached ftfy-6.3.1-py3-none-any.whl (44 kB)
+Using cached matplotlib-3.10.9-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (8.8 MB)
+Using cached scipy-1.17.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (35.2 MB)
+Using cached tqdm-4.67.3-py3-none-any.whl (78 kB)
+Using cached requests-2.34.2-py3-none-any.whl (73 kB)
+Using cached charset_normalizer-3.4.7-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (216 kB)
+Using cached idna-3.15-py3-none-any.whl (72 kB)
+Using cached urllib3-2.7.0-py3-none-any.whl (131 kB)
+Using cached six-1.17.0-py2.py3-none-any.whl (11 kB)
+Using cached einops-0.8.2-py3-none-any.whl (65 kB)
+Using cached certifi-2026.4.22-py3-none-any.whl (135 kB)
+Using cached contourpy-1.3.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (362 kB)
+Using cached cycler-0.12.1-py3-none-any.whl (8.3 kB)
+Using cached fonttools-4.63.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (5.0 MB)
+Using cached kiwisolver-1.5.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (1.5 MB)
+Using cached markdown_it_py-4.2.0-py3-none-any.whl (91 kB)
+Using cached mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Using cached platformdirs-4.9.6-py3-none-any.whl (21 kB)
+Using cached pyparsing-3.3.2-py3-none-any.whl (122 kB)
+Using cached python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Using cached zipp-3.23.1-py3-none-any.whl (10 kB)
+Using cached wcwidth-0.7.0-py3-none-any.whl (110 kB)
+Installing collected packages: addict, zipp, wcwidth, urllib3, tqdm, termcolor, six, regex, pyyaml, pyparsing, pygments, platformdirs, numpy, mdurl, kiwisolver, idna, fonttools, einops, cycler, charset_normalizer, certifi, yapf, scipy, requests, python-dateutil, opencv-python-headless, markdown-it-py, importlib_metadata, ftfy, decord, contourpy, rich, matplotlib
+  Attempting uninstall: numpy
+    Found existing installation: numpy 2.4.4
+    Uninstalling numpy-2.4.4:
+      Successfully uninstalled numpy-2.4.4
+
+Successfully installed addict-2.4.0 certifi-2026.4.22 charset_normalizer-3.4.7 contourpy-1.3.3 cycler-0.12.1 decord-0.6.0 einops-0.8.2 fonttools-4.63.0 ftfy-6.3.1 idna-3.15 importlib_metadata-8.7.0 kiwisolver-1.5.0 markdown-it-py-4.2.0 matplotlib-3.10.9 mdurl-0.1.2 numpy-1.26.4 opencv-python-headless-4.11.0.86 platformdirs-4.9.6 pygments-2.20.0 pyparsing-3.3.2 python-dateutil-2.9.0.post0 pyyaml-6.0.3 regex-2026.5.9 requests-2.34.2 rich-15.0.0 scipy-1.17.1 six-1.17.0 termcolor-3.3.0 tqdm-4.67.3 urllib3-2.7.0 wcwidth-0.7.0 yapf-0.43.0 zipp-3.23.1
+Collecting mmengine==0.10.7
+  Using cached mmengine-0.10.7-py3-none-any.whl.metadata (20 kB)
+Collecting mmcv-lite==2.1.0
+  Using cached mmcv_lite-2.1.0-py2.py3-none-any.whl.metadata (2.4 kB)
+Using cached mmengine-0.10.7-py3-none-any.whl (452 kB)
+Using cached mmcv_lite-2.1.0-py2.py3-none-any.whl (719 kB)
+Installing collected packages: mmengine, mmcv-lite
+
+Successfully installed mmcv-lite-2.1.0 mmengine-0.10.7
+Looking in indexes: http://nexus.sii.shaipower.online/repository/pypi/simple
+Obtaining file:///inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper%20Reproduction/runs/paperenvbench/video/mmaction2_recognition_minimal/repo
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: mmaction2
+  Building editable for mmaction2 (pyproject.toml): started
+  Building editable for mmaction2 (pyproject.toml): finished with status 'done'
+  Created wheel for mmaction2: filename=mmaction2-1.2.0-0.editable-py2.py3-none-any.whl size=13634 sha256=94ae4bca556446a68a3265157d4dd131879c6c41990fb76c4de2427aeee08f00
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xh36ohpg/wheels/ec/f8/dc/606269396050a66ea333dbad8f7d995416ba227d68127e3654
+Successfully built mmaction2
+Installing collected packages: mmaction2
+Successfully installed mmaction2-1.2.0
+[gold_install] wrote /inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/video/mmaction2_recognition_minimal/requirements_lock.txt

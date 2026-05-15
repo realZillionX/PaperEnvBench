@@ -1,0 +1,50 @@
+task_id: encodec_audio_codec_minimal
+paper_title: "High Fidelity Neural Audio Compression"
+repo_url: https://github.com/facebookresearch/encodec
+commit: 0e2d0aed29362c8e8f52494baf3e6f99056b214f
+paper_url: https://arxiv.org/abs/2210.13438
+license: MIT
+split: test
+modality:
+  primary: audio_speech
+  secondary:
+    - audio_codec
+    - checkpoint_loading
+    - cli_inference
+environment_challenges:
+  - checkpoint_download
+  - torch_cuda_matrix
+  - hidden_dependency
+  - entrypoint_ambiguity
+  - package_name_collision
+verification:
+  type:
+    - import_graph
+    - single_sample_inference
+    - output_artifact
+    - semantic_check
+  command: python verify.py
+hardware:
+  gpu_required: false
+  gpu_optional: false
+  min_vram_gb: 0
+platform_constraints:
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified

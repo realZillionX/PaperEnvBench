@@ -1,0 +1,67 @@
+{
+  "artifacts": {
+    "summary": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/video/videomae_classification_minimal/artifacts/expected_artifact.json",
+    "synthetic_video_strip": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/video/videomae_classification_minimal/artifacts/synthetic_video_strip.png",
+    "synthetic_video_strip_sha256": "3dbf5ab0b53b72501e18a575d2e14ea2fc37baf334236bf88c5ed86f4acb0bb0"
+  },
+  "checks": {
+    "artifact_png_nonempty": true,
+    "features_shape_matches": true,
+    "logits_are_finite": true,
+    "logits_shape_matches": true,
+    "num_temporal_spatial_tokens_matches": true,
+    "patch_embed_uses_conv3d": true,
+    "probabilities_sum_to_one": true,
+    "repo_commit_matches": true,
+    "tubelet_kernel_matches": true,
+    "video_shape_matches": true
+  },
+  "environment": {
+    "device": "cpu",
+    "numpy": "1.26.4",
+    "python": "3.12.3",
+    "timm": "0.4.12",
+    "torch": "2.4.1+cu121"
+  },
+  "model": {
+    "checkpoint_loaded": false,
+    "img_size": 32,
+    "name": "vit_small_patch16_224",
+    "num_classes": 5,
+    "num_frames": 4,
+    "seed": 20260516,
+    "tubelet_size": 2
+  },
+  "notes": [
+    "This is an L4 fallback because upstream finetuned checkpoints are Google Drive assets and not required for the CPU minimal task.",
+    "Import-only checks are insufficient; the verifier runs the pinned repo Conv3d tubelet patch embedding, transformer, pooling, and classification head."
+  ],
+  "observed": {
+    "features_mean": 4e-08,
+    "features_std": 1.00130415,
+    "logits": [
+      -1.02504861,
+      -0.31114405,
+      -0.32340351,
+      0.03906628,
+      -0.27763441
+    ],
+    "probabilities": [
+      0.09931649,
+      0.20279916,
+      0.20032813,
+      0.28784624,
+      0.20971002
+    ],
+    "top_class": 3,
+    "video_mean": 0.47187498,
+    "video_std": 0.31332016
+  },
+  "repo": {
+    "commit": "14ef8d856287c94ef1f985fe30f958eb4ec2c55d",
+    "url": "https://github.com/MCG-NJU/VideoMAE"
+  },
+  "success": true,
+  "success_level": "L4_fallback_cpu_synthetic_video_forward",
+  "task_id": "videomae_classification_minimal"
+}

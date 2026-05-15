@@ -1,0 +1,53 @@
+assets:
+  - asset_id: detr_repo_snapshot
+    type: source_repo
+    required: true
+    source: git
+    url: https://github.com/facebookresearch/detr
+    commit: 29901c51d7fe8712168b8d0d64351170bc0f83e0
+    cached_path: paper-repro:runs/paperenvbench/detection/detr_object_detection_minimal/repo
+  - asset_id: detr_r50_checkpoint
+    type: checkpoint
+    required: true
+    source: torch_hub_url
+    url: https://dl.fbaipublicfiles.com/detr/detr-r50-e632da11.pth
+    cached_path: paper-repro:runs/paperenvbench/detection/detr_object_detection_minimal/checkpoints/hub/checkpoints/detr-r50-e632da11.pth
+    size_bytes: 166618694
+    checksum_sha256: e632da11ec76ae67bac2f8579fbed3724e08dead7d200ca13e019b197784eadc
+  - asset_id: coco_val2017_000000039769
+    type: image
+    required: true
+    source: public_url
+    url: http://images.cocodataset.org/val2017/000000039769.jpg
+    cached_path: paper-repro:runs/paperenvbench/detection/detr_object_detection_minimal/artifacts/expected_input.jpg
+    local_path: artifacts/expected_input.jpg
+    size_bytes: 173131
+    checksum_sha256: dea9e7ef97386345f7cff32f9055da4982da5471c48d575146c796ab4563b04e
+  - asset_id: detr_expected_summary
+    type: output_artifact
+    required: true
+    source: generated_by_verify
+    cached_path: paper-repro:runs/paperenvbench/detection/detr_object_detection_minimal/artifacts/expected_artifact.json
+    local_path: artifacts/expected_artifact.json
+    size_bytes: 4477
+    checksum_sha256: 0380ac810751ac24834e2ab64dc4fc187bdb1f3c00467d6a741c8c7e515eed5f
+  - asset_id: detr_detection_overlay
+    type: visualization
+    required: true
+    source: generated_by_verify
+    cached_path: paper-repro:runs/paperenvbench/detection/detr_object_detection_minimal/artifacts/expected_detection_overlay.jpg
+    local_path: artifacts/expected_detection_overlay.jpg
+    size_bytes: 130065
+    checksum_sha256: 2cb2996249ee03b4156e02c55601824c50c9b3a2dd500d2ff4e10cf038833a6b
+  - asset_id: detr_gold_install_log
+    type: evidence_log
+    required: true
+    source: remote_gold_run
+    cached_path: paper-repro:runs/paperenvbench/detection/detr_object_detection_minimal/logs/gold_install.log
+    local_path: logs/gold_install.log
+  - asset_id: detr_gold_verify_log
+    type: evidence_log
+    required: true
+    source: remote_gold_run
+    cached_path: paper-repro:runs/paperenvbench/detection/detr_object_detection_minimal/logs/gold_verify.log
+    local_path: logs/gold_verify.log

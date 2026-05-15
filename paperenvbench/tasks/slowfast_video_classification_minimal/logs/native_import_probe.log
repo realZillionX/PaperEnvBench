@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/video/slowfast_video_classification_minimal/repo/slowfast/models/__init__.py", line 4, in <module>
+    from .build import build_model, MODEL_REGISTRY  # noqa
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/video/slowfast_video_classification_minimal/repo/slowfast/models/build.py", line 6, in <module>
+    import slowfast.utils.logging as logging
+  File "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/video/slowfast_video_classification_minimal/repo/slowfast/utils/logging.py", line 15, in <module>
+    import slowfast.utils.distributed as du
+  File "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/video/slowfast_video_classification_minimal/repo/slowfast/utils/distributed.py", line 12, in <module>
+    from pytorchvideo.layers.distributed import (  # noqa
+ImportError: cannot import name 'cat_all_gather' from 'pytorchvideo.layers.distributed' (/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/video/slowfast_video_classification_minimal/venv/lib/python3.12/site-packages/pytorchvideo/layers/distributed.py)

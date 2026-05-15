@@ -1,0 +1,25 @@
+version: 0.1.0
+updated_at: "2026-05-15"
+experiments:
+  - experiment_id: seed_cpu_gold_migration
+    status: planned
+    model: human_orchestrated
+    condition: gold_construction
+    skill_version: none
+    task_split: dev
+    attempts_per_task: 1
+    max_steps: null
+    max_time_minutes: null
+    result_path: paperenvbench/results/seed_cpu_gold_migration
+    notes: "迁回已有 CPU smoke 证据，补齐 Dev 种子任务 gold。"
+  - experiment_id: trae_deepseek_chat_no_skill_dev_probe
+    status: planned
+    model: deepseek-chat
+    condition: no_skill
+    skill_version: none
+    task_split: dev
+    attempts_per_task: 1
+    max_steps: 40
+    max_time_minutes: 60
+    result_path: paperenvbench/results/trae_deepseek_chat_no_skill_dev_probe
+    notes: "用于建立 Trae 稳定路径的 Dev 基线。"

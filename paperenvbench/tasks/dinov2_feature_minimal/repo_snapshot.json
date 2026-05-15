@@ -1,0 +1,75 @@
+{
+  "task_id": "dinov2_feature_minimal",
+  "repo_url": "https://github.com/facebookresearch/dinov2",
+  "commit": "7b187bd4df8efce2cbcbbb67bd01532c19bf4c9c",
+  "commit_short": "7b187bd",
+  "commit_date": "2026-02-24 10:50:05 +0100",
+  "commit_author": "Seungeun Yi",
+  "commit_subject": "Merge pull request #584 from facebookresearch/add_copyright_headers",
+  "license": "Apache-2.0",
+  "paper": {
+    "primary_title": "DINOv2: Learning Robust Visual Features without Supervision",
+    "primary_url": "https://arxiv.org/abs/2304.07193"
+  },
+  "entrypoints": {
+    "hub_backbone": "dinov2.hub.backbones.dinov2_vits14",
+    "model_class": "dinov2.models.vision_transformer.DinoVisionTransformer",
+    "minimal_call": "dinov2_vits14(pretrained=False, img_size=224).forward_features(<1x3x224x224 tensor>)"
+  },
+  "dependency_files": [
+    "setup.py",
+    "pyproject.toml",
+    "requirements.txt",
+    "requirements-extras.txt",
+    "requirements-dev.txt"
+  ],
+  "declared_dependency_risks": [
+    "requirements.txt pins torch==2.0.0 and torchvision==0.15.0, which are not suitable for the Python 3.12 CPU notebook baseline.",
+    "requirements.txt includes xformers==0.0.18 and cuml-cu11 through CUDA-oriented package indexes.",
+    "hub backbones default to pretrained=True and may download checkpoints through torch.hub."
+  ],
+  "observed_environment": {
+    "platform": "Inspire CPU Notebook paper-repro-ci-prep",
+    "workspace": "CPU资源空间",
+    "compute_group": "CPU资源-2",
+    "quota": "0,20,80",
+    "image": "sandbox-base:ubuntu24.04-py3.12-1.0.0",
+    "python": "3.12.3"
+  },
+  "install_notes": [
+    "Install torch==2.8.0+cpu and torchvision==0.23.0+cpu from the PyTorch CPU wheel index when reachable.",
+    "Install numpy, Pillow, omegaconf, and PyYAML as the minimal support set used by this verifier.",
+    "Install the pinned repository with --no-deps to avoid resolving CUDA-only dependencies.",
+    "Set XFORMERS_DISABLED=1 before importing DINOv2 modules so the standard attention fallback is used."
+  ],
+  "verification_contract": {
+    "input": "deterministic synthetic RGB image, 224x224",
+    "model": "dinov2_vits14",
+    "pretrained": false,
+    "device": "cpu",
+    "expected_cls_embedding_shape": [
+      1,
+      384
+    ],
+    "expected_patch_embedding_shape": [
+      1,
+      256,
+      384
+    ],
+    "output_artifact": "artifacts/expected_artifact.json"
+  },
+  "validated_outputs": {
+    "remote_run_root": "paper-repro:runs/paperenvbench/image/dinov2_feature_minimal",
+    "input": "artifacts/synthetic_input.png",
+    "input_sha256": "07e26b281c1a40ca578c81c9c849d82df6b4c05d333acd67ad220e7989367db9",
+    "artifact": "artifacts/expected_artifact.json",
+    "artifact_sha256": "bb9f72c52699fe251976dff7015ff43210b7be3fd68a3a7c91830387389e119d",
+    "feature_summary": {
+      "cls_norm": 19.59590149,
+      "patch_mean_abs": 0.80483848,
+      "cls_sha256": "6d9684f6c70323f3fc3d9bb09ba5cd44d9c9a30af8f0aa6a15bba0037c0c089f",
+      "patch_sha256": "1d4a85552337e946a3f95ed471f6652cf7ac97613f1e317db7d626e54864c8b5"
+    },
+    "success_level": "L4_cpu_random_init_fallback"
+  }
+}

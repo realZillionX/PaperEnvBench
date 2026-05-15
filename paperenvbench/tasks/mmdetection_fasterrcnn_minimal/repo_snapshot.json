@@ -1,0 +1,73 @@
+{
+  "task_id": "mmdetection_fasterrcnn_minimal",
+  "repo_url": "https://github.com/open-mmlab/mmdetection",
+  "commit": "cfd5d3a985b0249de009b67d04f37263e11cdf3d",
+  "commit_short": "cfd5d3a",
+  "default_branch": "main",
+  "snapshot_observed_at": "2026-05-16T01:16:00+08:00",
+  "source_tree": {
+    "package_manager": "pip",
+    "build_backend": "setuptools",
+    "project_file": "pyproject.toml",
+    "module": "mmdet",
+    "primary_entrypoints": [
+      "mmdet.apis.init_detector",
+      "mmdet.apis.inference_detector",
+      "tools/test.py",
+      "configs/_base_/models/faster-rcnn_r50_fpn.py"
+    ]
+  },
+  "dependencies_declared": [
+    "mmcv>=2.0.0rc4,<2.2.0",
+    "mmengine>=0.7.1,<1.0.0",
+    "torch",
+    "torchvision",
+    "numpy",
+    "pycocotools"
+  ],
+  "dependency_notes": {
+    "native_mmcv_strategy": "On paper-repro-ci-prep with Python 3.12, `pip install --dry-run 'mmcv>=2.0.0rc4,<2.2.0'` selected mmcv-2.1.0 source and failed during wheel metadata preparation with `ModuleNotFoundError: No module named 'pkg_resources'` inside build isolation.",
+    "fallback_strategy": "The verified route installs `mmcv-lite==2.1.0` and `mmengine==0.10.7` with explicit minimal dependencies, imports the pinned repository through PYTHONPATH, parses the Faster R-CNN config, then executes pure MMDetection bbox overlap and matrix NMS source files.",
+    "ops_blocker": "`from mmcv.ops import RoIAlign, nms` fails with `ModuleNotFoundError: No module named 'mmcv._ext'`, so native Faster R-CNN inference is not claimed."
+  },
+  "verification_contract": {
+    "output_artifact": "artifacts/expected_artifact.json",
+    "visualization_artifact": "artifacts/expected_detection.ppm",
+    "official_repo_code_paths": [
+      "mmdet/__init__.py",
+      "configs/_base_/models/faster-rcnn_r50_fpn.py",
+      "mmdet/evaluation/functional/bbox_overlaps.py",
+      "mmdet/models/layers/matrix_nms.py"
+    ],
+    "semantic_thresholds": {
+      "expected_iou_shape": [
+        3,
+        2
+      ],
+      "min_match_iou": 0.72,
+      "expected_kept_source_indices": [
+        0,
+        1
+      ]
+    }
+  },
+  "checkpoint_strategy": {
+    "used_by_gold": false,
+    "reason": "Native Faster R-CNN ops are unavailable in the CPU Python 3.12 fallback environment, so downloading a COCO checkpoint would not improve the minimal verifier.",
+    "if_used_by_agent": "Record checkpoint URL, cache path, file size, checksum, config path, and any mmcv or torch compatibility failure."
+  },
+  "gold_environment": {
+    "notebook": "paper-repro-ci-prep",
+    "remote_cwd_alias": "paper-repro:runs/paperenvbench/detection/mmdetection_fasterrcnn_minimal",
+    "python": "3.12.3",
+    "torch": "2.8.0+cpu",
+    "torchvision": "0.23.0+cpu",
+    "mmcv": "2.1.0",
+    "mmcv_distribution": "mmcv-lite==2.1.0",
+    "mmengine": "0.10.7",
+    "mmdet": "3.3.0",
+    "numpy": "1.26.4"
+  },
+  "observed_remote_path": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/detection/mmdetection_fasterrcnn_minimal/repo",
+  "remote_path_alias": "paper-repro:runs/paperenvbench/detection/mmdetection_fasterrcnn_minimal/repo"
+}

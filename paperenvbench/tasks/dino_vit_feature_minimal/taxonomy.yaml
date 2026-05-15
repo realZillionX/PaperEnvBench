@@ -1,0 +1,22 @@
+taxonomy:
+  modality:
+    primary: image_classification_representation
+    secondary:
+      - checkpoint_loading
+      - feature_extraction
+      - vision_transformer
+  environment_challenges:
+    - checkpoint_download
+    - torch_cuda_matrix
+    - hidden_dependency
+    - entrypoint_ambiguity
+  verification_type:
+    - checkpoint_loading
+    - single_sample_inference
+    - semantic_check
+    - output_artifact
+  expected_skill_routes:
+    - global_reproducibility_safety
+    - checkpoint_validation
+    - torch_cuda_matrix_solver
+    - minimal_entrypoint_discovery

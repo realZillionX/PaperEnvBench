@@ -1,0 +1,25 @@
+taxonomy:
+  modality:
+    primary: object_detection_segmentation
+    secondary:
+      - semantic_segmentation
+      - transformer_vision_backbone
+      - output_artifact
+  environment_challenges:
+    - native_extension_build
+    - torch_cuda_matrix
+    - hidden_dependency
+    - system_package_missing
+    - entrypoint_ambiguity
+    - verification_ambiguity
+  verification_type:
+    - import_graph
+    - single_sample_inference
+    - output_artifact
+    - semantic_check
+  expected_skill_routes:
+    - global_reproducibility_safety
+    - vision_segmentation_env_setup
+    - torch_cuda_matrix_solver
+    - native_extension_repair
+    - hidden_dependency_inferer

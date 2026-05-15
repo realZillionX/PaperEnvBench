@@ -1,0 +1,21 @@
+primary_failure_tags:
+  - stale_readme
+  - hidden_dependency
+  - python_version_conflict
+  - checkpoint_download
+  - entrypoint_ambiguity
+  - verification_ambiguity
+observed_gold_issues:
+  - tag: python_version_conflict
+    issue: "Python 3.12 and torch 2.8 removed private APIs used by the upstream code"
+    evidence: "The gold verifier applies process-local shims for torch._six.container_abcs and torch.nn.modules.linear._LinearWithBias without modifying the pinned source tree."
+  - tag: checkpoint_download
+    issue: "public model zoo checkpoint route is unsuitable for CPU smoke"
+    evidence: "The model zoo depends on Dropbox assets, so the gold verifier records L4_fallback and validates the pinned divided space-time attention forward path with initialized weights."
+anti_patterns:
+  - "Treating TimeSformer import success as task success without running a video clip forward pass."
+  - "Using a torchvision, transformers, or timm video model instead of the pinned facebookresearch/TimeSformer source tree."
+  - "Patching the upstream repository source in place without recording why Python 3.12 needs compatibility shims."
+  - "Requiring Dropbox checkpoint downloads for the CPU smoke when the task only needs repository model and attention semantics."
+  - "Running only image-shaped tensors and skipping the temporal attention path."
+  - "Using Docker to hide Python dependency or path setup failures."

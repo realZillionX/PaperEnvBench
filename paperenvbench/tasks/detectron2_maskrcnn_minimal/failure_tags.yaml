@@ -1,0 +1,29 @@
+primary_failure_tags:
+  - native_extension_build
+  - system_package_missing
+  - hidden_dependency
+  - torch_cuda_matrix
+  - checkpoint_download
+observed_gold_failures:
+  - tag: hidden_dependency
+    issue: "pip build isolation could not see preinstalled torch"
+    evidence: "pip install -e failed while build isolation imported setup.py without torch."
+    resolution: "Use --no-build-isolation after installing the CPU torch stack."
+  - tag: system_package_missing
+    issue: "base image had no C / C++ compiler"
+    evidence: "The base notebook image had no gcc or g++ compiler."
+    resolution: "Install build-essential with apt-get."
+  - tag: system_package_missing
+    issue: "base image had no Python development headers"
+    evidence: "C++ extension build failed on missing Python.h."
+    resolution: "Install python3.12-dev with apt-get."
+  - tag: hidden_dependency
+    issue: "internal PyPI mirror returned a wheel URL 404"
+    evidence: "SII internal PyPI returned 404 for the selected fonttools wheel."
+    resolution: "Install matplotlib and iopath from public PyPI, then install detectron2 with --no-deps."
+anti_patterns:
+  - "Treating detectron2 import without the compiled detectron2._C extension as sufficient."
+  - "Trying CUDA wheels on a CPU-only notebook before proving a CPU build path."
+  - "Letting pip build isolation hide the already installed torch package from setup.py."
+  - "Assuming the internal PyPI mirror is complete when a package URL returns 404."
+  - "Counting model zoo URL resolution as checkpoint validation without loading the checkpoint."

@@ -1,0 +1,11 @@
+assets:
+  - asset_id: sam_vit_b_checkpoint
+    type: checkpoint
+    required: true
+    cached_path: paper-repro:models/sam/sam_vit_b_01ec64.pth
+    checksum: null
+  - asset_id: sam_synthetic_image
+    type: image
+    required: true
+    cached_path: paper-repro:outputs/sam_smoke/
+    checksum: null

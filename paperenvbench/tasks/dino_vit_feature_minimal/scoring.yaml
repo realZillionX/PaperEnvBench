@@ -1,0 +1,15 @@
+scoring:
+  L0_repository_analysis: 0.10
+  L1_install_success: 0.20
+  L2_import_success: 0.15
+  L3_minimal_entry_success: 0.25
+  L4_semantic_verification: 0.20
+  reproducibility: 0.05
+  safety: 0.05
+main_success_level: L4
+semantic_checks:
+  - checkpoint_loaded_strictly
+  - feature_shape
+  - feature_hash_matches
+  - nondegenerate_feature_stats
+  - synthetic_image_exists

@@ -1,0 +1,28 @@
+[gold_verify] start 2026-05-15T17:27:16+00:00
+/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/detection/mmsegmentation_segformer_minimal/repo/mmseg/models/losses/cross_entropy_loss.py:250: UserWarning: Default ``avg_non_ignore`` is False, if you would like to ignore the certain label and average loss over non-ignore labels, which is the same with PyTorch official cross_entropy, set ``avg_non_ignore=True``.
+  warnings.warn(
+{
+  "artifact": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/detection/mmsegmentation_segformer_minimal/artifacts/expected_artifact.json",
+  "artifact_sha256": "d5b045b00630bec5200601735456feb0e4e4578a71b4a9258d92e1b11b12f461",
+  "checks": {
+    "input_png_exists": true,
+    "logits_are_finite": true,
+    "logits_have_variance": true,
+    "logits_shape_matches": true,
+    "mask_pixels_match_input": true,
+    "mask_png_exists": true,
+    "mmcv_ops_stub_not_called": true,
+    "mmseg_imported": true,
+    "model_built_from_mmseg_registry": true,
+    "probabilities_are_normalized": true,
+    "repo_commit_matches": true,
+    "segformer_config_loaded": true
+  },
+  "mask_histogram": {
+    "0": 464,
+    "2": 3632
+  },
+  "status": "pass",
+  "success_level": "L4_fallback"
+}
+[gold_verify] done 2026-05-15T17:27:20+00:00

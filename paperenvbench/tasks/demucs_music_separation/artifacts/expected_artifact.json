@@ -1,0 +1,28 @@
+{
+  "artifact": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/audio/demucs_music_separation/artifacts/expected_artifact.wav",
+  "checks": {
+    "artifact_size_nontrivial": true,
+    "channels_is_stereo": true,
+    "frame_count_matches_input": true,
+    "pcm_payload_nonzero": true,
+    "sample_rate_is_44100": true
+  },
+  "device": "cpu",
+  "input": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/audio/demucs_music_separation/input/synthetic_mix.wav",
+  "model": "demucs_unittest",
+  "stats": {
+    "channels": 2,
+    "duration_sec": 0.25,
+    "frames": 11025,
+    "path": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/audio/demucs_music_separation/artifacts/separated/demucs_unittest/synthetic_mix/vocals.wav",
+    "peak_abs_pcm": 3572,
+    "rms": 0.01590023,
+    "sample_rate": 44100,
+    "sample_width": 2,
+    "sha256": "1ca9e31bb1ef7fb8787a6c7e3e05e7c9eea4e63653b9c8403586b058cd264ab3",
+    "size_bytes": 44178
+  },
+  "success": true,
+  "success_level": "L4_fallback",
+  "task_id": "demucs_music_separation"
+}

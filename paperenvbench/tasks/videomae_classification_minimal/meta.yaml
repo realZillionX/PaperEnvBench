@@ -1,0 +1,54 @@
+task_id: videomae_classification_minimal
+paper_title: "VideoMAE: Masked Autoencoders are Data-Efficient Learners for Self-Supervised Video Pre-Training"
+repo_url: https://github.com/MCG-NJU/VideoMAE
+commit: 14ef8d856287c94ef1f985fe30f958eb4ec2c55d
+commit_short: 14ef8d8
+paper_url: https://arxiv.org/abs/2203.12602
+license: CC-BY-NC-4.0
+split: val
+modality:
+  primary: video_understanding_generation
+  secondary:
+    - action_classification
+    - video_transformer
+    - masked_video_modeling
+environment_challenges:
+  - python_version_conflict
+  - torch_cuda_matrix
+  - hidden_dependency
+  - checkpoint_download
+  - entrypoint_ambiguity
+  - verification_ambiguity
+verification:
+  type:
+    - import_graph
+    - single_sample_inference
+    - output_artifact
+    - semantic_check
+  command: python verify.py
+  minimum_success_level: L4_fallback
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4_fallback

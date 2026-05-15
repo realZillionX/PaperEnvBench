@@ -1,0 +1,56 @@
+{
+  "task_id": "dino_vit_feature_minimal",
+  "source": {
+    "notebook": "paper-repro-ci-prep",
+    "remote_cwd_alias": "paper-repro",
+    "run_dir": "paper-repro:runs/paperenvbench/image/dino_vit_feature_minimal",
+    "repo_path": "paper-repro:runs/paperenvbench/image/dino_vit_feature_minimal/repo",
+    "repo_commit": "7c446df5b9f45747937fb0d72314eb9f7b66930a",
+    "venv": "paper-repro:runs/paperenvbench/image/dino_vit_feature_minimal/venv",
+    "output_dir": "paper-repro:runs/paperenvbench/image/dino_vit_feature_minimal/outputs/dino_vit_feature_minimal"
+  },
+  "checkpoint": {
+    "model": "dino_vits16",
+    "url": "https://dl.fbaipublicfiles.com/dino/dino_deitsmall16_pretrain/dino_deitsmall16_pretrain.pth",
+    "sha256": "1566d50496f27f52f07fea6094fa29b2fdd6fae89da65bdd3ebc3b24ef6b7eb7",
+    "size_bytes": 86710517,
+    "strict_load": true
+  },
+  "input": {
+    "kind": "deterministic_synthetic_rgb_gradient",
+    "shape": [1, 3, 224, 224],
+    "seed": 20260515,
+    "sha256": "2c64003e797bd3c41a31d28f54349b9ad24094ee7bd523207b1eca0688266772"
+  },
+  "expected_files": {
+    "summary": "outputs/dino_vit_feature_minimal/feature_summary.json",
+    "image": "outputs/dino_vit_feature_minimal/dino_synthetic_input.png"
+  },
+  "feature": {
+    "shape": [1, 384],
+    "mean": -0.054445505142211914,
+    "std": 4.822248935699463,
+    "l2_norm": 94.5024185180664,
+    "min": -16.41043472290039,
+    "max": 16.00970458984375,
+    "first8": [
+      -2.142385959625244,
+      3.536695718765259,
+      -3.4510207176208496,
+      3.4299347400665283,
+      1.2418476343154907,
+      3.1168887615203857,
+      -13.497405052185059,
+      -0.1589641571044922
+    ],
+    "sha256_rounded_6": "72c9982428dc590c6ead83b6e8f3cd0216c1a533645033c4293fb6fcfcdf9eb8"
+  },
+  "acceptance": {
+    "json_must_parse": true,
+    "checkpoint_sha256_must_match": true,
+    "checkpoint_load_must_be_strict": true,
+    "feature_shape": [1, 384],
+    "feature_hash_must_match": true,
+    "requires_nonempty_image_artifact": true
+  }
+}

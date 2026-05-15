@@ -1,0 +1,26 @@
+task_id: pytorchvideo_classification_minimal
+assets:
+  - path: artifacts/expected_artifact.json
+    role: structured verification summary
+    generated_by: verify.py
+    required: true
+  - path: artifacts/expected_clip.pt
+    role: deterministic synthetic video tensor
+    generated_by: verify.py
+    required: true
+  - path: artifacts/expected_frame.ppm
+    role: representative first frame from synthetic clip
+    generated_by: verify.py
+    required: true
+  - path: artifacts/expected_logits.pt
+    role: raw classification logits tensor
+    generated_by: verify.py
+    required: true
+external_assets:
+  - name: pytorchvideo repository
+    url: https://github.com/facebookresearch/pytorchvideo
+    commit: f3142bb05cdb56af0704ab6f0adfb0c7bbafe4a0
+    required: true
+  - name: Kinetics checkpoint
+    required: false
+    note: Not downloaded in the CPU gold path.

@@ -1,0 +1,191 @@
+{
+  "artifact_files": {
+    "input_image": "expected_input.jpg",
+    "overlay_image": "expected_detection_overlay.jpg",
+    "summary": "expected_artifact.json"
+  },
+  "checkpoint": {
+    "path": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/detection/detr_object_detection_minimal/checkpoints/hub/checkpoints/detr-r50-e632da11.pth",
+    "sha256": "e632da11ec76ae67bac2f8579fbed3724e08dead7d200ca13e019b197784eadc",
+    "size_bytes": 166618694,
+    "url": "https://dl.fbaipublicfiles.com/detr/detr-r50-e632da11.pth"
+  },
+  "checks": {
+    "boxes_finite": true,
+    "cat_detected_for_coco_image": true,
+    "checkpoint_file_exists": true,
+    "checkpoint_sha256_matches": true,
+    "coco_input_image_available": true,
+    "high_confidence_boxes_within_tolerance": true,
+    "high_confidence_detection_count": true,
+    "overlay_written": true,
+    "pred_boxes_shape_matches": true,
+    "pred_logits_shape_matches": true,
+    "repo_commit_matches": true,
+    "repository_model_loaded": true,
+    "scores_finite": true
+  },
+  "detections_top10": [
+    {
+      "box_xyxy": [
+        342.9054,
+        36.8522,
+        639.5816,
+        368.1479
+      ],
+      "label_id": 17,
+      "label_name": "cat",
+      "rank": 1,
+      "score": 0.999036
+    },
+    {
+      "box_xyxy": [
+        16.9077,
+        58.3018,
+        312.2003,
+        465.9937
+      ],
+      "label_id": 17,
+      "label_name": "cat",
+      "rank": 2,
+      "score": 0.996362
+    },
+    {
+      "box_xyxy": [
+        -0.1667,
+        2.1384,
+        639.8255,
+        476.9326
+      ],
+      "label_id": 63,
+      "label_name": "couch",
+      "rank": 3,
+      "score": 0.986656
+    },
+    {
+      "box_xyxy": [
+        38.8516,
+        74.5135,
+        181.4713,
+        122.1767
+      ],
+      "label_id": 75,
+      "label_name": "remote",
+      "rank": 4,
+      "score": 0.978512
+    },
+    {
+      "box_xyxy": [
+        -0.2029,
+        1.6977,
+        639.7938,
+        478.2097
+      ],
+      "label_id": 65,
+      "label_name": "bed",
+      "rank": 5,
+      "score": 0.666407
+    },
+    {
+      "box_xyxy": [
+        -0.1104,
+        79.655,
+        639.8882,
+        477.0876
+      ],
+      "label_id": 63,
+      "label_name": "couch",
+      "rank": 6,
+      "score": 0.433284
+    },
+    {
+      "box_xyxy": [
+        -0.1024,
+        -0.3418,
+        639.8707,
+        93.7144
+      ],
+      "label_id": 63,
+      "label_name": "couch",
+      "rank": 7,
+      "score": 0.145127
+    },
+    {
+      "box_xyxy": [
+        -0.8908,
+        1.1565,
+        485.3962,
+        477.8936
+      ],
+      "label_id": 63,
+      "label_name": "couch",
+      "rank": 8,
+      "score": 0.100522
+    },
+    {
+      "box_xyxy": [
+        -0.0803,
+        -0.2238,
+        639.8977,
+        86.0515
+      ],
+      "label_id": 63,
+      "label_name": "couch",
+      "rank": 9,
+      "score": 0.096358
+    },
+    {
+      "box_xyxy": [
+        20.5326,
+        60.5549,
+        307.5178,
+        367.9594
+      ],
+      "label_id": 17,
+      "label_name": "cat",
+      "rank": 10,
+      "score": 0.088534
+    }
+  ],
+  "input_image": {
+    "height": 480,
+    "path": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/detection/detr_object_detection_minimal/artifacts/expected_input.jpg",
+    "sha256": "dea9e7ef97386345f7cff32f9055da4982da5471c48d575146c796ab4563b04e",
+    "size_bytes": 173131,
+    "source": "http://images.cocodataset.org/val2017/000000039769.jpg",
+    "width": 640
+  },
+  "model": {
+    "class": "models.detr.DETR",
+    "entrypoint": "hubconf.detr_resnet50(pretrained=True, return_postprocessor=True)",
+    "num_queries": 100,
+    "parameter_count": 41524768,
+    "training": false
+  },
+  "package_versions": {
+    "numpy": "2.4.4",
+    "pillow": "12.2.0",
+    "scipy": "1.17.0",
+    "torch": "2.8.0+cpu",
+    "torchvision": "0.23.0+cpu"
+  },
+  "python": "3.12.3",
+  "raw_output": {
+    "pred_boxes_sha256": "b552ff4d2e944eb322adfe515353c9efe9a5871be58c41947489d1d21a275f88",
+    "pred_boxes_shape": [
+      1,
+      100,
+      4
+    ],
+    "pred_logits_sha256": "a75326e87bcc453aaa26e0f04043bc55da225e24907a431fc5987c872a62764e",
+    "pred_logits_shape": [
+      1,
+      100,
+      92
+    ]
+  },
+  "repo_commit": "29901c51d7fe8712168b8d0d64351170bc0f83e0",
+  "repo_url": "https://github.com/facebookresearch/detr",
+  "success_level": "L4",
+  "task_id": "detr_object_detection_minimal"
+}

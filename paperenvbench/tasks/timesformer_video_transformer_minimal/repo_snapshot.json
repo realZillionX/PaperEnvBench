@@ -1,0 +1,87 @@
+{
+  "task_id": "timesformer_video_transformer_minimal",
+  "repo_url": "https://github.com/facebookresearch/TimeSformer",
+  "commit": "a5ef29a7b7264baff199a30b3306ac27de901133",
+  "commit_short": "a5ef29a",
+  "default_branch": "main",
+  "snapshot_observed_at": "2026-05-16T01:47:41+08:00",
+  "commit_observed": {
+    "author_date": "2021-05-27T22:03:04-04:00",
+    "subject": "bibtex update"
+  },
+  "source_tree": {
+    "package_manager": "pip",
+    "build_backend": "setuptools",
+    "project_file": "setup.py",
+    "module": "timesformer.models.vit",
+    "primary_entrypoints": [
+      "timesformer.models.vit.TimeSformer",
+      "timesformer.models.vit.VisionTransformer",
+      "tools/run_net.py --cfg configs/Kinetics/TimeSformer_divST_8x32_224_TEST.yaml",
+      "timesformer.models.build.build_model"
+    ]
+  },
+  "dependencies_declared": [
+    "einops>=0.3",
+    "torch>=1.6",
+    "torchvision>=0.7",
+    "fvcore",
+    "simplejson",
+    "timm",
+    "av",
+    "psutil",
+    "scikit-learn",
+    "opencv-python",
+    "tensorboard",
+    "yacs"
+  ],
+  "dependency_notes": {
+    "setup_py_present": true,
+    "environment_yml_present": true,
+    "readme_environment": "The README says the code was developed with Python 3.7 on Ubuntu 20.04 and large V100 GPU training runs.",
+    "gold_minimal_install": "The verified CPU smoke path uses PYTHONPATH with torch==2.8.0+cpu, einops==0.8.1, fvcore==0.1.5.post20221221, numpy==2.4.4, pyyaml==6.0.3, yacs==0.1.8, and simplejson==3.20.2.",
+    "python_312_compatibility": "Pinned source imports torch._six.container_abcs and torch.nn.modules.linear._LinearWithBias through package import side effects. Both private APIs are absent in torch 2.8.0, so the gold verifier injects process-local compatibility shims before importing timesformer.models.vit."
+  },
+  "verification_contract": {
+    "input": "deterministic synthetic torch.linspace clip",
+    "output_artifact": "artifacts/expected_artifact.json",
+    "model_entrypoint": "timesformer.models.vit.VisionTransformer",
+    "semantic_thresholds": {
+      "expected_clip_shape": [
+        1,
+        3,
+        4,
+        32,
+        32
+      ],
+      "expected_logits_shape": [
+        1,
+        7
+      ],
+      "expected_features_shape": [
+        1,
+        64
+      ],
+      "expected_parameter_count": 159239,
+      "expected_logits_sum": -0.22940867,
+      "expected_logits_mean": -0.03277267,
+      "float_tolerance": 0.000001
+    }
+  },
+  "checkpoint_strategy": {
+    "used_by_gold": false,
+    "reason": "The public model zoo checkpoints are hosted on Dropbox and are large for a CPU-only Python 3.12 smoke. The gold task validates pinned repository model and attention semantics with deterministic random initialization."
+  },
+  "gold_environment": {
+    "python": "3.12.3",
+    "torch": "2.8.0+cpu",
+    "einops": "0.8.1",
+    "fvcore": "0.1.5.post20221221",
+    "numpy": "2.4.4",
+    "pyyaml": "6.0.3",
+    "yacs": "0.1.8",
+    "simplejson": "3.20.2"
+  },
+  "observed_remote_path": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/video/timesformer_video_transformer_minimal/repo",
+  "remote_path_alias": "paper-repro:runs/paperenvbench/video/timesformer_video_transformer_minimal/repo"
+}

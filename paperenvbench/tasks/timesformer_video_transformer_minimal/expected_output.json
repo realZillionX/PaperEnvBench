@@ -1,0 +1,71 @@
+{
+  "task_id": "timesformer_video_transformer_minimal",
+  "required_artifacts": [
+    "expected_artifact.json"
+  ],
+  "expected_repo_commit": "a5ef29a7b7264baff199a30b3306ac27de901133",
+  "input": {
+    "kind": "deterministic_synthetic_clip",
+    "shape": [
+      1,
+      3,
+      4,
+      32,
+      32
+    ]
+  },
+  "semantic_thresholds": {
+    "expected_logits_shape": [
+      1,
+      7
+    ],
+    "expected_features_shape": [
+      1,
+      64
+    ],
+    "expected_parameter_count": 159239,
+    "expected_logits_sum": -0.22940867,
+    "expected_logits_mean": -0.03277267,
+    "float_tolerance": 0.000001
+  },
+  "required_fields": [
+    "task_id",
+    "repo_commit",
+    "model",
+    "attention_path",
+    "input_clip",
+    "raw_output",
+    "compatibility",
+    "checks",
+    "success_level"
+  ],
+  "gold_observed": {
+    "success_level": "L4_fallback",
+    "python": "3.12.3",
+    "package_versions": {
+      "torch": "2.8.0+cpu",
+      "einops": "0.8.1",
+      "fvcore": "0.1.5.post20221221",
+      "numpy": "2.4.4",
+      "pyyaml": "6.0.3",
+      "yacs": "0.1.8",
+      "simplejson": "3.20.2"
+    },
+    "artifact_sha256": "ca4b52a1c8608177418d57d950881228c376ed86b406f4b842f1b4952b9b518e",
+    "requirements_lock_sha256": "fb074f9432b576c79e5955d021569ea79f035a836ac26adf8f94ddc1daf210c4",
+    "raw_output": {
+      "logits_shape": [
+        1,
+        7
+      ],
+      "features_shape": [
+        1,
+        64
+      ],
+      "logits_sum": -0.22940867,
+      "logits_mean": -0.03277267,
+      "logits_sha256": "5c579558d74f40628f76f7d370234bd0bf9b5d96638985909a785efbcf4b354b",
+      "features_sha256": "86a239eb96040e4bd586784b2d565d70f42a525b52e044419ebe0d1a213a2da7"
+    }
+  }
+}

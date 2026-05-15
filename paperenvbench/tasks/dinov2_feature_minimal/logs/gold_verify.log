@@ -1,0 +1,91 @@
+/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/dinov2_feature_minimal/repo/dinov2/layers/swiglu_ffn.py:45: UserWarning: xFormers is disabled (SwiGLU)
+  warnings.warn("xFormers is disabled (SwiGLU)")
+/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/dinov2_feature_minimal/repo/dinov2/layers/swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)
+  warnings.warn("xFormers is not available (SwiGLU)")
+/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/dinov2_feature_minimal/repo/dinov2/layers/attention.py:29: UserWarning: xFormers is disabled (Attention)
+  warnings.warn("xFormers is disabled (Attention)")
+/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/dinov2_feature_minimal/repo/dinov2/layers/attention.py:33: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/dinov2_feature_minimal/repo/dinov2/layers/block.py:35: UserWarning: xFormers is disabled (Block)
+  warnings.warn("xFormers is disabled (Block)")
+/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/dinov2_feature_minimal/repo/dinov2/layers/block.py:40: UserWarning: xFormers is not available (Block)
+  warnings.warn("xFormers is not available (Block)")
+{
+  "checks": {
+    "cls_embedding_shape_matches": true,
+    "cls_norm_positive": true,
+    "embeddings_are_finite": true,
+    "model_entrypoint_resolves": true,
+    "patch_embedding_shape_matches": true,
+    "patch_mean_abs_positive": true,
+    "repo_commit_matches": true,
+    "xformers_disabled": true
+  },
+  "environment": {
+    "checkpoint_fallback_reason": "CPU minimal verifier uses random initialization to avoid torch.hub checkpoint download.",
+    "checkpoint_required": false,
+    "cuda_available": false,
+    "device": "cpu",
+    "pretrained": false,
+    "xformers_disabled": "1"
+  },
+  "features": {
+    "cls_finite": true,
+    "cls_first8": [
+      0.93375027,
+      -0.83305591,
+      0.28546244,
+      -0.35648838,
+      0.39574015,
+      0.79418933,
+      1.04471815,
+      -1.40478492
+    ],
+    "cls_norm": 19.59590149,
+    "cls_sha256": "6d9684f6c70323f3fc3d9bb09ba5cd44d9c9a30af8f0aa6a15bba0037c0c089f",
+    "cls_shape": [
+      1,
+      384
+    ],
+    "patch_finite": true,
+    "patch_mean_abs": 0.80483848,
+    "patch_sha256": "1d4a85552337e946a3f95ed471f6652cf7ac97613f1e317db7d626e54864c8b5",
+    "patch_shape": [
+      1,
+      256,
+      384
+    ]
+  },
+  "input_image": {
+    "path": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/dinov2_feature_minimal/artifacts/synthetic_input.png",
+    "sha256": "07e26b281c1a40ca578c81c9c849d82df6b4c05d333acd67ad220e7989367db9",
+    "shape": [
+      1,
+      3,
+      224,
+      224
+    ]
+  },
+  "model": {
+    "embed_dim": 384,
+    "entrypoint": "dinov2.hub.backbones.dinov2_vits14",
+    "img_size": 224,
+    "patch_size": 14,
+    "variant": "ViT-S/14"
+  },
+  "package_versions": {
+    "dinov2": "0.0.1",
+    "numpy": "2.4.4",
+    "pillow": "12.1.0",
+    "torch": "2.8.0+cpu",
+    "torchvision": "0.23.0+cpu"
+  },
+  "python": "3.12.3",
+  "repo": {
+    "commit": "7b187bd4df8efce2cbcbbb67bd01532c19bf4c9c",
+    "url": "https://github.com/facebookresearch/dinov2"
+  },
+  "success": true,
+  "success_level": "L4_cpu_random_init_fallback",
+  "task_id": "dinov2_feature_minimal"
+}

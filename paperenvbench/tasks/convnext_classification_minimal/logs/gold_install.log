@@ -1,0 +1,195 @@
+task_id=convnext_classification_minimal
+root_dir=/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/convnext_classification_minimal
+repo_dir=/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/convnext_classification_minimal/repo
+venv_dir=/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/convnext_classification_minimal/venv
+commit=048efcea897d999aed302f2639b6270aedf8d4c8
+HEAD is now at 048efce Update README.md
+048efcea897d999aed302f2639b6270aedf8d4c8
+Looking in indexes: http://nexus.sii.shaipower.online/repository/pypi/simple
+Requirement already satisfied: pip in ./venv/lib/python3.12/site-packages (24.0)
+Collecting pip
+  Using cached http://nexus.sii.shaipower.online/repository/pypi/packages/pip/26.1.1/pip-26.1.1-py3-none-any.whl (1.8 MB)
+Collecting setuptools
+  Using cached http://nexus.sii.shaipower.online/repository/pypi/packages/setuptools/82.0.1/setuptools-82.0.1-py3-none-any.whl (1.0 MB)
+Collecting wheel
+  Using cached http://nexus.sii.shaipower.online/repository/pypi/packages/wheel/0.47.0/wheel-0.47.0-py3-none-any.whl (32 kB)
+Collecting packaging>=24.0 (from wheel)
+  Using cached http://nexus.sii.shaipower.online/repository/pypi/packages/packaging/26.2/packaging-26.2-py3-none-any.whl (100 kB)
+Installing collected packages: setuptools, pip, packaging, wheel
+  Attempting uninstall: pip
+    Found existing installation: pip 24.0
+    Uninstalling pip-24.0:
+      Successfully uninstalled pip-24.0
+Successfully installed packaging-26.2 pip-26.1.1 setuptools-82.0.1 wheel-0.47.0
+Looking in indexes: https://download.pytorch.org/whl/cpu
+Collecting torch==2.8.0
+  Using cached torch-2.8.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (29 kB)
+Collecting torchvision==0.23.0
+  Using cached torchvision-0.23.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (6.1 kB)
+Collecting filelock (from torch==2.8.0)
+  Using cached filelock-3.29.0-py3-none-any.whl.metadata (2.0 kB)
+Collecting typing-extensions>=4.10.0 (from torch==2.8.0)
+  Using cached typing_extensions-4.15.0-py3-none-any.whl.metadata (3.3 kB)
+Requirement already satisfied: setuptools in ./venv/lib/python3.12/site-packages (from torch==2.8.0) (82.0.1)
+Collecting sympy>=1.13.3 (from torch==2.8.0)
+  Using cached sympy-1.14.0-py3-none-any.whl.metadata (12 kB)
+Collecting networkx (from torch==2.8.0)
+  Using cached networkx-3.6.1-py3-none-any.whl.metadata (6.8 kB)
+Collecting jinja2 (from torch==2.8.0)
+  Using cached jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting fsspec (from torch==2.8.0)
+  Using cached fsspec-2026.4.0-py3-none-any.whl.metadata (10 kB)
+Collecting numpy (from torchvision==0.23.0)
+  Using cached numpy-2.4.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+Collecting pillow!=8.3.*,>=5.3.0 (from torchvision==0.23.0)
+  Using cached pillow-12.2.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (8.8 kB)
+Collecting mpmath<1.4,>=1.1.0 (from sympy>=1.13.3->torch==2.8.0)
+  Using cached mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+Collecting MarkupSafe>=2.0 (from jinja2->torch==2.8.0)
+  Using cached markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+Using cached torch-2.8.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl (183.9 MB)
+Using cached torchvision-0.23.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl (1.9 MB)
+Using cached pillow-12.2.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (7.1 MB)
+Using cached sympy-1.14.0-py3-none-any.whl (6.3 MB)
+Using cached mpmath-1.3.0-py3-none-any.whl (536 kB)
+Using cached typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+Using cached filelock-3.29.0-py3-none-any.whl (39 kB)
+Using cached fsspec-2026.4.0-py3-none-any.whl (203 kB)
+Using cached jinja2-3.1.6-py3-none-any.whl (134 kB)
+Using cached markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+Using cached networkx-3.6.1-py3-none-any.whl (2.1 MB)
+Using cached numpy-2.4.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.6 MB)
+Installing collected packages: mpmath, typing-extensions, sympy, pillow, numpy, networkx, MarkupSafe, fsspec, filelock, jinja2, torch, torchvision
+
+Successfully installed MarkupSafe-3.0.3 filelock-3.29.0 fsspec-2026.4.0 jinja2-3.1.6 mpmath-1.3.0 networkx-3.6.1 numpy-2.4.4 pillow-12.2.0 sympy-1.14.0 torch-2.8.0+cpu torchvision-0.23.0+cpu typing-extensions-4.15.0
+Looking in indexes: http://nexus.sii.shaipower.online/repository/pypi/simple
+Collecting tensorboardX==2.6.4
+  Using cached tensorboardx-2.6.4-py3-none-any.whl (87 kB)
+Collecting six==1.17.0
+  Using cached six-1.17.0-py2.py3-none-any.whl (11 kB)
+Requirement already satisfied: numpy in ./venv/lib/python3.12/site-packages (from tensorboardX==2.6.4) (2.4.4)
+Requirement already satisfied: packaging in ./venv/lib/python3.12/site-packages (from tensorboardX==2.6.4) (26.2)
+Collecting protobuf>=3.20 (from tensorboardX==2.6.4)
+  Using cached protobuf-7.34.1-cp310-abi3-manylinux2014_x86_64.whl (324 kB)
+Installing collected packages: six, protobuf, tensorboardX
+
+Successfully installed protobuf-7.34.1 six-1.17.0 tensorboardX-2.6.4
+Looking in indexes: http://nexus.sii.shaipower.online/repository/pypi/simple
+Collecting timm==0.3.2
+  Using cached timm-0.3.2-py3-none-any.whl (244 kB)
+Requirement already satisfied: torch>=1.0 in ./venv/lib/python3.12/site-packages (from timm==0.3.2) (2.8.0+cpu)
+Requirement already satisfied: torchvision in ./venv/lib/python3.12/site-packages (from timm==0.3.2) (0.23.0+cpu)
+Requirement already satisfied: filelock in ./venv/lib/python3.12/site-packages (from torch>=1.0->timm==0.3.2) (3.29.0)
+Requirement already satisfied: typing-extensions>=4.10.0 in ./venv/lib/python3.12/site-packages (from torch>=1.0->timm==0.3.2) (4.15.0)
+Requirement already satisfied: setuptools in ./venv/lib/python3.12/site-packages (from torch>=1.0->timm==0.3.2) (82.0.1)
+Requirement already satisfied: sympy>=1.13.3 in ./venv/lib/python3.12/site-packages (from torch>=1.0->timm==0.3.2) (1.14.0)
+Requirement already satisfied: networkx in ./venv/lib/python3.12/site-packages (from torch>=1.0->timm==0.3.2) (3.6.1)
+Requirement already satisfied: jinja2 in ./venv/lib/python3.12/site-packages (from torch>=1.0->timm==0.3.2) (3.1.6)
+Requirement already satisfied: fsspec in ./venv/lib/python3.12/site-packages (from torch>=1.0->timm==0.3.2) (2026.4.0)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in ./venv/lib/python3.12/site-packages (from sympy>=1.13.3->torch>=1.0->timm==0.3.2) (1.3.0)
+Requirement already satisfied: MarkupSafe>=2.0 in ./venv/lib/python3.12/site-packages (from jinja2->torch>=1.0->timm==0.3.2) (3.0.3)
+Requirement already satisfied: numpy in ./venv/lib/python3.12/site-packages (from torchvision->timm==0.3.2) (2.4.4)
+Requirement already satisfied: pillow!=8.3.*,>=5.3.0 in ./venv/lib/python3.12/site-packages (from torchvision->timm==0.3.2) (12.2.0)
+Installing collected packages: timm
+Successfully installed timm-0.3.2
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/convnext_classification_minimal/repo/models/convnext.py", line 12, in <module>
+    from timm.models.layers import trunc_normal_, DropPath
+  File "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/convnext_classification_minimal/venv/lib/python3.12/site-packages/timm/__init__.py", line 2, in <module>
+    from .models import create_model, list_models, is_model, list_modules, model_entrypoint, \
+  File "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/convnext_classification_minimal/venv/lib/python3.12/site-packages/timm/models/__init__.py", line 1, in <module>
+    from .cspnet import *
+  File "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/convnext_classification_minimal/venv/lib/python3.12/site-packages/timm/models/cspnet.py", line 20, in <module>
+    from .helpers import build_model_with_cfg
+  File "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/convnext_classification_minimal/venv/lib/python3.12/site-packages/timm/models/helpers.py", line 17, in <module>
+    from .layers import Conv2dSame, Linear
+  File "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/convnext_classification_minimal/venv/lib/python3.12/site-packages/timm/models/layers/__init__.py", line 7, in <module>
+    from .cond_conv2d import CondConv2d, get_condconv_initializer
+  File "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/convnext_classification_minimal/venv/lib/python3.12/site-packages/timm/models/layers/cond_conv2d.py", line 16, in <module>
+    from .helpers import to_2tuple
+  File "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/convnext_classification_minimal/venv/lib/python3.12/site-packages/timm/models/layers/helpers.py", line 6, in <module>
+    from torch._six import container_abcs
+ModuleNotFoundError: No module named 'torch._six'
+timm==0.3.2 installed but cannot import with this torch; using timm==0.9.16.
+Looking in indexes: http://nexus.sii.shaipower.online/repository/pypi/simple
+Collecting timm==0.9.16
+  Downloading timm-0.9.16-py3-none-any.whl (2.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.2/2.2 MB 339.0 MB/s  0:00:00
+Requirement already satisfied: torch in ./venv/lib/python3.12/site-packages (from timm==0.9.16) (2.8.0+cpu)
+Requirement already satisfied: torchvision in ./venv/lib/python3.12/site-packages (from timm==0.9.16) (0.23.0+cpu)
+Collecting pyyaml (from timm==0.9.16)
+  Using cached pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+Collecting huggingface_hub (from timm==0.9.16)
+  Using cached huggingface_hub-1.14.0-py3-none-any.whl (661 kB)
+Collecting safetensors (from timm==0.9.16)
+  Downloading safetensors-0.7.0-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (507 kB)
+Requirement already satisfied: filelock>=3.10.0 in ./venv/lib/python3.12/site-packages (from huggingface_hub->timm==0.9.16) (3.29.0)
+Requirement already satisfied: fsspec>=2023.5.0 in ./venv/lib/python3.12/site-packages (from huggingface_hub->timm==0.9.16) (2026.4.0)
+Collecting hf-xet<2.0.0,>=1.4.3 (from huggingface_hub->timm==0.9.16)
+  Using cached hf_xet-1.5.0-cp37-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (4.5 MB)
+Collecting httpx<1,>=0.23.0 (from huggingface_hub->timm==0.9.16)
+  Using cached httpx-0.28.1-py3-none-any.whl (73 kB)
+Requirement already satisfied: packaging>=20.9 in ./venv/lib/python3.12/site-packages (from huggingface_hub->timm==0.9.16) (26.2)
+Collecting tqdm>=4.42.1 (from huggingface_hub->timm==0.9.16)
+  Using cached tqdm-4.67.3-py3-none-any.whl (78 kB)
+Collecting typer>=0.20.0 (from huggingface_hub->timm==0.9.16)
+  Using cached typer-0.25.1-py3-none-any.whl (58 kB)
+Requirement already satisfied: typing-extensions>=4.1.0 in ./venv/lib/python3.12/site-packages (from huggingface_hub->timm==0.9.16) (4.15.0)
+Collecting anyio (from httpx<1,>=0.23.0->huggingface_hub->timm==0.9.16)
+  Using cached anyio-4.13.0-py3-none-any.whl (114 kB)
+Collecting certifi (from httpx<1,>=0.23.0->huggingface_hub->timm==0.9.16)
+  Using cached certifi-2026.4.22-py3-none-any.whl (135 kB)
+Collecting httpcore==1.* (from httpx<1,>=0.23.0->huggingface_hub->timm==0.9.16)
+  Using cached httpcore-1.0.9-py3-none-any.whl (78 kB)
+Collecting idna (from httpx<1,>=0.23.0->huggingface_hub->timm==0.9.16)
+  Using cached idna-3.15-py3-none-any.whl (72 kB)
+Collecting h11>=0.16 (from httpcore==1.*->httpx<1,>=0.23.0->huggingface_hub->timm==0.9.16)
+  Using cached h11-0.16.0-py3-none-any.whl (37 kB)
+Collecting click>=8.2.1 (from typer>=0.20.0->huggingface_hub->timm==0.9.16)
+  Using cached click-8.3.3-py3-none-any.whl (110 kB)
+Collecting shellingham>=1.3.0 (from typer>=0.20.0->huggingface_hub->timm==0.9.16)
+  Using cached shellingham-1.5.4-py2.py3-none-any.whl (9.8 kB)
+Collecting rich>=13.8.0 (from typer>=0.20.0->huggingface_hub->timm==0.9.16)
+  Using cached rich-15.0.0-py3-none-any.whl (310 kB)
+Collecting annotated-doc>=0.0.2 (from typer>=0.20.0->huggingface_hub->timm==0.9.16)
+  Using cached annotated_doc-0.0.4-py3-none-any.whl (5.3 kB)
+Collecting markdown-it-py>=2.2.0 (from rich>=13.8.0->typer>=0.20.0->huggingface_hub->timm==0.9.16)
+  Using cached markdown_it_py-4.2.0-py3-none-any.whl (91 kB)
+Collecting pygments<3.0.0,>=2.13.0 (from rich>=13.8.0->typer>=0.20.0->huggingface_hub->timm==0.9.16)
+  Using cached pygments-2.20.0-py3-none-any.whl (1.2 MB)
+Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich>=13.8.0->typer>=0.20.0->huggingface_hub->timm==0.9.16)
+  Using cached mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Requirement already satisfied: setuptools in ./venv/lib/python3.12/site-packages (from torch->timm==0.9.16) (82.0.1)
+Requirement already satisfied: sympy>=1.13.3 in ./venv/lib/python3.12/site-packages (from torch->timm==0.9.16) (1.14.0)
+Requirement already satisfied: networkx in ./venv/lib/python3.12/site-packages (from torch->timm==0.9.16) (3.6.1)
+Requirement already satisfied: jinja2 in ./venv/lib/python3.12/site-packages (from torch->timm==0.9.16) (3.1.6)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in ./venv/lib/python3.12/site-packages (from sympy>=1.13.3->torch->timm==0.9.16) (1.3.0)
+Requirement already satisfied: MarkupSafe>=2.0 in ./venv/lib/python3.12/site-packages (from jinja2->torch->timm==0.9.16) (3.0.3)
+Requirement already satisfied: numpy in ./venv/lib/python3.12/site-packages (from torchvision->timm==0.9.16) (2.4.4)
+Requirement already satisfied: pillow!=8.3.*,>=5.3.0 in ./venv/lib/python3.12/site-packages (from torchvision->timm==0.9.16) (12.2.0)
+Installing collected packages: tqdm, shellingham, safetensors, pyyaml, pygments, mdurl, idna, hf-xet, h11, click, certifi, annotated-doc, markdown-it-py, httpcore, anyio, rich, httpx, typer, huggingface_hub, timm
+  Attempting uninstall: timm
+    Found existing installation: timm 0.3.2
+    Uninstalling timm-0.3.2:
+      Successfully uninstalled timm-0.3.2
+
+Successfully installed annotated-doc-0.0.4 anyio-4.13.0 certifi-2026.4.22 click-8.3.3 h11-0.16.0 hf-xet-1.5.0 httpcore-1.0.9 httpx-0.28.1 huggingface_hub-1.14.0 idna-3.15 markdown-it-py-4.2.0 mdurl-0.1.2 pygments-2.20.0 pyyaml-6.0.3 rich-15.0.0 safetensors-0.7.0 shellingham-1.5.4 timm-0.9.16 tqdm-4.67.3 typer-0.25.1
+/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/convnext_classification_minimal/repo/models/convnext.py:158: UserWarning: Overwriting convnext_tiny in registry with models.convnext.convnext_tiny. This is because the name being registered conflicts with an existing name. Please check if this is not expected.
+  @register_model
+/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/convnext_classification_minimal/repo/models/convnext.py:167: UserWarning: Overwriting convnext_small in registry with models.convnext.convnext_small. This is because the name being registered conflicts with an existing name. Please check if this is not expected.
+  @register_model
+/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/convnext_classification_minimal/repo/models/convnext.py:176: UserWarning: Overwriting convnext_base in registry with models.convnext.convnext_base. This is because the name being registered conflicts with an existing name. Please check if this is not expected.
+  @register_model
+/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/convnext_classification_minimal/repo/models/convnext.py:185: UserWarning: Overwriting convnext_large in registry with models.convnext.convnext_large. This is because the name being registered conflicts with an existing name. Please check if this is not expected.
+  @register_model
+/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/convnext_classification_minimal/repo/models/convnext.py:194: UserWarning: Overwriting convnext_xlarge in registry with models.convnext.convnext_xlarge. This is because the name being registered conflicts with an existing name. Please check if this is not expected.
+  @register_model
+python 3.12.3
+torch 2.8.0+cpu
+torchvision 0.23.0+cpu
+timm 0.9.16
+tensorboardX 2.6.4
+repo_dir /inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/image/convnext_classification_minimal/repo
+convnext_class <class 'models.convnext.ConvNeXt'>
+convnext_tiny_factory <function convnext_tiny at 0x7fa93fb3f1a0>

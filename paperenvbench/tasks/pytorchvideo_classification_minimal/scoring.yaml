@@ -1,0 +1,34 @@
+task_id: pytorchvideo_classification_minimal
+max_level: L4_fallback
+levels:
+  L0:
+    description: Repository cannot be cloned or pinned.
+    required_checks:
+      - repo_commit_matches
+  L1:
+    description: Python environment installs the editable pinned repository and imports PyTorchVideo.
+    required_checks:
+      - hubconf_exists
+      - model_loaded_from_local_hub
+  L2:
+    description: Local torch hub entrypoint builds the video classification model.
+    required_checks:
+      - model_is_eval
+  L3:
+    description: Deterministic synthetic video and side artifacts are generated.
+    required_checks:
+      - synthetic_clip_written
+      - representative_frame_written
+  L4_fallback:
+    description: The pinned repository model executes a CPU single clip forward pass and produces non-degenerate classification logits.
+    required_checks:
+      - logits_artifact_written
+      - logits_shape_matches
+      - logits_are_finite
+      - logits_have_variance
+      - probabilities_are_normalized
+      - top_class_in_range
+thresholds:
+  expected_logits_shape: [1, 400]
+  min_logits_std: 0.000001
+  max_probability_sum_error: 0.00001

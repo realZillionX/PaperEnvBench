@@ -1,0 +1,22 @@
+primary_failure_tags:
+  - python_version_conflict
+  - hidden_dependency
+  - torch_cuda_matrix
+  - entrypoint_ambiguity
+  - verification_ambiguity
+observed_failures:
+  - tag: hidden_dependency
+    evidence: "With timm==0.6.13, MAE model construction initially failed because timm Block no longer accepts qk_scale."
+    mitigation: "verify.py applies a runtime compatibility shim that accepts qk_scale=None before importing models_mae."
+  - tag: python_version_conflict
+    evidence: "MAE util/pos_embed.py uses np.float, which is unavailable in NumPy 1.24+ and in the Python 3.12-compatible NumPy wheels."
+    mitigation: "verify.py restores np.float as an alias to float before model initialization."
+  - tag: torch_cuda_matrix
+    evidence: "The notebook pip index resolves CUDA-enabled torch wheels even on CPU; version drift can trigger large dependency changes."
+    mitigation: "gold_install.sh pins torch==2.4.1 and torchvision==0.19.1 in an isolated venv and forces device=cpu during verification."
+anti_patterns:
+  - "Treating import models_mae or README inspection as L4 success."
+  - "Using current timm without handling MAE's qk_scale call site."
+  - "Using NumPy 2.x without addressing np.float in util/pos_embed.py."
+  - "Downloading large MAE pretrain checkpoints for the CPU minimal reconstruction task."
+  - "Running distributed pretraining or ImageNet fine-tuning for this minimal verifier."

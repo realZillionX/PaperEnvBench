@@ -1,0 +1,27 @@
+assets:
+  - asset_id: moco_source_repo
+    type: git_repository
+    required: true
+    url: https://github.com/facebookresearch/moco
+    commit: 7397dfe146c7ca6bbb58e9c382498069178ba764
+    cached_path: paper-repro:runs/paperenvbench/image/moco_feature_minimal/repo
+    checksum: null
+  - asset_id: synthetic_rgb_tensor
+    type: image_tensor
+    required: true
+    generated_by: verify.py
+    cached_path: paper-repro:runs/paperenvbench/image/moco_feature_minimal/artifacts/expected_artifact.json
+    checksum: null
+  - asset_id: random_initialized_moco_resnet50_encoder
+    type: model_component
+    required: true
+    source: moco.builder.MoCo.encoder_q
+    note: "Deterministically initialized from the pinned repository and fixed torch seed; no pretrained checkpoint is required for the CPU semantic smoke."
+    checksum: null
+  - asset_id: moco_v2_200ep_pretrain
+    type: checkpoint
+    required: false
+    source: https://dl.fbaipublicfiles.com/moco/moco_checkpoints/moco_v2_200ep/moco_v2_200ep_pretrain.pth.tar
+    risk: public_checkpoint_download
+    note: "The full pretrained checkpoint route is documented by upstream but intentionally not required for this minimal CPU task."
+    checksum: 59fd9945

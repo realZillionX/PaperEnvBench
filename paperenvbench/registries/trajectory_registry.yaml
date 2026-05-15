@@ -1,0 +1,362 @@
+version: 0.2.0
+updated_at: "2026-05-16"
+trajectories:
+  - trajectory_id: gold_whisper_asr_minimal_cpu
+    task_id: whisper_asr_minimal
+    model: human_orchestrated
+    condition: cpu_gold_migration
+    final_level: L4
+    score: null
+    failure_tags:
+      - system_package_missing
+      - checkpoint_download
+      - torch_cuda_matrix
+      - entrypoint_ambiguity
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/whisper_asr_minimal/artifacts/
+    remote_artifact_path: paper-repro:outputs/whisper_smoke/
+    status: gold_verified_l4
+  - trajectory_id: gold_demucs_music_separation_cpu
+    task_id: demucs_music_separation
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - system_package_missing
+      - python_version_conflict
+      - torch_cuda_matrix
+      - checkpoint_download
+      - entrypoint_ambiguity
+      - verification_ambiguity
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/demucs_music_separation/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/audio/demucs_music_separation/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_silero_vad_speech_activity_cpu
+    task_id: silero_vad_speech_activity
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4
+    score: null
+    failure_tags:
+      - torch_cuda_matrix
+      - system_package_missing
+      - hidden_dependency
+      - entrypoint_ambiguity
+      - verification_ambiguity
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/silero_vad_speech_activity/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/audio/silero_vad_speech_activity/artifacts/
+    status: gold_verified_l4
+  - trajectory_id: gold_encodec_audio_codec_minimal_cpu
+    task_id: encodec_audio_codec_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4
+    score: null
+    failure_tags:
+      - checkpoint_download
+      - torch_cuda_matrix
+      - hidden_dependency
+      - entrypoint_ambiguity
+      - package_name_collision
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/encodec_audio_codec_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/audio/encodec_audio_codec_minimal/artifacts/
+    status: gold_verified_l4
+  - trajectory_id: gold_speechbrain_keyword_spotting_cpu
+    task_id: speechbrain_keyword_spotting
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4
+    score: null
+    failure_tags:
+      - checkpoint_download
+      - torch_cuda_matrix
+      - hidden_dependency
+      - dataset_asset_missing
+      - verification_ambiguity
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/speechbrain_keyword_spotting/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/audio/speechbrain_keyword_spotting/artifacts/
+    status: gold_verified_l4
+  - trajectory_id: seed_clip_cpu_smoke
+    task_id: clip_zeroshot_minimal
+    model: human_orchestrated
+    condition: cpu_gold_migration
+    final_level: L4
+    score: null
+    failure_tags:
+      - torch_cuda_matrix
+      - checkpoint_download
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/clip_zeroshot_minimal/artifacts/
+    remote_artifact_path: paper-repro:outputs/clip_smoke/
+    status: gold_verified_l4
+  - trajectory_id: gold_sam_mask_minimal_cpu
+    task_id: sam_mask_minimal
+    model: human_orchestrated
+    condition: cpu_gold_migration
+    final_level: L4
+    score: null
+    failure_tags:
+      - checkpoint_download
+      - system_package_missing
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/sam_mask_minimal/artifacts/
+    remote_artifact_path: paper-repro:outputs/sam_smoke/
+    status: gold_verified_l4
+  - trajectory_id: gold_moco_feature_minimal_cpu
+    task_id: moco_feature_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4
+    score: null
+    failure_tags:
+      - checkpoint_download
+      - torch_cuda_matrix
+      - stale_readme
+      - entrypoint_ambiguity
+      - verification_ambiguity
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/moco_feature_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/image/moco_feature_minimal/artifacts/
+    status: gold_verified_l4
+  - trajectory_id: gold_dinov2_feature_minimal_cpu
+    task_id: dinov2_feature_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4
+    score: null
+    failure_tags:
+      - checkpoint_download
+      - torch_cuda_matrix
+      - hidden_dependency
+      - hardware_pressure
+      - entrypoint_ambiguity
+      - verification_ambiguity
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/dinov2_feature_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/image/dinov2_feature_minimal/artifacts/
+    status: gold_verified_l4
+  - trajectory_id: gold_convnext_classification_minimal_cpu
+    task_id: convnext_classification_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - checkpoint_download
+      - torch_cuda_matrix
+      - python_version_conflict
+      - hidden_dependency
+      - entrypoint_ambiguity
+      - verification_ambiguity
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/convnext_classification_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/image/convnext_classification_minimal/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_dino_vit_feature_minimal_cpu
+    task_id: dino_vit_feature_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4
+    score: null
+    failure_tags:
+      - checkpoint_download
+      - torch_cuda_matrix
+      - hidden_dependency
+      - entrypoint_ambiguity
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/dino_vit_feature_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/image/dino_vit_feature_minimal/outputs/dino_vit_feature_minimal/
+    status: gold_verified_l4
+  - trajectory_id: gold_mae_reconstruction_minimal_cpu
+    task_id: mae_reconstruction_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4
+    score: null
+    failure_tags:
+      - python_version_conflict
+      - hidden_dependency
+      - torch_cuda_matrix
+      - entrypoint_ambiguity
+      - verification_ambiguity
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/mae_reconstruction_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/image/mae_reconstruction_minimal/artifacts/
+    status: gold_verified_l4
+  - trajectory_id: gold_detr_object_detection_minimal_cpu
+    task_id: detr_object_detection_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4
+    score: null
+    failure_tags:
+      - checkpoint_download
+      - torch_cuda_matrix
+      - hidden_dependency
+      - entrypoint_ambiguity
+      - verification_ambiguity
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/detr_object_detection_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/detection/detr_object_detection_minimal/artifacts/
+    status: gold_verified_l4
+  - trajectory_id: gold_detectron2_maskrcnn_minimal_cpu
+    task_id: detectron2_maskrcnn_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4
+    score: null
+    failure_tags:
+      - native_extension_build
+      - system_package_missing
+      - hidden_dependency
+      - torch_cuda_matrix
+      - checkpoint_download
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/detectron2_maskrcnn_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/detection/detectron2_maskrcnn_minimal/artifacts/
+    status: gold_verified_l4
+  - trajectory_id: gold_mmsegmentation_segformer_minimal_cpu
+    task_id: mmsegmentation_segformer_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - native_extension_build
+      - torch_cuda_matrix
+      - hidden_dependency
+      - system_package_missing
+      - entrypoint_ambiguity
+      - verification_ambiguity
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/mmsegmentation_segformer_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/detection/mmsegmentation_segformer_minimal/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_groundingdino_phrase_grounding_minimal_cpu
+    task_id: groundingdino_phrase_grounding_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4
+    score: null
+    failure_tags:
+      - native_extension_build
+      - checkpoint_download
+      - torch_cuda_matrix
+      - hidden_dependency
+      - python_version_conflict
+      - verification_ambiguity
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/groundingdino_phrase_grounding_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/artifacts/
+    status: gold_verified_l4
+  - trajectory_id: gold_mmdetection_fasterrcnn_minimal_cpu
+    task_id: mmdetection_fasterrcnn_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - native_extension_build
+      - torch_cuda_matrix
+      - python_version_conflict
+      - hidden_dependency
+      - checkpoint_download
+      - verification_ambiguity
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/mmdetection_fasterrcnn_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/detection/mmdetection_fasterrcnn_minimal/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_pytorchvideo_classification_minimal_cpu
+    task_id: pytorchvideo_classification_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - system_package_missing
+      - checkpoint_download
+      - torch_cuda_matrix
+      - hidden_dependency
+      - entrypoint_ambiguity
+      - verification_ambiguity
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/pytorchvideo_classification_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/video/pytorchvideo_classification_minimal/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_videomae_classification_minimal_cpu
+    task_id: videomae_classification_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - checkpoint_download
+      - torch_cuda_matrix
+      - hidden_dependency
+      - hardware_pressure
+      - python_version_conflict
+      - entrypoint_ambiguity
+      - verification_ambiguity
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/videomae_classification_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/video/videomae_classification_minimal/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_timesformer_video_transformer_minimal_cpu
+    task_id: timesformer_video_transformer_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - checkpoint_download
+      - torch_cuda_matrix
+      - entrypoint_ambiguity
+      - stale_readme
+      - hidden_dependency
+      - python_version_conflict
+      - verification_ambiguity
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/timesformer_video_transformer_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/video/timesformer_video_transformer_minimal/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_slowfast_video_classification_minimal_cpu
+    task_id: slowfast_video_classification_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - system_package_missing
+      - checkpoint_download
+      - torch_cuda_matrix
+      - entrypoint_ambiguity
+      - hidden_dependency
+      - stale_readme
+      - verification_ambiguity
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/slowfast_video_classification_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/video/slowfast_video_classification_minimal/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_mmaction2_recognition_minimal_cpu
+    task_id: mmaction2_recognition_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - native_extension_build
+      - system_package_missing
+      - checkpoint_download
+      - torch_cuda_matrix
+      - hidden_dependency
+      - entrypoint_ambiguity
+      - verification_ambiguity
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/mmaction2_recognition_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/video/mmaction2_recognition_minimal/artifacts/
+    status: gold_verified_l4_fallback

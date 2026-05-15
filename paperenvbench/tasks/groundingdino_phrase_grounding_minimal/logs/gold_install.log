@@ -1,0 +1,225 @@
+[install] started_at=2026-05-15T17:21:58+00:00
+[install] run_dir=/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal
+[install] notebook=paper-repro-ci-prep
+[install] commit=856dde20aee659246248e20734ef9ba5214f5e44
+[install] notes=non-torch packages use PyPI to avoid stale internal requests URL; editable install disables build isolation because setup.py imports torch.
+HEAD is now at 856dde2 Grounded SAM 2 Release
+856dde20aee659246248e20734ef9ba5214f5e44
+Requirement already satisfied: pip in ./runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/venv/lib/python3.12/site-packages (24.0)
+Collecting pip
+  Using cached pip-26.1.1-py3-none-any.whl.metadata (4.6 kB)
+Collecting setuptools
+  Using cached setuptools-82.0.1-py3-none-any.whl.metadata (6.5 kB)
+Collecting wheel
+  Using cached wheel-0.47.0-py3-none-any.whl.metadata (2.3 kB)
+Collecting packaging>=24.0 (from wheel)
+  Using cached packaging-26.2-py3-none-any.whl.metadata (3.5 kB)
+Using cached pip-26.1.1-py3-none-any.whl (1.8 MB)
+Using cached setuptools-82.0.1-py3-none-any.whl (1.0 MB)
+Using cached wheel-0.47.0-py3-none-any.whl (32 kB)
+Using cached packaging-26.2-py3-none-any.whl (100 kB)
+Installing collected packages: setuptools, pip, packaging, wheel
+  Attempting uninstall: pip
+    Found existing installation: pip 24.0
+    Uninstalling pip-24.0:
+      Successfully uninstalled pip-24.0
+Successfully installed packaging-26.2 pip-26.1.1 setuptools-82.0.1 wheel-0.47.0
+Looking in indexes: https://download.pytorch.org/whl/cpu
+Collecting torch==2.8.0
+  Using cached torch-2.8.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (29 kB)
+Collecting torchvision==0.23.0
+  Using cached torchvision-0.23.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (6.1 kB)
+Collecting filelock (from torch==2.8.0)
+  Using cached filelock-3.29.0-py3-none-any.whl.metadata (2.0 kB)
+Collecting typing-extensions>=4.10.0 (from torch==2.8.0)
+  Using cached typing_extensions-4.15.0-py3-none-any.whl.metadata (3.3 kB)
+Requirement already satisfied: setuptools in ./runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/venv/lib/python3.12/site-packages (from torch==2.8.0) (82.0.1)
+Collecting sympy>=1.13.3 (from torch==2.8.0)
+  Using cached sympy-1.14.0-py3-none-any.whl.metadata (12 kB)
+Collecting networkx (from torch==2.8.0)
+  Using cached networkx-3.6.1-py3-none-any.whl.metadata (6.8 kB)
+Collecting jinja2 (from torch==2.8.0)
+  Using cached jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting fsspec (from torch==2.8.0)
+  Using cached fsspec-2026.4.0-py3-none-any.whl.metadata (10 kB)
+Collecting numpy (from torchvision==0.23.0)
+  Using cached numpy-2.4.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+Collecting pillow!=8.3.*,>=5.3.0 (from torchvision==0.23.0)
+  Using cached pillow-12.2.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (8.8 kB)
+Collecting mpmath<1.4,>=1.1.0 (from sympy>=1.13.3->torch==2.8.0)
+  Using cached mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+Collecting MarkupSafe>=2.0 (from jinja2->torch==2.8.0)
+  Using cached markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+Using cached torch-2.8.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl (183.9 MB)
+Using cached torchvision-0.23.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl (1.9 MB)
+Using cached pillow-12.2.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (7.1 MB)
+Using cached sympy-1.14.0-py3-none-any.whl (6.3 MB)
+Using cached mpmath-1.3.0-py3-none-any.whl (536 kB)
+Using cached typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+Using cached filelock-3.29.0-py3-none-any.whl (39 kB)
+Using cached fsspec-2026.4.0-py3-none-any.whl (203 kB)
+Using cached jinja2-3.1.6-py3-none-any.whl (134 kB)
+Using cached markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+Using cached networkx-3.6.1-py3-none-any.whl (2.1 MB)
+Using cached numpy-2.4.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.6 MB)
+Installing collected packages: mpmath, typing-extensions, sympy, pillow, numpy, networkx, MarkupSafe, fsspec, filelock, jinja2, torch, torchvision
+
+Successfully installed MarkupSafe-3.0.3 filelock-3.29.0 fsspec-2026.4.0 jinja2-3.1.6 mpmath-1.3.0 networkx-3.6.1 numpy-2.4.4 pillow-12.2.0 sympy-1.14.0 torch-2.8.0+cpu torchvision-0.23.0+cpu typing-extensions-4.15.0
+Collecting numpy==2.2.6
+  Using cached numpy-2.2.6-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (62 kB)
+Collecting Pillow==11.3.0
+  Using cached pillow-11.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.0 kB)
+Collecting opencv-python-headless==4.12.0.88
+  Using cached opencv_python_headless-4.12.0.88-cp37-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (19 kB)
+Collecting pycocotools==2.0.10
+  Using cached pycocotools-2.0.10-cp312-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (1.3 kB)
+Collecting addict==2.4.0
+  Using cached addict-2.4.0-py3-none-any.whl.metadata (1.0 kB)
+Collecting yapf==0.43.0
+  Using cached yapf-0.43.0-py3-none-any.whl.metadata (46 kB)
+Collecting timm==0.9.16
+  Using cached timm-0.9.16-py3-none-any.whl.metadata (38 kB)
+Collecting transformers==4.41.2
+  Using cached transformers-4.41.2-py3-none-any.whl.metadata (43 kB)
+Collecting supervision==0.22.0
+  Using cached supervision-0.22.0-py3-none-any.whl.metadata (13 kB)
+Collecting matplotlib==3.10.5
+  Using cached matplotlib-3.10.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (11 kB)
+Collecting requests==2.32.5
+  Using cached requests-2.32.5-py3-none-any.whl.metadata (4.9 kB)
+Collecting platformdirs>=3.5.1 (from yapf==0.43.0)
+  Using cached platformdirs-4.9.6-py3-none-any.whl.metadata (4.7 kB)
+Requirement already satisfied: torch in ./runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/venv/lib/python3.12/site-packages (from timm==0.9.16) (2.8.0+cpu)
+Requirement already satisfied: torchvision in ./runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/venv/lib/python3.12/site-packages (from timm==0.9.16) (0.23.0+cpu)
+Collecting pyyaml (from timm==0.9.16)
+  Using cached pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+Collecting huggingface_hub (from timm==0.9.16)
+  Using cached huggingface_hub-1.15.0-py3-none-any.whl.metadata (14 kB)
+Collecting safetensors (from timm==0.9.16)
+  Using cached safetensors-0.7.0-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.1 kB)
+Requirement already satisfied: filelock in ./runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/venv/lib/python3.12/site-packages (from transformers==4.41.2) (3.29.0)
+Collecting huggingface_hub (from timm==0.9.16)
+  Using cached huggingface_hub-0.36.2-py3-none-any.whl.metadata (15 kB)
+Requirement already satisfied: packaging>=20.0 in ./runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/venv/lib/python3.12/site-packages (from transformers==4.41.2) (26.2)
+Collecting regex!=2019.12.17 (from transformers==4.41.2)
+  Using cached regex-2026.5.9-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (40 kB)
+Collecting tokenizers<0.20,>=0.19 (from transformers==4.41.2)
+  Using cached tokenizers-0.19.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.7 kB)
+Collecting tqdm>=4.27 (from transformers==4.41.2)
+  Using cached tqdm-4.67.3-py3-none-any.whl.metadata (57 kB)
+Collecting defusedxml<0.8.0,>=0.7.1 (from supervision==0.22.0)
+  Using cached defusedxml-0.7.1-py2.py3-none-any.whl.metadata (32 kB)
+Collecting scipy<2.0.0,>=1.10.0 (from supervision==0.22.0)
+  Using cached scipy-1.17.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (62 kB)
+Collecting contourpy>=1.0.1 (from matplotlib==3.10.5)
+  Using cached contourpy-1.3.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (5.5 kB)
+Collecting cycler>=0.10 (from matplotlib==3.10.5)
+  Using cached cycler-0.12.1-py3-none-any.whl.metadata (3.8 kB)
+Collecting fonttools>=4.22.0 (from matplotlib==3.10.5)
+  Using cached fonttools-4.63.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (118 kB)
+Collecting kiwisolver>=1.3.1 (from matplotlib==3.10.5)
+  Using cached kiwisolver-1.5.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (5.1 kB)
+Collecting pyparsing>=2.3.1 (from matplotlib==3.10.5)
+  Using cached pyparsing-3.3.2-py3-none-any.whl.metadata (5.8 kB)
+Collecting python-dateutil>=2.7 (from matplotlib==3.10.5)
+  Using cached python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Collecting charset_normalizer<4,>=2 (from requests==2.32.5)
+  Using cached charset_normalizer-3.4.7-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (40 kB)
+Collecting idna<4,>=2.5 (from requests==2.32.5)
+  Using cached idna-3.15-py3-none-any.whl.metadata (7.7 kB)
+Collecting urllib3<3,>=1.21.1 (from requests==2.32.5)
+  Using cached urllib3-2.7.0-py3-none-any.whl.metadata (6.9 kB)
+Collecting certifi>=2017.4.17 (from requests==2.32.5)
+  Using cached certifi-2026.4.22-py3-none-any.whl.metadata (2.5 kB)
+Requirement already satisfied: fsspec>=2023.5.0 in ./runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/venv/lib/python3.12/site-packages (from huggingface_hub->timm==0.9.16) (2026.4.0)
+Collecting hf-xet<2.0.0,>=1.1.3 (from huggingface_hub->timm==0.9.16)
+  Using cached hf_xet-1.5.0-cp37-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (4.9 kB)
+Requirement already satisfied: typing-extensions>=3.7.4.3 in ./runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/venv/lib/python3.12/site-packages (from huggingface_hub->timm==0.9.16) (4.15.0)
+Collecting six>=1.5 (from python-dateutil>=2.7->matplotlib==3.10.5)
+  Using cached six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+Requirement already satisfied: setuptools in ./runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/venv/lib/python3.12/site-packages (from torch->timm==0.9.16) (82.0.1)
+Requirement already satisfied: sympy>=1.13.3 in ./runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/venv/lib/python3.12/site-packages (from torch->timm==0.9.16) (1.14.0)
+Requirement already satisfied: networkx in ./runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/venv/lib/python3.12/site-packages (from torch->timm==0.9.16) (3.6.1)
+Requirement already satisfied: jinja2 in ./runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/venv/lib/python3.12/site-packages (from torch->timm==0.9.16) (3.1.6)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in ./runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/venv/lib/python3.12/site-packages (from sympy>=1.13.3->torch->timm==0.9.16) (1.3.0)
+Requirement already satisfied: MarkupSafe>=2.0 in ./runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/venv/lib/python3.12/site-packages (from jinja2->torch->timm==0.9.16) (3.0.3)
+Using cached numpy-2.2.6-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (16.5 MB)
+Using cached pillow-11.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (6.6 MB)
+Using cached opencv_python_headless-4.12.0.88-cp37-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (54.0 MB)
+Using cached pycocotools-2.0.10-cp312-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (397 kB)
+Using cached addict-2.4.0-py3-none-any.whl (3.8 kB)
+Using cached yapf-0.43.0-py3-none-any.whl (256 kB)
+Using cached timm-0.9.16-py3-none-any.whl (2.2 MB)
+Using cached transformers-4.41.2-py3-none-any.whl (9.1 MB)
+Using cached supervision-0.22.0-py3-none-any.whl (135 kB)
+Using cached matplotlib-3.10.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (8.7 MB)
+Using cached requests-2.32.5-py3-none-any.whl (64 kB)
+Using cached charset_normalizer-3.4.7-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (216 kB)
+Using cached defusedxml-0.7.1-py2.py3-none-any.whl (25 kB)
+Using cached huggingface_hub-0.36.2-py3-none-any.whl (566 kB)
+Using cached hf_xet-1.5.0-cp37-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (4.5 MB)
+Using cached idna-3.15-py3-none-any.whl (72 kB)
+Using cached scipy-1.17.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (35.2 MB)
+Using cached tokenizers-0.19.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.6 MB)
+Using cached urllib3-2.7.0-py3-none-any.whl (131 kB)
+Using cached certifi-2026.4.22-py3-none-any.whl (135 kB)
+Using cached contourpy-1.3.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (362 kB)
+Using cached cycler-0.12.1-py3-none-any.whl (8.3 kB)
+Using cached fonttools-4.63.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (5.0 MB)
+Using cached kiwisolver-1.5.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (1.5 MB)
+Using cached platformdirs-4.9.6-py3-none-any.whl (21 kB)
+Using cached pyparsing-3.3.2-py3-none-any.whl (122 kB)
+Using cached python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Using cached pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+Using cached regex-2026.5.9-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (801 kB)
+Using cached safetensors-0.7.0-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (507 kB)
+Using cached six-1.17.0-py2.py3-none-any.whl (11 kB)
+Using cached tqdm-4.67.3-py3-none-any.whl (78 kB)
+Installing collected packages: addict, urllib3, tqdm, six, safetensors, regex, pyyaml, pyparsing, platformdirs, Pillow, numpy, kiwisolver, idna, hf-xet, fonttools, defusedxml, cycler, charset_normalizer, certifi, yapf, scipy, requests, python-dateutil, pycocotools, opencv-python-headless, contourpy, matplotlib, huggingface_hub, tokenizers, timm, supervision, transformers
+  Attempting uninstall: Pillow
+    Found existing installation: pillow 12.2.0
+    Uninstalling pillow-12.2.0:
+      Successfully uninstalled pillow-12.2.0
+  Attempting uninstall: numpy
+    Found existing installation: numpy 2.4.4
+    Uninstalling numpy-2.4.4:
+      Successfully uninstalled numpy-2.4.4
+
+Successfully installed Pillow-11.3.0 addict-2.4.0 certifi-2026.4.22 charset_normalizer-3.4.7 contourpy-1.3.3 cycler-0.12.1 defusedxml-0.7.1 fonttools-4.63.0 hf-xet-1.5.0 huggingface_hub-0.36.2 idna-3.15 kiwisolver-1.5.0 matplotlib-3.10.5 numpy-2.2.6 opencv-python-headless-4.12.0.88 platformdirs-4.9.6 pycocotools-2.0.10 pyparsing-3.3.2 python-dateutil-2.9.0.post0 pyyaml-6.0.3 regex-2026.5.9 requests-2.32.5 safetensors-0.7.0 scipy-1.17.1 six-1.17.0 supervision-0.22.0 timm-0.9.16 tokenizers-0.19.1 tqdm-4.67.3 transformers-4.41.2 urllib3-2.7.0 yapf-0.43.0
+Looking in indexes: http://nexus.sii.shaipower.online/repository/pypi/simple
+Obtaining file:///inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper%20Reproduction/runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/repo
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: groundingdino
+  Building editable for groundingdino (pyproject.toml): started
+  Building editable for groundingdino (pyproject.toml): finished with status 'done'
+  Created wheel for groundingdino: filename=groundingdino-0.1.0-0.editable-py3-none-any.whl size=11221 sha256=56a835ee774bdf560d936d3a53594753ac9528364c91192955f5f849297e5ad1
+  Stored in directory: /tmp/pip-ephem-wheel-cache-dhucg59o/wheels/ae/96/62/5a4a398fe76cdc9e509b660de4db0fea568a0af8080a2467b4
+Successfully built groundingdino
+Installing collected packages: groundingdino
+Successfully installed groundingdino-0.1.0
+The cache for model files in Transformers v4.22.0 has been updated. Migrating your old cache. This is a one-time only operation. You can interrupt this and resume the migration later on by calling `transformers.utils.move_cache()`.
+0it [00:00, ?it/s]0it [00:00, ?it/s]
+UserWarning: Failed to load custom C++ ops. Running on CPU mode Only!
+SyntaxWarning: invalid escape sequence '\s'
+python 3.12.3
+torch 2.8.0+cpu
+torchvision 0.23.0+cpu
+transformers 4.41.2
+timm 0.9.16
+supervision 0.22.0
+opencv-python-headless 4.12.0.88
+pycocotools 2.0.10
+requests 2.32.5
+groundingdino 0.1.0
+caption_probe dog and ball.
+[install] downloading checkpoint to runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/models/groundingdino_swint_ogc.pth
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0  661M    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  3  661M    3 25.0M    0     0  11.0M      0  0:00:59  0:00:02  0:00:57 28.1M  7  661M    7 50.0M    0     0  15.2M      0  0:00:43  0:00:03  0:00:40 26.2M 13  661M   13 90.0M    0     0  20.9M      0  0:00:31  0:00:04  0:00:27 30.9M 19  661M   19  130M    0     0  24.4M      0  0:00:27  0:00:05  0:00:22 33.0M 25  661M   25  170M    0     0  26.8M      0  0:00:24  0:00:06  0:00:18 34.3M 31  661M   31  209M    0     0  28.7M      0  0:00:23  0:00:07  0:00:16 36.8M 37  661M   37  246M    0     0  29.7M      0  0:00:22  0:00:08  0:00:14 39.3M 42  661M   42  282M    0     0  30.5M      0  0:00:21  0:00:09  0:00:12 38.7M 46  661M   46  310M    0     0  29.1M      0  0:00:22  0:00:10  0:00:12 33.7M 50  661M   50  335M    0     0  29.7M      0  0:00:22  0:00:11  0:00:11 33.4M 51  661M   51  340M    0     0  27.6M      0  0:00:23  0:00:12  0:00:11 26.1M 51  661M   51  340M    0     0  25.6M      0  0:00:25  0:00:13  0:00:12 18.8M 54  661M   54  358M    0     0  25.1M      0  0:00:26  0:00:14  0:00:12 15.1M 59  661M   59  392M    0     0  25.7M      0  0:00:25  0:00:15  0:00:10 17.9M 63  661M   63  419M    0     0  25.7M      0  0:00:25  0:00:16  0:00:09 16.8M 68  661M   68  452M    0     0  26.2M      0  0:00:25  0:00:17  0:00:08 22.6M 71  661M   71  475M    0     0  26.0M      0  0:00:25  0:00:18  0:00:07 27.0M 75  661M   75  500M    0     0  25.8M      0  0:00:25  0:00:19  0:00:06 27.8M 78  661M   78  522M    0     0  25.7M      0  0:00:25  0:00:20  0:00:05 25.9M 83  661M   83  549M    0     0  25.8M      0  0:00:25  0:00:21  0:00:04 26.0M 86  661M   86  570M    0     0  25.2M      0  0:00:26  0:00:22  0:00:04 22.0M 90  661M   90  598M    0     0  25.7M      0  0:00:25  0:00:23  0:00:02 24.4M 94  661M   94  626M    0     0  25.8M      0  0:00:25  0:00:24  0:00:01 25.8M 99  661M   99  660M    0     0  25.7M      0  0:00:25  0:00:25 --:--:-- 25.8M100  661M  100  661M    0     0  25.8M      0  0:00:25  0:00:25 --:--:-- 25.7M
+-rw-r--r-- 1 root root 662M May 15 17:23 runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/models/groundingdino_swint_ogc.pth
+3b3ca2563c77c69f651d7bd133e97139c186df06231157a64c507099c52bc799  runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/models/groundingdino_swint_ogc.pth
+[install] finished_at=2026-05-15T17:23:45+00:00

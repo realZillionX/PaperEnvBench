@@ -1,0 +1,23 @@
+primary_failure_tags:
+  - system_package_missing
+  - python_version_conflict
+  - torch_cuda_matrix
+  - checkpoint_download
+  - entrypoint_ambiguity
+  - verification_ambiguity
+observed_failures:
+  - tag: system_package_missing
+    evidence: "Initial verify probe failed because ffmpeg was not installed in the notebook image."
+    mitigation: "gold_install.sh installs ffmpeg and checks ffprobe before verification."
+  - tag: python_version_conflict
+    evidence: "The repo requires torchaudio<2.1, but the notebook uses Python 3.12 where that range has no compatible wheel."
+    mitigation: "gold_install.sh installs torch==2.4.1 and torchaudio==2.4.1, then installs the repo with --no-deps."
+  - tag: checkpoint_download
+    evidence: "Default htdemucs needs remote pretrained assets."
+    mitigation: "verify.py uses the built-in demucs_unittest model for the L4 fallback separation artifact."
+anti_patterns:
+  - "Treating demucs --help or import demucs as L4 success."
+  - "Letting pip resolve the stale torchaudio<2.1 constraint on Python 3.12."
+  - "Running verify.py from a directory that shadows the installed demucs package."
+  - "Requiring the default htdemucs checkpoint for a CPU minimal smoke."
+

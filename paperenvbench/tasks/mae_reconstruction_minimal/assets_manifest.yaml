@@ -1,0 +1,27 @@
+assets:
+  - asset_id: mae_source_repo
+    type: git_repository
+    required: true
+    url: https://github.com/facebookresearch/mae
+    commit: efb2a8062c206524e35e47d04501ed4f544c0ae8
+    cached_path: paper-repro:runs/paperenvbench/image/mae_reconstruction_minimal/mae
+    checksum: null
+  - asset_id: synthetic_gradient_checker_image
+    type: image
+    required: true
+    generated_by: verify.py
+    cached_path: paper-repro:runs/paperenvbench/image/mae_reconstruction_minimal/artifacts/synthetic_input.png
+    checksum: sha256:18d42a33c2f81eb50c93c7937c6a85276d124cb8704286c9b5c9f5ba6f0f8008
+  - asset_id: mae_reconstruction_grid
+    type: image
+    required: true
+    generated_by: verify.py
+    cached_path: paper-repro:runs/paperenvbench/image/mae_reconstruction_minimal/artifacts/expected_artifact.png
+    checksum: sha256:13d0d3a3e267be96a3bd08328c880fb3a9ac5c7a1f2962eea8db446ef4c92bb7
+  - asset_id: pretrained_mae_checkpoints
+    type: checkpoint
+    required: false
+    source: https://dl.fbaipublicfiles.com/mae/pretrain/
+    risk: large_download_or_network_control
+    note: "Not required for this CPU minimal task; verification uses initialized MAE weights and checks the forward reconstruction path."
+    checksum: null

@@ -1,0 +1,99 @@
+{
+  "task_id": "detr_object_detection_minimal",
+  "required_artifacts": [
+    "expected_artifact.json",
+    "expected_input.jpg",
+    "expected_detection_overlay.jpg"
+  ],
+  "expected_repo_commit": "29901c51d7fe8712168b8d0d64351170bc0f83e0",
+  "checkpoint": {
+    "url": "https://dl.fbaipublicfiles.com/detr/detr-r50-e632da11.pth",
+    "sha256": "e632da11ec76ae67bac2f8579fbed3724e08dead7d200ca13e019b197784eadc",
+    "size_bytes": 166618694
+  },
+  "input": {
+    "url": "http://images.cocodataset.org/val2017/000000039769.jpg",
+    "sha256": "dea9e7ef97386345f7cff32f9055da4982da5471c48d575146c796ab4563b04e",
+    "width": 640,
+    "height": 480
+  },
+  "semantic_thresholds": {
+    "expected_pred_logits_shape": [
+      1,
+      100,
+      92
+    ],
+    "expected_pred_boxes_shape": [
+      1,
+      100,
+      4
+    ],
+    "min_cat_score": 0.95,
+    "min_high_confidence_score": 0.7,
+    "min_high_confidence_count": 3
+  },
+  "required_fields": [
+    "task_id",
+    "repo_commit",
+    "checkpoint",
+    "input_image",
+    "raw_output",
+    "detections_top10",
+    "checks",
+    "success_level"
+  ],
+  "gold_observed": {
+    "success_level": "L4",
+    "python": "3.12.3",
+    "package_versions": {
+      "torch": "2.8.0+cpu",
+      "torchvision": "0.23.0+cpu",
+      "numpy": "2.4.4",
+      "pillow": "12.2.0",
+      "scipy": "1.17.0"
+    },
+    "artifact_sha256": "0380ac810751ac24834e2ab64dc4fc187bdb1f3c00467d6a741c8c7e515eed5f",
+    "overlay_sha256": "2cb2996249ee03b4156e02c55601824c50c9b3a2dd500d2ff4e10cf038833a6b",
+    "requirements_lock_sha256": "78dbfbb8ad5b38ed58e3c967a42fce2eac3e7dbed0532e8f76a5bb7686624639",
+    "raw_output": {
+      "pred_logits_shape": [
+        1,
+        100,
+        92
+      ],
+      "pred_boxes_shape": [
+        1,
+        100,
+        4
+      ],
+      "pred_logits_sha256": "a75326e87bcc453aaa26e0f04043bc55da225e24907a431fc5987c872a62764e",
+      "pred_boxes_sha256": "b552ff4d2e944eb322adfe515353c9efe9a5871be58c41947489d1d21a275f88"
+    },
+    "top_detections": [
+      {
+        "rank": 1,
+        "label_id": 17,
+        "label_name": "cat",
+        "score": 0.999036,
+        "box_xyxy": [
+          342.9054,
+          36.8522,
+          639.5816,
+          368.1479
+        ]
+      },
+      {
+        "rank": 2,
+        "label_id": 17,
+        "label_name": "cat",
+        "score": 0.996362,
+        "box_xyxy": [
+          16.9077,
+          58.3018,
+          312.2003,
+          465.9937
+        ]
+      }
+    ]
+  }
+}

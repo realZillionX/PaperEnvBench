@@ -1,0 +1,648 @@
+version: 0.2.0
+updated_at: "2026-05-16"
+selection_policy:
+  goal: "维护 50 个 PaperEnvBench 主任务的有效清单与 gold 构建状态。"
+  constraints:
+    - "Python 主导，允许少量 C++ / CUDA extension，但最终路线不得依赖 Docker。"
+    - "必须能固定 commit，并构造 single-sample inference、checkpoint loading、output artifact 或 metric smoke test。"
+    - "资产必须可控：优先使用合成输入、公开小权重、公共模型缓存或可替代 toy dataset。"
+    - "避免只验证 import 的任务、纯工程库任务、需要私有 API / gated license 的任务，以及完整训练才有意义的任务。"
+  live_checks:
+    - "2026-05-16 用 GitHub API metadata 对 50 个主任务 repo 做 URL 存活校验，均返回 HTTP 200。"
+  split_counts:
+    dev: 20
+    val: 10
+    test: 20
+  taxonomy_counts:
+    audio_speech: 5
+    image_classification_representation: 5
+    object_detection_segmentation: 6
+    video_understanding_generation: 5
+    vision_language_multimodal: 6
+    llm_nlp: 6
+    diffusion_generation: 5
+    graph_learning_recommender: 4
+    reinforcement_learning_simulation: 4
+    scientific_geometry_3d: 4
+
+tasks:
+  - task_id: whisper_asr_minimal
+    candidate_status: gold_verified_l4
+    split: dev
+    repo_url: https://github.com/openai/whisper
+    commit: 04f449b
+    paper_title: "Robust Speech Recognition via Large-Scale Weak Supervision"
+    taxonomy:
+      modality_primary: audio_speech
+      environment_challenges: [system_package_missing, checkpoint_download, torch_cuda_matrix, entrypoint_ambiguity]
+      verification_type: [cli_help, single_sample_inference, output_artifact]
+      expected_skill_routes: [global_reproducibility_safety, audio_env_setup, checkpoint_validation, minimal_entrypoint_discovery]
+    asset_control: controlled_synthetic_audio_public_checkpoint
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
+    selection_reason: "音频 / CLI / checkpoint / ffmpeg 的种子任务，已有远端 CPU L4 smoke。"
+  - task_id: demucs_music_separation
+    candidate_status: gold_verified_l4_fallback
+    split: dev
+    repo_url: https://github.com/facebookresearch/demucs
+    commit: e976d93ecc3865e5757426930257e200846a520a
+    paper_title: "Hybrid Transformers for Music Source Separation"
+    taxonomy:
+      modality_primary: audio_speech
+      environment_challenges: [system_package_missing, python_version_conflict, torch_cuda_matrix, checkpoint_download, entrypoint_ambiguity, verification_ambiguity]
+      verification_type: [cli_help, single_sample_inference, output_artifact, semantic_check]
+      expected_skill_routes: [global_reproducibility_safety, audio_env_setup, torch_cuda_matrix_solver, checkpoint_validation, minimal_entrypoint_discovery]
+    asset_control: controlled_synthetic_audio_public_checkpoint
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
+    selection_reason: "覆盖音源分离、音频 artifact 和预训练权重下载。"
+  - task_id: silero_vad_speech_activity
+    candidate_status: gold_verified_l4
+    split: val
+    repo_url: https://github.com/snakers4/silero-vad
+    commit: 980b17e9d56463e51393a8d92ded473f1b17896a
+    paper_title: "Silero Voice Activity Detector"
+    taxonomy:
+      modality_primary: audio_speech
+      environment_challenges: [torch_cuda_matrix, system_package_missing, hidden_dependency, entrypoint_ambiguity, verification_ambiguity]
+      verification_type: [import_graph, single_sample_inference, output_artifact, semantic_check]
+      expected_skill_routes: [global_reproducibility_safety, audio_env_setup, checkpoint_validation, minimal_entrypoint_discovery]
+    asset_control: controlled_synthetic_audio_public_checkpoint
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
+    selection_reason: "覆盖轻量 VAD、torch hub / checkpoint 缓存和 timestamp JSON 检查。"
+  - task_id: encodec_audio_codec_minimal
+    candidate_status: gold_verified_l4
+    split: test
+    repo_url: https://github.com/facebookresearch/encodec
+    commit: 0e2d0aed29362c8e8f52494baf3e6f99056b214f
+    paper_title: "High Fidelity Neural Audio Compression"
+    taxonomy:
+      modality_primary: audio_speech
+      environment_challenges: [checkpoint_download, torch_cuda_matrix, system_package_missing, hardware_pressure]
+      verification_type: [checkpoint_loading, single_sample_inference, output_artifact]
+      expected_skill_routes: [global_reproducibility_safety, audio_env_setup, checkpoint_validation, torch_cuda_matrix_solver]
+    asset_control: controlled_synthetic_audio_public_checkpoint
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
+    selection_reason: "覆盖 neural codec、重构音频 artifact 和小模型 checkpoint。"
+  - task_id: speechbrain_keyword_spotting
+    candidate_status: gold_verified_l4
+    split: test
+    repo_url: https://github.com/speechbrain/speechbrain
+    commit: 8a89ebad72af734b75bbd37565ae96a6819e146b
+    paper_title: "SpeechBrain: A General-Purpose Speech Toolkit"
+    taxonomy:
+      modality_primary: audio_speech
+      environment_challenges: [checkpoint_download, torch_cuda_matrix, hidden_dependency, dataset_asset_missing, verification_ambiguity]
+      verification_type: [import_graph, single_sample_inference, output_artifact, semantic_check]
+      expected_skill_routes: [global_reproducibility_safety, audio_env_setup, checkpoint_validation, minimal_entrypoint_discovery]
+    asset_control: controlled_toy_audio_public_or_fallback_checkpoint
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
+    selection_reason: "覆盖语音 toolkit、pretrained interface 和数据 / 权重可控性边界。"
+  - task_id: dino_vit_feature_minimal
+    candidate_status: gold_verified_l4
+    split: dev
+    repo_url: https://github.com/facebookresearch/dino
+    commit: 7c446df5b9f45747937fb0d72314eb9f7b66930a
+    paper_title: "Emerging Properties in Self-Supervised Vision Transformers"
+    taxonomy: {modality_primary: image_classification_representation, environment_challenges: [checkpoint_download, torch_cuda_matrix, hidden_dependency, entrypoint_ambiguity], verification_type: [checkpoint_loading, single_sample_inference, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, checkpoint_validation, torch_cuda_matrix_solver, minimal_entrypoint_discovery]}
+    asset_control: controlled_synthetic_image_public_checkpoint
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
+    selection_reason: "代表自监督 ViT feature extraction。"
+  - task_id: dinov2_feature_minimal
+    candidate_status: gold_verified_l4
+    split: dev
+    repo_url: https://github.com/facebookresearch/dinov2
+    commit: 7b187bd4df8efce2cbcbbb67bd01532c19bf4c9c
+    paper_title: "DINOv2: Learning Robust Visual Features without Supervision"
+    taxonomy: {modality_primary: image_classification_representation, environment_challenges: [checkpoint_download, torch_cuda_matrix, hidden_dependency, hardware_pressure, entrypoint_ambiguity, verification_ambiguity], verification_type: [import_graph, single_sample_inference, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, checkpoint_validation, torch_cuda_matrix_solver, minimal_entrypoint_discovery]}
+    asset_control: controlled_synthetic_image_public_checkpoint
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
+    selection_reason: "覆盖现代视觉表征仓库和 hub / checkpoint 路线。"
+  - task_id: convnext_classification_minimal
+    candidate_status: gold_verified_l4_fallback
+    split: val
+    repo_url: https://github.com/facebookresearch/ConvNeXt
+    commit: 048efcea897d999aed302f2639b6270aedf8d4c8
+    paper_title: "A ConvNet for the 2020s"
+    taxonomy: {modality_primary: image_classification_representation, environment_challenges: [checkpoint_download, torch_cuda_matrix, python_version_conflict, hidden_dependency, entrypoint_ambiguity, verification_ambiguity], verification_type: [import_graph, single_sample_inference, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, checkpoint_validation, torch_cuda_matrix_solver, minimal_entrypoint_discovery]}
+    asset_control: controlled_synthetic_image_public_checkpoint
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
+    selection_reason: "覆盖分类 demo、torchvision / timm 依赖和 checkpoint 验证。"
+  - task_id: mae_reconstruction_minimal
+    candidate_status: gold_verified_l4
+    split: test
+    repo_url: https://github.com/facebookresearch/mae
+    commit: efb2a8062c206524e35e47d04501ed4f544c0ae8
+    paper_title: "Masked Autoencoders Are Scalable Vision Learners"
+    taxonomy: {modality_primary: image_classification_representation, environment_challenges: [python_version_conflict, hidden_dependency, torch_cuda_matrix, entrypoint_ambiguity, verification_ambiguity], verification_type: [import_graph, single_sample_inference, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, torch_cuda_matrix_solver, minimal_entrypoint_discovery]}
+    asset_control: controlled_synthetic_image_public_checkpoint
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
+    selection_reason: "覆盖 reconstruction artifact，而不是只做分类概率。"
+  - task_id: moco_feature_minimal
+    candidate_status: gold_verified_l4
+    split: test
+    repo_url: https://github.com/facebookresearch/moco
+    commit: 7397dfe146c7ca6bbb58e9c382498069178ba764
+    paper_title: "Momentum Contrast for Unsupervised Visual Representation Learning"
+    taxonomy: {modality_primary: image_classification_representation, environment_challenges: [checkpoint_download, torch_cuda_matrix, stale_readme, entrypoint_ambiguity, verification_ambiguity], verification_type: [import_graph, single_sample_inference, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, checkpoint_validation, torch_cuda_matrix_solver, minimal_entrypoint_discovery]}
+    asset_control: controlled_synthetic_image_public_checkpoint
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
+    selection_reason: "覆盖较旧 PyTorch 研究仓的依赖漂移。"
+  - task_id: sam_mask_minimal
+    candidate_status: gold_verified_l4
+    split: dev
+    repo_url: https://github.com/facebookresearch/segment-anything
+    commit: dca509fe793f601edb92606367a655c15ac00fdf
+    paper_title: "Segment Anything"
+    taxonomy: {modality_primary: object_detection_segmentation, environment_challenges: [checkpoint_download, system_package_missing, torch_cuda_matrix, hardware_pressure], verification_type: [checkpoint_loading, single_sample_inference, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, vision_segmentation_env_setup, checkpoint_validation, torch_cuda_matrix_solver]}
+    asset_control: controlled_synthetic_image_public_checkpoint
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
+    selection_reason: "分割 / checkpoint / mask artifact 的种子任务，已有远端 CPU L4 smoke。"
+  - task_id: detectron2_maskrcnn_minimal
+    candidate_status: gold_verified_l4
+    split: dev
+    repo_url: https://github.com/facebookresearch/detectron2
+    commit: e0ec4e189d438848521aee7926f9900e114229f5
+    paper_title: "Detectron2"
+    taxonomy: {modality_primary: object_detection_segmentation, environment_challenges: [native_extension_build, torch_cuda_matrix, system_package_missing, hidden_dependency, checkpoint_download], verification_type: [checkpoint_loading, single_sample_inference, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, vision_segmentation_env_setup, native_extension_repair, torch_cuda_matrix_solver, checkpoint_validation]}
+    asset_control: controlled_synthetic_image_public_checkpoint
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
+    selection_reason: "代表 detectron2 native extension 和 COCO-style output。"
+  - task_id: mmdetection_fasterrcnn_minimal
+    candidate_status: gold_verified_l4_fallback
+    split: val
+    repo_url: https://github.com/open-mmlab/mmdetection
+    commit: cfd5d3a985b0249de009b67d04f37263e11cdf3d
+    paper_title: "MMDetection: Open MMLab Detection Toolbox and Benchmark"
+    taxonomy: {modality_primary: object_detection_segmentation, environment_challenges: [native_extension_build, torch_cuda_matrix, hidden_dependency, checkpoint_download, python_version_conflict, verification_ambiguity], verification_type: [import_graph, single_sample_inference, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, vision_segmentation_env_setup, native_extension_repair, torch_cuda_matrix_solver]}
+    asset_control: controlled_synthetic_image_public_config_checkpoint
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
+    selection_reason: "覆盖 OpenMMLab 依赖栈和 mmcv 矩阵。"
+  - task_id: detr_object_detection_minimal
+    candidate_status: gold_verified_l4
+    split: test
+    repo_url: https://github.com/facebookresearch/detr
+    commit: 29901c51d7fe8712168b8d0d64351170bc0f83e0
+    paper_title: "End-to-End Object Detection with Transformers"
+    taxonomy: {modality_primary: object_detection_segmentation, environment_challenges: [checkpoint_download, torch_cuda_matrix, hidden_dependency, entrypoint_ambiguity, verification_ambiguity], verification_type: [checkpoint_loading, single_sample_inference, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, vision_segmentation_env_setup, checkpoint_validation, torch_cuda_matrix_solver, minimal_entrypoint_discovery]}
+    asset_control: controlled_public_coco_image_public_checkpoint
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
+    selection_reason: "代表 transformer detection 和输出框语义检查。"
+  - task_id: groundingdino_phrase_grounding_minimal
+    candidate_status: gold_verified_l4
+    split: test
+    repo_url: https://github.com/IDEA-Research/GroundingDINO
+    commit: 856dde20aee659246248e20734ef9ba5214f5e44
+    paper_title: "Grounding DINO: Marrying DINO with Grounded Pre-Training for Open-Set Object Detection"
+    taxonomy: {modality_primary: object_detection_segmentation, environment_challenges: [native_extension_build, checkpoint_download, torch_cuda_matrix, hidden_dependency, python_version_conflict, verification_ambiguity], verification_type: [checkpoint_loading, single_sample_inference, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, vision_segmentation_env_setup, checkpoint_validation, native_extension_repair, torch_cuda_matrix_solver, hidden_dependency_inferer]}
+    asset_control: controlled_synthetic_image_public_checkpoint
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
+    selection_reason: "覆盖 phrase grounding、文本条件 detection 和编译风险。"
+  - task_id: mmsegmentation_segformer_minimal
+    candidate_status: gold_verified_l4_fallback
+    split: test
+    repo_url: https://github.com/open-mmlab/mmsegmentation
+    commit: b040e147adfa027bbc071b624bedf0ae84dfc922
+    paper_title: "MMSegmentation: OpenMMLab Semantic Segmentation Toolbox"
+    taxonomy: {modality_primary: object_detection_segmentation, environment_challenges: [native_extension_build, torch_cuda_matrix, hidden_dependency, system_package_missing, entrypoint_ambiguity, verification_ambiguity], verification_type: [import_graph, single_sample_inference, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, vision_segmentation_env_setup, torch_cuda_matrix_solver, native_extension_repair, hidden_dependency_inferer]}
+    asset_control: controlled_synthetic_image_public_config_checkpoint
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
+    selection_reason: "覆盖 semantic segmentation mask artifact 与 OpenMMLab 配置。"
+  - task_id: pytorchvideo_classification_minimal
+    candidate_status: gold_verified_l4_fallback
+    split: dev
+    repo_url: https://github.com/facebookresearch/pytorchvideo
+    commit: f3142bb05cdb56af0704ab6f0adfb0c7bbafe4a0
+    paper_title: "PyTorchVideo: A Deep Learning Library for Video Understanding"
+    taxonomy: {modality_primary: video_understanding_generation, environment_challenges: [system_package_missing, checkpoint_download, torch_cuda_matrix, hidden_dependency, entrypoint_ambiguity, verification_ambiguity], verification_type: [import_graph, single_sample_inference, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, video_env_setup, checkpoint_validation, torch_cuda_matrix_solver, system_package_resolver]}
+    asset_control: controlled_synthetic_video_public_checkpoint
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
+    selection_reason: "代表视频分类、帧解码和 pretrained model。"
+  - task_id: slowfast_video_classification_minimal
+    candidate_status: gold_verified_l4_fallback
+    split: dev
+    repo_url: https://github.com/facebookresearch/SlowFast
+    commit: 287ec0076846560f44a9327e931a5a2360240533
+    paper_title: "SlowFast Networks for Video Recognition"
+    taxonomy: {modality_primary: video_understanding_generation, environment_challenges: [system_package_missing, checkpoint_download, torch_cuda_matrix, entrypoint_ambiguity, hidden_dependency, stale_readme, verification_ambiguity], verification_type: [import_graph, single_sample_inference, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, video_env_setup, checkpoint_validation, torch_cuda_matrix_solver, minimal_entrypoint_discovery]}
+    asset_control: controlled_synthetic_video_public_checkpoint
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
+    selection_reason: "覆盖旧版视频模型和多路径输入处理。"
+  - task_id: videomae_classification_minimal
+    candidate_status: gold_verified_l4_fallback
+    split: val
+    repo_url: https://github.com/MCG-NJU/VideoMAE
+    commit: 14ef8d856287c94ef1f985fe30f958eb4ec2c55d
+    paper_title: "VideoMAE: Masked Autoencoders are Data-Efficient Learners for Self-Supervised Video Pre-Training"
+    taxonomy: {modality_primary: video_understanding_generation, environment_challenges: [checkpoint_download, torch_cuda_matrix, hidden_dependency, hardware_pressure, python_version_conflict, entrypoint_ambiguity, verification_ambiguity], verification_type: [import_graph, single_sample_inference, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, video_env_setup, checkpoint_validation, torch_cuda_matrix_solver, minimal_entrypoint_discovery]}
+    asset_control: controlled_synthetic_video_public_checkpoint
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
+    selection_reason: "覆盖 video transformer 和 clip sampling 语义检查。"
+  - task_id: mmaction2_recognition_minimal
+    candidate_status: gold_verified_l4_fallback
+    split: test
+    repo_url: https://github.com/open-mmlab/mmaction2
+    commit: a5a167dff2399e2d182a60332325f9c0d4663517
+    paper_title: "MMAction2: OpenMMLab Video Understanding Toolbox"
+    taxonomy: {modality_primary: video_understanding_generation, environment_challenges: [native_extension_build, system_package_missing, checkpoint_download, torch_cuda_matrix, hidden_dependency, entrypoint_ambiguity, verification_ambiguity], verification_type: [import_graph, single_sample_inference, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, video_env_setup, native_extension_repair, checkpoint_validation, torch_cuda_matrix_solver]}
+    asset_control: controlled_synthetic_video_public_config_checkpoint
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
+    selection_reason: "覆盖 OpenMMLab 视频栈、decord / ffmpeg 和配置依赖。"
+  - task_id: timesformer_video_transformer_minimal
+    candidate_status: gold_verified_l4_fallback
+    split: test
+    repo_url: https://github.com/facebookresearch/TimeSformer
+    commit: a5ef29a7b7264baff199a30b3306ac27de901133
+    paper_title: "Is Space-Time Attention All You Need for Video Understanding?"
+    taxonomy: {modality_primary: video_understanding_generation, environment_challenges: [checkpoint_download, torch_cuda_matrix, entrypoint_ambiguity, stale_readme, hidden_dependency, python_version_conflict, verification_ambiguity], verification_type: [single_sample_inference, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, video_env_setup, checkpoint_validation, torch_cuda_matrix_solver, minimal_entrypoint_discovery]}
+    asset_control: controlled_synthetic_video_public_checkpoint
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
+    selection_reason: "覆盖较旧视频 transformer 仓库的入口与依赖漂移。"
+  - task_id: clip_zeroshot_minimal
+    candidate_status: gold_verified_l4
+    split: dev
+    repo_url: https://github.com/openai/CLIP
+    commit: d05afc436d78f1c48dc0dbf8e5980a9d471f35f6
+    paper_title: "Learning Transferable Visual Models From Natural Language Supervision"
+    taxonomy: {modality_primary: vision_language_multimodal, environment_challenges: [torch_cuda_matrix, checkpoint_download, hidden_dependency, verification_ambiguity], verification_type: [import_graph, single_sample_inference, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, vision_language_env_setup, torch_cuda_matrix_solver, checkpoint_validation, minimal_entrypoint_discovery]}
+    asset_control: controlled_synthetic_image_public_checkpoint
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
+    selection_reason: "视觉语言 / 权重下载 / 概率输出种子任务，已有远端 CPU L4 smoke。"
+  - task_id: open_clip_zeroshot_minimal
+    candidate_status: selected_pending_gold
+    split: dev
+    repo_url: https://github.com/mlfoundations/open_clip
+    commit: pin_pending_gold
+    paper_title: "OpenCLIP: Reproducible Scaling Laws for Contrastive Language-Image Learning"
+    taxonomy: {modality_primary: vision_language_multimodal, environment_challenges: [checkpoint_download, torch_cuda_matrix, hidden_dependency], verification_type: [checkpoint_loading, single_sample_inference, semantic_check], expected_skill_routes: [global_reproducibility_safety, vision_language_env_setup, checkpoint_validation, torch_cuda_matrix_solver]}
+    asset_control: controlled_synthetic_image_public_checkpoint
+    gold_ready: false
+    verifier_ready: false
+    asset_ready: false
+    selection_reason: "覆盖 CLIP 生态变体、tokenizer 和 model zoo 路由。"
+  - task_id: blip_caption_minimal
+    candidate_status: selected_pending_gold
+    split: val
+    repo_url: https://github.com/salesforce/BLIP
+    commit: pin_pending_gold
+    paper_title: "BLIP: Bootstrapping Language-Image Pre-training for Unified Vision-Language Understanding and Generation"
+    taxonomy: {modality_primary: vision_language_multimodal, environment_challenges: [checkpoint_download, torch_cuda_matrix, hidden_dependency, hardware_pressure], verification_type: [checkpoint_loading, single_sample_inference, semantic_check], expected_skill_routes: [global_reproducibility_safety, vision_language_env_setup, checkpoint_validation, torch_cuda_matrix_solver]}
+    asset_control: controlled_synthetic_image_public_checkpoint
+    gold_ready: false
+    verifier_ready: false
+    asset_ready: false
+    selection_reason: "覆盖 caption generation、processor/tokenizer 和语义文本检查。"
+  - task_id: lavis_blip2_minimal
+    candidate_status: selected_pending_gold
+    split: test
+    repo_url: https://github.com/salesforce/LAVIS
+    commit: pin_pending_gold
+    paper_title: "BLIP-2: Bootstrapping Language-Image Pre-training with Frozen Image Encoders and Large Language Models"
+    taxonomy: {modality_primary: vision_language_multimodal, environment_challenges: [checkpoint_download, torch_cuda_matrix, hidden_dependency, hardware_pressure], verification_type: [checkpoint_loading, single_sample_inference, semantic_check], expected_skill_routes: [global_reproducibility_safety, vision_language_env_setup, checkpoint_validation, torch_cuda_matrix_solver]}
+    asset_control: controlled_synthetic_image_public_or_fallback_checkpoint
+    gold_ready: false
+    verifier_ready: false
+    asset_ready: false
+    selection_reason: "覆盖 LAVIS framework 和多模型配置。"
+  - task_id: llava_single_image_minimal
+    candidate_status: selected_pending_gold
+    split: test
+    repo_url: https://github.com/haotian-liu/LLaVA
+    commit: pin_pending_gold
+    paper_title: "Visual Instruction Tuning"
+    taxonomy: {modality_primary: vision_language_multimodal, environment_challenges: [checkpoint_download, torch_cuda_matrix, hardware_pressure, api_or_license_gate], verification_type: [checkpoint_loading, single_sample_inference, semantic_check], expected_skill_routes: [global_reproducibility_safety, vision_language_env_setup, checkpoint_validation, torch_cuda_matrix_solver]}
+    asset_control: public_checkpoint_with_license_review
+    gold_ready: false
+    verifier_ready: false
+    asset_ready: false
+    selection_reason: "覆盖多模态 LLM 权重、显存压力和 license gate 风险。"
+  - task_id: imagebind_embedding_minimal
+    candidate_status: selected_pending_gold
+    split: test
+    repo_url: https://github.com/facebookresearch/ImageBind
+    commit: pin_pending_gold
+    paper_title: "ImageBind: One Embedding Space To Bind Them All"
+    taxonomy: {modality_primary: vision_language_multimodal, environment_challenges: [checkpoint_download, torch_cuda_matrix, hidden_dependency, system_package_missing], verification_type: [checkpoint_loading, single_sample_inference, semantic_check], expected_skill_routes: [global_reproducibility_safety, vision_language_env_setup, checkpoint_validation, system_package_resolver]}
+    asset_control: controlled_synthetic_multimodal_inputs_public_checkpoint
+    gold_ready: false
+    verifier_ready: false
+    asset_ready: false
+    selection_reason: "覆盖 image/audio/text 多模态预处理和 embedding 检查。"
+  - task_id: bert_masked_lm_minimal
+    candidate_status: selected_pending_gold
+    split: dev
+    repo_url: https://github.com/google-research/bert
+    commit: pin_pending_gold
+    paper_title: "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding"
+    taxonomy: {modality_primary: llm_nlp, environment_challenges: [python_version_conflict, checkpoint_download, stale_readme, hidden_dependency], verification_type: [checkpoint_loading, single_sample_inference, semantic_check], expected_skill_routes: [global_reproducibility_safety, checkpoint_validation, minimal_entrypoint_discovery, hidden_dependency_inferer]}
+    asset_control: controlled_text_prompt_public_checkpoint_or_transformers_fallback
+    gold_ready: false
+    verifier_ready: false
+    asset_ready: false
+    selection_reason: "覆盖经典 NLP 旧仓和现代 fallback 取舍。"
+  - task_id: fasttext_text_classification_minimal
+    candidate_status: selected_pending_gold
+    split: dev
+    repo_url: https://github.com/facebookresearch/fastText
+    commit: pin_pending_gold
+    paper_title: "Bag of Tricks for Efficient Text Classification"
+    taxonomy: {modality_primary: llm_nlp, environment_challenges: [native_extension_build, system_package_missing, entrypoint_ambiguity], verification_type: [cli_help, training_smoke_test, semantic_check], expected_skill_routes: [global_reproducibility_safety, native_extension_repair, system_package_resolver, minimal_entrypoint_discovery]}
+    asset_control: controlled_toy_text_dataset_no_checkpoint
+    gold_ready: false
+    verifier_ready: false
+    asset_ready: false
+    selection_reason: "覆盖 native build、CLI 和 toy text 分类 metric smoke。"
+  - task_id: sentence_transformers_similarity_minimal
+    candidate_status: selected_pending_gold
+    split: val
+    repo_url: https://github.com/UKPLab/sentence-transformers
+    commit: pin_pending_gold
+    paper_title: "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks"
+    taxonomy: {modality_primary: llm_nlp, environment_challenges: [checkpoint_download, torch_cuda_matrix, hidden_dependency], verification_type: [checkpoint_loading, single_sample_inference, semantic_check], expected_skill_routes: [global_reproducibility_safety, checkpoint_validation, torch_cuda_matrix_solver, minimal_entrypoint_discovery]}
+    asset_control: controlled_text_pairs_public_checkpoint
+    gold_ready: false
+    verifier_ready: false
+    asset_ready: false
+    selection_reason: "覆盖 sentence embedding 和相似度语义检查。"
+  - task_id: lora_adapter_minimal
+    candidate_status: selected_pending_gold
+    split: test
+    repo_url: https://github.com/microsoft/LoRA
+    commit: pin_pending_gold
+    paper_title: "LoRA: Low-Rank Adaptation of Large Language Models"
+    taxonomy: {modality_primary: llm_nlp, environment_challenges: [checkpoint_download, torch_cuda_matrix, entrypoint_ambiguity, hardware_pressure], verification_type: [import_graph, checkpoint_loading, semantic_check], expected_skill_routes: [global_reproducibility_safety, checkpoint_validation, torch_cuda_matrix_solver, minimal_entrypoint_discovery]}
+    asset_control: controlled_tiny_model_or_synthetic_adapter
+    gold_ready: false
+    verifier_ready: false
+    asset_ready: false
+    selection_reason: "覆盖 adapter 注入和参数 delta 验证。"
+  - task_id: fairseq_translation_minimal
+    candidate_status: selected_pending_gold
+    split: test
+    repo_url: https://github.com/facebookresearch/fairseq
+    commit: pin_pending_gold
+    paper_title: "fairseq: A Fast, Extensible Toolkit for Sequence Modeling"
+    taxonomy: {modality_primary: llm_nlp, environment_challenges: [native_extension_build, torch_cuda_matrix, python_version_conflict, entrypoint_ambiguity], verification_type: [cli_help, single_sample_inference, semantic_check], expected_skill_routes: [global_reproducibility_safety, native_extension_repair, torch_cuda_matrix_solver, minimal_entrypoint_discovery]}
+    asset_control: controlled_toy_text_or_public_checkpoint
+    gold_ready: false
+    verifier_ready: false
+    asset_ready: false
+    selection_reason: "覆盖 sequence modeling 工具链和 native extension 风险。"
+  - task_id: t5_text_to_text_minimal
+    candidate_status: selected_pending_gold
+    split: test
+    repo_url: https://github.com/google-research/text-to-text-transfer-transformer
+    commit: pin_pending_gold
+    paper_title: "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer"
+    taxonomy: {modality_primary: llm_nlp, environment_challenges: [python_version_conflict, checkpoint_download, stale_readme, hidden_dependency], verification_type: [checkpoint_loading, single_sample_inference, semantic_check], expected_skill_routes: [global_reproducibility_safety, checkpoint_validation, hidden_dependency_inferer, minimal_entrypoint_discovery]}
+    asset_control: controlled_text_prompt_public_checkpoint_or_transformers_fallback
+    gold_ready: false
+    verifier_ready: false
+    asset_ready: false
+    selection_reason: "覆盖旧 research code 与现代 transformers fallback 的边界。"
+  - task_id: improved_diffusion_sample_minimal
+    candidate_status: selected_pending_gold
+    split: dev
+    repo_url: https://github.com/openai/improved-diffusion
+    commit: pin_pending_gold
+    paper_title: "Improved Denoising Diffusion Probabilistic Models"
+    taxonomy: {modality_primary: diffusion_generation, environment_challenges: [checkpoint_download, torch_cuda_matrix, hidden_dependency, hardware_pressure], verification_type: [checkpoint_loading, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, diffusion_env_setup, checkpoint_validation, torch_cuda_matrix_solver]}
+    asset_control: controlled_tiny_sampling_or_public_checkpoint
+    gold_ready: false
+    verifier_ready: false
+    asset_ready: false
+    selection_reason: "覆盖经典 diffusion 采样脚本和输出图片 artifact。"
+  - task_id: guided_diffusion_sample_minimal
+    candidate_status: selected_pending_gold
+    split: dev
+    repo_url: https://github.com/openai/guided-diffusion
+    commit: pin_pending_gold
+    paper_title: "Diffusion Models Beat GANs on Image Synthesis"
+    taxonomy: {modality_primary: diffusion_generation, environment_challenges: [checkpoint_download, torch_cuda_matrix, entrypoint_ambiguity, hardware_pressure], verification_type: [checkpoint_loading, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, diffusion_env_setup, checkpoint_validation, minimal_entrypoint_discovery]}
+    asset_control: controlled_tiny_sampling_or_public_checkpoint
+    gold_ready: false
+    verifier_ready: false
+    asset_ready: false
+    selection_reason: "覆盖 guided sampling 和脚本入口发现。"
+  - task_id: latent_diffusion_sample_minimal
+    candidate_status: selected_pending_gold
+    split: val
+    repo_url: https://github.com/CompVis/latent-diffusion
+    commit: pin_pending_gold
+    paper_title: "High-Resolution Image Synthesis with Latent Diffusion Models"
+    taxonomy: {modality_primary: diffusion_generation, environment_challenges: [checkpoint_download, torch_cuda_matrix, hidden_dependency, system_package_missing], verification_type: [checkpoint_loading, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, diffusion_env_setup, checkpoint_validation, system_package_resolver]}
+    asset_control: controlled_prompt_public_checkpoint_or_tiny_fallback
+    gold_ready: false
+    verifier_ready: false
+    asset_ready: false
+    selection_reason: "覆盖 latent diffusion 依赖和 config/checkpoint coupling。"
+  - task_id: stable_diffusion_text2img_minimal
+    candidate_status: selected_pending_gold
+    split: test
+    repo_url: https://github.com/CompVis/stable-diffusion
+    commit: pin_pending_gold
+    paper_title: "High-Resolution Image Synthesis with Latent Diffusion Models"
+    taxonomy: {modality_primary: diffusion_generation, environment_challenges: [checkpoint_download, torch_cuda_matrix, api_or_license_gate, hardware_pressure], verification_type: [checkpoint_loading, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, diffusion_env_setup, checkpoint_validation, torch_cuda_matrix_solver]}
+    asset_control: license_review_or_tiny_fallback
+    gold_ready: false
+    verifier_ready: false
+    asset_ready: false
+    selection_reason: "覆盖 text-to-image、license gate 和显存压力边界。"
+  - task_id: diffusers_tiny_pipeline_minimal
+    candidate_status: selected_pending_gold
+    split: test
+    repo_url: https://github.com/huggingface/diffusers
+    commit: pin_pending_gold
+    paper_title: "Diffusers: State-of-the-art diffusion models"
+    taxonomy: {modality_primary: diffusion_generation, environment_challenges: [checkpoint_download, torch_cuda_matrix, hidden_dependency], verification_type: [checkpoint_loading, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, diffusion_env_setup, checkpoint_validation, torch_cuda_matrix_solver]}
+    asset_control: controlled_tiny_public_pipeline
+    gold_ready: false
+    verifier_ready: false
+    asset_ready: false
+    selection_reason: "提供轻量 tiny pipeline 对照，帮助区分框架和论文仓问题。"
+  - task_id: pyg_gcn_minimal
+    candidate_status: selected_pending_gold
+    split: dev
+    repo_url: https://github.com/pyg-team/pytorch_geometric
+    commit: pin_pending_gold
+    paper_title: "PyTorch Geometric"
+    taxonomy: {modality_primary: graph_learning_recommender, environment_challenges: [native_extension_build, torch_cuda_matrix, hidden_dependency], verification_type: [import_graph, training_smoke_test, semantic_check], expected_skill_routes: [global_reproducibility_safety, graph_learning_env_setup, native_extension_repair, torch_cuda_matrix_solver]}
+    asset_control: controlled_toy_graph_no_external_dataset
+    gold_ready: false
+    verifier_ready: false
+    asset_ready: false
+    selection_reason: "覆盖 PyG wheel / extension 矩阵和 toy GCN smoke。"
+  - task_id: dgl_graphsage_minimal
+    candidate_status: selected_pending_gold
+    split: dev
+    repo_url: https://github.com/dmlc/dgl
+    commit: pin_pending_gold
+    paper_title: "Deep Graph Library"
+    taxonomy: {modality_primary: graph_learning_recommender, environment_challenges: [native_extension_build, torch_cuda_matrix, hidden_dependency], verification_type: [import_graph, training_smoke_test, semantic_check], expected_skill_routes: [global_reproducibility_safety, graph_learning_env_setup, native_extension_repair, torch_cuda_matrix_solver]}
+    asset_control: controlled_toy_graph_no_external_dataset
+    gold_ready: false
+    verifier_ready: false
+    asset_ready: false
+    selection_reason: "覆盖 DGL backend / wheel 选择和 toy GraphSAGE。"
+  - task_id: ogb_nodeprop_minimal
+    candidate_status: selected_pending_gold
+    split: val
+    repo_url: https://github.com/snap-stanford/ogb
+    commit: pin_pending_gold
+    paper_title: "Open Graph Benchmark"
+    taxonomy: {modality_primary: graph_learning_recommender, environment_challenges: [dataset_asset_missing, hidden_dependency, torch_cuda_matrix], verification_type: [metric_smoke_test, training_smoke_test, semantic_check], expected_skill_routes: [global_reproducibility_safety, graph_learning_env_setup, torch_cuda_matrix_solver, minimal_entrypoint_discovery]}
+    asset_control: controlled_toy_graph_or_small_public_dataset
+    gold_ready: false
+    verifier_ready: false
+    asset_ready: false
+    selection_reason: "覆盖 dataset download 与 graph metric smoke。"
+  - task_id: recbole_sequential_minimal
+    candidate_status: selected_pending_gold
+    split: test
+    repo_url: https://github.com/RUCAIBox/RecBole
+    commit: pin_pending_gold
+    paper_title: "RecBole: Towards a Unified, Comprehensive and Efficient Framework for Recommendation Algorithms"
+    taxonomy: {modality_primary: graph_learning_recommender, environment_challenges: [dataset_asset_missing, hidden_dependency, entrypoint_ambiguity], verification_type: [training_smoke_test, metric_smoke_test, semantic_check], expected_skill_routes: [global_reproducibility_safety, graph_learning_env_setup, minimal_entrypoint_discovery, hidden_dependency_inferer]}
+    asset_control: controlled_toy_recommendation_dataset
+    gold_ready: false
+    verifier_ready: false
+    asset_ready: false
+    selection_reason: "覆盖推荐系统配置、toy dataset 和 metric 输出。"
+  - task_id: gym_cartpole_minimal
+    candidate_status: selected_pending_gold
+    split: dev
+    repo_url: https://github.com/openai/gym
+    commit: pin_pending_gold
+    paper_title: "OpenAI Gym"
+    taxonomy: {modality_primary: reinforcement_learning_simulation, environment_challenges: [python_version_conflict, system_package_missing, hidden_dependency], verification_type: [import_graph, single_sample_inference, semantic_check], expected_skill_routes: [global_reproducibility_safety, rl_simulation_env_setup, system_package_resolver, minimal_entrypoint_discovery]}
+    asset_control: no_external_asset_toy_env
+    gold_ready: false
+    verifier_ready: false
+    asset_ready: false
+    selection_reason: "覆盖 RL 环境 API 和无外部资产 CartPole smoke。"
+  - task_id: stable_baselines3_cartpole_minimal
+    candidate_status: selected_pending_gold
+    split: dev
+    repo_url: https://github.com/DLR-RM/stable-baselines3
+    commit: pin_pending_gold
+    paper_title: "Stable-Baselines3: Reliable Reinforcement Learning Implementations"
+    taxonomy: {modality_primary: reinforcement_learning_simulation, environment_challenges: [hidden_dependency, torch_cuda_matrix, entrypoint_ambiguity], verification_type: [training_smoke_test, semantic_check, output_artifact], expected_skill_routes: [global_reproducibility_safety, rl_simulation_env_setup, torch_cuda_matrix_solver, minimal_entrypoint_discovery]}
+    asset_control: no_external_asset_toy_env
+    gold_ready: false
+    verifier_ready: false
+    asset_ready: false
+    selection_reason: "覆盖 RL training smoke、policy artifact 和 Gym compatibility。"
+  - task_id: cleanrl_cartpole_minimal
+    candidate_status: selected_pending_gold
+    split: val
+    repo_url: https://github.com/vwxyzjn/cleanrl
+    commit: pin_pending_gold
+    paper_title: "CleanRL: High-quality Single-file Implementations of Deep Reinforcement Learning Algorithms"
+    taxonomy: {modality_primary: reinforcement_learning_simulation, environment_challenges: [hidden_dependency, entrypoint_ambiguity, system_package_missing], verification_type: [training_smoke_test, metric_smoke_test, semantic_check], expected_skill_routes: [global_reproducibility_safety, rl_simulation_env_setup, minimal_entrypoint_discovery, system_package_resolver]}
+    asset_control: no_external_asset_toy_env
+    gold_ready: false
+    verifier_ready: false
+    asset_ready: false
+    selection_reason: "覆盖 single-file RL script、CLI 参数和短步训练。"
+  - task_id: sac_ae_pixel_control_minimal
+    candidate_status: selected_pending_gold
+    split: test
+    repo_url: https://github.com/denisyarats/pytorch_sac_ae
+    commit: pin_pending_gold
+    paper_title: "Improving Sample Efficiency in Model-Free Reinforcement Learning from Images"
+    taxonomy: {modality_primary: reinforcement_learning_simulation, environment_challenges: [system_package_missing, torch_cuda_matrix, entrypoint_ambiguity, hardware_pressure], verification_type: [training_smoke_test, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, rl_simulation_env_setup, torch_cuda_matrix_solver, minimal_entrypoint_discovery]}
+    asset_control: controlled_pixel_toy_env_or_import_fallback
+    gold_ready: false
+    verifier_ready: false
+    asset_ready: false
+    selection_reason: "覆盖 pixel-control RL、渲染依赖和旧环境风险。"
+  - task_id: open3d_pointcloud_minimal
+    candidate_status: selected_pending_gold
+    split: dev
+    repo_url: https://github.com/isl-org/Open3D
+    commit: pin_pending_gold
+    paper_title: "Open3D: A Modern Library for 3D Data Processing"
+    taxonomy: {modality_primary: scientific_geometry_3d, environment_challenges: [system_package_missing, native_extension_build, hidden_dependency], verification_type: [import_graph, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, geometry_3d_env_setup, system_package_resolver, native_extension_repair]}
+    asset_control: controlled_synthetic_point_cloud
+    gold_ready: false
+    verifier_ready: false
+    asset_ready: false
+    selection_reason: "覆盖 point cloud IO、渲染 / headless 依赖和 3D artifact。"
+  - task_id: nerfstudio_nerfacto_minimal
+    candidate_status: selected_pending_gold
+    split: dev
+    repo_url: https://github.com/nerfstudio-project/nerfstudio
+    commit: pin_pending_gold
+    paper_title: "Nerfstudio: A Modular Framework for Neural Radiance Field Development"
+    taxonomy: {modality_primary: scientific_geometry_3d, environment_challenges: [native_extension_build, torch_cuda_matrix, system_package_missing, hardware_pressure], verification_type: [cli_help, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, geometry_3d_env_setup, native_extension_repair, torch_cuda_matrix_solver]}
+    asset_control: controlled_tiny_nerf_scene_or_cli_fallback
+    gold_ready: false
+    verifier_ready: false
+    asset_ready: false
+    selection_reason: "覆盖 NeRF 生态、CLI 和 tiny scene / config。"
+  - task_id: gaussian_splatting_scene_minimal
+    candidate_status: selected_pending_gold
+    split: val
+    repo_url: https://github.com/graphdeco-inria/gaussian-splatting
+    commit: pin_pending_gold
+    paper_title: "3D Gaussian Splatting for Real-Time Radiance Field Rendering"
+    taxonomy: {modality_primary: scientific_geometry_3d, environment_challenges: [native_extension_build, torch_cuda_matrix, system_package_missing, hardware_pressure], verification_type: [checkpoint_loading, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, geometry_3d_env_setup, native_extension_repair, torch_cuda_matrix_solver]}
+    asset_control: controlled_tiny_scene_or_prebuilt_fallback
+    gold_ready: false
+    verifier_ready: false
+    asset_ready: false
+    selection_reason: "覆盖 3DGS native extension、scene asset 和渲染 artifact。"
+  - task_id: openpcdet_pointcloud_minimal
+    candidate_status: selected_pending_gold
+    split: test
+    repo_url: https://github.com/open-mmlab/OpenPCDet
+    commit: pin_pending_gold
+    paper_title: "OpenPCDet: An Open-source Toolbox for 3D Object Detection from Point Clouds"
+    taxonomy: {modality_primary: scientific_geometry_3d, environment_challenges: [native_extension_build, torch_cuda_matrix, dataset_asset_missing, hardware_pressure], verification_type: [checkpoint_loading, single_sample_inference, output_artifact], expected_skill_routes: [global_reproducibility_safety, geometry_3d_env_setup, native_extension_repair, torch_cuda_matrix_solver]}
+    asset_control: controlled_tiny_point_cloud_or_public_sample
+    gold_ready: false
+    verifier_ready: false
+    asset_ready: false
+    selection_reason: "覆盖 3D detection、point cloud data 和 CUDA extension。"

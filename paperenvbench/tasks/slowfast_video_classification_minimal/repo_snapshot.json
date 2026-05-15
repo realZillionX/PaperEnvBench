@@ -1,0 +1,88 @@
+{
+  "task_id": "slowfast_video_classification_minimal",
+  "repo_url": "https://github.com/facebookresearch/SlowFast",
+  "commit": "287ec0076846560f44a9327e931a5a2360240533",
+  "commit_short": "287ec00",
+  "default_branch": "main",
+  "snapshot_observed_at": "2026-05-16T11:55:00+08:00",
+  "source_tree": {
+    "package_manager": "pip",
+    "build_backend": "setuptools",
+    "project_file": "setup.py",
+    "module": "slowfast",
+    "primary_entrypoints": [
+      "tools/run_net.py",
+      "tools/test_net.py",
+      "tools/demo_net.py",
+      "slowfast.models.build_model",
+      "slowfast.models.video_model_builder.SlowFast",
+      "slowfast.datasets.transform.uniform_crop"
+    ]
+  },
+  "dependencies_declared": [
+    "torchvision>=0.4.2",
+    "pytorchvideo",
+    "fvcore",
+    "iopath",
+    "yacs>=0.1.6",
+    "av",
+    "opencv-python",
+    "detectron2",
+    "fairscale",
+    "sklearn",
+    "tensorboard"
+  ],
+  "dependency_notes": {
+    "native_import_blocker": "On paper-repro-ci-prep with Python 3.12 and pytorchvideo==0.1.5, `from slowfast.models import build_model` fails because the packaged PyTorchVideo distributed module lacks symbols expected by the pinned SlowFast repository. After those are shimmed, the classification import path also needs an unused detectron2.layers.ROIAlign symbol even with DETECTION.ENABLE=False.",
+    "fallback_strategy": "The verified route does not edit the pinned repo. It injects compatibility shims in verify.py, loads the official Kinetics SlowFast config, reduces model width/depth/classes for CPU, executes repository transform and model forward paths, and records the fallback evidence.",
+    "checkpoint_strategy": "The official Kinetics SLOWFAST_8x8_R50 checkpoint is listed in MODEL_ZOO.md, but full checkpoint inference is not claimed because the gold route is a CPU fallback focused on source model, transform, and tensor execution."
+  },
+  "verification_contract": {
+    "output_artifact": "artifacts/expected_artifact.json",
+    "preview_artifact": "artifacts/expected_clip_preview.ppm",
+    "official_repo_code_paths": [
+      "slowfast/config/defaults.py",
+      "slowfast/datasets/transform.py",
+      "slowfast/models/build.py",
+      "slowfast/models/video_model_builder.py",
+      "slowfast/models/stem_helper.py",
+      "slowfast/models/resnet_helper.py",
+      "slowfast/models/head_helper.py"
+    ],
+    "semantic_thresholds": {
+      "expected_logits_shape": [
+        1,
+        5
+      ],
+      "expected_slow_pathway_shape": [
+        1,
+        3,
+        2,
+        32,
+        32
+      ],
+      "expected_fast_pathway_shape": [
+        1,
+        3,
+        8,
+        32,
+        32
+      ],
+      "expected_top_class": 4,
+      "probability_sum_tolerance": 1e-06
+    }
+  },
+  "gold_environment": {
+    "notebook": "paper-repro-ci-prep",
+    "remote_cwd_alias": "paper-repro:runs/paperenvbench/video/slowfast_video_classification_minimal",
+    "python": "3.12.3",
+    "torch": "2.12.0+cpu",
+    "torchvision": "0.27.0+cpu",
+    "pytorchvideo": "0.1.5",
+    "fvcore": "0.1.5.post20221221",
+    "numpy": "2.4.4",
+    "success_level": "L4_fallback"
+  },
+  "observed_remote_path": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/video/slowfast_video_classification_minimal/repo",
+  "remote_path_alias": "paper-repro:runs/paperenvbench/video/slowfast_video_classification_minimal/repo"
+}

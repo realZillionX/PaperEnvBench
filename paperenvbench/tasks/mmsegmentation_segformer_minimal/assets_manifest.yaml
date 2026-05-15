@@ -1,0 +1,48 @@
+assets:
+  - asset_id: mmsegmentation_repo_snapshot
+    type: source_repo
+    required: true
+    source: git
+    url: https://github.com/open-mmlab/mmsegmentation
+    commit: b040e147adfa027bbc071b624bedf0ae84dfc922
+    cached_path: paper-repro:runs/paperenvbench/detection/mmsegmentation_segformer_minimal/repo
+  - asset_id: synthetic_rgb_input
+    type: image
+    required: true
+    source: generated_by_gold_verify
+    cached_path: paper-repro:runs/paperenvbench/detection/mmsegmentation_segformer_minimal/artifacts/expected_input.png
+    local_path: artifacts/expected_input.png
+    checksum:
+      algorithm: sha256
+      value: 2beead7d55be4dd7b227ed122f6f557acf4ceb621c956bd946ec6f48bde8ee50
+    size_bytes: 149
+  - asset_id: segformer_expected_mask
+    type: segmentation_mask
+    required: true
+    source: generated_by_gold_verify
+    cached_path: paper-repro:runs/paperenvbench/detection/mmsegmentation_segformer_minimal/artifacts/expected_mask.png
+    local_path: artifacts/expected_mask.png
+    checksum:
+      algorithm: sha256
+      value: ba9e0a55e80b5bd3d5c17b84502e01f12391964720211380ee6042909c7c2068
+    size_bytes: 189
+  - asset_id: segformer_expected_summary
+    type: output_artifact
+    required: true
+    source: generated_by_gold_verify
+    cached_path: paper-repro:runs/paperenvbench/detection/mmsegmentation_segformer_minimal/artifacts/expected_artifact.json
+    local_path: artifacts/expected_artifact.json
+    checksum:
+      algorithm: sha256
+      value: d5b045b00630bec5200601735456feb0e4e4578a71b4a9258d92e1b11b12f461
+    size_bytes: 3206
+  - asset_id: mmcv_native_binary_probe_log
+    type: failure_evidence_log
+    required: true
+    source: gold_install
+    cached_path: paper-repro:runs/paperenvbench/detection/mmsegmentation_segformer_minimal/logs/mmcv_native_binary_probe.log
+    local_path: logs/mmcv_native_binary_probe.log
+    checksum:
+      algorithm: sha256
+      value: 5160fc7ba401ef1d6806978b4d9ded6d48d83f1f80083339d5cce5bd78a6d2b7
+    size_bytes: 151

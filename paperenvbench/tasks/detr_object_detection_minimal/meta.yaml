@@ -1,0 +1,54 @@
+task_id: detr_object_detection_minimal
+paper_title: "End-to-End Object Detection with Transformers"
+repo_url: https://github.com/facebookresearch/detr
+commit: 29901c51d7fe8712168b8d0d64351170bc0f83e0
+commit_short: 29901c5
+paper_url: https://arxiv.org/abs/2005.12872
+license: Apache-2.0
+split: test
+modality:
+  primary: object_detection_segmentation
+  secondary:
+    - object_detection
+    - transformer_detection
+    - checkpoint_loading
+    - output_artifact
+environment_challenges:
+  - checkpoint_download
+  - torch_cuda_matrix
+  - hidden_dependency
+  - entrypoint_ambiguity
+  - verification_ambiguity
+verification:
+  type:
+    - checkpoint_loading
+    - single_sample_inference
+    - output_artifact
+    - semantic_check
+  command: python verify.py --repo-dir repo --output-dir artifacts --checkpoint-dir checkpoints
+  minimum_success_level: L4
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4

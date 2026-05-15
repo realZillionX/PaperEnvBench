@@ -1,0 +1,93 @@
+{
+  "task_id": "groundingdino_phrase_grounding_minimal",
+  "repo_url": "https://github.com/IDEA-Research/GroundingDINO",
+  "commit": "856dde20aee659246248e20734ef9ba5214f5e44",
+  "commit_short": "856dde2",
+  "default_branch": "main",
+  "snapshot_observed_at": "2026-05-16T01:25:37+08:00",
+  "source_tree": {
+    "package_manager": "pip",
+    "build_backend": "setuptools via setup.py",
+    "project_file": "setup.py",
+    "requirements_file": "requirements.txt",
+    "module": "groundingdino",
+    "primary_entrypoints": [
+      "groundingdino.models.build_model",
+      "groundingdino.util.inference.load_model",
+      "groundingdino.util.inference.predict",
+      "groundingdino.util.utils.get_phrases_from_posmap",
+      "demo/inference_on_a_image.py"
+    ]
+  },
+  "dependencies_declared": [
+    "torch",
+    "torchvision",
+    "transformers",
+    "addict",
+    "yapf",
+    "timm",
+    "numpy",
+    "opencv-python",
+    "supervision>=0.22.0",
+    "pycocotools"
+  ],
+  "dependency_notes": {
+    "torch_strategy": "Verified with torch==2.8.0+cpu and torchvision==0.23.0+cpu from the official CPU wheel index.",
+    "pypi_strategy": "The successful gold path uses PyPI for non-torch packages to avoid a stale requests wheel URL in the SII internal mirror.",
+    "editable_install_strategy": "pip install --no-build-isolation --no-deps -e repo is required because setup.py imports torch during build metadata generation.",
+    "opencv_strategy": "The gold path installs opencv-python-headless instead of opencv-python for notebook-safe CPU verification.",
+    "native_extension_strategy": "CUDA_HOME is unavailable on the CPU notebook, so the custom groundingdino._C extension is not built. The verified model forward uses the repository's PyTorch CPU fallback in ms_deform_attn.py."
+  },
+  "checkpoint_strategy": {
+    "used_by_gold": true,
+    "name": "groundingdino_swint_ogc.pth",
+    "url": "https://github.com/IDEA-Research/GroundingDINO/releases/download/v0.1.0-alpha/groundingdino_swint_ogc.pth",
+    "size_bytes": 693997677,
+    "sha256": "3b3ca2563c77c69f651d7bd133e97139c186df06231157a64c507099c52bc799",
+    "cached_path": "paper-repro:runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/models/groundingdino_swint_ogc.pth"
+  },
+  "verification_contract": {
+    "input_image": "artifacts/expected_input.png",
+    "annotated_image": "artifacts/expected_annotated.png",
+    "output_artifact": "artifacts/expected_artifact.json",
+    "caption": "red square. blue circle. green strip.",
+    "model_config": "groundingdino/config/GroundingDINO_SwinT_OGC.py",
+    "model_class": "groundingdino.models.GroundingDINO.groundingdino.GroundingDINO",
+    "semantic_thresholds": {
+      "box_threshold": 0.05,
+      "text_threshold": 0.05,
+      "expected_pred_logits_shape": [
+        1,
+        900,
+        256
+      ],
+      "expected_pred_boxes_shape": [
+        1,
+        900,
+        4
+      ],
+      "required_phrases": [
+        "red square",
+        "blue circle",
+        "green strip"
+      ],
+      "min_selected_detections": 3
+    }
+  },
+  "gold_environment": {
+    "notebook": "paper-repro-ci-prep",
+    "workspace": "CPU资源空间",
+    "python": "3.12.3",
+    "torch": "2.8.0+cpu",
+    "torchvision": "0.23.0+cpu",
+    "transformers": "4.41.2",
+    "timm": "0.9.16",
+    "supervision": "0.22.0",
+    "device": "cpu"
+  },
+  "validated_outputs": {
+    "remote_output_dir": "paper-repro:runs/paperenvbench/detection/groundingdino_phrase_grounding_minimal/artifacts",
+    "local_artifact_dir": "paperenvbench/tasks/groundingdino_phrase_grounding_minimal/artifacts",
+    "success_level": "L4"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "task_id": "videomae_classification_minimal",
+  "repo_url": "https://github.com/MCG-NJU/VideoMAE",
+  "commit": "14ef8d856287c94ef1f985fe30f958eb4ec2c55d",
+  "commit_short": "14ef8d8",
+  "commit_date": "2023-04-24T17:14:28+08:00",
+  "commit_author": "Zhan Tong",
+  "commit_subject": "Update README.md",
+  "license": "CC-BY-NC-4.0",
+  "paper": {
+    "primary_title": "VideoMAE: Masked Autoencoders are Data-Efficient Learners for Self-Supervised Video Pre-Training",
+    "primary_url": "https://arxiv.org/abs/2203.12602"
+  },
+  "entrypoints": {
+    "model_module": "modeling_finetune.py",
+    "model_factory": "vit_small_patch16_224",
+    "pretrain_script": "run_mae_pretraining.py",
+    "finetune_script": "run_class_finetuning.py",
+    "visualization_script": "run_videomae_vis.py",
+    "minimal_command": "venv/bin/python verify.py"
+  },
+  "dependency_files": [
+    "INSTALL.md",
+    "README.md",
+    "FINETUNE.md",
+    "MODEL_ZOO.md"
+  ],
+  "observed_environment": {
+    "platform": "Inspire CPU Notebook paper-repro-ci-prep",
+    "workspace": "CPU资源空间",
+    "compute_group": "CPU资源-2",
+    "quota": "0,20,80",
+    "image": "sandbox-base:ubuntu24.04-py3.12-1.0.0",
+    "python": "3.12.3"
+  },
+  "install_notes": [
+    "The upstream install guide targets older CUDA/PyTorch stacks and full video training dependencies such as decord and deepspeed.",
+    "The validated route uses torch==2.4.1, torchvision==0.19.1, timm==0.4.12, numpy==1.26.4, pillow==12.2.0, and pyyaml==6.0.3.",
+    "No finetuned checkpoint is required for this CPU minimal task because the verifier exercises the VideoMAE classification forward path with initialized weights."
+  ],
+  "validated_outputs": {
+    "remote_run_root": "paper-repro:runs/paperenvbench/video/videomae_classification_minimal",
+    "artifact": "artifacts/synthetic_video_strip.png",
+    "summary": "artifacts/expected_artifact.json",
+    "success_level": "L4_fallback_cpu_synthetic_video_forward"
+  }
+}
