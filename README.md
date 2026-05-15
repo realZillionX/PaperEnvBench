@@ -141,11 +141,7 @@ PaperEnvBench 同时报告层级结果和连续分数。
 | L3 | 最小入口 | help、demo、toy command 或 checkpoint loading 可运行 |
 | L4 | 语义 artifact | 单样本 inference 或输出 artifact 通过 verifier |
 
-连续分数用于部分分和误差分析。默认权重为：
-
-$$
-\operatorname{Score}=0.10s_{\mathrm{repo}}+0.20s_{\mathrm{install}}+0.20s_{\mathrm{import}}+0.25s_{\mathrm{entrypoint}}+0.20s_{\mathrm{semantic}}+0.05s_{\mathrm{safety}}
-$$
+连续分数用于部分分和误差分析。总分记为 $S$，默认计算方式为 $S=0.10s_{\mathrm{repo}}+0.20s_{\mathrm{install}}+0.20s_{\mathrm{import}}+0.25s_{\mathrm{entrypoint}}+0.20s_{\mathrm{semantic}}+0.05s_{\mathrm{safety}}$。
 
 `Level` 不由总分阈值直接切分。L4 必须先通过 L0 到 L3，再通过 semantic artifact 检查。Safety 不提升 `Level`，但严重违规可以限制最终等级。
 
