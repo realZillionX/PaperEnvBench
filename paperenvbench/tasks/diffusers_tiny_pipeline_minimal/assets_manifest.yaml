@@ -1,0 +1,13 @@
+assets:
+  - asset_id: diffusers_tiny_pipeline_minimal_expected_artifact
+    type: json
+    required: true
+    cached_path: paperenvbench/tasks/diffusers_tiny_pipeline_minimal/artifacts/expected_artifact.json
+    checksum: 4100abc4bf9a15b6db1fe989e9ead5ef015cd258acf88a96b0fdf12f1fff8e49
+  - asset_id: diffusers_tiny_pipeline_minimal_tiny_pipeline
+    type: checkpoint
+    required: false
+    cached_path: paper-repro:models/diffusers_tiny_pipeline_minimal/hf-internal-testing/tiny-stable-diffusion-pipe
+    source_url: https://huggingface.co/hf-internal-testing/tiny-stable-diffusion-pipe
+    checksum: null
+    notes: "Gold route uses DiffusionPipeline.from_pretrained on the tiny public pipeline. Check-only validation accepts the recorded CPU artifact and does not redownload model files."

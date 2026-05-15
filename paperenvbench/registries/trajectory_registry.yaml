@@ -524,3 +524,78 @@ trajectories:
     artifact_path: paperenvbench/tasks/t5_text_to_text_minimal/artifacts/
     remote_artifact_path: paper-repro:runs/paperenvbench/llm/t5_text_to_text_minimal/artifacts/
     status: gold_verified_l4_fallback
+  - trajectory_id: gold_improved_diffusion_sample_minimal_cpu
+    task_id: improved_diffusion_sample_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - checkpoint_download
+      - torch_cuda_matrix
+      - hidden_dependency
+      - hardware_pressure
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/improved_diffusion_sample_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/diffusion/improved_diffusion_sample_minimal/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_guided_diffusion_sample_minimal_cpu
+    task_id: guided_diffusion_sample_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - checkpoint_download
+      - torch_cuda_matrix
+      - hidden_dependency
+      - hardware_pressure
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/guided_diffusion_sample_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/diffusion/guided_diffusion_sample_minimal/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_latent_diffusion_sample_minimal_cpu
+    task_id: latent_diffusion_sample_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - checkpoint_download
+      - torch_cuda_matrix
+      - hidden_dependency
+      - hardware_pressure
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/latent_diffusion_sample_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/diffusion/latent_diffusion_sample_minimal/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_stable_diffusion_text2img_minimal_cpu
+    task_id: stable_diffusion_text2img_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - checkpoint_download
+      - torch_cuda_matrix
+      - hardware_pressure
+      - api_or_license_gate
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/stable_diffusion_text2img_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/diffusion/stable_diffusion_text2img_minimal/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_diffusers_tiny_pipeline_minimal_cpu
+    task_id: diffusers_tiny_pipeline_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - checkpoint_download
+      - torch_cuda_matrix
+      - hidden_dependency
+      - verification_ambiguity
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/diffusers_tiny_pipeline_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/diffusion/diffusers_tiny_pipeline_minimal/artifacts/
+    status: gold_verified_l4_fallback

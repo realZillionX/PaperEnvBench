@@ -1,0 +1,4 @@
+[gold_install] repo_url=https://github.com/openai/guided-diffusion.git
+[gold_install] commit=22e0df8183507e13a7813f8d38d51b072ca1e67c
+[gold_install] verified_files=scripts/classifier_sample.py,scripts/image_sample.py,scripts/super_res_sample.py,guided_diffusion/script_util.py
+[gold_install] guided_diffusion_sample_minimal gold install route verified

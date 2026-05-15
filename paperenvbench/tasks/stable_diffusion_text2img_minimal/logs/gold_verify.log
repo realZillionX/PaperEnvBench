@@ -1,0 +1,49 @@
+{
+  "artifact_dir": "/Users/zillionx/Desktop/Paper Reproduction/PaperEnvBench/paperenvbench/tasks/stable_diffusion_text2img_minimal/artifacts",
+  "artifact_sha256": "3050364ac101321b480fb6d8456bf2340fa0a700e593ca923e6fc383a913cf82",
+  "checks": {
+    "checkpoint_route_recorded": true,
+    "config_route_recorded": true,
+    "fallback_artifact_valid": true,
+    "license_gate_documented": true,
+    "repo_commit_matches": true,
+    "semantic_output_valid": true,
+    "txt2img_entrypoint_recorded": true
+  },
+  "observed": {
+    "environment": {
+      "checkpoint_loaded": false,
+      "checkpoint_required_for_full_inference": true,
+      "device": "cpu",
+      "full_inference_requires_gpu": true,
+      "license_acceptance_required": true
+    },
+    "fallback_artifact": {
+      "height": 8,
+      "pixel_pattern": "diagonal latent stripes with blue background and white helmet marker",
+      "prompt_embedding_terms": [
+        "astronaut",
+        "horse",
+        "photograph"
+      ],
+      "type": "deterministic_thumbnail_summary",
+      "width": 8
+    },
+    "repo_commit": "21f890f9da3cfbeaba8e2ac3c425ee9e998d5229",
+    "route": {
+      "checkpoint": "models/ldm/stable-diffusion-v1/model.ckpt",
+      "config": "configs/stable-diffusion/v1-inference.yaml",
+      "license_gate": "CreativeML Open RAIL-M weights require accepting the Hugging Face model license before downloading sd-v1-4.ckpt",
+      "sampler": "PLMSSampler or DDIMSampler via --plms/--ddim_steps",
+      "script": "scripts/txt2img.py"
+    },
+    "semantic": {
+      "description": "latent diffusion text-to-image route for an astronaut riding a horse; full checkpoint inference is license gated, so the artifact records a deterministic CPU fallback thumbnail",
+      "prompt": "a photograph of an astronaut riding a horse",
+      "safety_boundary": "CreativeML Open RAIL-M license gate and model card restrictions are preserved before checkpoint use"
+    }
+  },
+  "status": "pass",
+  "success_level": "L4_cpu_license_gate_fallback",
+  "task_id": "stable_diffusion_text2img_minimal"
+}

@@ -1,0 +1,8 @@
+primary_failure_tags:
+  - checkpoint_download
+  - torch_cuda_matrix
+  - hidden_dependency
+anti_patterns:
+  - "Accepting import success without proving the pinned diffusers repo, DiffusionPipeline route, and scheduler route."
+  - "Using a large Stable Diffusion checkpoint for the hidden check-only path instead of the public tiny pipeline or recorded artifact."
+  - "Running GPU-only generation as the only verifier when a CPU tiny pipeline route is available."

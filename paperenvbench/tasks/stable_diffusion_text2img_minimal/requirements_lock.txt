@@ -1,0 +1,12 @@
+torch==2.8.0
+torchvision==0.23.0
+numpy==2.2.6
+Pillow==11.3.0
+omegaconf==2.3.0
+einops==0.8.1
+pytorch-lightning==1.9.5
+transformers==4.41.2
+diffusers==0.30.3
+invisible-watermark==0.2.0
+opencv-python-headless==4.12.0.88
+-e git+https://github.com/CompVis/stable-diffusion.git@21f890f9da3cfbeaba8e2ac3c425ee9e998d5229#egg=latent-diffusion

@@ -1,0 +1,13 @@
+assets:
+  - asset_id: latent_diffusion_sample_minimal_expected_artifact
+    type: json
+    required: true
+    cached_path: paperenvbench/tasks/latent_diffusion_sample_minimal/artifacts/expected_artifact.json
+    checksum: 6d4bdf6d3862463af757f40ddb545d65424049cafa829eaab18ddce2a459eb2b
+  - asset_id: latent_diffusion_text2img_checkpoint_route
+    type: checkpoint
+    required: false
+    cached_path: paper-repro:models/latent_diffusion_sample_minimal/text2img-large/model.ckpt
+    source_url: https://ommer-lab.com/files/latent-diffusion/nitro/txt2img-f8-large/model.ckpt
+    checksum: null
+    notes: "Check-only verification records the public checkpoint boundary but avoids a large download."

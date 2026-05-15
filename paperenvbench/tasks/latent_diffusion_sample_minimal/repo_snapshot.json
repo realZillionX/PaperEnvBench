@@ -1,0 +1,59 @@
+{
+  "dependency_files": [
+    "environment.yaml",
+    "setup.py"
+  ],
+  "entrypoints": [
+    {
+      "name": "scripts/txt2img.py",
+      "target": "scripts/txt2img.py",
+      "type": "script"
+    },
+    {
+      "name": "configs/latent-diffusion/txt2img-1p4B-eval.yaml",
+      "target": "configs/latent-diffusion/txt2img-1p4B-eval.yaml",
+      "type": "config"
+    },
+    {
+      "name": "ldm.models.diffusion.ddim.DDIMSampler",
+      "target": "ldm/models/diffusion/ddim.py",
+      "type": "sampler"
+    },
+    {
+      "name": "ldm.models.autoencoder.AutoencoderKL",
+      "target": "ldm/models/autoencoder.py",
+      "type": "model"
+    }
+  ],
+  "license_file": "LICENSE",
+  "observed_environment": {
+    "device": "cpu",
+    "notebook": "paper-repro-ci-prep",
+    "python": "3.12",
+    "remote_cwd_alias": "paper-repro"
+  },
+  "observed_repository_files": [
+    "scripts/txt2img.py",
+    "configs/latent-diffusion/txt2img-1p4B-eval.yaml",
+    "ldm/models/diffusion/ddim.py",
+    "ldm/models/diffusion/plms.py",
+    "ldm/models/autoencoder.py",
+    "ldm/util.py"
+  ],
+  "package_manager": "pip",
+  "repo_commit": "a506df5756472e2ebaf9078affdde2c4f1502cd4",
+  "repo_commit_short": "a506df5",
+  "repo_name": "latent-diffusion",
+  "repo_url": "https://github.com/CompVis/latent-diffusion",
+  "task_id": "latent_diffusion_sample_minimal",
+  "validated_outputs": {
+    "local_artifact_dir": "paperenvbench/tasks/latent_diffusion_sample_minimal/artifacts",
+    "success_level": "L4_fallback"
+  },
+  "verification_notes": [
+    "scripts/txt2img.py loads configs/latent-diffusion/txt2img-1p4B-eval.yaml with OmegaConf and instantiates config.model through ldm.util.instantiate_from_config.",
+    "The script routes sampling through PLMSSampler when --plms is set, otherwise DDIMSampler, then decodes samples with model.decode_first_stage.",
+    "The config target is ldm.models.diffusion.ddpm.LatentDiffusion and its first_stage_config target is ldm.models.autoencoder.AutoencoderKL.",
+    "The check-only artifact is an L4 fallback because the full text-to-image checkpoint is large and not required for hidden structural validation."
+  ]
+}

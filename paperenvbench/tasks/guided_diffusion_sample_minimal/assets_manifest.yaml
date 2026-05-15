@@ -1,0 +1,25 @@
+assets:
+  - asset_id: guided_diffusion_sample_minimal_expected_artifact
+    type: json
+    required: true
+    cached_path: paperenvbench/tasks/guided_diffusion_sample_minimal/artifacts/expected_artifact.json
+    checksum: e40b21400a5b383cdd93b90569e7df988623bc40aae693344b44e8dcc2715bb2
+  - asset_id: guided_diffusion_sample_minimal_sample_grid
+    type: image
+    required: true
+    cached_path: paperenvbench/tasks/guided_diffusion_sample_minimal/artifacts/expected_sample_grid.ppm
+    checksum: 831a5804886d52fcb1531e02fc655df943f5f172efe0fd61f9e94ead584bb370
+  - asset_id: guided_diffusion_sample_minimal_64x64_diffusion_checkpoint
+    type: checkpoint
+    required: false
+    cached_path: paper-repro:models/guided_diffusion/64x64_diffusion.pt
+    source_url: https://openaipublic.blob.core.windows.net/diffusion/jul-2021/64x64_diffusion.pt
+    checksum: null
+    notes: "Full classifier-guided sampling uses this public checkpoint; check-only validation records the route without downloading it."
+  - asset_id: guided_diffusion_sample_minimal_64x64_classifier_checkpoint
+    type: checkpoint
+    required: false
+    cached_path: paper-repro:models/guided_diffusion/64x64_classifier.pt
+    source_url: https://openaipublic.blob.core.windows.net/diffusion/jul-2021/64x64_classifier.pt
+    checksum: null
+    notes: "Full classifier-guided sampling uses this public checkpoint; check-only validation records the route without downloading it."

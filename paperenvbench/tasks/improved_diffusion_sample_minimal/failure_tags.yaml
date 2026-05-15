@@ -1,0 +1,23 @@
+primary_failure_tags:
+  - checkpoint_download
+  - torch_cuda_matrix
+  - hidden_dependency
+  - hardware_pressure
+observed_failures:
+  - tag: checkpoint_download
+    evidence: "The README sampling path expects large public `.pt` checkpoints such as CIFAR-10, ImageNet-64, and LSUN models."
+    mitigation: "The gold task loads a deterministic tiny initialized state_dict and still exercises the official model and diffusion sampling route."
+  - tag: torch_cuda_matrix
+    evidence: "Upstream sampling examples are GPU-oriented and commonly run under CUDA/MPI setups."
+    mitigation: "The verifier pins CPU execution, disables distributed sampling, and runs `p_sample_loop` directly."
+  - tag: hidden_dependency
+    evidence: "`setup.py` declares `blobfile`, `torch`, and `tqdm`; `image_sample.py` also imports NumPy and `torch.distributed`."
+    mitigation: "The gold install records the minimal package set and avoids MPI/distributed initialization in the verifier."
+  - tag: hardware_pressure
+    evidence: "Published checkpoints and default channel counts are too heavy for a minimal CPU hidden check."
+    mitigation: "The fallback keeps `image_size=32`, `num_channels=8`, `num_res_blocks=1`, and `diffusion_steps=4`."
+anti_patterns:
+  - "Accepting `import improved_diffusion` without loading a checkpoint state_dict."
+  - "Writing a sample artifact that does not record the `create_model_and_diffusion` kwargs and sampling loop."
+  - "Requiring public 100M-270M checkpoints for the CPU minimal hidden verifier."
+  - "Using `scripts/image_sample.py` through distributed setup without controlling rank/world-size on CPU."

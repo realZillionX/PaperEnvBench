@@ -1,0 +1,50 @@
+task_id: stable_diffusion_text2img_minimal
+paper_title: "High-Resolution Image Synthesis with Latent Diffusion Models"
+repo_url: https://github.com/CompVis/stable-diffusion
+commit: 21f890f9da3cfbeaba8e2ac3c425ee9e998d5229
+commit_short: 21f890f
+paper_url: https://arxiv.org/abs/2112.10752
+license: CreativeML Open RAIL-M
+split: test
+modality:
+  primary: diffusion_generation
+  secondary:
+    - vision_language_multimodal
+    - checkpoint_loading
+environment_challenges:
+  - checkpoint_download
+  - torch_cuda_matrix
+  - api_or_license_gate
+  - hardware_pressure
+verification:
+  type:
+    - checkpoint_loading
+    - output_artifact
+    - semantic_check
+  command: python verify.py --check-only --json
+  minimum_success_level: L4_cpu_license_gate_fallback
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4_fallback

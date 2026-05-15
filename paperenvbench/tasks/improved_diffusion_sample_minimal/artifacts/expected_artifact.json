@@ -1,0 +1,115 @@
+{
+  "artifacts": {
+    "sample_npz": "artifacts/expected_sample.npz",
+    "sample_npz_sha256": null,
+    "summary": "artifacts/expected_artifact.json"
+  },
+  "checks": {
+    "artifact_records_cpu_fallback": true,
+    "checkpoint_loaded": true,
+    "diffusion_route_matches": true,
+    "model_route_matches": true,
+    "repo_commit_matches": true,
+    "sample_shape_matches": true,
+    "sample_statistics_valid": true,
+    "sample_uint8_range_valid": true,
+    "script_route_matches": true
+  },
+  "environment": {
+    "device": "cpu",
+    "numpy": "1.26.4",
+    "python": "3.12.3",
+    "torch": "2.4.1+cu121"
+  },
+  "fallback_boundary": {
+    "not_accepted": "Import-only success, README-only flag extraction, or an artifact that omits model/diffusion/sample routing.",
+    "public_large_checkpoints_required": false,
+    "reason": "The hidden CPU verifier checks the official sampling route with a tiny deterministic checkpoint instead of requiring 100M-270M public checkpoints."
+  },
+  "observed": {
+    "sample_first_12_values": [
+      133,
+      126,
+      120,
+      129,
+      135,
+      119,
+      123,
+      129,
+      130,
+      138,
+      123,
+      122
+    ],
+    "sample_shape": [
+      1,
+      3,
+      32,
+      32
+    ],
+    "sample_uint8_max": 151,
+    "sample_uint8_mean": 127.41373698,
+    "sample_uint8_min": 104,
+    "sample_uint8_shape": [
+      1,
+      32,
+      32,
+      3
+    ],
+    "sample_uint8_std": 6.21908311
+  },
+  "repo": {
+    "commit": "1bc7bbbdc414d83d4abf2ad8cc1446dc36c4e4d5",
+    "url": "https://github.com/openai/improved-diffusion"
+  },
+  "route": {
+    "diffusion": {
+      "class": "improved_diffusion.respace.SpacedDiffusion",
+      "noise_schedule": "linear",
+      "num_timesteps": 4,
+      "timestep_respacing": "4"
+    },
+    "model": {
+      "checkpoint_kind": "deterministic tiny initialized state_dict",
+      "checkpoint_loaded": true,
+      "factory": "improved_diffusion.script_util.create_model_and_diffusion",
+      "kwargs": {
+        "attention_resolutions": "16",
+        "class_cond": false,
+        "diffusion_steps": 4,
+        "dropout": 0.0,
+        "image_size": 32,
+        "learn_sigma": false,
+        "noise_schedule": "linear",
+        "num_channels": 8,
+        "num_heads": 1,
+        "num_heads_upsample": -1,
+        "num_res_blocks": 1,
+        "predict_xstart": false,
+        "rescale_learned_sigmas": true,
+        "rescale_timesteps": true,
+        "sigma_small": false,
+        "timestep_respacing": "4",
+        "use_checkpoint": false,
+        "use_kl": false,
+        "use_scale_shift_norm": true
+      },
+      "unet_class": "improved_diffusion.unet.UNetModel"
+    },
+    "sample": {
+      "loop_function": "GaussianDiffusion.p_sample_loop",
+      "output_format": "npz arr_0 with NHWC uint8 samples",
+      "script": "scripts/image_sample.py",
+      "seed": 20260516,
+      "shape": [
+        1,
+        3,
+        32,
+        32
+      ]
+    }
+  },
+  "success": true,
+  "success_level": "L4_fallback_cpu_tiny_unet_sampling",
+  "task_id": "improved_diffusion_sample_minimal"
+}

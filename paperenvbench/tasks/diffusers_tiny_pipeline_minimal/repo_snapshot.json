@@ -1,0 +1,47 @@
+{
+  "dependency_files": [
+    "pyproject.toml",
+    "setup.py"
+  ],
+  "entrypoints": [
+    {
+      "name": "src/diffusers/pipelines/pipeline_utils.py",
+      "target": "src/diffusers/pipelines/pipeline_utils.py",
+      "type": "repo_file"
+    },
+    {
+      "name": "src/diffusers/pipelines/stable_diffusion/pipeline_stable_diffusion.py",
+      "target": "src/diffusers/pipelines/stable_diffusion/pipeline_stable_diffusion.py",
+      "type": "repo_file"
+    },
+    {
+      "name": "src/diffusers/schedulers/scheduling_ddim.py",
+      "target": "src/diffusers/schedulers/scheduling_ddim.py",
+      "type": "repo_file"
+    }
+  ],
+  "license_file": "LICENSE",
+  "observed_environment": {
+    "device": "cpu",
+    "notebook": "paper-repro-ci-prep",
+    "python": "3.12",
+    "remote_cwd_alias": "paper-repro"
+  },
+  "observed_repository_files": [
+    "src/diffusers/pipelines/pipeline_utils.py",
+    "src/diffusers/pipelines/stable_diffusion/pipeline_stable_diffusion.py",
+    "src/diffusers/schedulers/scheduling_ddim.py",
+    "pyproject.toml",
+    "setup.py"
+  ],
+  "package_manager": "pip",
+  "repo_commit": "de5fcf6fe322dde5ea119f0491dada9945f8a649",
+  "repo_commit_short": "de5fcf6",
+  "repo_name": "diffusers",
+  "repo_url": "https://github.com/huggingface/diffusers",
+  "task_id": "diffusers_tiny_pipeline_minimal",
+  "validated_outputs": {
+    "local_artifact_dir": "paperenvbench/tasks/diffusers_tiny_pipeline_minimal/artifacts",
+    "success_level": "L4_tiny_pipeline_cpu"
+  }
+}

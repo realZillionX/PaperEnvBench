@@ -1,0 +1,8 @@
+accelerate
+diffusers @ git+https://github.com/huggingface/diffusers@de5fcf6fe322dde5ea119f0491dada9945f8a649
+huggingface-hub
+numpy
+Pillow
+safetensors
+torch
+transformers

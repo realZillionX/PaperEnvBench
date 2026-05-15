@@ -1,0 +1,60 @@
+{
+  "dependency_files": [
+    "environment.yaml",
+    "setup.py"
+  ],
+  "entrypoints": [
+    {
+      "name": "scripts/txt2img.py",
+      "target": "scripts/txt2img.py",
+      "type": "repo_file"
+    },
+    {
+      "name": "configs/stable-diffusion/v1-inference.yaml",
+      "target": "configs/stable-diffusion/v1-inference.yaml",
+      "type": "repo_file"
+    },
+    {
+      "name": "ldm/util.py",
+      "target": "ldm/util.py",
+      "type": "repo_file"
+    },
+    {
+      "name": "ldm/models/diffusion/plms.py",
+      "target": "ldm/models/diffusion/plms.py",
+      "type": "repo_file"
+    },
+    {
+      "name": "Stable_Diffusion_v1_Model_Card.md",
+      "target": "Stable_Diffusion_v1_Model_Card.md",
+      "type": "repo_file"
+    }
+  ],
+  "license_file": "LICENSE",
+  "observed_environment": {
+    "device": "cpu",
+    "notebook": "paper-repro-ci-prep",
+    "python": "3.12",
+    "remote_cwd_alias": "paper-repro"
+  },
+  "observed_repository_files": [
+    "scripts/txt2img.py",
+    "configs/stable-diffusion/v1-inference.yaml",
+    "ldm/util.py",
+    "ldm/models/diffusion/plms.py",
+    "Stable_Diffusion_v1_Model_Card.md",
+    "LICENSE",
+    "environment.yaml",
+    "setup.py"
+  ],
+  "package_manager": "pip",
+  "repo_commit": "21f890f9da3cfbeaba8e2ac3c425ee9e998d5229",
+  "repo_commit_short": "21f890f",
+  "repo_name": "stable-diffusion",
+  "repo_url": "https://github.com/CompVis/stable-diffusion",
+  "task_id": "stable_diffusion_text2img_minimal",
+  "validated_outputs": {
+    "local_artifact_dir": "paperenvbench/tasks/stable_diffusion_text2img_minimal/artifacts",
+    "success_level": "L4_cpu_license_gate_fallback"
+  }
+}

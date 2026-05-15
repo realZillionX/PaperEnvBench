@@ -443,64 +443,64 @@ tasks:
     asset_ready: true
     selection_reason: "覆盖旧 research code 与现代 transformers fallback 的边界。"
   - task_id: improved_diffusion_sample_minimal
-    candidate_status: selected_pending_gold
+    candidate_status: selected_gold
     split: dev
     repo_url: https://github.com/openai/improved-diffusion
-    commit: pin_pending_gold
+    commit: 1bc7bbbdc414d83d4abf2ad8cc1446dc36c4e4d5
     paper_title: "Improved Denoising Diffusion Probabilistic Models"
     taxonomy: {modality_primary: diffusion_generation, environment_challenges: [checkpoint_download, torch_cuda_matrix, hidden_dependency, hardware_pressure], verification_type: [checkpoint_loading, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, diffusion_env_setup, checkpoint_validation, torch_cuda_matrix_solver]}
     asset_control: controlled_tiny_sampling_or_public_checkpoint
-    gold_ready: false
-    verifier_ready: false
-    asset_ready: false
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
     selection_reason: "覆盖经典 diffusion 采样脚本和输出图片 artifact。"
   - task_id: guided_diffusion_sample_minimal
-    candidate_status: selected_pending_gold
+    candidate_status: selected_gold
     split: dev
     repo_url: https://github.com/openai/guided-diffusion
-    commit: pin_pending_gold
+    commit: 22e0df8183507e13a7813f8d38d51b072ca1e67c
     paper_title: "Diffusion Models Beat GANs on Image Synthesis"
     taxonomy: {modality_primary: diffusion_generation, environment_challenges: [checkpoint_download, torch_cuda_matrix, entrypoint_ambiguity, hardware_pressure], verification_type: [checkpoint_loading, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, diffusion_env_setup, checkpoint_validation, minimal_entrypoint_discovery]}
     asset_control: controlled_tiny_sampling_or_public_checkpoint
-    gold_ready: false
-    verifier_ready: false
-    asset_ready: false
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
     selection_reason: "覆盖 guided sampling 和脚本入口发现。"
   - task_id: latent_diffusion_sample_minimal
-    candidate_status: selected_pending_gold
+    candidate_status: selected_gold
     split: val
     repo_url: https://github.com/CompVis/latent-diffusion
-    commit: pin_pending_gold
+    commit: a506df5756472e2ebaf9078affdde2c4f1502cd4
     paper_title: "High-Resolution Image Synthesis with Latent Diffusion Models"
     taxonomy: {modality_primary: diffusion_generation, environment_challenges: [checkpoint_download, torch_cuda_matrix, hidden_dependency, system_package_missing], verification_type: [checkpoint_loading, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, diffusion_env_setup, checkpoint_validation, system_package_resolver]}
     asset_control: controlled_prompt_public_checkpoint_or_tiny_fallback
-    gold_ready: false
-    verifier_ready: false
-    asset_ready: false
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
     selection_reason: "覆盖 latent diffusion 依赖和 config/checkpoint coupling。"
   - task_id: stable_diffusion_text2img_minimal
-    candidate_status: selected_pending_gold
+    candidate_status: selected_gold
     split: test
     repo_url: https://github.com/CompVis/stable-diffusion
-    commit: pin_pending_gold
+    commit: 21f890f9da3cfbeaba8e2ac3c425ee9e998d5229
     paper_title: "High-Resolution Image Synthesis with Latent Diffusion Models"
     taxonomy: {modality_primary: diffusion_generation, environment_challenges: [checkpoint_download, torch_cuda_matrix, api_or_license_gate, hardware_pressure], verification_type: [checkpoint_loading, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, diffusion_env_setup, checkpoint_validation, torch_cuda_matrix_solver]}
     asset_control: license_review_or_tiny_fallback
-    gold_ready: false
-    verifier_ready: false
-    asset_ready: false
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
     selection_reason: "覆盖 text-to-image、license gate 和显存压力边界。"
   - task_id: diffusers_tiny_pipeline_minimal
-    candidate_status: selected_pending_gold
+    candidate_status: selected_gold
     split: test
     repo_url: https://github.com/huggingface/diffusers
-    commit: pin_pending_gold
+    commit: de5fcf6fe322dde5ea119f0491dada9945f8a649
     paper_title: "Diffusers: State-of-the-art diffusion models"
     taxonomy: {modality_primary: diffusion_generation, environment_challenges: [checkpoint_download, torch_cuda_matrix, hidden_dependency], verification_type: [checkpoint_loading, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, diffusion_env_setup, checkpoint_validation, torch_cuda_matrix_solver]}
     asset_control: controlled_tiny_public_pipeline
-    gold_ready: false
-    verifier_ready: false
-    asset_ready: false
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
     selection_reason: "提供轻量 tiny pipeline 对照，帮助区分框架和论文仓问题。"
   - task_id: pyg_gcn_minimal
     candidate_status: selected_pending_gold

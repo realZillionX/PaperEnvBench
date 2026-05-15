@@ -1,0 +1,4 @@
+blobfile>=1.0.5
+torch==2.8.0
+torchvision==0.23.0
+tqdm>=4.66.0

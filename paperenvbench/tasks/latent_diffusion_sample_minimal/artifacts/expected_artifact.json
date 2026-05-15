@@ -1,0 +1,73 @@
+{
+  "checks": {
+    "config_sampler_autoencoder_linked": true,
+    "fallback_boundary_documented": true,
+    "repo_commit_matches": true,
+    "route_recorded": true,
+    "semantic_output_valid": true
+  },
+  "environment": {
+    "checkpoint_loaded": false,
+    "checkpoint_required_for_full_inference": true,
+    "device": "cpu",
+    "full_checkpoint_path": "models/ldm/text2img-large/model.ckpt"
+  },
+  "evidence": {
+    "large_checkpoint_required_for_check_only": false,
+    "mode": "deterministic_cpu_fallback",
+    "pinned_files": [
+      "scripts/txt2img.py",
+      "configs/latent-diffusion/txt2img-1p4B-eval.yaml",
+      "ldm/models/diffusion/ddim.py",
+      "ldm/models/diffusion/plms.py",
+      "ldm/models/autoencoder.py",
+      "ldm/util.py"
+    ],
+    "source_observations": [
+      "scripts/txt2img.py loads configs/latent-diffusion/txt2img-1p4B-eval.yaml via OmegaConf.load.",
+      "scripts/txt2img.py instantiates the model through ldm.util.instantiate_from_config(config.model).",
+      "scripts/txt2img.py selects DDIMSampler unless --plms requests PLMSSampler.",
+      "scripts/txt2img.py decodes sampled latents through model.decode_first_stage.",
+      "configs/latent-diffusion/txt2img-1p4B-eval.yaml targets ldm.models.diffusion.ddpm.LatentDiffusion and ldm.models.autoencoder.AutoencoderKL."
+    ]
+  },
+  "numeric": {
+    "config_channels": [
+      4
+    ],
+    "config_image_size": [
+      32
+    ],
+    "config_timesteps": [
+      1000
+    ],
+    "latent_scale_factor": [
+      0.18215
+    ]
+  },
+  "repo": {
+    "commit": "a506df5756472e2ebaf9078affdde2c4f1502cd4",
+    "url": "https://github.com/CompVis/latent-diffusion"
+  },
+  "route": {
+    "autoencoder": "ldm.models.autoencoder.AutoencoderKL",
+    "checkpoint": "models/ldm/text2img-large/model.ckpt",
+    "config": "configs/latent-diffusion/txt2img-1p4B-eval.yaml",
+    "decode": "model.decode_first_stage(samples_ddim)",
+    "model_target": "ldm.models.diffusion.ddpm.LatentDiffusion",
+    "sampler": "ldm.models.diffusion.ddim.DDIMSampler",
+    "script": "scripts/txt2img.py"
+  },
+  "semantic": {
+    "description": "CompVis latent diffusion text-to-image route using the DDIM sampler and AutoencoderKL decoder with a documented checkpoint fallback.",
+    "prompt": "a small paperenvbench test image of a blue square on a white background",
+    "task": "latent diffusion text-to-image sampling"
+  },
+  "sha256": {
+    "route": "bde1df682688f6b4d5faf77eb347b22ed7509be041cb94b55f5d3f3fdac95615",
+    "semantic": "8dbff8c146c029b8adb39be8e32996623b04c4a6e722e62751a56289ef65dfc9"
+  },
+  "success": true,
+  "success_level": "L4_fallback",
+  "task_id": "latent_diffusion_sample_minimal"
+}

@@ -1,0 +1,30 @@
+assets:
+  - asset_id: improved_diffusion_source_repo
+    type: git_repository
+    required: true
+    url: https://github.com/openai/improved-diffusion
+    commit: 1bc7bbbdc414d83d4abf2ad8cc1446dc36c4e4d5
+    cached_path: paper-repro:runs/paperenvbench/diffusion/improved_diffusion_sample_minimal/improved-diffusion
+    checksum: null
+  - asset_id: improved_diffusion_expected_artifact
+    type: json
+    required: true
+    generated_by: verify.py
+    cached_path: paper-repro:runs/paperenvbench/diffusion/improved_diffusion_sample_minimal/artifacts/expected_artifact.json
+    local_path: artifacts/expected_artifact.json
+    checksum: null
+  - asset_id: improved_diffusion_expected_sample_npz
+    type: npz
+    required: false
+    generated_by: verify.py
+    cached_path: paper-repro:runs/paperenvbench/diffusion/improved_diffusion_sample_minimal/artifacts/expected_sample.npz
+    local_path: artifacts/expected_sample.npz
+    checksum: null
+    note: "Optional remote artifact from full gold generation; local check-only verification requires only expected_artifact.json."
+  - asset_id: upstream_public_checkpoints
+    type: checkpoint
+    required: false
+    source: README public OpenAI Blob checkpoint URLs
+    risk: large_download_and_hardware_pressure
+    note: "Not required for this CPU minimal task; the verifier validates official sampling semantics with a deterministic tiny checkpoint."
+    checksum: null

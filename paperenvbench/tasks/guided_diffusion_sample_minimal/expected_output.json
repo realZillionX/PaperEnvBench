@@ -1,0 +1,32 @@
+{
+  "task_id": "guided_diffusion_sample_minimal",
+  "expected_success_level": "L4_cpu_deterministic_fallback",
+  "expected_repo_commit": "22e0df8183507e13a7813f8d38d51b072ca1e67c",
+  "required_artifacts": [
+    "artifacts/expected_artifact.json",
+    "artifacts/expected_sample_grid.ppm"
+  ],
+  "route_requirements": {
+    "classifier_guided_script": "scripts/classifier_sample.py",
+    "unguided_script": "scripts/image_sample.py",
+    "diffusion_checkpoint": "64x64_diffusion.pt",
+    "classifier_checkpoint": "64x64_classifier.pt",
+    "classifier_scale": 1.0,
+    "timestep_respacing": "250"
+  },
+  "semantic_requirements": {
+    "image_width": 16,
+    "image_height": 16,
+    "num_steps_recorded": 4,
+    "final_image_mean_range": [
+      0.30,
+      0.70
+    ],
+    "guidance_mode": "classifier_guided_fallback",
+    "all_checks_must_pass": true
+  },
+  "notes": [
+    "Exact checkpoint sampling is intentionally not required for check-only validation because the public ImageNet checkpoints are large.",
+    "The fallback artifact must still encode the real guided-diffusion sampling route and a deterministic image-like output artifact."
+  ]
+}

@@ -1,0 +1,52 @@
+task_id: guided_diffusion_sample_minimal
+paper_title: "Diffusion Models Beat GANs on Image Synthesis"
+repo_url: https://github.com/openai/guided-diffusion
+commit: 22e0df8183507e13a7813f8d38d51b072ca1e67c
+commit_short: 22e0df8
+paper_url: https://arxiv.org/abs/2105.05233
+license: MIT
+split: dev
+modality:
+  primary: diffusion_generation
+  secondary:
+    - image_generation
+    - classifier_guidance
+    - checkpoint_loading
+    - output_artifact
+environment_challenges:
+  - checkpoint_download
+  - torch_cuda_matrix
+  - entrypoint_ambiguity
+  - hardware_pressure
+verification:
+  type:
+    - checkpoint_loading
+    - output_artifact
+    - semantic_check
+  command: python verify.py --check-only --json
+  minimum_success_level: L4_cpu_deterministic_fallback
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4_fallback

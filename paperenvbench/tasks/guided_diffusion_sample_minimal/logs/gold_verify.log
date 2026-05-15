@@ -1,0 +1,36 @@
+{
+  "artifact_dir": "/Users/zillionx/Desktop/Paper Reproduction/PaperEnvBench/paperenvbench/tasks/guided_diffusion_sample_minimal/artifacts",
+  "artifact_sha256": "e40b21400a5b383cdd93b90569e7df988623bc40aae693344b44e8dcc2715bb2",
+  "checks": {
+    "checkpoint_route_recorded": true,
+    "fallback_boundary_documented": true,
+    "fallback_image_artifact_valid": true,
+    "guided_sampling_route_recorded": true,
+    "repo_commit_matches": true,
+    "semantic_output_valid": true
+  },
+  "observed": {
+    "repo_commit": "22e0df8183507e13a7813f8d38d51b072ca1e67c",
+    "route_script": "scripts/classifier_sample.py",
+    "sample_grid": {
+      "height": 16,
+      "max_value": 255,
+      "mean_rgb": [
+        0.4588,
+        0.5412,
+        0.651
+      ],
+      "sha256": "831a5804886d52fcb1531e02fc655df943f5f172efe0fd61f9e94ead584bb370",
+      "width": 16
+    },
+    "semantic": {
+      "description": "deterministic 16x16 RGB sample grid with smooth denoising-like gradient, recorded as CPU fallback for OpenAI guided-diffusion classifier_sample route",
+      "expected_full_route": "64x64 ImageNet classifier-guided diffusion sampling",
+      "fallback_reason": "public ImageNet diffusion and classifier checkpoints are large, so check-only validation records the route and validates a small semantic artifact",
+      "guidance_mode": "classifier_guided_fallback"
+    }
+  },
+  "status": "pass",
+  "success_level": "L4_cpu_deterministic_fallback",
+  "task_id": "guided_diffusion_sample_minimal"
+}

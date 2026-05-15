@@ -1,0 +1,20 @@
+primary_failure_tags:
+  - checkpoint_download
+  - torch_cuda_matrix
+  - api_or_license_gate
+  - hardware_pressure
+observed_gold_issues:
+  - tag: api_or_license_gate
+    issue: "Stable Diffusion v1 checkpoints are distributed under CreativeML Open RAIL-M and require accepting the Hugging Face model license before weight download."
+    evidence: "README.md directs users to obtain stable-diffusion-v1-*-original weights and link them to models/ldm/stable-diffusion-v1/model.ckpt."
+  - tag: torch_cuda_matrix
+    issue: "The reference txt2img loader calls model.cuda(), while the PaperEnvBench gold environment is CPU-only."
+    evidence: "scripts/txt2img.py load_model_from_config moves the instantiated model to CUDA after loading the checkpoint."
+  - tag: hardware_pressure
+    issue: "The README states Stable Diffusion v1 runs on a GPU with at least 10GB VRAM for the default 512x512 sampling route."
+    evidence: "The check-only route records a deterministic CPU fallback instead of forcing hidden evaluators to run full image generation."
+anti_patterns:
+  - "Downloading gated Stable Diffusion weights without checking license acceptance and model card restrictions."
+  - "Treating diffusers StableDiffusionPipeline as a replacement for the pinned CompVis reference repository route."
+  - "Claiming success from import-only checks without validating txt2img.py, v1-inference.yaml, checkpoint path, and license gate evidence."
+  - "Forcing CUDA-only sampling on the CPU notebook instead of documenting a bounded fallback artifact."

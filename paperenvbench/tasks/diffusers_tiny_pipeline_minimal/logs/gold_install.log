@@ -1,0 +1,5 @@
+command=./gold_install.sh
+status=recorded
+repo=https://github.com/huggingface/diffusers
+commit=de5fcf6fe322dde5ea119f0491dada9945f8a649
+route=DiffusionPipeline.from_pretrained hf-internal-testing/tiny-stable-diffusion-pipe DDIMScheduler cpu

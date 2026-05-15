@@ -1,0 +1,31 @@
+{
+  "artifact_dir": "/Users/zillionx/Desktop/Paper Reproduction/PaperEnvBench/paperenvbench/tasks/latent_diffusion_sample_minimal/artifacts",
+  "artifact_sha256": "6d4bdf6d3862463af757f40ddb545d65424049cafa829eaab18ddce2a459eb2b",
+  "checks": {
+    "config_sampler_autoencoder_linked": true,
+    "fallback_boundary_documented": true,
+    "repo_commit_matches": true,
+    "route_recorded": true,
+    "semantic_output_valid": true
+  },
+  "observed": {
+    "repo_commit": "a506df5756472e2ebaf9078affdde2c4f1502cd4",
+    "route": {
+      "autoencoder": "ldm.models.autoencoder.AutoencoderKL",
+      "checkpoint": "models/ldm/text2img-large/model.ckpt",
+      "config": "configs/latent-diffusion/txt2img-1p4B-eval.yaml",
+      "decode": "model.decode_first_stage(samples_ddim)",
+      "model_target": "ldm.models.diffusion.ddpm.LatentDiffusion",
+      "sampler": "ldm.models.diffusion.ddim.DDIMSampler",
+      "script": "scripts/txt2img.py"
+    },
+    "semantic": {
+      "description": "CompVis latent diffusion text-to-image route using the DDIM sampler and AutoencoderKL decoder with a documented checkpoint fallback.",
+      "prompt": "a small paperenvbench test image of a blue square on a white background",
+      "task": "latent diffusion text-to-image sampling"
+    }
+  },
+  "status": "pass",
+  "success_level": "L4_fallback",
+  "task_id": "latent_diffusion_sample_minimal"
+}

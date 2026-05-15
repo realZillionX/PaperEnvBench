@@ -1,0 +1,13 @@
+Using pinned repository https://github.com/openai/improved-diffusion
+Checked out commit 1bc7bbbdc414d83d4abf2ad8cc1446dc36c4e4d5
+Created isolated Python 3.12 venv on Inspire CPU notebook paper-repro-ci-prep
+Installed torch==2.4.1, numpy==1.26.4, blobfile==3.1.0, tqdm==4.67.1
+Installed improved-diffusion from pinned local checkout with `pip install -e`
+Ran verify.py through the official model/diffusion route:
+  improved_diffusion.script_util.create_model_and_diffusion
+  deterministic tiny initialized state_dict checkpoint load
+  improved_diffusion.respace.SpacedDiffusion
+  GaussianDiffusion.p_sample_loop
+Generated artifacts/expected_artifact.json and remote optional artifacts/expected_sample.npz
+Local package check-only validation requires artifacts/expected_artifact.json
+Result: L4_fallback_cpu_tiny_unet_sampling

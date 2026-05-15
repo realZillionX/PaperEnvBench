@@ -1,0 +1,6 @@
+[gold_install] repo_url=https://github.com/CompVis/stable-diffusion.git
+[gold_install] commit=21f890f9da3cfbeaba8e2ac3c425ee9e998d5229
+[gold_install] verified_files=scripts/txt2img.py,configs/stable-diffusion/v1-inference.yaml,Stable_Diffusion_v1_Model_Card.md,LICENSE,environment.yaml,setup.py
+[gold_install] checkpoint_route=models/ldm/stable-diffusion-v1/model.ckpt
+[gold_install] license_gate=CreativeML Open RAIL-M Hugging Face model acceptance required
+[gold_install] stable_diffusion_text2img_minimal gold install route verified

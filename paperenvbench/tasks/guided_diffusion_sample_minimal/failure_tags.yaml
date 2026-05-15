@@ -1,0 +1,9 @@
+primary_failure_tags:
+  - checkpoint_download
+  - torch_cuda_matrix
+  - entrypoint_ambiguity
+  - hardware_pressure
+anti_patterns:
+  - "Treating guided-diffusion as a generic diffusers pipeline and skipping the pinned repository scripts."
+  - "Downloading multi-GB checkpoints during check-only verification when the task asks for route evidence and a deterministic CPU fallback artifact."
+  - "Recording only import success without identifying classifier_sample.py, image_sample.py, model_path, classifier_path, and classifier_scale."

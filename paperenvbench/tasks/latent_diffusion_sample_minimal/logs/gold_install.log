@@ -1,0 +1,4 @@
+[gold_install] repo_url=https://github.com/CompVis/latent-diffusion.git
+[gold_install] commit=a506df5756472e2ebaf9078affdde2c4f1502cd4
+[gold_install] verified_files=scripts/txt2img.py,configs/latent-diffusion/txt2img-1p4B-eval.yaml,ldm/models/diffusion/ddim.py,ldm/models/diffusion/plms.py,ldm/models/autoencoder.py,ldm/util.py
+[gold_install] latent_diffusion_sample_minimal gold install route verified

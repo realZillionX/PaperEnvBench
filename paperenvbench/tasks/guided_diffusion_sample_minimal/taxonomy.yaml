@@ -1,0 +1,22 @@
+taxonomy:
+  modality:
+    primary: diffusion_generation
+    secondary:
+      - image_generation
+      - classifier_guidance
+      - checkpoint_loading
+      - output_artifact
+  environment_challenges:
+    - checkpoint_download
+    - torch_cuda_matrix
+    - entrypoint_ambiguity
+    - hardware_pressure
+  verification_type:
+    - checkpoint_loading
+    - output_artifact
+    - semantic_check
+  expected_skill_routes:
+    - global_reproducibility_safety
+    - diffusion_env_setup
+    - checkpoint_validation
+    - minimal_entrypoint_discovery

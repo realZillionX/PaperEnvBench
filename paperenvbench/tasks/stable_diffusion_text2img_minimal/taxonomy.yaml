@@ -1,0 +1,20 @@
+taxonomy:
+  modality:
+    primary: diffusion_generation
+    secondary:
+      - vision_language_multimodal
+      - checkpoint_loading
+  environment_challenges:
+    - checkpoint_download
+    - torch_cuda_matrix
+    - api_or_license_gate
+    - hardware_pressure
+  verification_type:
+    - checkpoint_loading
+    - output_artifact
+    - semantic_check
+  expected_skill_routes:
+    - global_reproducibility_safety
+    - diffusion_env_setup
+    - checkpoint_validation
+    - torch_cuda_matrix_solver

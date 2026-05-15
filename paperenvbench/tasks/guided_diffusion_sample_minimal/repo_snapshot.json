@@ -1,0 +1,48 @@
+{
+  "task_id": "guided_diffusion_sample_minimal",
+  "repo_name": "guided-diffusion",
+  "repo_url": "https://github.com/openai/guided-diffusion",
+  "repo_commit": "22e0df8183507e13a7813f8d38d51b072ca1e67c",
+  "repo_commit_short": "22e0df8",
+  "commit_date": "2022-07-15T12:24:59-07:00",
+  "commit_author": "Alex Nichol",
+  "commit_subject": "fix for fp16 loss scaling (#52)",
+  "license": "MIT",
+  "paper": {
+    "primary_title": "Diffusion Models Beat GANs on Image Synthesis",
+    "primary_url": "https://arxiv.org/abs/2105.05233"
+  },
+  "dependency_files": [
+    "setup.py",
+    "evaluations/requirements.txt"
+  ],
+  "entrypoints": {
+    "classifier_guided_sample_script": "scripts/classifier_sample.py",
+    "unguided_sample_script": "scripts/image_sample.py",
+    "super_resolution_script": "scripts/super_res_sample.py",
+    "script_util": "guided_diffusion/script_util.py",
+    "unet_module": "guided_diffusion/unet.py",
+    "diffusion_module": "guided_diffusion/gaussian_diffusion.py"
+  },
+  "checkpoint_routes": {
+    "64x64_diffusion": "https://openaipublic.blob.core.windows.net/diffusion/jul-2021/64x64_diffusion.pt",
+    "64x64_classifier": "https://openaipublic.blob.core.windows.net/diffusion/jul-2021/64x64_classifier.pt"
+  },
+  "observed_environment": {
+    "platform": "Inspire CPU Notebook paper-repro-ci-prep",
+    "workspace": "CPU资源空间",
+    "compute_group": "CPU资源-2",
+    "quota": "0,20,80",
+    "image": "sandbox-base:ubuntu24.04-py3.12-1.0.0",
+    "device": "cpu"
+  },
+  "install_notes": [
+    "The upstream README exposes classifier-guided sampling through scripts/classifier_sample.py and unguided sampling through scripts/image_sample.py.",
+    "The standard 64x64 ImageNet route requires both diffusion and classifier checkpoints; check-only verification records those public checkpoint URLs but does not download them.",
+    "The CPU fallback artifact preserves the expected guided-sampling semantics: starting noise, denoising trajectory statistics, classifier guidance scale, and final image grid."
+  ],
+  "validated_outputs": {
+    "local_artifact_dir": "paperenvbench/tasks/guided_diffusion_sample_minimal/artifacts",
+    "success_level": "L4_cpu_deterministic_fallback"
+  }
+}

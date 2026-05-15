@@ -1,0 +1,22 @@
+taxonomy:
+  modality:
+    primary: diffusion_generation
+    secondary:
+      - text_to_image
+      - latent_diffusion
+      - autoencoder_kl
+      - ddim_sampling
+  environment_challenges:
+    - checkpoint_download
+    - torch_cuda_matrix
+    - hidden_dependency
+    - system_package_missing
+  verification_type:
+    - checkpoint_loading
+    - output_artifact
+    - semantic_check
+  expected_skill_routes:
+    - global_reproducibility_safety
+    - diffusion_env_setup
+    - checkpoint_validation
+    - system_package_resolver

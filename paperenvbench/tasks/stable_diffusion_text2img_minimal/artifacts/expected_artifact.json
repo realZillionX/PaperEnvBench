@@ -1,0 +1,81 @@
+{
+  "checks": {
+    "checkpoint_route_recorded": true,
+    "config_route_recorded": true,
+    "fallback_artifact_valid": true,
+    "license_gate_documented": true,
+    "repo_commit_matches": true,
+    "semantic_output_valid": true,
+    "txt2img_entrypoint_recorded": true
+  },
+  "environment": {
+    "checkpoint_loaded": false,
+    "checkpoint_required_for_full_inference": true,
+    "device": "cpu",
+    "full_inference_requires_gpu": true,
+    "license_acceptance_required": true
+  },
+  "evidence": {
+    "fallback_reason": "Stable Diffusion v1 checkpoint access is license gated and the pinned reference loader moves the model to CUDA.",
+    "large_checkpoint_required_for_check_only": false,
+    "mode": "deterministic_cpu_license_gate_fallback",
+    "pinned_files": [
+      "scripts/txt2img.py",
+      "configs/stable-diffusion/v1-inference.yaml",
+      "ldm/util.py",
+      "ldm/models/diffusion/plms.py",
+      "Stable_Diffusion_v1_Model_Card.md",
+      "LICENSE"
+    ]
+  },
+  "fallback_artifact": {
+    "height": 8,
+    "pixel_pattern": "diagonal latent stripes with blue background and white helmet marker",
+    "prompt_embedding_terms": [
+      "astronaut",
+      "horse",
+      "photograph"
+    ],
+    "type": "deterministic_thumbnail_summary",
+    "width": 8
+  },
+  "numeric": {
+    "fallback_rgb_mean": [
+      72.5,
+      105.0,
+      146.25
+    ],
+    "latent_shape": [
+      1,
+      4,
+      64,
+      64
+    ],
+    "sampler_steps": [
+      50
+    ]
+  },
+  "repo": {
+    "commit": "21f890f9da3cfbeaba8e2ac3c425ee9e998d5229",
+    "url": "https://github.com/CompVis/stable-diffusion"
+  },
+  "route": {
+    "checkpoint": "models/ldm/stable-diffusion-v1/model.ckpt",
+    "config": "configs/stable-diffusion/v1-inference.yaml",
+    "license_gate": "CreativeML Open RAIL-M weights require accepting the Hugging Face model license before downloading sd-v1-4.ckpt",
+    "script": "scripts/txt2img.py",
+    "sampler": "PLMSSampler or DDIMSampler via --plms/--ddim_steps"
+  },
+  "semantic": {
+    "description": "latent diffusion text-to-image route for an astronaut riding a horse; full checkpoint inference is license gated, so the artifact records a deterministic CPU fallback thumbnail",
+    "prompt": "a photograph of an astronaut riding a horse",
+    "safety_boundary": "CreativeML Open RAIL-M license gate and model card restrictions are preserved before checkpoint use"
+  },
+  "sha256": {
+    "route": "bf532072642e50eb6a10e1717602d9e1fdd98aafda6cac05735b912b9e0cca8a",
+    "semantic": "640c1f04d84e7763624f5058581112acdce27a3ffde077f02aba0ac9ab6eeed9"
+  },
+  "success": true,
+  "success_level": "L4_cpu_license_gate_fallback",
+  "task_id": "stable_diffusion_text2img_minimal"
+}

@@ -1,0 +1,18 @@
+{
+  "artifact": "artifacts/expected_artifact.json",
+  "checks": {
+    "artifact_records_cpu_fallback": true,
+    "checkpoint_loaded": true,
+    "diffusion_route_matches": true,
+    "embedded_checks_true": true,
+    "model_route_matches": true,
+    "repo_commit_matches": true,
+    "sample_shape_matches": true,
+    "sample_statistics_valid": true,
+    "sample_uint8_range_valid": true,
+    "script_route_matches": true
+  },
+  "mode": "check-only",
+  "success": true,
+  "task_id": "improved_diffusion_sample_minimal"
+}

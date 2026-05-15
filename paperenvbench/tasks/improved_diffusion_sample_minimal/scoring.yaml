@@ -1,0 +1,25 @@
+scoring:
+  L0_repository_analysis: 0.10
+  L1_install_success: 0.20
+  L2_checkpoint_route_success: 0.20
+  L3_sampling_entry_success: 0.25
+  L4_semantic_verification: 0.15
+  reproducibility: 0.05
+  safety: 0.05
+main_success_level: L4_fallback_cpu_tiny_unet_sampling
+level_definitions:
+  L0_repository_analysis: "Identify `setup.py`, `scripts/image_sample.py`, `create_model_and_diffusion`, checkpoint loading, and heavy public checkpoint constraints."
+  L1_install_success: "Clone the pinned repo and install the minimal CPU dependency set in an isolated venv."
+  L2_checkpoint_route_success: "Construct a tiny UNet through the pinned repo factory, write and reload a deterministic state_dict checkpoint."
+  L3_sampling_entry_success: "Run the official diffusion `p_sample_loop` route on CPU with deterministic seeds."
+  L4_semantic_verification: "Produce and validate `expected_artifact.json` with repo commit, route kwargs, sample shape, uint8 range, and non-degenerate statistics."
+semantic_checks:
+  - repo_commit_matches
+  - script_route_matches
+  - model_route_matches
+  - diffusion_route_matches
+  - checkpoint_loaded
+  - sample_shape_matches
+  - sample_uint8_range_valid
+  - sample_statistics_valid
+  - artifact_records_cpu_fallback

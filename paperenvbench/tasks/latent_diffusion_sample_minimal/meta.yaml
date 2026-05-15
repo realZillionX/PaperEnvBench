@@ -1,0 +1,52 @@
+task_id: latent_diffusion_sample_minimal
+paper_title: "High-Resolution Image Synthesis with Latent Diffusion Models"
+repo_url: https://github.com/CompVis/latent-diffusion
+commit: a506df5756472e2ebaf9078affdde2c4f1502cd4
+commit_short: a506df5
+paper_url: https://arxiv.org/abs/2112.10752
+license: MIT
+split: val
+modality:
+  primary: diffusion_generation
+  secondary:
+    - text_to_image
+    - latent_diffusion
+    - autoencoder_kl
+    - ddim_sampling
+environment_challenges:
+  - checkpoint_download
+  - torch_cuda_matrix
+  - hidden_dependency
+  - system_package_missing
+verification:
+  type:
+    - checkpoint_loading
+    - output_artifact
+    - semantic_check
+  command: python verify.py --check-only --json
+  minimum_success_level: L4_fallback
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4_fallback

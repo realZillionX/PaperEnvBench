@@ -434,3 +434,48 @@ assets:
     cached_path: paper-repro:runs/paperenvbench/llm/t5_text_to_text_minimal/artifacts/expected_artifact.json
     local_artifact_path: paperenvbench/tasks/t5_text_to_text_minimal/artifacts/expected_artifact.json
     status: gold_verified
+  - asset_id: improved_diffusion_sample_minimal_summary
+    task_id: improved_diffusion_sample_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: 29fad6f5e9a9ff9883ca03bf05b1a1fa968470d8feb02e673efc2c0bbcb1155a
+    cached_path: paper-repro:runs/paperenvbench/diffusion/improved_diffusion_sample_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/improved_diffusion_sample_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: guided_diffusion_sample_minimal_summary
+    task_id: guided_diffusion_sample_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: e40b21400a5b383cdd93b90569e7df988623bc40aae693344b44e8dcc2715bb2
+    cached_path: paper-repro:runs/paperenvbench/diffusion/guided_diffusion_sample_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/guided_diffusion_sample_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: latent_diffusion_sample_minimal_summary
+    task_id: latent_diffusion_sample_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: 6d4bdf6d3862463af757f40ddb545d65424049cafa829eaab18ddce2a459eb2b
+    cached_path: paper-repro:runs/paperenvbench/diffusion/latent_diffusion_sample_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/latent_diffusion_sample_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: stable_diffusion_text2img_minimal_summary
+    task_id: stable_diffusion_text2img_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: 3050364ac101321b480fb6d8456bf2340fa0a700e593ca923e6fc383a913cf82
+    cached_path: paper-repro:runs/paperenvbench/diffusion/stable_diffusion_text2img_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/stable_diffusion_text2img_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: diffusers_tiny_pipeline_minimal_summary
+    task_id: diffusers_tiny_pipeline_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: 4100abc4bf9a15b6db1fe989e9ead5ef015cd258acf88a96b0fdf12f1fff8e49
+    cached_path: paper-repro:runs/paperenvbench/diffusion/diffusers_tiny_pipeline_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/diffusers_tiny_pipeline_minimal/artifacts/expected_artifact.json
+    status: gold_verified

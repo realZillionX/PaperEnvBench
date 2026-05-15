@@ -1,0 +1,18 @@
+blobfile==3.1.0
+certifi==2025.10.5
+charset-normalizer==3.4.4
+filelock==3.19.1
+idna==3.11
+improved-diffusion @ file:///inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper%20Reproduction/runs/paperenvbench/diffusion/improved_diffusion_sample_minimal/improved-diffusion
+Jinja2==3.1.6
+MarkupSafe==3.0.3
+mpmath==1.3.0
+networkx==3.3
+numpy==1.26.4
+pycryptodomex==3.23.0
+requests==2.32.5
+sympy==1.13.3
+torch==2.4.1
+tqdm==4.67.1
+typing_extensions==4.15.0
+urllib3==2.5.0

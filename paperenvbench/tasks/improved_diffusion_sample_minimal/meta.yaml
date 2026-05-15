@@ -1,0 +1,51 @@
+task_id: improved_diffusion_sample_minimal
+paper_title: "Improved Denoising Diffusion Probabilistic Models"
+repo_url: https://github.com/openai/improved-diffusion
+commit: 1bc7bbbdc414d83d4abf2ad8cc1446dc36c4e4d5
+commit_short: 1bc7bbb
+paper_url: https://arxiv.org/abs/2102.09672
+license: MIT
+split: dev
+modality:
+  primary: diffusion_generation
+  secondary:
+    - image_generation
+    - unet_diffusion
+    - checkpoint_sampling
+environment_challenges:
+  - checkpoint_download
+  - torch_cuda_matrix
+  - hidden_dependency
+  - hardware_pressure
+verification:
+  type:
+    - checkpoint_loading
+    - output_artifact
+    - semantic_check
+  command: python verify.py --check-only --json
+  minimum_success_level: L4_fallback
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4_fallback

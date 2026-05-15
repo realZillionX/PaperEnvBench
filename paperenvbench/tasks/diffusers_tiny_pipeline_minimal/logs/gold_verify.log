@@ -1,0 +1,4 @@
+command=python verify.py --check-only --json
+status=pass
+success_level=L4_tiny_pipeline_cpu
+artifact=artifacts/expected_artifact.json

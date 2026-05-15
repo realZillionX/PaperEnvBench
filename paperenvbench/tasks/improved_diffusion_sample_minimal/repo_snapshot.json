@@ -1,0 +1,60 @@
+{
+  "task_id": "improved_diffusion_sample_minimal",
+  "repo_url": "https://github.com/openai/improved-diffusion",
+  "commit": "1bc7bbbdc414d83d4abf2ad8cc1446dc36c4e4d5",
+  "commit_short": "1bc7bbb",
+  "commit_date": "2024-03-12T21:02:06-04:00",
+  "commit_author": "Alex Nichol",
+  "commit_subject": "Merge pull request #129 from NoahSchiro/fp16-fix",
+  "license": "MIT",
+  "paper": {
+    "primary_title": "Improved Denoising Diffusion Probabilistic Models",
+    "primary_url": "https://arxiv.org/abs/2102.09672"
+  },
+  "entrypoints": {
+    "package": "improved_diffusion",
+    "setup_file": "setup.py",
+    "sample_script": "scripts/image_sample.py",
+    "train_script": "scripts/image_train.py",
+    "model_factory": "improved_diffusion.script_util.create_model_and_diffusion",
+    "diffusion_factory": "improved_diffusion.script_util.create_gaussian_diffusion",
+    "minimal_command": "python verify.py --repo-dir improved-diffusion --artifact-dir artifacts --json"
+  },
+  "dependency_files": [
+    "setup.py",
+    "README.md"
+  ],
+  "observed_environment": {
+    "platform": "Inspire CPU Notebook paper-repro-ci-prep",
+    "workspace": "CPU资源空间",
+    "compute_group": "CPU资源-2",
+    "quota": "0,20,80",
+    "image": "sandbox-base:ubuntu24.04-py3.12-1.0.0",
+    "python": "3.12.3"
+  },
+  "install_notes": [
+    "`setup.py` installs `blobfile>=1.0.5`, `torch`, and `tqdm`; the gold install also pins NumPy for sample artifacts.",
+    "`scripts/image_sample.py` normally initializes distributed state and loads large public checkpoints; the gold verifier calls the same model and diffusion route directly to keep CPU verification deterministic.",
+    "The fallback checkpoint is a tiny initialized state_dict written and reloaded during verification, so checkpoint loading remains part of the semantic contract."
+  ],
+  "validated_outputs": {
+    "remote_run_root": "paper-repro:runs/paperenvbench/diffusion/improved_diffusion_sample_minimal",
+    "summary": "artifacts/expected_artifact.json",
+    "sample_npz": "artifacts/expected_sample.npz",
+    "success_level": "L4_fallback_cpu_tiny_unet_sampling"
+  },
+  "taxonomy_hints": {
+    "modality_primary": "diffusion_generation",
+    "environment_challenges": [
+      "checkpoint_download",
+      "torch_cuda_matrix",
+      "hidden_dependency",
+      "hardware_pressure"
+    ],
+    "verification_type": [
+      "checkpoint_loading",
+      "output_artifact",
+      "semantic_check"
+    ]
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "checks": {
+    "diffusion_pipeline_route_recorded": true,
+    "repo_commit_matches": true,
+    "scheduler_route_recorded": true,
+    "semantic_output_valid": true,
+    "tiny_pipeline_boundary_documented": true
+  },
+  "environment": {
+    "checkpoint_loaded": true,
+    "checkpoint_required_for_full_inference": true,
+    "device": "cpu",
+    "pipeline_id": "hf-internal-testing/tiny-stable-diffusion-pipe"
+  },
+  "evidence": {
+    "large_checkpoint_required_for_check_only": false,
+    "mode": "tiny_pipeline_cpu_or_recorded_fallback",
+    "pinned_files": [
+      "src/diffusers/pipelines/pipeline_utils.py",
+      "src/diffusers/pipelines/stable_diffusion/pipeline_stable_diffusion.py",
+      "src/diffusers/schedulers/scheduling_ddim.py"
+    ]
+  },
+  "numeric": {
+    "image_size": [
+      64,
+      64
+    ],
+    "scheduler_timesteps": [
+      2
+    ]
+  },
+  "repo": {
+    "commit": "de5fcf6fe322dde5ea119f0491dada9945f8a649",
+    "url": "https://github.com/huggingface/diffusers"
+  },
+  "route": {
+    "api": "diffusers.DiffusionPipeline.from_pretrained",
+    "device": "cpu",
+    "pipeline": "hf-internal-testing/tiny-stable-diffusion-pipe",
+    "pipeline_class": "StableDiffusionPipeline",
+    "scheduler": "diffusers.DDIMScheduler",
+    "scheduler_config": "scheduler/scheduler_config.json"
+  },
+  "semantic": {
+    "description": "tiny diffusion pipeline generated a deterministic 64 by 64 image from the prompt a red square on a white background",
+    "prompt": "a red square on a white background"
+  },
+  "sha256": {
+    "route": "92c993e43d3f18f9035e345d040ca80886a224ab1b7712ee8881e62e2fd872d3",
+    "semantic": "1f942cf15f2ded323f733882839aa6a94ab243e9e21f6684ab32b099790160d7"
+  },
+  "success": true,
+  "success_level": "L4_tiny_pipeline_cpu",
+  "task_id": "diffusers_tiny_pipeline_minimal"
+}
