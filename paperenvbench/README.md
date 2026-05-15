@@ -26,8 +26,6 @@ paperenvbench/
   taxonomy.yaml
   registries/
     task_registry.yaml
-    experiment_registry.yaml
-    skill_registry.yaml
     trajectory_registry.yaml
     asset_registry.yaml
   tasks/
@@ -54,7 +52,7 @@ paperenvbench/
 
 ## 数据边界
 
-Gold solution、hidden verifier 和 Test trajectory 不得进入 agent 上下文。Dev trajectory 可以用于 Skill-ICOPD 的 on-policy Skill 提炼；Val 只用于阈值和路由策略选择；Test 只用于最终报告。
+Gold solution、hidden verifier 和 Test trajectory 不得进入 agent 上下文。Dev trajectory 可以用于 ICOPD 的 on-policy 经验提炼；Val 只用于阈值、提示结构和实验设置选择；Test 只用于最终报告。
 
 ## 本地校验
 
