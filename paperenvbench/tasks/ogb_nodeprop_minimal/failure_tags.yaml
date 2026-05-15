@@ -1,0 +1,9 @@
+primary_failure_tags:
+  - dataset_asset_missing
+  - hidden_dependency
+  - torch_cuda_matrix
+anti_patterns:
+  - "Treating `import ogb` as success without exercising `ogb.nodeproppred.Evaluator` on node-label predictions."
+  - "Downloading a full OGB dataset during hidden check-only verification instead of using cached assets or the deterministic toy graph."
+  - "Reporting arbitrary accuracy numbers without preserving the ground-truth labels, predictions, and split used to compute them."
+  - "Using a GPU-only PyG or DGL stack for the metric path when the OGB evaluator route works on CPU with NumPy."

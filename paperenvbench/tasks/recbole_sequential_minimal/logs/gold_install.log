@@ -1,0 +1,15 @@
+[remote] notebook=paper-repro-ci-prep
+[remote] cwd=/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/PaperEnvBench/paperenvbench/tasks/recbole_sequential_minimal
+[remote] python=Python 3.12.3
+[remote] repo_url=https://github.com/RUCAIBox/RecBole.git
+[remote] git_head=7b02be5ec80a88310f2d04a27a82adfcbb5dc211
+[remote] pinned_files_probe
+present requirements.txt
+present setup.py
+present run_recbole.py
+present recbole/quick_start/quick_start.py
+present recbole/data/dataset/sequential_dataset.py
+present recbole/model/sequential_recommender/sasrec.py
+present recbole/properties/quick_start_config/sequential.yaml
+[remote] bash_n=pass
+[remote] install_route=RecBole editable install with CPU PyTorch and deterministic toy sequential fallback

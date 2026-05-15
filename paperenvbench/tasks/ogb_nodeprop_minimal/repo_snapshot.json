@@ -1,0 +1,68 @@
+{
+  "task_id": "ogb_nodeprop_minimal",
+  "repo_name": "ogb",
+  "repo_url": "https://github.com/snap-stanford/ogb",
+  "repo_commit": "61e9784ca76edeaa6e259ba0f836099608ff0586",
+  "repo_commit_short": "61e9784",
+  "license_file": "LICENSE",
+  "dependency_files": [
+    "setup.py"
+  ],
+  "observed_repository_files": [
+    "setup.py",
+    "ogb/nodeproppred/__init__.py",
+    "ogb/nodeproppred/evaluate.py",
+    "ogb/nodeproppred/dataset.py",
+    "ogb/nodeproppred/dataset_pyg.py",
+    "ogb/nodeproppred/master.csv"
+  ],
+  "entrypoints": [
+    {
+      "name": "ogb.nodeproppred.Evaluator",
+      "target": "ogb/nodeproppred/evaluate.py",
+      "type": "python_api"
+    },
+    {
+      "name": "ogb.nodeproppred.NodePropPredDataset",
+      "target": "ogb/nodeproppred/dataset.py",
+      "type": "dataset_api"
+    },
+    {
+      "name": "ogb.nodeproppred.PygNodePropPredDataset",
+      "target": "ogb/nodeproppred/dataset_pyg.py",
+      "type": "optional_dataset_api"
+    }
+  ],
+  "package_manager": "pip",
+  "observed_environment": {
+    "device": "cpu",
+    "notebook": "paper-repro-ci-prep",
+    "python": "3.12",
+    "remote_cwd_alias": "paper-repro"
+  },
+  "validated_outputs": {
+    "local_artifact_dir": "paperenvbench/tasks/ogb_nodeprop_minimal/artifacts",
+    "success_level": "L4_cpu_deterministic_fallback",
+    "metric": "acc",
+    "dataset_route": "ogbn-arxiv"
+  },
+  "taxonomy_hints": {
+    "modality_primary": "graph_learning_recommender",
+    "environment_challenges": [
+      "dataset_asset_missing",
+      "hidden_dependency",
+      "torch_cuda_matrix"
+    ],
+    "verification_type": [
+      "metric_smoke_test",
+      "training_smoke_test",
+      "semantic_check"
+    ],
+    "expected_skill_routes": [
+      "global_reproducibility_safety",
+      "graph_learning_env_setup",
+      "torch_cuda_matrix_solver",
+      "minimal_entrypoint_discovery"
+    ]
+  }
+}

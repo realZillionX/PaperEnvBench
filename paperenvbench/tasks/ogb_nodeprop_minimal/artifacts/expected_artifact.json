@@ -1,0 +1,93 @@
+{
+  "task_id": "ogb_nodeprop_minimal",
+  "success": true,
+  "success_level": "L4_cpu_deterministic_fallback",
+  "repo": {
+    "name": "ogb",
+    "url": "https://github.com/snap-stanford/ogb",
+    "commit": "61e9784ca76edeaa6e259ba0f836099608ff0586",
+    "commit_short": "61e9784"
+  },
+  "route": {
+    "clone": "git clone https://github.com/snap-stanford/ogb.git && git checkout 61e9784ca76edeaa6e259ba0f836099608ff0586",
+    "install": "python -m pip install -e repo with CPU torch",
+    "python_api": "from ogb.nodeproppred import Evaluator; evaluator = Evaluator(name=\"ogbn-arxiv\"); evaluator.eval({\"y_true\": y_true, \"y_pred\": y_pred})",
+    "dataset_api_optional": "from ogb.nodeproppred import PygNodePropPredDataset; PygNodePropPredDataset(name=\"ogbn-arxiv\")",
+    "repo_entrypoints": [
+      "ogb/nodeproppred/__init__.py",
+      "ogb/nodeproppred/evaluate.py",
+      "ogb/nodeproppred/dataset.py",
+      "ogb/nodeproppred/dataset_pyg.py",
+      "ogb/nodeproppred/master.csv"
+    ],
+    "dependency_file": "setup.py",
+    "fallback": "deterministic CPU toy citation graph with OGB accuracy evaluator; no OGB dataset download during check-only verification"
+  },
+  "toy_graph": {
+    "description": "Ten-node directed citation-style graph with one node-label task.",
+    "num_nodes": 10,
+    "num_edges": 12,
+    "feature_dim": 4,
+    "edges": [
+      [0, 1],
+      [1, 2],
+      [2, 3],
+      [3, 4],
+      [4, 5],
+      [5, 6],
+      [6, 7],
+      [7, 8],
+      [8, 9],
+      [0, 5],
+      [2, 7],
+      [4, 9]
+    ],
+    "node_features": [
+      [1.0, 0.0, 0.0, 0.2],
+      [0.8, 0.1, 0.0, 0.3],
+      [0.0, 1.0, 0.1, 0.4],
+      [0.1, 0.9, 0.0, 0.5],
+      [0.0, 0.2, 1.0, 0.6],
+      [0.2, 0.0, 0.8, 0.7],
+      [0.5, 0.5, 0.0, 0.8],
+      [0.4, 0.4, 0.2, 0.9],
+      [0.0, 0.3, 0.7, 1.0],
+      [0.3, 0.0, 0.7, 1.1]
+    ],
+    "split": {
+      "train": [0, 1, 2, 3, 4, 5],
+      "valid": [6, 7],
+      "test": [8, 9]
+    },
+    "labels": [[0], [1], [2], [2], [1], [0], [3], [3], [4], [4]],
+    "predictions": [[0], [1], [2], [2], [1], [0], [3], [0], [4], [2]]
+  },
+  "metric": {
+    "dataset_name": "ogbn-arxiv",
+    "evaluator": "ogb.nodeproppred.Evaluator",
+    "metric_name": "acc",
+    "num_tasks": 1,
+    "input_format": {
+      "y_true_shape": [10, 1],
+      "y_pred_shape": [10, 1],
+      "dtype": "int64"
+    },
+    "correct_count": 8,
+    "total_count": 10,
+    "accuracy": 0.8,
+    "minimum_accuracy": 0.75
+  },
+  "semantic": {
+    "task": "node property prediction",
+    "summary": "The artifact evaluates predicted node labels with the OGB node property Evaluator for ogbn-arxiv and records an 8/10 deterministic CPU accuracy.",
+    "expected_ordering": "accuracy >= minimum_accuracy",
+    "dataset_download_required": false
+  },
+  "checks": {
+    "repo_commit_matches": true,
+    "nodeproppred_evaluator_route_recorded": true,
+    "toy_graph_artifact_complete": true,
+    "accuracy_metric_matches": true,
+    "cpu_fallback_documented": true
+  }
+}

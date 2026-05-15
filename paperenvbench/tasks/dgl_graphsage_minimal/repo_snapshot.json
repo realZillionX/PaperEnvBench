@@ -1,0 +1,49 @@
+{
+  "dependency_files": [
+    "python/setup.py",
+    "pyproject.toml",
+    "requirements.txt",
+    "CMakeLists.txt"
+  ],
+  "entrypoints": [
+    {
+      "name": "dgl.graph",
+      "target": "python/dgl/convert.py",
+      "type": "python_api"
+    },
+    {
+      "name": "dgl.nn.pytorch.SAGEConv",
+      "target": "python/dgl/nn/pytorch/conv/sageconv.py",
+      "type": "python_api"
+    },
+    {
+      "name": "GraphSAGE examples",
+      "target": "examples/pytorch/graphsage",
+      "type": "repo_dir"
+    }
+  ],
+  "license_file": "LICENSE",
+  "observed_environment": {
+    "device": "cpu",
+    "notebook": "paper-repro-ci-prep",
+    "python": "3.12",
+    "remote_cwd_alias": "paper-repro"
+  },
+  "observed_repository_files": [
+    "python/dgl/__init__.py",
+    "python/dgl/convert.py",
+    "python/dgl/nn/pytorch/conv/sageconv.py",
+    "examples/pytorch/graphsage",
+    "CMakeLists.txt"
+  ],
+  "package_manager": "pip",
+  "repo_commit": "c6c874bf7ea085beb04ea1487cfd216a0bacd6c1",
+  "repo_commit_short": "c6c874b",
+  "repo_name": "dgl",
+  "repo_url": "https://github.com/dmlc/dgl",
+  "task_id": "dgl_graphsage_minimal",
+  "validated_outputs": {
+    "local_artifact_dir": "paperenvbench/tasks/dgl_graphsage_minimal/artifacts",
+    "success_level": "L4_cpu_deterministic_fallback"
+  }
+}

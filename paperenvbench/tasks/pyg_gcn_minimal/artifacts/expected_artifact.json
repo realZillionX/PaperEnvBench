@@ -1,0 +1,156 @@
+{
+  "checks": {
+    "cpu_device": true,
+    "fallback_boundary_documented": true,
+    "full_accuracy_threshold_met": true,
+    "gcnconv_route_recorded": true,
+    "pyg_data_route_recorded": true,
+    "repo_commit_matches": true,
+    "train_accuracy_threshold_met": true
+  },
+  "metrics": {
+    "epochs": 80,
+    "final_full_accuracy": 1.0,
+    "final_train_accuracy": 1.0,
+    "loss_trace": [
+      0.693147,
+      0.410215,
+      0.156884,
+      0.061732
+    ]
+  },
+  "numeric": {
+    "final_logits": [
+      [
+        2.932441,
+        -2.735918
+      ],
+      [
+        2.711032,
+        -2.503614
+      ],
+      [
+        1.426277,
+        -1.151982
+      ],
+      [
+        -2.684211,
+        2.908436
+      ],
+      [
+        -2.502997,
+        2.731805
+      ],
+      [
+        -1.203114,
+        1.477682
+      ]
+    ],
+    "predictions": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      1
+    ]
+  },
+  "repo": {
+    "commit": "a5b69c37a05561ebb92931b3d586d664a7269585",
+    "name": "pytorch_geometric",
+    "url": "https://github.com/pyg-team/pytorch_geometric"
+  },
+  "route": {
+    "api": "torch_geometric.data.Data + torch_geometric.nn.GCNConv",
+    "clone": "git clone https://github.com/pyg-team/pytorch_geometric && git checkout a5b69c37a05561ebb92931b3d586d664a7269585",
+    "data_container": "torch_geometric.data.Data(x=x, edge_index=edge_index, y=y, train_mask=train_mask)",
+    "device": "cpu",
+    "entrypoint": "torch_geometric/nn/conv/gcn_conv.py::GCNConv.forward",
+    "fallback": "CPU deterministic fallback implements the same add-self-loops symmetric normalized adjacency route used by gcn_norm when optional PyG native extensions are unavailable.",
+    "model": "two-layer GCNConv node classifier on a controlled toy graph",
+    "normalization": "torch_geometric.nn.conv.gcn_conv.gcn_norm"
+  },
+  "semantic": {
+    "dataset": "controlled six-node homophilous toy graph",
+    "expected_behavior": "GCN separates two graph communities and predicts node labels [0, 0, 0, 1, 1, 1].",
+    "task": "minimal PyG GCN node classification"
+  },
+  "success_level": "L4_cpu_deterministic_fallback",
+  "task_id": "pyg_gcn_minimal",
+  "toy_graph": {
+    "edge_index": [
+      [
+        0,
+        1,
+        1,
+        2,
+        3,
+        4,
+        4,
+        5,
+        2,
+        5
+      ],
+      [
+        1,
+        0,
+        2,
+        1,
+        4,
+        3,
+        5,
+        4,
+        5,
+        2
+      ]
+    ],
+    "features": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.9,
+        0.1,
+        0.0
+      ],
+      [
+        0.8,
+        0.2,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.1,
+        0.9,
+        0.0
+      ],
+      [
+        0.2,
+        0.8,
+        0.0
+      ]
+    ],
+    "labels": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      1
+    ],
+    "train_mask": [
+      true,
+      true,
+      false,
+      true,
+      true,
+      false
+    ]
+  }
+}

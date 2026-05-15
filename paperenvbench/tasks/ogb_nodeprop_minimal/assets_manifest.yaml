@@ -1,0 +1,19 @@
+assets:
+  - asset_id: ogb_nodeprop_minimal_expected_artifact
+    type: json
+    required: true
+    cached_path: paperenvbench/tasks/ogb_nodeprop_minimal/artifacts/expected_artifact.json
+    checksum: af88b2eb1177406ace4f0632d415ea14d7e54bc0099f4a24f2f1aecf0dbaf720
+  - asset_id: ogb_nodeprop_minimal_toy_graph
+    type: embedded_json
+    required: true
+    cached_path: paperenvbench/tasks/ogb_nodeprop_minimal/artifacts/expected_artifact.json#toy_graph
+    checksum: null
+    notes: "The node features, edges, labels, split, and predictions are embedded in expected_artifact.json for check-only verification."
+  - asset_id: ogb_nodeprop_minimal_public_dataset_route
+    type: dataset_route
+    required: false
+    cached_path: paper-repro:data/ogb/ogbn-arxiv/
+    source_url: https://ogb.stanford.edu/docs/nodeprop/#ogbn-arxiv
+    checksum: null
+    notes: "Full agent attempts may use ogbn-arxiv; hidden check-only validation uses the deterministic embedded toy graph."

@@ -1,0 +1,19 @@
+failure_tags:
+  primary:
+    - native_extension_build
+    - torch_cuda_matrix
+    - hidden_dependency
+  observed:
+    - tag: native_extension_build
+      evidence: "The pinned DGL repository contains CMake, C++ runtime components, graphbolt, and Python bindings that can exceed a minimal CPU notebook build budget."
+      mitigation: "Pin the repository first, prefer a CPU wheel when available, and reserve source builds for environments with CMake, Ninja, and enough memory."
+    - tag: torch_cuda_matrix
+      evidence: "DGL packages are coupled to PyTorch and CUDA variants；a CPU task must avoid assuming a CUDA wheel."
+      mitigation: "Use a CPU-only route for smoke verification and record the backend choice explicitly."
+    - tag: hidden_dependency
+      evidence: "GraphSAGE examples may need backend configuration, scipy / networkx style graph utilities, and dataset downloads not obvious from a single entrypoint."
+      mitigation: "Use a controlled toy graph and verify the GraphSAGE neighbor-mean semantics without external datasets."
+  non_goals:
+    - checkpoint_download
+    - dataset_asset_missing
+    - hardware_pressure

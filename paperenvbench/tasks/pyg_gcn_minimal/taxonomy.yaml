@@ -1,0 +1,19 @@
+taxonomy:
+  modality:
+    primary: graph_learning_recommender
+    secondary:
+      - graph_neural_network
+      - node_classification
+  environment_challenges:
+    - native_extension_build
+    - torch_cuda_matrix
+    - hidden_dependency
+  verification_type:
+    - import_graph
+    - training_smoke_test
+    - semantic_check
+  expected_skill_routes:
+    - global_reproducibility_safety
+    - graph_learning_env_setup
+    - native_extension_repair
+    - torch_cuda_matrix_solver

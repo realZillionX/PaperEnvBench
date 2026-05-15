@@ -1,0 +1,54 @@
+{
+  "asset_dependencies": [
+    {
+      "name": "controlled_toy_graph",
+      "sha256": "f7539382a91d638412c5db95ad80c3349b5d2d5abc57527ba931413b15435fc8",
+      "type": "inline_json"
+    }
+  ],
+  "dependency_files": [
+    "pyproject.toml",
+    "requirements.txt"
+  ],
+  "entrypoints": [
+    {
+      "name": "torch_geometric.data.Data",
+      "target": "torch_geometric/data/data.py",
+      "type": "python_api"
+    },
+    {
+      "name": "torch_geometric.nn.GCNConv",
+      "target": "torch_geometric/nn/conv/gcn_conv.py",
+      "type": "python_api"
+    },
+    {
+      "name": "torch_geometric.nn.conv.gcn_conv.gcn_norm",
+      "target": "torch_geometric/nn/conv/gcn_conv.py",
+      "type": "repo_file"
+    }
+  ],
+  "license_file": "LICENSE",
+  "observed_environment": {
+    "device": "cpu",
+    "notebook": "paper-repro-ci-prep",
+    "python": "3.12",
+    "remote_cwd_alias": "paper-repro"
+  },
+  "observed_repository_files": [
+    "torch_geometric/data/data.py",
+    "torch_geometric/nn/conv/gcn_conv.py",
+    "torch_geometric/nn/models/basic_gnn.py",
+    "pyproject.toml",
+    "requirements.txt"
+  ],
+  "package_manager": "pip",
+  "repo_commit": "a5b69c37a05561ebb92931b3d586d664a7269585",
+  "repo_commit_short": "a5b69c3",
+  "repo_name": "pytorch_geometric",
+  "repo_url": "https://github.com/pyg-team/pytorch_geometric",
+  "task_id": "pyg_gcn_minimal",
+  "validated_outputs": {
+    "local_artifact_dir": "paperenvbench/tasks/pyg_gcn_minimal/artifacts",
+    "success_level": "L4_cpu_deterministic_fallback"
+  }
+}

@@ -1,0 +1,11 @@
+aiohttp
+fsspec
+jinja2
+numpy
+psutil>=5.8.0
+pyparsing
+requests
+torch
+torch-geometric @ git+https://github.com/pyg-team/pytorch_geometric@a5b69c37a05561ebb92931b3d586d664a7269585
+tqdm
+xxhash

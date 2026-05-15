@@ -1,0 +1,92 @@
+{
+  "checks": {
+    "fallback_boundary_documented": true,
+    "metric_output_valid": true,
+    "repo_commit_matches": true,
+    "sequential_route_recorded": true,
+    "toy_dataset_semantic_valid": true
+  },
+  "environment": {
+    "checkpoint_loaded": false,
+    "device": "cpu",
+    "full_training_required_for_check_only": false,
+    "public_dataset_downloaded_for_check_only": false
+  },
+  "evidence": {
+    "mode": "deterministic_cpu_fallback",
+    "pinned_files": [
+      "requirements.txt",
+      "setup.py",
+      "run_recbole.py",
+      "recbole/quick_start/quick_start.py",
+      "recbole/data/dataset/sequential_dataset.py",
+      "recbole/model/sequential_recommender/sasrec.py",
+      "recbole/properties/quick_start_config/sequential.yaml"
+    ],
+    "sequential_pipeline": [
+      "controlled toy .inter event log",
+      "SequentialDataset builds ordered item histories",
+      "SASRec next-item route scores candidate items",
+      "top-k metric smoke checks Hit@10, MRR@10 and NDCG@10"
+    ]
+  },
+  "numeric": {
+    "hit_at_10": [
+      1.0
+    ],
+    "mrr_at_10": [
+      1.0
+    ],
+    "ndcg_at_10": [
+      1.0
+    ],
+    "toy_event_count": [
+      9
+    ],
+    "toy_item_count": [
+      6
+    ],
+    "toy_user_count": [
+      3
+    ]
+  },
+  "repo": {
+    "commit": "7b02be5ec80a88310f2d04a27a82adfcbb5dc211",
+    "url": "https://github.com/RUCAIBox/RecBole"
+  },
+  "route": {
+    "api": "recbole.quick_start.run_recbole",
+    "cli": "python run_recbole.py --model=SASRec --dataset=paperenvbench_seq --config_files=paperenvbench_seq.yaml",
+    "config": "recbole/properties/quick_start_config/sequential.yaml plus toy overrides",
+    "dataset": "controlled RecBole atomic .inter sequential recommendation dataset",
+    "metric": "Hit@10, MRR@10, NDCG@10",
+    "model": "recbole.model.sequential_recommender.sasrec.SASRec",
+    "task": "sequential next-item recommendation"
+  },
+  "semantic": {
+    "ground_truth_next_item": "item_004",
+    "normalization": "chronological user history with leave-one-out next-item target",
+    "predicted_ranked_items": [
+      "item_004",
+      "item_002",
+      "item_006",
+      "item_003",
+      "item_005"
+    ],
+    "recommendation_task": "sequential recommendation",
+    "test_history": [
+      "item_001",
+      "item_002",
+      "item_003"
+    ],
+    "toy_dataset": "paperenvbench_seq",
+    "user_id": "user_001"
+  },
+  "sha256": {
+    "route": "bdf4077bcc5a1b855e170cada1b8e28542bf5e60100a3fad1d28fa8557406296",
+    "semantic": "5d9454940c27b07430b9d0981343866982214e38e406a17e8114b3df368048ad"
+  },
+  "success": true,
+  "success_level": "L4_cpu_deterministic_fallback",
+  "task_id": "recbole_sequential_minimal"
+}

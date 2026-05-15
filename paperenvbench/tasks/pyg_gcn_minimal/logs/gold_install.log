@@ -1,0 +1,8 @@
+2026-05-16T03:08:00+08:00 pyg_gcn_minimal gold install record
+repo_url=https://github.com/pyg-team/pytorch_geometric
+repo_commit=a5b69c37a05561ebb92931b3d586d664a7269585
+environment=Inspire CPU notebook paper-repro-ci-prep
+route=python3 -m venv .venv; pip install torch CPU wheel; pip install editable pinned pytorch_geometric; python verify.py --check-only --json
+remote_command=bash -n paperenvbench/tasks/pyg_gcn_minimal/gold_install.sh && git ls-remote https://github.com/pyg-team/pytorch_geometric HEAD refs/heads/master
+remote_output=a5b69c37a05561ebb92931b3d586d664a7269585 HEAD; a5b69c37a05561ebb92931b3d586d664a7269585 refs/heads/master
+status=script_syntax_ok_and_pinned_repo_observed

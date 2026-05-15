@@ -1,0 +1,8 @@
+primary_failure_tags:
+  - dataset_asset_missing
+  - hidden_dependency
+  - entrypoint_ambiguity
+anti_patterns:
+  - "Treating a generic recbole import as sufficient without checking the sequential recommendation route."
+  - "Using an unpinned RecBole wheel instead of cloning the pinned RUCAIBox/RecBole commit."
+  - "Relying on a full public dataset download during hidden check-only validation instead of a controlled toy sequential dataset."

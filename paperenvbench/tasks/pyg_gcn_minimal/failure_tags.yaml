@@ -1,0 +1,8 @@
+primary_failure_tags:
+  - native_extension_build
+  - torch_cuda_matrix
+  - hidden_dependency
+anti_patterns:
+  - "Accepting import success without proving the pinned PyG Data and GCNConv route."
+  - "Installing torch-geometric without checking the torch CPU/CUDA wheel matrix or optional native extension boundary."
+  - "Using a remote graph dataset in hidden verification when the controlled toy graph is sufficient."

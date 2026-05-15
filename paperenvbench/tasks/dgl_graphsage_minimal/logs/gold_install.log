@@ -1,0 +1,7 @@
+[gold_install] repo_url=https://github.com/dmlc/dgl.git
+[gold_install] commit=c6c874bf7ea085beb04ea1487cfd216a0bacd6c1
+[gold_install] git_ls_remote=c6c874bf7ea085beb04ea1487cfd216a0bacd6c1
+[gold_install] verified_files=python/dgl/convert.py,python/dgl/nn/pytorch/conv/sageconv.py,examples/pytorch/graphsage,CMakeLists.txt
+[gold_install] verified_api=dgl.graph,dgl.add_self_loop,dgl.nn.pytorch.SAGEConv
+[gold_install] fallback=controlled_toy_graph_no_external_dataset
+[gold_install] dgl_graphsage_minimal gold route verified

@@ -1,0 +1,12 @@
+assets:
+  - asset_id: pyg_gcn_minimal_expected_artifact
+    type: json
+    required: true
+    cached_path: paperenvbench/tasks/pyg_gcn_minimal/artifacts/expected_artifact.json
+    checksum: cd81bf9bdd662dc6d7e08f978f26eb267343eb425b550bc84cb12c734c372b63
+  - asset_id: pyg_gcn_minimal_controlled_toy_graph
+    type: inline_json
+    required: true
+    cached_path: paperenvbench/tasks/pyg_gcn_minimal/artifacts/expected_artifact.json:toy_graph
+    checksum: f7539382a91d638412c5db95ad80c3349b5d2d5abc57527ba931413b15435fc8
+    notes: "Six-node homophilous toy graph with deterministic features, labels, edges, and train mask; no external dataset download is required."

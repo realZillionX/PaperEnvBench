@@ -479,3 +479,39 @@ assets:
     cached_path: paper-repro:runs/paperenvbench/diffusion/diffusers_tiny_pipeline_minimal/artifacts/expected_artifact.json
     local_artifact_path: paperenvbench/tasks/diffusers_tiny_pipeline_minimal/artifacts/expected_artifact.json
     status: gold_verified
+  - asset_id: pyg_gcn_minimal_summary
+    task_id: pyg_gcn_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: cd81bf9bdd662dc6d7e08f978f26eb267343eb425b550bc84cb12c734c372b63
+    cached_path: paper-repro:runs/paperenvbench/graph/pyg_gcn_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/pyg_gcn_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: dgl_graphsage_minimal_summary
+    task_id: dgl_graphsage_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: dfded5bef7a00c48be32715ac9587c8492b4af0a94a59494a2081da67a22c5f0
+    cached_path: paper-repro:runs/paperenvbench/graph/dgl_graphsage_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/dgl_graphsage_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: ogb_nodeprop_minimal_summary
+    task_id: ogb_nodeprop_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: af88b2eb1177406ace4f0632d415ea14d7e54bc0099f4a24f2f1aecf0dbaf720
+    cached_path: paper-repro:runs/paperenvbench/graph/ogb_nodeprop_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/ogb_nodeprop_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: recbole_sequential_minimal_summary
+    task_id: recbole_sequential_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: 24115879944a0df52b8798581497e97ed0e6a97857b1e2bc3e1fcd34c1fc54a5
+    cached_path: paper-repro:runs/paperenvbench/graph/recbole_sequential_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/recbole_sequential_minimal/artifacts/expected_artifact.json
+    status: gold_verified

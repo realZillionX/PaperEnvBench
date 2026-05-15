@@ -1,0 +1,51 @@
+task_id: dgl_graphsage_minimal
+paper_title: "Deep Graph Library"
+repo_url: https://github.com/dmlc/dgl
+commit: c6c874bf7ea085beb04ea1487cfd216a0bacd6c1
+commit_short: c6c874b
+paper_url: https://arxiv.org/abs/1909.01315
+license: Apache-2.0
+split: dev
+modality:
+  primary: graph_learning_recommender
+  secondary:
+    - graph_neural_network
+    - node_classification
+    - graphsage
+environment_challenges:
+  - native_extension_build
+  - torch_cuda_matrix
+  - hidden_dependency
+verification:
+  type:
+    - import_graph
+    - training_smoke_test
+    - semantic_check
+  command: python verify.py --check-only --json
+  minimum_success_level: L4_cpu_deterministic_fallback
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  package_manager:
+    - git
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4_fallback

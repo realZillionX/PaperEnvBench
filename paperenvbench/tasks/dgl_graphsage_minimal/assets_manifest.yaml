@@ -1,0 +1,19 @@
+assets:
+  - asset_id: dgl_graphsage_minimal_expected_artifact
+    type: json
+    required: true
+    cached_path: paperenvbench/tasks/dgl_graphsage_minimal/artifacts/expected_artifact.json
+    checksum: dfded5bef7a00c48be32715ac9587c8492b4af0a94a59494a2081da67a22c5f0
+  - asset_id: dgl_graphsage_minimal_toy_graph_route
+    type: controlled_toy_graph
+    required: true
+    cached_path: paperenvbench/tasks/dgl_graphsage_minimal/artifacts/expected_artifact.json
+    checksum: dfded5bef7a00c48be32715ac9587c8492b4af0a94a59494a2081da67a22c5f0
+external_assets:
+  - name: DGL repository
+    url: https://github.com/dmlc/dgl
+    commit: c6c874bf7ea085beb04ea1487cfd216a0bacd6c1
+    required: true
+  - name: Cora citation dataset
+    required: false
+    note: "The CPU gold path does not download benchmark datasets；it records a deterministic no-external-data GraphSAGE fallback."

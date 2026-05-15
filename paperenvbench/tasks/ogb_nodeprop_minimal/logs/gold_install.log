@@ -1,0 +1,8 @@
+task_id=ogb_nodeprop_minimal
+repo_url=https://github.com/snap-stanford/ogb.git
+repo_commit=61e9784ca76edeaa6e259ba0f836099608ff0586
+observed_repo_files=setup.py,ogb/nodeproppred/__init__.py,ogb/nodeproppred/evaluate.py,ogb/nodeproppred/dataset.py,ogb/nodeproppred/dataset_pyg.py,ogb/nodeproppred/master.csv
+install_route=git clone -> git checkout pinned commit -> python3 -m venv -> pip install CPU torch -> pip install -e repo -> Evaluator metric smoke
+node_property_route=from ogb.nodeproppred import Evaluator; Evaluator(name="ogbn-arxiv").eval({"y_true": y_true, "y_pred": y_pred})
+check_only_boundary=hidden verification does not download ogbn-arxiv; it validates the recorded route and deterministic toy graph metric artifact
+bash_syntax=pass

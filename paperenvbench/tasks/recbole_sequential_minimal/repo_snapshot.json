@@ -1,0 +1,60 @@
+{
+  "dependency_files": [
+    "requirements.txt",
+    "setup.py"
+  ],
+  "entrypoints": [
+    {
+      "name": "run_recbole.py",
+      "target": "run_recbole.py",
+      "type": "repo_file"
+    },
+    {
+      "name": "recbole.quick_start.run_recbole",
+      "target": "recbole/quick_start/quick_start.py",
+      "type": "python_api"
+    },
+    {
+      "name": "SequentialDataset",
+      "target": "recbole/data/dataset/sequential_dataset.py",
+      "type": "repo_file"
+    },
+    {
+      "name": "SASRec",
+      "target": "recbole/model/sequential_recommender/sasrec.py",
+      "type": "repo_file"
+    },
+    {
+      "name": "sequential quick start config",
+      "target": "recbole/properties/quick_start_config/sequential.yaml",
+      "type": "repo_file"
+    }
+  ],
+  "license_file": "LICENSE",
+  "observed_environment": {
+    "device": "cpu",
+    "notebook": "paper-repro-ci-prep",
+    "python": "3.12",
+    "remote_cwd_alias": "paper-repro"
+  },
+  "observed_repository_files": [
+    "requirements.txt",
+    "setup.py",
+    "run_recbole.py",
+    "recbole/quick_start/quick_start.py",
+    "recbole/data/dataset/sequential_dataset.py",
+    "recbole/model/sequential_recommender/sasrec.py",
+    "recbole/properties/quick_start_config/sequential.yaml",
+    "dataset/ml-100k/ml-100k.inter"
+  ],
+  "package_manager": "pip",
+  "repo_commit": "7b02be5ec80a88310f2d04a27a82adfcbb5dc211",
+  "repo_commit_short": "7b02be5",
+  "repo_name": "RecBole",
+  "repo_url": "https://github.com/RUCAIBox/RecBole",
+  "task_id": "recbole_sequential_minimal",
+  "validated_outputs": {
+    "local_artifact_dir": "paperenvbench/tasks/recbole_sequential_minimal/artifacts",
+    "success_level": "L4_cpu_deterministic_fallback"
+  }
+}

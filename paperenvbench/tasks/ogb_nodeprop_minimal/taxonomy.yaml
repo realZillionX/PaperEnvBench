@@ -1,0 +1,19 @@
+taxonomy:
+  modality:
+    primary: graph_learning_recommender
+    secondary:
+      - node_property_prediction
+      - metric_evaluation
+  environment_challenges:
+    - dataset_asset_missing
+    - hidden_dependency
+    - torch_cuda_matrix
+  verification_type:
+    - metric_smoke_test
+    - training_smoke_test
+    - semantic_check
+  expected_skill_routes:
+    - global_reproducibility_safety
+    - graph_learning_env_setup
+    - torch_cuda_matrix_solver
+    - minimal_entrypoint_discovery

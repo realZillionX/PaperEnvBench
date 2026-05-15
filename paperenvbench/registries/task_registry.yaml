@@ -503,52 +503,52 @@ tasks:
     asset_ready: true
     selection_reason: "提供轻量 tiny pipeline 对照，帮助区分框架和论文仓问题。"
   - task_id: pyg_gcn_minimal
-    candidate_status: selected_pending_gold
+    candidate_status: selected_gold
     split: dev
     repo_url: https://github.com/pyg-team/pytorch_geometric
-    commit: pin_pending_gold
+    commit: a5b69c37a05561ebb92931b3d586d664a7269585
     paper_title: "PyTorch Geometric"
     taxonomy: {modality_primary: graph_learning_recommender, environment_challenges: [native_extension_build, torch_cuda_matrix, hidden_dependency], verification_type: [import_graph, training_smoke_test, semantic_check], expected_skill_routes: [global_reproducibility_safety, graph_learning_env_setup, native_extension_repair, torch_cuda_matrix_solver]}
     asset_control: controlled_toy_graph_no_external_dataset
-    gold_ready: false
-    verifier_ready: false
-    asset_ready: false
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
     selection_reason: "覆盖 PyG wheel / extension 矩阵和 toy GCN smoke。"
   - task_id: dgl_graphsage_minimal
-    candidate_status: selected_pending_gold
+    candidate_status: selected_gold
     split: dev
     repo_url: https://github.com/dmlc/dgl
-    commit: pin_pending_gold
+    commit: c6c874bf7ea085beb04ea1487cfd216a0bacd6c1
     paper_title: "Deep Graph Library"
     taxonomy: {modality_primary: graph_learning_recommender, environment_challenges: [native_extension_build, torch_cuda_matrix, hidden_dependency], verification_type: [import_graph, training_smoke_test, semantic_check], expected_skill_routes: [global_reproducibility_safety, graph_learning_env_setup, native_extension_repair, torch_cuda_matrix_solver]}
     asset_control: controlled_toy_graph_no_external_dataset
-    gold_ready: false
-    verifier_ready: false
-    asset_ready: false
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
     selection_reason: "覆盖 DGL backend / wheel 选择和 toy GraphSAGE。"
   - task_id: ogb_nodeprop_minimal
-    candidate_status: selected_pending_gold
+    candidate_status: selected_gold
     split: val
     repo_url: https://github.com/snap-stanford/ogb
-    commit: pin_pending_gold
+    commit: 61e9784ca76edeaa6e259ba0f836099608ff0586
     paper_title: "Open Graph Benchmark"
     taxonomy: {modality_primary: graph_learning_recommender, environment_challenges: [dataset_asset_missing, hidden_dependency, torch_cuda_matrix], verification_type: [metric_smoke_test, training_smoke_test, semantic_check], expected_skill_routes: [global_reproducibility_safety, graph_learning_env_setup, torch_cuda_matrix_solver, minimal_entrypoint_discovery]}
     asset_control: controlled_toy_graph_or_small_public_dataset
-    gold_ready: false
-    verifier_ready: false
-    asset_ready: false
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
     selection_reason: "覆盖 dataset download 与 graph metric smoke。"
   - task_id: recbole_sequential_minimal
-    candidate_status: selected_pending_gold
+    candidate_status: selected_gold
     split: test
     repo_url: https://github.com/RUCAIBox/RecBole
-    commit: pin_pending_gold
+    commit: 7b02be5ec80a88310f2d04a27a82adfcbb5dc211
     paper_title: "RecBole: Towards a Unified, Comprehensive and Efficient Framework for Recommendation Algorithms"
     taxonomy: {modality_primary: graph_learning_recommender, environment_challenges: [dataset_asset_missing, hidden_dependency, entrypoint_ambiguity], verification_type: [training_smoke_test, metric_smoke_test, semantic_check], expected_skill_routes: [global_reproducibility_safety, graph_learning_env_setup, minimal_entrypoint_discovery, hidden_dependency_inferer]}
     asset_control: controlled_toy_recommendation_dataset
-    gold_ready: false
-    verifier_ready: false
-    asset_ready: false
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
     selection_reason: "覆盖推荐系统配置、toy dataset 和 metric 输出。"
   - task_id: gym_cartpole_minimal
     candidate_status: selected_pending_gold

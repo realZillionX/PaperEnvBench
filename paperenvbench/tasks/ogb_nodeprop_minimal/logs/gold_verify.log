@@ -1,0 +1,8 @@
+task_id=ogb_nodeprop_minimal
+command=python verify.py --check-only --json
+status=pass
+success_level=L4_cpu_deterministic_fallback
+dataset_name=ogbn-arxiv
+metric=acc
+accuracy=0.8
+semantic=node property predictions are evaluated with OGB Evaluator over a deterministic toy graph split

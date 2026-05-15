@@ -1,0 +1,50 @@
+task_id: recbole_sequential_minimal
+paper_title: "RecBole: Towards a Unified, Comprehensive and Efficient Framework for Recommendation Algorithms"
+repo_url: https://github.com/RUCAIBox/RecBole
+commit: 7b02be5ec80a88310f2d04a27a82adfcbb5dc211
+commit_short: 7b02be5
+paper_url: https://arxiv.org/abs/2011.01731
+license: MIT
+split: test
+modality:
+  primary: graph_learning_recommender
+  secondary:
+    - sequential_recommendation
+    - recommender_system
+    - metric_smoke_test
+environment_challenges:
+  - dataset_asset_missing
+  - hidden_dependency
+  - entrypoint_ambiguity
+verification:
+  type:
+    - training_smoke_test
+    - metric_smoke_test
+    - semantic_check
+  command: python verify.py --check-only --json
+  minimum_success_level: L4_cpu_deterministic_fallback
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4_fallback

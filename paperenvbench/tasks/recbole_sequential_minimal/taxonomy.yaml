@@ -1,0 +1,20 @@
+taxonomy:
+  modality:
+    primary: graph_learning_recommender
+    secondary:
+      - sequential_recommendation
+      - recommender_system
+      - metric_smoke_test
+  environment_challenges:
+    - dataset_asset_missing
+    - hidden_dependency
+    - entrypoint_ambiguity
+  verification_type:
+    - training_smoke_test
+    - metric_smoke_test
+    - semantic_check
+  expected_skill_routes:
+    - global_reproducibility_safety
+    - graph_learning_env_setup
+    - minimal_entrypoint_discovery
+    - hidden_dependency_inferer

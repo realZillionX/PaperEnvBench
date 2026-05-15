@@ -1,0 +1,11 @@
+2026-05-16T03:04:00+08:00 pyg_gcn_minimal gold verify record
+environment=Inspire CPU notebook paper-repro-ci-prep
+command=python3 paperenvbench/tasks/pyg_gcn_minimal/verify.py --check-only --json
+status=pass
+success_level=L4_cpu_deterministic_fallback
+artifact_sha256=cd81bf9bdd662dc6d7e08f978f26eb267343eb425b550bc84cb12c734c372b63
+repo_commit=a5b69c37a05561ebb92931b3d586d664a7269585
+train_accuracy=1.0
+full_accuracy=1.0
+route_sha256=fdeae628126b73feaae6a409d0b4cc3c0a5d8eaa3d453a3232b884205730c389
+toy_graph_sha256=f7539382a91d638412c5db95ad80c3349b5d2d5abc57527ba931413b15435fc8

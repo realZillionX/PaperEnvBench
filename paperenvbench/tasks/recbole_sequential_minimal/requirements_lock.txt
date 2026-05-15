@@ -1,0 +1,16 @@
+colorama==0.4.4
+colorlog==4.7.2
+numpy<2
+pandas
+plotly
+psutil
+PyYAML
+recbole @ git+https://github.com/RUCAIBox/RecBole.git@7b02be5ec80a88310f2d04a27a82adfcbb5dc211
+scikit-learn
+scipy
+tabulate
+tensorboard
+texttable
+thop
+torch==2.8.0
+tqdm

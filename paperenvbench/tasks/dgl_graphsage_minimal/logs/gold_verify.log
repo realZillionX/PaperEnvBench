@@ -1,0 +1,29 @@
+{
+  "artifact_dir": "/Users/zillionx/Desktop/Paper Reproduction/PaperEnvBench/paperenvbench/tasks/dgl_graphsage_minimal/artifacts",
+  "artifact_sha256": "dfded5bef7a00c48be32715ac9587c8492b4af0a94a59494a2081da67a22c5f0",
+  "checks": {
+    "dgl_route_recorded": true,
+    "graphsage_forward_valid": true,
+    "no_external_dataset_required": true,
+    "node_classification_metric_valid": true,
+    "repo_commit_matches": true,
+    "toy_graph_semantics_valid": true
+  },
+  "observed": {
+    "accuracy": 1.0,
+    "loss": 0.308503,
+    "predictions": [
+      0,
+      0,
+      1,
+      1,
+      0,
+      1
+    ],
+    "repo_commit": "c6c874bf7ea085beb04ea1487cfd216a0bacd6c1",
+    "route": "dgl.graph((src, dst), num_nodes=6) -> dgl.add_self_loop(graph) -> dgl.nn.pytorch.SAGEConv(aggregator_type='mean')"
+  },
+  "status": "pass",
+  "success_level": "L4_cpu_deterministic_fallback",
+  "task_id": "dgl_graphsage_minimal"
+}

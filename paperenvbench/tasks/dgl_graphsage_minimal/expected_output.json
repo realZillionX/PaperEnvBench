@@ -1,0 +1,19 @@
+{
+  "task_id": "dgl_graphsage_minimal",
+  "success": true,
+  "success_level": "L4_cpu_deterministic_fallback",
+  "expected": {
+    "repo_commit": "c6c874bf7ea085beb04ea1487cfd216a0bacd6c1",
+    "graph": {
+      "num_nodes": 6,
+      "num_directed_edges": 12,
+      "self_loops_in_aggregation": true
+    },
+    "metrics": {
+      "accuracy": 1.0,
+      "loss": 0.308503
+    },
+    "predictions": [0, 0, 1, 1, 0, 1]
+  },
+  "artifact": "artifacts/expected_artifact.json"
+}

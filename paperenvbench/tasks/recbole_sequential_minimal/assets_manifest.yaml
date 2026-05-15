@@ -1,0 +1,12 @@
+assets:
+  - asset_id: recbole_sequential_minimal_expected_artifact
+    type: json
+    required: true
+    cached_path: paperenvbench/tasks/recbole_sequential_minimal/artifacts/expected_artifact.json
+    checksum: 24115879944a0df52b8798581497e97ed0e6a97857b1e2bc3e1fcd34c1fc54a5
+  - asset_id: recbole_sequential_minimal_toy_atomic_dataset
+    type: dataset
+    required: false
+    cached_path: paper-repro:data/recbole_sequential_minimal/paperenvbench_seq/
+    checksum: null
+    notes: "Check-only validation records a deterministic toy RecBole .inter sequential dataset; a full agent attempt may materialize it before running SASRec."

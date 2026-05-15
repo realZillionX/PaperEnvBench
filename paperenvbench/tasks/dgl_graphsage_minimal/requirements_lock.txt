@@ -1,0 +1,4 @@
+# CPU deterministic fallback route.
+torch>=2.2,<2.8
+numpy
+pyyaml

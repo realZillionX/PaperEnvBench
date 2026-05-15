@@ -1,0 +1,263 @@
+{
+  "checks": {
+    "dgl_route_recorded": true,
+    "graphsage_forward_valid": true,
+    "no_external_dataset_required": true,
+    "node_classification_metric_valid": true,
+    "repo_commit_matches": true,
+    "toy_graph_semantics_valid": true
+  },
+  "numeric": {
+    "accuracy": 1.0,
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        4,
+        0
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        5,
+        3
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        5,
+        4
+      ]
+    ],
+    "features": [
+      [
+        1.0,
+        0.0,
+        0.5
+      ],
+      [
+        0.8,
+        0.2,
+        0.4
+      ],
+      [
+        0.0,
+        1.0,
+        0.3
+      ],
+      [
+        0.1,
+        0.9,
+        0.2
+      ],
+      [
+        0.9,
+        0.1,
+        0.6
+      ],
+      [
+        0.2,
+        0.8,
+        0.1
+      ]
+    ],
+    "hidden": [
+      [
+        1.006,
+        0.0,
+        0.0,
+        0.714
+      ],
+      [
+        0.712,
+        0.0,
+        0.106,
+        0.398
+      ],
+      [
+        0.076,
+        0.806,
+        0.26,
+        0.0
+      ],
+      [
+        0.0,
+        0.828,
+        0.362,
+        0.0
+      ],
+      [
+        0.869,
+        0.0,
+        0.006,
+        0.566
+      ],
+      [
+        0.178,
+        0.562,
+        0.316,
+        0.0
+      ]
+    ],
+    "labels": [
+      0,
+      0,
+      1,
+      1,
+      0,
+      1
+    ],
+    "logits": [
+      [
+        1.0098,
+        -0.69118
+      ],
+      [
+        0.7041,
+        -0.44504
+      ],
+      [
+        -0.3051,
+        0.53508
+      ],
+      [
+        -0.3449,
+        0.59648
+      ],
+      [
+        0.8562,
+        -0.58145
+      ],
+      [
+        -0.0855,
+        0.32998
+      ]
+    ],
+    "loss": 0.308503,
+    "neighbor_mean": [
+      [
+        0.9,
+        0.1,
+        0.5
+      ],
+      [
+        0.6,
+        0.4,
+        0.4
+      ],
+      [
+        0.3,
+        0.7,
+        0.3
+      ],
+      [
+        0.1,
+        0.9,
+        0.2
+      ],
+      [
+        0.7,
+        0.3,
+        0.4
+      ],
+      [
+        0.4,
+        0.6,
+        0.3
+      ]
+    ],
+    "predictions": [
+      0,
+      0,
+      1,
+      1,
+      0,
+      1
+    ],
+    "probabilities": [
+      [
+        0.845663,
+        0.154337
+      ],
+      [
+        0.759354,
+        0.240646
+      ],
+      [
+        0.301497,
+        0.698503
+      ],
+      [
+        0.280622,
+        0.719378
+      ],
+      [
+        0.80809,
+        0.19191
+      ],
+      [
+        0.397599,
+        0.602401
+      ]
+    ]
+  },
+  "repo": {
+    "commit": "c6c874bf7ea085beb04ea1487cfd216a0bacd6c1",
+    "commit_short": "c6c874b",
+    "paper_title": "Deep Graph Library",
+    "url": "https://github.com/dmlc/dgl"
+  },
+  "route": {
+    "api": "dgl.graph((src, dst), num_nodes=6) -> dgl.add_self_loop(graph) -> dgl.nn.pytorch.SAGEConv(aggregator_type='mean')",
+    "dataset_route": "controlled toy graph\uff1bno Cora / Reddit / OGB download",
+    "fallback_reason": "Avoids DGL native extension and backend wheel variance on a minimal CPU notebook while preserving GraphSAGE mean aggregator semantics.",
+    "model_route": "two-layer GraphSAGE-style mean aggregator with self loop neighborhood inclusion",
+    "repo_files": [
+      "python/dgl/convert.py",
+      "python/dgl/nn/pytorch/conv/sageconv.py",
+      "examples/pytorch/graphsage"
+    ]
+  },
+  "semantic": {
+    "claim": "CPU deterministic fallback validates neighbor mean aggregation and GraphSAGE logits without external datasets.",
+    "success_condition": "predictions match all six labels and softmax probabilities are finite",
+    "task": "node classification on a controlled toy graph"
+  },
+  "sha256": {
+    "numeric": "b0ab200407e9abdf32084cf7047c58b31c8813b81c24b72b9268374741a5c12e",
+    "route": "fdf1458b39cab0f5501659ac8a7f7df94a9b78b800e36de2eef8134d1b4f9fb9",
+    "semantic": "917df66389fe3d29d265011760964a3e061318453dc74dc00913d91c86ff5cd3"
+  },
+  "success_level": "L4_cpu_deterministic_fallback",
+  "task_id": "dgl_graphsage_minimal"
+}

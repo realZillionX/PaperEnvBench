@@ -1,0 +1,41 @@
+{
+  "artifact_dir": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/PaperEnvBench/paperenvbench/tasks/recbole_sequential_minimal/artifacts",
+  "artifact_sha256": "24115879944a0df52b8798581497e97ed0e6a97857b1e2bc3e1fcd34c1fc54a5",
+  "checks": {
+    "fallback_boundary_documented": true,
+    "metric_output_valid": true,
+    "repo_commit_matches": true,
+    "sequential_route_recorded": true,
+    "toy_dataset_semantic_valid": true
+  },
+  "observed": {
+    "metrics": {
+      "hit_at_10": 1.0,
+      "mrr_at_10": 1.0,
+      "ndcg_at_10": 1.0
+    },
+    "repo_commit": "7b02be5ec80a88310f2d04a27a82adfcbb5dc211",
+    "semantic": {
+      "ground_truth_next_item": "item_004",
+      "normalization": "chronological user history with leave-one-out next-item target",
+      "predicted_ranked_items": [
+        "item_004",
+        "item_002",
+        "item_006",
+        "item_003",
+        "item_005"
+      ],
+      "recommendation_task": "sequential recommendation",
+      "test_history": [
+        "item_001",
+        "item_002",
+        "item_003"
+      ],
+      "toy_dataset": "paperenvbench_seq",
+      "user_id": "user_001"
+    }
+  },
+  "status": "pass",
+  "success_level": "L4_cpu_deterministic_fallback",
+  "task_id": "recbole_sequential_minimal"
+}

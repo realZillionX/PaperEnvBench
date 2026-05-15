@@ -599,3 +599,63 @@ trajectories:
     artifact_path: paperenvbench/tasks/diffusers_tiny_pipeline_minimal/artifacts/
     remote_artifact_path: paper-repro:runs/paperenvbench/diffusion/diffusers_tiny_pipeline_minimal/artifacts/
     status: gold_verified_l4_fallback
+  - trajectory_id: gold_pyg_gcn_minimal_cpu
+    task_id: pyg_gcn_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - native_extension_build
+      - torch_cuda_matrix
+      - hidden_dependency
+      - system_package_missing
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/pyg_gcn_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/graph/pyg_gcn_minimal/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_dgl_graphsage_minimal_cpu
+    task_id: dgl_graphsage_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - native_extension_build
+      - torch_cuda_matrix
+      - hidden_dependency
+      - system_package_missing
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/dgl_graphsage_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/graph/dgl_graphsage_minimal/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_ogb_nodeprop_minimal_cpu
+    task_id: ogb_nodeprop_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - dataset_asset_missing
+      - hidden_dependency
+      - verification_ambiguity
+      - torch_cuda_matrix
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/ogb_nodeprop_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/graph/ogb_nodeprop_minimal/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_recbole_sequential_minimal_cpu
+    task_id: recbole_sequential_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - python_version_conflict
+      - hidden_dependency
+      - dataset_asset_missing
+      - entrypoint_ambiguity
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/recbole_sequential_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/graph/recbole_sequential_minimal/artifacts/
+    status: gold_verified_l4_fallback
