@@ -2,6 +2,12 @@
 
 > 面向 AI 论文代码仓环境自动配置的可验证复现基准。
 
+## 关于 / About
+
+PaperEnvBench 是一个面向 AI 论文代码仓环境自动配置的 benchmark。它把真实论文仓库中的依赖安装、环境修复、checkpoint 获取、最小入口发现和语义 artifact 验证组织成可评测任务，用于衡量 agent 是否能完成最小、可审计、可复现的论文代码仓环境配置。
+
+PaperEnvBench is a benchmark for AI paper-repository environment reproduction. It turns real research-code setup, dependency repair, checkpoint handling, minimal entrypoint discovery, and semantic artifact verification into structured tasks for evaluating whether agents can produce minimal, auditable, reproducible environment setups.
+
 PaperEnvBench 关注一个具体、真实、经常被低估的问题：给定一篇 AI 论文的代码仓库，agent 是否能在受控环境中读懂仓库、配置依赖、修复环境失败，并产出一个可以被 verifier 检查的最小复现 artifact？
 
 它不把“仓库能 import”当作主成功标准。PaperEnvBench 的主目标是最小可验证复现：agent 必须依次完成仓库理解、环境安装、核心导入、最小入口运行和语义 artifact 验证，最终由 evaluator 给出 L0 到 L4 的层级结果与连续分数。
