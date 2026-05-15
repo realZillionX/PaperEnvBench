@@ -1,0 +1,51 @@
+{
+  "dependency_files": [
+    "requirements.txt",
+    "setup.py"
+  ],
+  "entrypoints": [
+    {
+      "name": "models/blip.py",
+      "target": "models/blip.py",
+      "type": "repo_file"
+    },
+    {
+      "name": "configs/caption_coco.yaml",
+      "target": "configs/caption_coco.yaml",
+      "type": "repo_file"
+    },
+    {
+      "name": "predict.py",
+      "target": "predict.py",
+      "type": "repo_file"
+    },
+    {
+      "name": "train_caption.py",
+      "target": "train_caption.py",
+      "type": "repo_file"
+    }
+  ],
+  "license_file": "LICENSE",
+  "observed_environment": {
+    "device": "cpu",
+    "notebook": "paper-repro-ci-prep",
+    "python": "3.12",
+    "remote_cwd_alias": "paper-repro"
+  },
+  "observed_repository_files": [
+    "models/blip.py",
+    "configs/caption_coco.yaml",
+    "predict.py",
+    "train_caption.py"
+  ],
+  "package_manager": "pip",
+  "repo_commit": "056a169437371659074aa2732649d5de3bffb4a8",
+  "repo_commit_short": "056a169",
+  "repo_name": "BLIP",
+  "repo_url": "https://github.com/salesforce/BLIP",
+  "task_id": "blip_caption_minimal",
+  "validated_outputs": {
+    "local_artifact_dir": "paperenvbench/tasks/blip_caption_minimal/artifacts",
+    "success_level": "L4_cpu_deterministic_fallback"
+  }
+}

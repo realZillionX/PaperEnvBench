@@ -1,0 +1,50 @@
+task_id: llava_single_image_minimal
+paper_title: "Visual Instruction Tuning"
+repo_url: https://github.com/haotian-liu/LLaVA
+commit: c121f0432da27facab705978f83c4ada465e46fd
+commit_short: c121f04
+paper_url: https://arxiv.org/abs/2304.08485
+license: Apache-2.0
+split: test
+modality:
+  primary: vision_language_multimodal
+  secondary:
+    - image_classification_representation
+    - checkpoint_loading
+environment_challenges:
+  - checkpoint_download
+  - torch_cuda_matrix
+  - hardware_pressure
+  - api_or_license_gate
+verification:
+  type:
+    - checkpoint_loading
+    - single_sample_inference
+    - semantic_check
+  command: python verify.py --check-only --json
+  minimum_success_level: L4_fallback
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4_fallback

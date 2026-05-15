@@ -1,0 +1,45 @@
+{
+  "dependency_files": [
+    "requirements.txt",
+    "setup.py"
+  ],
+  "entrypoints": [
+    {
+      "name": "imagebind/models/imagebind_model.py",
+      "target": "imagebind/models/imagebind_model.py",
+      "type": "repo_file"
+    },
+    {
+      "name": "imagebind/models/__init__.py",
+      "target": "imagebind/models/__init__.py",
+      "type": "repo_file"
+    },
+    {
+      "name": "imagebind/data.py",
+      "target": "imagebind/data.py",
+      "type": "repo_file"
+    }
+  ],
+  "license_file": "LICENSE",
+  "observed_environment": {
+    "device": "cpu",
+    "notebook": "paper-repro-ci-prep",
+    "python": "3.12",
+    "remote_cwd_alias": "paper-repro"
+  },
+  "observed_repository_files": [
+    "imagebind/models/imagebind_model.py",
+    "imagebind/models/__init__.py",
+    "imagebind/data.py"
+  ],
+  "package_manager": "pip",
+  "repo_commit": "53680b02d7e37b19b124fa37bae4b6c98c38f5be",
+  "repo_commit_short": "53680b0",
+  "repo_name": "ImageBind",
+  "repo_url": "https://github.com/facebookresearch/ImageBind",
+  "task_id": "imagebind_embedding_minimal",
+  "validated_outputs": {
+    "local_artifact_dir": "paperenvbench/tasks/imagebind_embedding_minimal/artifacts",
+    "success_level": "L4_cpu_random_init_fallback"
+  }
+}

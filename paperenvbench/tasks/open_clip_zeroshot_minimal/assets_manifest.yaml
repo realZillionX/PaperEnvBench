@@ -1,0 +1,13 @@
+assets:
+  - asset_id: open_clip_zeroshot_minimal_expected_artifact
+    type: json
+    required: true
+    cached_path: paperenvbench/tasks/open_clip_zeroshot_minimal/artifacts/expected_artifact.json
+    checksum: cf5f57cae7ca4680ef835a3da784a8a67f1b380cc8c82e19bc5353362cee6918
+  - asset_id: open_clip_zeroshot_minimal_checkpoint_route
+    type: checkpoint
+    required: false
+    cached_path: paper-repro:models/open_clip_zeroshot_minimal/
+    source_url: repo_or_model_zoo
+    checksum: null
+    notes: "Check-only validation records the checkpoint route but avoids large weight downloads."

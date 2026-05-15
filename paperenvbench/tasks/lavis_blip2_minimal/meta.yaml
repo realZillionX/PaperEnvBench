@@ -1,0 +1,50 @@
+task_id: lavis_blip2_minimal
+paper_title: "BLIP-2: Bootstrapping Language-Image Pre-training with Frozen Image Encoders and Large Language Models"
+repo_url: https://github.com/salesforce/LAVIS
+commit: 506965b9c4a18c1e565bd32acaccabe0198433f7
+commit_short: 506965b
+paper_url: https://arxiv.org/abs/2301.12597
+license: BSD-3-Clause
+split: test
+modality:
+  primary: vision_language_multimodal
+  secondary:
+    - image_classification_representation
+    - checkpoint_loading
+environment_challenges:
+  - checkpoint_download
+  - torch_cuda_matrix
+  - hidden_dependency
+  - hardware_pressure
+verification:
+  type:
+    - checkpoint_loading
+    - single_sample_inference
+    - semantic_check
+  command: python verify.py --check-only --json
+  minimum_success_level: L4_fallback_cpu_config_semantic
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4_fallback

@@ -1,0 +1,20 @@
+taxonomy:
+  modality:
+    primary: vision_language_multimodal
+    secondary:
+      - image_classification_representation
+      - checkpoint_loading
+  environment_challenges:
+    - checkpoint_download
+    - torch_cuda_matrix
+    - hidden_dependency
+    - system_package_missing
+  verification_type:
+    - checkpoint_loading
+    - single_sample_inference
+    - semantic_check
+  expected_skill_routes:
+    - global_reproducibility_safety
+    - vision_language_env_setup
+    - checkpoint_validation
+    - system_package_resolver

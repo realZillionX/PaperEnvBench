@@ -1,0 +1,23 @@
+{
+  "artifact_dir": "/Users/zillionx/Desktop/Paper Reproduction/PaperEnvBench/paperenvbench/tasks/open_clip_zeroshot_minimal/artifacts",
+  "artifact_sha256": "cf5f57cae7ca4680ef835a3da784a8a67f1b380cc8c82e19bc5353362cee6918",
+  "checks": {
+    "fallback_boundary_documented": true,
+    "repo_commit_matches": true,
+    "route_recorded": true,
+    "semantic_output_valid": true
+  },
+  "observed": {
+    "repo_commit": "55794d65a14dfc547a9ed3514145dd68ccc939e9",
+    "semantic": {
+      "label": "a high contrast black square on a white background",
+      "negative_labels": [
+        "a photo of a dog",
+        "a handwritten equation"
+      ]
+    }
+  },
+  "status": "pass",
+  "success_level": "L4_fallback",
+  "task_id": "open_clip_zeroshot_minimal"
+}

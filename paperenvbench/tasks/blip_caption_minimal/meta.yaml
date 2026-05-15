@@ -1,0 +1,50 @@
+task_id: blip_caption_minimal
+paper_title: "BLIP: Bootstrapping Language-Image Pre-training for Unified Vision-Language Understanding and Generation"
+repo_url: https://github.com/salesforce/BLIP
+commit: 056a169437371659074aa2732649d5de3bffb4a8
+commit_short: 056a169
+paper_url: https://arxiv.org/abs/2201.12086
+license: BSD-3-Clause
+split: val
+modality:
+  primary: vision_language_multimodal
+  secondary:
+    - image_classification_representation
+    - checkpoint_loading
+environment_challenges:
+  - checkpoint_download
+  - torch_cuda_matrix
+  - hidden_dependency
+  - hardware_pressure
+verification:
+  type:
+    - checkpoint_loading
+    - single_sample_inference
+    - semantic_check
+  command: python verify.py --check-only --json
+  minimum_success_level: L4_cpu_deterministic_fallback
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4_fallback

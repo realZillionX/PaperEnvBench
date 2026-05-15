@@ -1,0 +1,4 @@
+[gold_install] repo_url=https://github.com/haotian-liu/LLaVA.git
+[gold_install] commit=c121f0432da27facab705978f83c4ada465e46fd
+[gold_install] verified_files=llava/conversation.py,llava/constants.py,llava/model/builder.py,llava/mm_utils.py
+[gold_install] llava_single_image_minimal gold install route verified

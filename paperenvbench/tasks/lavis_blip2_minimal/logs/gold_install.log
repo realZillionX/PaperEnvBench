@@ -1,0 +1,4 @@
+[gold_install] repo_url=https://github.com/salesforce/LAVIS.git
+[gold_install] commit=506965b9c4a18c1e565bd32acaccabe0198433f7
+[gold_install] verified_files=lavis/models/__init__.py,lavis/models/blip2_models/blip2_t5.py,lavis/configs/models/blip2/blip2_pretrain_flant5xl.yaml,lavis/processors/blip_processors.py
+[gold_install] lavis_blip2_minimal gold install route verified

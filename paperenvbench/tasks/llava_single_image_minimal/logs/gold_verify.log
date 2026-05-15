@@ -1,0 +1,19 @@
+{
+  "artifact_dir": "/Users/zillionx/Desktop/Paper Reproduction/PaperEnvBench/paperenvbench/tasks/llava_single_image_minimal/artifacts",
+  "artifact_sha256": "1c8c4472b680fa07cfef5d8c0a193609115861b49386f43e13bd4b213ca1e254",
+  "checks": {
+    "fallback_boundary_documented": true,
+    "repo_commit_matches": true,
+    "route_recorded": true,
+    "semantic_output_valid": true
+  },
+  "observed": {
+    "repo_commit": "c121f0432da27facab705978f83c4ada465e46fd",
+    "semantic": {
+      "answer": "a red rectangle, green circle, and yellow diagonal line on a dark blue background"
+    }
+  },
+  "status": "pass",
+  "success_level": "L4_fallback",
+  "task_id": "llava_single_image_minimal"
+}

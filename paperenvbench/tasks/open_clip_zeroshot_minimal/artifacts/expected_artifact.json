@@ -1,0 +1,53 @@
+{
+  "checks": {
+    "fallback_boundary_documented": true,
+    "repo_commit_matches": true,
+    "route_recorded": true,
+    "semantic_output_valid": true
+  },
+  "environment": {
+    "checkpoint_loaded": false,
+    "checkpoint_required_for_full_inference": true,
+    "device": "cpu"
+  },
+  "evidence": {
+    "large_checkpoint_required_for_check_only": false,
+    "mode": "deterministic_cpu_fallback",
+    "pinned_files": [
+      "src/open_clip/__init__.py",
+      "src/open_clip/factory.py",
+      "src/open_clip/tokenizer.py"
+    ]
+  },
+  "numeric": {
+    "probabilities": [
+      0.9984769821,
+      0.0002334097,
+      0.0012896082
+    ]
+  },
+  "repo": {
+    "commit": "55794d65a14dfc547a9ed3514145dd68ccc939e9",
+    "url": "https://github.com/mlfoundations/open_clip"
+  },
+  "route": {
+    "api": "open_clip.create_model_and_transforms",
+    "model": "ViT-B-32",
+    "pretrained": "laion2b_s34b_b79k",
+    "tokenizer": "open_clip.get_tokenizer"
+  },
+  "semantic": {
+    "label": "a high contrast black square on a white background",
+    "negative_labels": [
+      "a photo of a dog",
+      "a handwritten equation"
+    ]
+  },
+  "sha256": {
+    "route": "1783c818cc78081bf050e4f701f1f571987f8165e2270236e3d0ee2956643751",
+    "semantic": "a29adc5f65afb7650372e04edfe7ae1c3f9cf48ddb5ea5251c35cc6dbb8e5e55"
+  },
+  "success": true,
+  "success_level": "L4_fallback",
+  "task_id": "open_clip_zeroshot_minimal"
+}

@@ -1,0 +1,4 @@
+[gold_install] repo_url=https://github.com/facebookresearch/ImageBind.git
+[gold_install] commit=53680b02d7e37b19b124fa37bae4b6c98c38f5be
+[gold_install] verified_files=imagebind/models/imagebind_model.py,imagebind/models/__init__.py,imagebind/data.py
+[gold_install] imagebind_embedding_minimal gold install route verified

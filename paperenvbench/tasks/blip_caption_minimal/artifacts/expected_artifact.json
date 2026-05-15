@@ -1,0 +1,50 @@
+{
+  "checks": {
+    "fallback_boundary_documented": true,
+    "repo_commit_matches": true,
+    "route_recorded": true,
+    "semantic_output_valid": true
+  },
+  "environment": {
+    "checkpoint_loaded": false,
+    "checkpoint_required_for_full_inference": true,
+    "device": "cpu"
+  },
+  "evidence": {
+    "large_checkpoint_required_for_check_only": false,
+    "mode": "deterministic_cpu_fallback",
+    "pinned_files": [
+      "models/blip.py",
+      "configs/caption_coco.yaml",
+      "predict.py",
+      "train_caption.py"
+    ]
+  },
+  "numeric": {
+    "object_counts": [
+      1,
+      1,
+      1
+    ]
+  },
+  "repo": {
+    "commit": "056a169437371659074aa2732649d5de3bffb4a8",
+    "url": "https://github.com/salesforce/BLIP"
+  },
+  "route": {
+    "api": "models.blip.blip_decoder",
+    "checkpoint": "model_base_caption_capfilt_large.pth",
+    "config": "configs/caption_coco.yaml",
+    "script": "predict.py"
+  },
+  "semantic": {
+    "caption": "a picture of a red square, a blue circle, and a green strip"
+  },
+  "sha256": {
+    "route": "234628fe8069cce5654bab30136221e469febc3db389f5541714ef6bd3255d24",
+    "semantic": "87fd9ecc2d5263a42f04bb8b4866e85cfa392b157442d4210d317078c1a6eb8e"
+  },
+  "success": true,
+  "success_level": "L4_cpu_deterministic_fallback",
+  "task_id": "blip_caption_minimal"
+}

@@ -311,64 +311,64 @@ tasks:
     asset_ready: true
     selection_reason: "视觉语言 / 权重下载 / 概率输出种子任务，已有远端 CPU L4 smoke。"
   - task_id: open_clip_zeroshot_minimal
-    candidate_status: selected_pending_gold
+    candidate_status: selected_gold
     split: dev
     repo_url: https://github.com/mlfoundations/open_clip
-    commit: pin_pending_gold
+    commit: 55794d65a14dfc547a9ed3514145dd68ccc939e9
     paper_title: "OpenCLIP: Reproducible Scaling Laws for Contrastive Language-Image Learning"
     taxonomy: {modality_primary: vision_language_multimodal, environment_challenges: [checkpoint_download, torch_cuda_matrix, hidden_dependency], verification_type: [checkpoint_loading, single_sample_inference, semantic_check], expected_skill_routes: [global_reproducibility_safety, vision_language_env_setup, checkpoint_validation, torch_cuda_matrix_solver]}
     asset_control: controlled_synthetic_image_public_checkpoint
-    gold_ready: false
-    verifier_ready: false
-    asset_ready: false
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
     selection_reason: "覆盖 CLIP 生态变体、tokenizer 和 model zoo 路由。"
   - task_id: blip_caption_minimal
-    candidate_status: selected_pending_gold
+    candidate_status: selected_gold
     split: val
     repo_url: https://github.com/salesforce/BLIP
-    commit: pin_pending_gold
+    commit: 056a169437371659074aa2732649d5de3bffb4a8
     paper_title: "BLIP: Bootstrapping Language-Image Pre-training for Unified Vision-Language Understanding and Generation"
     taxonomy: {modality_primary: vision_language_multimodal, environment_challenges: [checkpoint_download, torch_cuda_matrix, hidden_dependency, hardware_pressure], verification_type: [checkpoint_loading, single_sample_inference, semantic_check], expected_skill_routes: [global_reproducibility_safety, vision_language_env_setup, checkpoint_validation, torch_cuda_matrix_solver]}
     asset_control: controlled_synthetic_image_public_checkpoint
-    gold_ready: false
-    verifier_ready: false
-    asset_ready: false
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
     selection_reason: "覆盖 caption generation、processor/tokenizer 和语义文本检查。"
   - task_id: lavis_blip2_minimal
-    candidate_status: selected_pending_gold
+    candidate_status: selected_gold
     split: test
     repo_url: https://github.com/salesforce/LAVIS
-    commit: pin_pending_gold
+    commit: 506965b9c4a18c1e565bd32acaccabe0198433f7
     paper_title: "BLIP-2: Bootstrapping Language-Image Pre-training with Frozen Image Encoders and Large Language Models"
     taxonomy: {modality_primary: vision_language_multimodal, environment_challenges: [checkpoint_download, torch_cuda_matrix, hidden_dependency, hardware_pressure], verification_type: [checkpoint_loading, single_sample_inference, semantic_check], expected_skill_routes: [global_reproducibility_safety, vision_language_env_setup, checkpoint_validation, torch_cuda_matrix_solver]}
     asset_control: controlled_synthetic_image_public_or_fallback_checkpoint
-    gold_ready: false
-    verifier_ready: false
-    asset_ready: false
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
     selection_reason: "覆盖 LAVIS framework 和多模型配置。"
   - task_id: llava_single_image_minimal
-    candidate_status: selected_pending_gold
+    candidate_status: selected_gold
     split: test
     repo_url: https://github.com/haotian-liu/LLaVA
-    commit: pin_pending_gold
+    commit: c121f0432da27facab705978f83c4ada465e46fd
     paper_title: "Visual Instruction Tuning"
     taxonomy: {modality_primary: vision_language_multimodal, environment_challenges: [checkpoint_download, torch_cuda_matrix, hardware_pressure, api_or_license_gate], verification_type: [checkpoint_loading, single_sample_inference, semantic_check], expected_skill_routes: [global_reproducibility_safety, vision_language_env_setup, checkpoint_validation, torch_cuda_matrix_solver]}
     asset_control: public_checkpoint_with_license_review
-    gold_ready: false
-    verifier_ready: false
-    asset_ready: false
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
     selection_reason: "覆盖多模态 LLM 权重、显存压力和 license gate 风险。"
   - task_id: imagebind_embedding_minimal
-    candidate_status: selected_pending_gold
+    candidate_status: selected_gold
     split: test
     repo_url: https://github.com/facebookresearch/ImageBind
-    commit: pin_pending_gold
+    commit: 53680b02d7e37b19b124fa37bae4b6c98c38f5be
     paper_title: "ImageBind: One Embedding Space To Bind Them All"
     taxonomy: {modality_primary: vision_language_multimodal, environment_challenges: [checkpoint_download, torch_cuda_matrix, hidden_dependency, system_package_missing], verification_type: [checkpoint_loading, single_sample_inference, semantic_check], expected_skill_routes: [global_reproducibility_safety, vision_language_env_setup, checkpoint_validation, system_package_resolver]}
     asset_control: controlled_synthetic_multimodal_inputs_public_checkpoint
-    gold_ready: false
-    verifier_ready: false
-    asset_ready: false
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
     selection_reason: "覆盖 image/audio/text 多模态预处理和 embedding 检查。"
   - task_id: bert_masked_lm_minimal
     candidate_status: selected_pending_gold

@@ -1,0 +1,13 @@
+assets:
+  - asset_id: lavis_blip2_minimal_expected_artifact
+    type: json
+    required: true
+    cached_path: paperenvbench/tasks/lavis_blip2_minimal/artifacts/expected_artifact.json
+    checksum: 3022ec933b1e3a8358ce8f2035d34ae2e7a3b4e303ab62afff97358f023d08ac
+  - asset_id: lavis_blip2_minimal_checkpoint_route
+    type: checkpoint
+    required: false
+    cached_path: paper-repro:models/lavis_blip2_minimal/
+    source_url: repo_or_model_zoo
+    checksum: null
+    notes: "Check-only validation records the checkpoint route but avoids large weight downloads."

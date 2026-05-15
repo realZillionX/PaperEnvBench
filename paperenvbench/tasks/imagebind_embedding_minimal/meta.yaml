@@ -1,0 +1,50 @@
+task_id: imagebind_embedding_minimal
+paper_title: "ImageBind: One Embedding Space To Bind Them All"
+repo_url: https://github.com/facebookresearch/ImageBind
+commit: 53680b02d7e37b19b124fa37bae4b6c98c38f5be
+commit_short: 53680b0
+paper_url: https://arxiv.org/abs/2305.05665
+license: CC-BY-NC-4.0
+split: test
+modality:
+  primary: vision_language_multimodal
+  secondary:
+    - image_classification_representation
+    - checkpoint_loading
+environment_challenges:
+  - checkpoint_download
+  - torch_cuda_matrix
+  - hidden_dependency
+  - system_package_missing
+verification:
+  type:
+    - checkpoint_loading
+    - single_sample_inference
+    - semantic_check
+  command: python verify.py --check-only --json
+  minimum_success_level: L4_cpu_random_init_fallback
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4_fallback

@@ -1,0 +1,49 @@
+{
+  "checks": {
+    "fallback_boundary_documented": true,
+    "repo_commit_matches": true,
+    "route_recorded": true,
+    "semantic_output_valid": true
+  },
+  "environment": {
+    "checkpoint_loaded": false,
+    "checkpoint_required_for_full_inference": true,
+    "device": "cpu"
+  },
+  "evidence": {
+    "large_checkpoint_required_for_check_only": false,
+    "mode": "deterministic_cpu_fallback",
+    "pinned_files": [
+      "imagebind/models/imagebind_model.py",
+      "imagebind/models/__init__.py",
+      "imagebind/data.py"
+    ]
+  },
+  "numeric": {
+    "vision_text_first_row": [
+      0.31537056,
+      0.35376626,
+      0.33086321
+    ]
+  },
+  "repo": {
+    "commit": "53680b02d7e37b19b124fa37bae4b6c98c38f5be",
+    "url": "https://github.com/facebookresearch/ImageBind"
+  },
+  "route": {
+    "api": "imagebind.models.imagebind_model.ImageBindModel",
+    "checkpoint": "imagebind_huge.pth",
+    "modalities": "vision,text,audio",
+    "variant": "tiny_random_init"
+  },
+  "semantic": {
+    "description": "aligned embeddings for vision text and audio synthetic inputs"
+  },
+  "sha256": {
+    "route": "fc2faeba592e1472f9a5a3ef087bdc3c6e23aecaef753ff3adaaf81ff4be1526",
+    "semantic": "5d166a0e7f783cc1887838fae42133467014b63930f9155fcf485bc799bd8bd9"
+  },
+  "success": true,
+  "success_level": "L4_cpu_random_init_fallback",
+  "task_id": "imagebind_embedding_minimal"
+}

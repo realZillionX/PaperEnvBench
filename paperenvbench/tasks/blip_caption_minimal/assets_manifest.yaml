@@ -1,0 +1,13 @@
+assets:
+  - asset_id: blip_caption_minimal_expected_artifact
+    type: json
+    required: true
+    cached_path: paperenvbench/tasks/blip_caption_minimal/artifacts/expected_artifact.json
+    checksum: 5eb9fada7305de8f6615998530e714287c0e59e17b879962e7b87299e28e6eeb
+  - asset_id: blip_caption_minimal_checkpoint_route
+    type: checkpoint
+    required: false
+    cached_path: paper-repro:models/blip_caption_minimal/
+    source_url: repo_or_model_zoo
+    checksum: null
+    notes: "Check-only validation records the checkpoint route but avoids large weight downloads."

@@ -1,0 +1,49 @@
+{
+  "checks": {
+    "fallback_boundary_documented": true,
+    "repo_commit_matches": true,
+    "route_recorded": true,
+    "semantic_output_valid": true
+  },
+  "environment": {
+    "checkpoint_loaded": false,
+    "checkpoint_required_for_full_inference": true,
+    "device": "cpu"
+  },
+  "evidence": {
+    "large_checkpoint_required_for_check_only": false,
+    "mode": "deterministic_cpu_fallback",
+    "pinned_files": [
+      "lavis/models/__init__.py",
+      "lavis/models/blip2_models/blip2_t5.py",
+      "lavis/configs/models/blip2/blip2_pretrain_flant5xl.yaml",
+      "lavis/processors/blip_processors.py"
+    ]
+  },
+  "numeric": {
+    "object_counts": [
+      1,
+      1
+    ]
+  },
+  "repo": {
+    "commit": "506965b9c4a18c1e565bd32acaccabe0198433f7",
+    "url": "https://github.com/salesforce/LAVIS"
+  },
+  "route": {
+    "api": "lavis.models.load_model_and_preprocess",
+    "config": "lavis/configs/models/blip2/blip2_pretrain_flant5xl.yaml",
+    "implementation": "lavis.models.blip2_models.blip2_t5.Blip2T5",
+    "processor": "lavis.processors.blip_processors.BlipImageEvalProcessor"
+  },
+  "semantic": {
+    "caption": "a red square and a blue circle on a white canvas"
+  },
+  "sha256": {
+    "route": "9e7d6a81e4f67c7ba6429b3244d049c5ee48e57d34e654b3a26c2600f315112c",
+    "semantic": "e0ae37c6a182fa42b542a6d170008d259cb25cab962e4c69e1a0682f8c5e4379"
+  },
+  "success": true,
+  "success_level": "L4_fallback_cpu_config_semantic",
+  "task_id": "lavis_blip2_minimal"
+}

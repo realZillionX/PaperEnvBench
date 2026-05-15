@@ -1,0 +1,45 @@
+{
+  "dependency_files": [
+    "requirements.txt",
+    "setup.py"
+  ],
+  "entrypoints": [
+    {
+      "name": "src/open_clip/__init__.py",
+      "target": "src/open_clip/__init__.py",
+      "type": "repo_file"
+    },
+    {
+      "name": "src/open_clip/factory.py",
+      "target": "src/open_clip/factory.py",
+      "type": "repo_file"
+    },
+    {
+      "name": "src/open_clip/tokenizer.py",
+      "target": "src/open_clip/tokenizer.py",
+      "type": "repo_file"
+    }
+  ],
+  "license_file": "LICENSE",
+  "observed_environment": {
+    "device": "cpu",
+    "notebook": "paper-repro-ci-prep",
+    "python": "3.12",
+    "remote_cwd_alias": "paper-repro"
+  },
+  "observed_repository_files": [
+    "src/open_clip/__init__.py",
+    "src/open_clip/factory.py",
+    "src/open_clip/tokenizer.py"
+  ],
+  "package_manager": "pip",
+  "repo_commit": "55794d65a14dfc547a9ed3514145dd68ccc939e9",
+  "repo_commit_short": "55794d6",
+  "repo_name": "open_clip",
+  "repo_url": "https://github.com/mlfoundations/open_clip",
+  "task_id": "open_clip_zeroshot_minimal",
+  "validated_outputs": {
+    "local_artifact_dir": "paperenvbench/tasks/open_clip_zeroshot_minimal/artifacts",
+    "success_level": "L4_fallback"
+  }
+}

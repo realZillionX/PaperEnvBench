@@ -360,3 +360,77 @@ trajectories:
     artifact_path: paperenvbench/tasks/mmaction2_recognition_minimal/artifacts/
     remote_artifact_path: paper-repro:runs/paperenvbench/video/mmaction2_recognition_minimal/artifacts/
     status: gold_verified_l4_fallback
+  - trajectory_id: gold_open_clip_zeroshot_minimal_cpu
+    task_id: open_clip_zeroshot_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - checkpoint_download
+      - torch_cuda_matrix
+      - hidden_dependency
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/open_clip_zeroshot_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/vlm/open_clip_zeroshot_minimal/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_blip_caption_minimal_cpu
+    task_id: blip_caption_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - checkpoint_download
+      - torch_cuda_matrix
+      - hidden_dependency
+      - hardware_pressure
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/blip_caption_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/vlm/blip_caption_minimal/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_lavis_blip2_minimal_cpu
+    task_id: lavis_blip2_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - checkpoint_download
+      - torch_cuda_matrix
+      - hidden_dependency
+      - hardware_pressure
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/lavis_blip2_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/vlm/lavis_blip2_minimal/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_llava_single_image_minimal_cpu
+    task_id: llava_single_image_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - checkpoint_download
+      - torch_cuda_matrix
+      - hardware_pressure
+      - api_or_license_gate
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/llava_single_image_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/vlm/llava_single_image_minimal/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_imagebind_embedding_minimal_cpu
+    task_id: imagebind_embedding_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - checkpoint_download
+      - torch_cuda_matrix
+      - hidden_dependency
+      - system_package_missing
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/imagebind_embedding_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/vlm/imagebind_embedding_minimal/artifacts/
+    status: gold_verified_l4_fallback

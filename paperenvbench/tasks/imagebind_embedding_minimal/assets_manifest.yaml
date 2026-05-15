@@ -1,0 +1,13 @@
+assets:
+  - asset_id: imagebind_embedding_minimal_expected_artifact
+    type: json
+    required: true
+    cached_path: paperenvbench/tasks/imagebind_embedding_minimal/artifacts/expected_artifact.json
+    checksum: ab00743ad9a15bf9546c47af8010aae064ee57478a350b0fb97425c4f616e0b3
+  - asset_id: imagebind_embedding_minimal_checkpoint_route
+    type: checkpoint
+    required: false
+    cached_path: paper-repro:models/imagebind_embedding_minimal/
+    source_url: repo_or_model_zoo
+    checksum: null
+    notes: "Check-only validation records the checkpoint route but avoids large weight downloads."

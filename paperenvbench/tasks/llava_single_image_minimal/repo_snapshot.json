@@ -1,0 +1,51 @@
+{
+  "dependency_files": [
+    "requirements.txt",
+    "setup.py"
+  ],
+  "entrypoints": [
+    {
+      "name": "llava/conversation.py",
+      "target": "llava/conversation.py",
+      "type": "repo_file"
+    },
+    {
+      "name": "llava/constants.py",
+      "target": "llava/constants.py",
+      "type": "repo_file"
+    },
+    {
+      "name": "llava/model/builder.py",
+      "target": "llava/model/builder.py",
+      "type": "repo_file"
+    },
+    {
+      "name": "llava/mm_utils.py",
+      "target": "llava/mm_utils.py",
+      "type": "repo_file"
+    }
+  ],
+  "license_file": "LICENSE",
+  "observed_environment": {
+    "device": "cpu",
+    "notebook": "paper-repro-ci-prep",
+    "python": "3.12",
+    "remote_cwd_alias": "paper-repro"
+  },
+  "observed_repository_files": [
+    "llava/conversation.py",
+    "llava/constants.py",
+    "llava/model/builder.py",
+    "llava/mm_utils.py"
+  ],
+  "package_manager": "pip",
+  "repo_commit": "c121f0432da27facab705978f83c4ada465e46fd",
+  "repo_commit_short": "c121f04",
+  "repo_name": "LLaVA",
+  "repo_url": "https://github.com/haotian-liu/LLaVA",
+  "task_id": "llava_single_image_minimal",
+  "validated_outputs": {
+    "local_artifact_dir": "paperenvbench/tasks/llava_single_image_minimal/artifacts",
+    "success_level": "L4_fallback"
+  }
+}

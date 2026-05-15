@@ -1,0 +1,4 @@
+[gold_install] repo_url=https://github.com/salesforce/BLIP.git
+[gold_install] commit=056a169437371659074aa2732649d5de3bffb4a8
+[gold_install] verified_files=models/blip.py,configs/caption_coco.yaml,predict.py,train_caption.py
+[gold_install] blip_caption_minimal gold install route verified

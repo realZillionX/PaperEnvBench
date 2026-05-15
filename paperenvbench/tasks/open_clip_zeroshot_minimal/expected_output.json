@@ -1,0 +1,23 @@
+{
+  "acceptance": {
+    "required_terms": [
+      "black square",
+      "white background"
+    ],
+    "success_level": "L4_fallback"
+  },
+  "checksums": {
+    "expected_artifact_json_sha256": "cf5f57cae7ca4680ef835a3da784a8a67f1b380cc8c82e19bc5353362cee6918"
+  },
+  "expected_files": {
+    "summary": "artifacts/expected_artifact.json"
+  },
+  "source": {
+    "notebook": "paper-repro-ci-prep",
+    "output_dir": "paper-repro:runs/paperenvbench/vlm/open_clip_zeroshot_minimal/artifacts",
+    "remote_cwd_alias": "paper-repro",
+    "repo_commit": "55794d65a14dfc547a9ed3514145dd68ccc939e9",
+    "repo_path": "paper-repro:runs/paperenvbench/vlm/open_clip_zeroshot_minimal/repo"
+  },
+  "task_id": "open_clip_zeroshot_minimal"
+}

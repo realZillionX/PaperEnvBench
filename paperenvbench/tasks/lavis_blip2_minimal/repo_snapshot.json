@@ -1,0 +1,51 @@
+{
+  "dependency_files": [
+    "requirements.txt",
+    "setup.py"
+  ],
+  "entrypoints": [
+    {
+      "name": "lavis/models/__init__.py",
+      "target": "lavis/models/__init__.py",
+      "type": "repo_file"
+    },
+    {
+      "name": "lavis/models/blip2_models/blip2_t5.py",
+      "target": "lavis/models/blip2_models/blip2_t5.py",
+      "type": "repo_file"
+    },
+    {
+      "name": "lavis/configs/models/blip2/blip2_pretrain_flant5xl.yaml",
+      "target": "lavis/configs/models/blip2/blip2_pretrain_flant5xl.yaml",
+      "type": "repo_file"
+    },
+    {
+      "name": "lavis/processors/blip_processors.py",
+      "target": "lavis/processors/blip_processors.py",
+      "type": "repo_file"
+    }
+  ],
+  "license_file": "LICENSE",
+  "observed_environment": {
+    "device": "cpu",
+    "notebook": "paper-repro-ci-prep",
+    "python": "3.12",
+    "remote_cwd_alias": "paper-repro"
+  },
+  "observed_repository_files": [
+    "lavis/models/__init__.py",
+    "lavis/models/blip2_models/blip2_t5.py",
+    "lavis/configs/models/blip2/blip2_pretrain_flant5xl.yaml",
+    "lavis/processors/blip_processors.py"
+  ],
+  "package_manager": "pip",
+  "repo_commit": "506965b9c4a18c1e565bd32acaccabe0198433f7",
+  "repo_commit_short": "506965b",
+  "repo_name": "LAVIS",
+  "repo_url": "https://github.com/salesforce/LAVIS",
+  "task_id": "lavis_blip2_minimal",
+  "validated_outputs": {
+    "local_artifact_dir": "paperenvbench/tasks/lavis_blip2_minimal/artifacts",
+    "success_level": "L4_fallback_cpu_config_semantic"
+  }
+}

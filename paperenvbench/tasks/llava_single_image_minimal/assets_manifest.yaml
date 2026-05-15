@@ -1,0 +1,13 @@
+assets:
+  - asset_id: llava_single_image_minimal_expected_artifact
+    type: json
+    required: true
+    cached_path: paperenvbench/tasks/llava_single_image_minimal/artifacts/expected_artifact.json
+    checksum: 1c8c4472b680fa07cfef5d8c0a193609115861b49386f43e13bd4b213ca1e254
+  - asset_id: llava_single_image_minimal_checkpoint_route
+    type: checkpoint
+    required: false
+    cached_path: paper-repro:models/llava_single_image_minimal/
+    source_url: repo_or_model_zoo
+    checksum: null
+    notes: "Check-only validation records the checkpoint route but avoids large weight downloads."

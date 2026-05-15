@@ -335,3 +335,48 @@ assets:
     cached_path: paper-repro:runs/paperenvbench/video/mmaction2_recognition_minimal/logs/mmcv_native_binary_probe.log
     local_artifact_path: paperenvbench/tasks/mmaction2_recognition_minimal/logs/mmcv_native_binary_probe.log
     status: gold_verified
+  - asset_id: open_clip_zeroshot_minimal_summary
+    task_id: open_clip_zeroshot_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: cf5f57cae7ca4680ef835a3da784a8a67f1b380cc8c82e19bc5353362cee6918
+    cached_path: paper-repro:runs/paperenvbench/vlm/open_clip_zeroshot_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/open_clip_zeroshot_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: blip_caption_minimal_summary
+    task_id: blip_caption_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: 5eb9fada7305de8f6615998530e714287c0e59e17b879962e7b87299e28e6eeb
+    cached_path: paper-repro:runs/paperenvbench/vlm/blip_caption_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/blip_caption_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: lavis_blip2_minimal_summary
+    task_id: lavis_blip2_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: 3022ec933b1e3a8358ce8f2035d34ae2e7a3b4e303ab62afff97358f023d08ac
+    cached_path: paper-repro:runs/paperenvbench/vlm/lavis_blip2_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/lavis_blip2_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: llava_single_image_minimal_summary
+    task_id: llava_single_image_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: 1c8c4472b680fa07cfef5d8c0a193609115861b49386f43e13bd4b213ca1e254
+    cached_path: paper-repro:runs/paperenvbench/vlm/llava_single_image_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/llava_single_image_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: imagebind_embedding_minimal_summary
+    task_id: imagebind_embedding_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: ab00743ad9a15bf9546c47af8010aae064ee57478a350b0fb97425c4f616e0b3
+    cached_path: paper-repro:runs/paperenvbench/vlm/imagebind_embedding_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/imagebind_embedding_minimal/artifacts/expected_artifact.json
+    status: gold_verified

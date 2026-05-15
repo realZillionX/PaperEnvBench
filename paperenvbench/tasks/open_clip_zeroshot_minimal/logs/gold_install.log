@@ -1,0 +1,4 @@
+[gold_install] repo_url=https://github.com/mlfoundations/open_clip.git
+[gold_install] commit=55794d65a14dfc547a9ed3514145dd68ccc939e9
+[gold_install] verified_files=src/open_clip/__init__.py,src/open_clip/factory.py,src/open_clip/tokenizer.py
+[gold_install] open_clip_zeroshot_minimal gold install route verified

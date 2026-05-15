@@ -1,0 +1,19 @@
+{
+  "artifact_dir": "/Users/zillionx/Desktop/Paper Reproduction/PaperEnvBench/paperenvbench/tasks/lavis_blip2_minimal/artifacts",
+  "artifact_sha256": "3022ec933b1e3a8358ce8f2035d34ae2e7a3b4e303ab62afff97358f023d08ac",
+  "checks": {
+    "fallback_boundary_documented": true,
+    "repo_commit_matches": true,
+    "route_recorded": true,
+    "semantic_output_valid": true
+  },
+  "observed": {
+    "repo_commit": "506965b9c4a18c1e565bd32acaccabe0198433f7",
+    "semantic": {
+      "caption": "a red square and a blue circle on a white canvas"
+    }
+  },
+  "status": "pass",
+  "success_level": "L4_fallback_cpu_config_semantic",
+  "task_id": "lavis_blip2_minimal"
+}

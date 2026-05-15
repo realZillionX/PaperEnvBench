@@ -1,0 +1,19 @@
+{
+  "artifact_dir": "/Users/zillionx/Desktop/Paper Reproduction/PaperEnvBench/paperenvbench/tasks/blip_caption_minimal/artifacts",
+  "artifact_sha256": "5eb9fada7305de8f6615998530e714287c0e59e17b879962e7b87299e28e6eeb",
+  "checks": {
+    "fallback_boundary_documented": true,
+    "repo_commit_matches": true,
+    "route_recorded": true,
+    "semantic_output_valid": true
+  },
+  "observed": {
+    "repo_commit": "056a169437371659074aa2732649d5de3bffb4a8",
+    "semantic": {
+      "caption": "a picture of a red square, a blue circle, and a green strip"
+    }
+  },
+  "status": "pass",
+  "success_level": "L4_cpu_deterministic_fallback",
+  "task_id": "blip_caption_minimal"
+}
