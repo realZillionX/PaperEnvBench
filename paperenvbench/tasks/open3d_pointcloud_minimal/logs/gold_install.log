@@ -1,0 +1,404 @@
+[gold_install] run_root=/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/geometry/open3d_pointcloud_minimal
+[gold_install] repo_dir=/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/geometry/open3d_pointcloud_minimal/repo
+[gold_install] venv_dir=/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/geometry/open3d_pointcloud_minimal/venv
+[gold_install] commit=1e7b17438687a0b0c1e5a7187321ac7044afe275
+Cloning into '/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/geometry/open3d_pointcloud_minimal/repo'...
+Note: switching to '1e7b17438687a0b0c1e5a7187321ac7044afe275'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at 1e7b17438 Build fixes for v0.19 (#7128)
+1e7b17438687a0b0c1e5a7187321ac7044afe275
+Looking in indexes: http://nexus.sii.shaipower.online/repository/pypi/simple
+Requirement already satisfied: pip in ./venv/lib/python3.12/site-packages (24.0)
+Collecting pip
+  Using cached http://nexus.sii.shaipower.online/repository/pypi/packages/pip/26.1.1/pip-26.1.1-py3-none-any.whl (1.8 MB)
+Collecting setuptools
+  Using cached http://nexus.sii.shaipower.online/repository/pypi/packages/setuptools/82.0.1/setuptools-82.0.1-py3-none-any.whl (1.0 MB)
+Collecting wheel
+  Using cached http://nexus.sii.shaipower.online/repository/pypi/packages/wheel/0.47.0/wheel-0.47.0-py3-none-any.whl (32 kB)
+Collecting packaging>=24.0 (from wheel)
+  Using cached http://nexus.sii.shaipower.online/repository/pypi/packages/packaging/26.2/packaging-26.2-py3-none-any.whl (100 kB)
+Installing collected packages: setuptools, pip, packaging, wheel
+  Attempting uninstall: pip
+    Found existing installation: pip 24.0
+    Uninstalling pip-24.0:
+      Successfully uninstalled pip-24.0
+Successfully installed packaging-26.2 pip-26.1.1 setuptools-82.0.1 wheel-0.47.0
+Writing to /root/.config/pip/pip.conf
+Writing to /root/.config/pip/pip.conf
+Looking in indexes: http://nexus.sii.shaipower.online/repository/pypi/simple
+Collecting open3d==0.19.0
+  Using cached open3d-0.19.0-cp312-cp312-manylinux_2_31_x86_64.whl (447.7 MB)
+Collecting numpy==2.2.6
+  Using cached numpy-2.2.6-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (16.5 MB)
+Collecting dash>=2.6.0 (from open3d==0.19.0)
+  Using cached dash-4.1.0-py3-none-any.whl (7.2 MB)
+Collecting werkzeug>=3.0.0 (from open3d==0.19.0)
+  Using cached werkzeug-3.1.8-py3-none-any.whl (226 kB)
+Collecting flask>=3.0.0 (from open3d==0.19.0)
+  Using cached flask-3.1.3-py3-none-any.whl (103 kB)
+Collecting nbformat>=5.7.0 (from open3d==0.19.0)
+  Using cached nbformat-5.10.4-py3-none-any.whl (78 kB)
+Collecting configargparse (from open3d==0.19.0)
+  Using cached configargparse-1.7.5-py3-none-any.whl (27 kB)
+Collecting ipywidgets>=8.0.4 (from open3d==0.19.0)
+  Using cached ipywidgets-8.1.8-py3-none-any.whl (139 kB)
+Collecting addict (from open3d==0.19.0)
+  Using cached addict-2.4.0-py3-none-any.whl (3.8 kB)
+Collecting pillow>=9.3.0 (from open3d==0.19.0)
+  Using cached pillow-12.2.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (7.1 MB)
+Collecting matplotlib>=3 (from open3d==0.19.0)
+  Using cached matplotlib-3.10.9-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (8.8 MB)
+Collecting pandas>=1.0 (from open3d==0.19.0)
+  Using cached pandas-3.0.3-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (10.9 MB)
+Collecting pyyaml>=5.4.1 (from open3d==0.19.0)
+  Using cached pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+Collecting scikit-learn>=0.21 (from open3d==0.19.0)
+  Using cached scikit_learn-1.8.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (8.9 MB)
+Collecting tqdm (from open3d==0.19.0)
+  Using cached tqdm-4.67.3-py3-none-any.whl (78 kB)
+Collecting pyquaternion (from open3d==0.19.0)
+  Using cached pyquaternion-0.9.9-py3-none-any.whl (14 kB)
+Collecting plotly>=5.0.0 (from dash>=2.6.0->open3d==0.19.0)
+  Using cached plotly-6.7.0-py3-none-any.whl (9.9 MB)
+Collecting importlib-metadata (from dash>=2.6.0->open3d==0.19.0)
+  Using cached importlib_metadata-9.0.0-py3-none-any.whl (27 kB)
+Collecting typing_extensions>=4.1.1 (from dash>=2.6.0->open3d==0.19.0)
+  Using cached typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+Collecting requests (from dash>=2.6.0->open3d==0.19.0)
+  ERROR: HTTP error 404 while getting http://nexus.sii.shaipower.online/repository/pypi/packages/requests/2.34.2/requests-2.34.2-py3-none-any.whl#sha256=2a0d60c172f83ac6ab31e4554906c0f3b3588d37b5cb939b1c061f4907e278e0 (from http://nexus.sii.shaipower.online/repository/pypi/simple/requests/) (requires-python:>=3.10)
+ERROR: Could not install requirement requests from http://nexus.sii.shaipower.online/repository/pypi/packages/requests/2.34.2/requests-2.34.2-py3-none-any.whl#sha256=2a0d60c172f83ac6ab31e4554906c0f3b3588d37b5cb939b1c061f4907e278e0 (from dash>=2.6.0->open3d==0.19.0) because of HTTP error 404 Client Error: Not Found for url: http://nexus.sii.shaipower.online/repository/pypi/packages/requests/2.34.2/requests-2.34.2-py3-none-any.whl for URL http://nexus.sii.shaipower.online/repository/pypi/packages/requests/2.34.2/requests-2.34.2-py3-none-any.whl#sha256=2a0d60c172f83ac6ab31e4554906c0f3b3588d37b5cb939b1c061f4907e278e0 (from http://nexus.sii.shaipower.online/repository/pypi/simple/requests/) (requires-python:>=3.10)
+[gold_install] configured pip index failed; falling back to PyPI.
+Collecting open3d==0.19.0
+  Using cached open3d-0.19.0-cp312-cp312-manylinux_2_31_x86_64.whl.metadata (4.3 kB)
+Collecting numpy==2.2.6
+  Using cached numpy-2.2.6-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (62 kB)
+Collecting dash>=2.6.0 (from open3d==0.19.0)
+  Using cached dash-4.1.0-py3-none-any.whl.metadata (11 kB)
+Collecting werkzeug>=3.0.0 (from open3d==0.19.0)
+  Using cached werkzeug-3.1.8-py3-none-any.whl.metadata (4.0 kB)
+Collecting flask>=3.0.0 (from open3d==0.19.0)
+  Using cached flask-3.1.3-py3-none-any.whl.metadata (3.2 kB)
+Collecting nbformat>=5.7.0 (from open3d==0.19.0)
+  Using cached nbformat-5.10.4-py3-none-any.whl.metadata (3.6 kB)
+Collecting configargparse (from open3d==0.19.0)
+  Using cached configargparse-1.7.5-py3-none-any.whl.metadata (23 kB)
+Collecting ipywidgets>=8.0.4 (from open3d==0.19.0)
+  Using cached ipywidgets-8.1.8-py3-none-any.whl.metadata (2.4 kB)
+Collecting addict (from open3d==0.19.0)
+  Using cached addict-2.4.0-py3-none-any.whl.metadata (1.0 kB)
+Collecting pillow>=9.3.0 (from open3d==0.19.0)
+  Using cached pillow-12.2.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (8.8 kB)
+Collecting matplotlib>=3 (from open3d==0.19.0)
+  Using cached matplotlib-3.10.9-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (52 kB)
+Collecting pandas>=1.0 (from open3d==0.19.0)
+  Using cached pandas-3.0.3-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (79 kB)
+Collecting pyyaml>=5.4.1 (from open3d==0.19.0)
+  Using cached pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+Collecting scikit-learn>=0.21 (from open3d==0.19.0)
+  Using cached scikit_learn-1.8.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (11 kB)
+Collecting tqdm (from open3d==0.19.0)
+  Using cached tqdm-4.67.3-py3-none-any.whl.metadata (57 kB)
+Collecting pyquaternion (from open3d==0.19.0)
+  Using cached pyquaternion-0.9.9-py3-none-any.whl.metadata (1.4 kB)
+Collecting plotly>=5.0.0 (from dash>=2.6.0->open3d==0.19.0)
+  Using cached plotly-6.7.0-py3-none-any.whl.metadata (8.6 kB)
+Collecting importlib-metadata (from dash>=2.6.0->open3d==0.19.0)
+  Using cached importlib_metadata-9.0.0-py3-none-any.whl.metadata (4.5 kB)
+Collecting typing_extensions>=4.1.1 (from dash>=2.6.0->open3d==0.19.0)
+  Using cached typing_extensions-4.15.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting requests (from dash>=2.6.0->open3d==0.19.0)
+  Using cached requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+Collecting retrying (from dash>=2.6.0->open3d==0.19.0)
+  Using cached retrying-1.4.2-py3-none-any.whl.metadata (5.5 kB)
+Collecting nest-asyncio (from dash>=2.6.0->open3d==0.19.0)
+  Using cached nest_asyncio-1.6.0-py3-none-any.whl.metadata (2.8 kB)
+Requirement already satisfied: setuptools in ./venv/lib/python3.12/site-packages (from dash>=2.6.0->open3d==0.19.0) (82.0.1)
+Collecting blinker>=1.9.0 (from flask>=3.0.0->open3d==0.19.0)
+  Using cached blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)
+Collecting click>=8.1.3 (from flask>=3.0.0->open3d==0.19.0)
+  Using cached click-8.3.3-py3-none-any.whl.metadata (2.6 kB)
+Collecting itsdangerous>=2.2.0 (from flask>=3.0.0->open3d==0.19.0)
+  Using cached itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+Collecting jinja2>=3.1.2 (from flask>=3.0.0->open3d==0.19.0)
+  Using cached jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting markupsafe>=2.1.1 (from flask>=3.0.0->open3d==0.19.0)
+  Using cached markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+Collecting comm>=0.1.3 (from ipywidgets>=8.0.4->open3d==0.19.0)
+  Using cached comm-0.2.3-py3-none-any.whl.metadata (3.7 kB)
+Collecting ipython>=6.1.0 (from ipywidgets>=8.0.4->open3d==0.19.0)
+  Using cached ipython-9.13.0-py3-none-any.whl.metadata (4.6 kB)
+Collecting traitlets>=4.3.1 (from ipywidgets>=8.0.4->open3d==0.19.0)
+  Using cached traitlets-5.15.0-py3-none-any.whl.metadata (10 kB)
+Collecting widgetsnbextension~=4.0.14 (from ipywidgets>=8.0.4->open3d==0.19.0)
+  Using cached widgetsnbextension-4.0.15-py3-none-any.whl.metadata (1.6 kB)
+Collecting jupyterlab_widgets~=3.0.15 (from ipywidgets>=8.0.4->open3d==0.19.0)
+  Using cached jupyterlab_widgets-3.0.16-py3-none-any.whl.metadata (20 kB)
+Collecting decorator>=5.1.0 (from ipython>=6.1.0->ipywidgets>=8.0.4->open3d==0.19.0)
+  Using cached decorator-5.2.1-py3-none-any.whl.metadata (3.9 kB)
+Collecting ipython-pygments-lexers>=1.0.0 (from ipython>=6.1.0->ipywidgets>=8.0.4->open3d==0.19.0)
+  Using cached ipython_pygments_lexers-1.1.1-py3-none-any.whl.metadata (1.1 kB)
+Collecting jedi>=0.18.2 (from ipython>=6.1.0->ipywidgets>=8.0.4->open3d==0.19.0)
+  Using cached jedi-0.20.0-py2.py3-none-any.whl.metadata (23 kB)
+Collecting matplotlib-inline>=0.1.6 (from ipython>=6.1.0->ipywidgets>=8.0.4->open3d==0.19.0)
+  Using cached matplotlib_inline-0.2.2-py3-none-any.whl.metadata (2.4 kB)
+Collecting pexpect>4.6 (from ipython>=6.1.0->ipywidgets>=8.0.4->open3d==0.19.0)
+  Using cached pexpect-4.9.0-py2.py3-none-any.whl.metadata (2.5 kB)
+Collecting prompt_toolkit<3.1.0,>=3.0.41 (from ipython>=6.1.0->ipywidgets>=8.0.4->open3d==0.19.0)
+  Using cached prompt_toolkit-3.0.52-py3-none-any.whl.metadata (6.4 kB)
+Collecting psutil>=7 (from ipython>=6.1.0->ipywidgets>=8.0.4->open3d==0.19.0)
+  Using cached psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl.metadata (22 kB)
+Collecting pygments>=2.14.0 (from ipython>=6.1.0->ipywidgets>=8.0.4->open3d==0.19.0)
+  Using cached pygments-2.20.0-py3-none-any.whl.metadata (2.5 kB)
+Collecting stack_data>=0.6.0 (from ipython>=6.1.0->ipywidgets>=8.0.4->open3d==0.19.0)
+  Using cached stack_data-0.6.3-py3-none-any.whl.metadata (18 kB)
+Collecting wcwidth (from prompt_toolkit<3.1.0,>=3.0.41->ipython>=6.1.0->ipywidgets>=8.0.4->open3d==0.19.0)
+  Using cached wcwidth-0.7.0-py3-none-any.whl.metadata (36 kB)
+Collecting parso<0.9.0,>=0.8.6 (from jedi>=0.18.2->ipython>=6.1.0->ipywidgets>=8.0.4->open3d==0.19.0)
+  Using cached parso-0.8.7-py2.py3-none-any.whl.metadata (8.2 kB)
+Collecting contourpy>=1.0.1 (from matplotlib>=3->open3d==0.19.0)
+  Using cached contourpy-1.3.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (5.5 kB)
+Collecting cycler>=0.10 (from matplotlib>=3->open3d==0.19.0)
+  Using cached cycler-0.12.1-py3-none-any.whl.metadata (3.8 kB)
+Collecting fonttools>=4.22.0 (from matplotlib>=3->open3d==0.19.0)
+  Using cached fonttools-4.63.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (118 kB)
+Collecting kiwisolver>=1.3.1 (from matplotlib>=3->open3d==0.19.0)
+  Using cached kiwisolver-1.5.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (5.1 kB)
+Requirement already satisfied: packaging>=20.0 in ./venv/lib/python3.12/site-packages (from matplotlib>=3->open3d==0.19.0) (26.2)
+Collecting pyparsing>=3 (from matplotlib>=3->open3d==0.19.0)
+  Using cached pyparsing-3.3.2-py3-none-any.whl.metadata (5.8 kB)
+Collecting python-dateutil>=2.7 (from matplotlib>=3->open3d==0.19.0)
+  Using cached python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Collecting fastjsonschema>=2.15 (from nbformat>=5.7.0->open3d==0.19.0)
+  Using cached fastjsonschema-2.21.2-py3-none-any.whl.metadata (2.3 kB)
+Collecting jsonschema>=2.6 (from nbformat>=5.7.0->open3d==0.19.0)
+  Using cached jsonschema-4.26.0-py3-none-any.whl.metadata (7.6 kB)
+Collecting jupyter-core!=5.0.*,>=4.12 (from nbformat>=5.7.0->open3d==0.19.0)
+  Using cached jupyter_core-5.9.1-py3-none-any.whl.metadata (1.5 kB)
+Collecting attrs>=22.2.0 (from jsonschema>=2.6->nbformat>=5.7.0->open3d==0.19.0)
+  Using cached attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+Collecting jsonschema-specifications>=2023.03.6 (from jsonschema>=2.6->nbformat>=5.7.0->open3d==0.19.0)
+  Using cached jsonschema_specifications-2025.9.1-py3-none-any.whl.metadata (2.9 kB)
+Collecting referencing>=0.28.4 (from jsonschema>=2.6->nbformat>=5.7.0->open3d==0.19.0)
+  Using cached referencing-0.37.0-py3-none-any.whl.metadata (2.8 kB)
+Collecting rpds-py>=0.25.0 (from jsonschema>=2.6->nbformat>=5.7.0->open3d==0.19.0)
+  Using cached rpds_py-0.30.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.1 kB)
+Collecting platformdirs>=2.5 (from jupyter-core!=5.0.*,>=4.12->nbformat>=5.7.0->open3d==0.19.0)
+  Using cached platformdirs-4.9.6-py3-none-any.whl.metadata (4.7 kB)
+Collecting ptyprocess>=0.5 (from pexpect>4.6->ipython>=6.1.0->ipywidgets>=8.0.4->open3d==0.19.0)
+  Using cached ptyprocess-0.7.0-py2.py3-none-any.whl.metadata (1.3 kB)
+Collecting narwhals>=1.15.1 (from plotly>=5.0.0->dash>=2.6.0->open3d==0.19.0)
+  Using cached narwhals-2.21.0-py3-none-any.whl.metadata (16 kB)
+Collecting six>=1.5 (from python-dateutil>=2.7->matplotlib>=3->open3d==0.19.0)
+  Using cached six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+Collecting scipy>=1.10.0 (from scikit-learn>=0.21->open3d==0.19.0)
+  Using cached scipy-1.17.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (62 kB)
+Collecting joblib>=1.3.0 (from scikit-learn>=0.21->open3d==0.19.0)
+  Using cached joblib-1.5.3-py3-none-any.whl.metadata (5.5 kB)
+Collecting threadpoolctl>=3.2.0 (from scikit-learn>=0.21->open3d==0.19.0)
+  Using cached threadpoolctl-3.6.0-py3-none-any.whl.metadata (13 kB)
+Collecting executing>=1.2.0 (from stack_data>=0.6.0->ipython>=6.1.0->ipywidgets>=8.0.4->open3d==0.19.0)
+  Using cached executing-2.2.1-py2.py3-none-any.whl.metadata (8.9 kB)
+Collecting asttokens>=2.1.0 (from stack_data>=0.6.0->ipython>=6.1.0->ipywidgets>=8.0.4->open3d==0.19.0)
+  Using cached asttokens-3.0.1-py3-none-any.whl.metadata (4.9 kB)
+Collecting pure-eval (from stack_data>=0.6.0->ipython>=6.1.0->ipywidgets>=8.0.4->open3d==0.19.0)
+  Using cached pure_eval-0.2.3-py3-none-any.whl.metadata (6.3 kB)
+Collecting zipp>=3.20 (from importlib-metadata->dash>=2.6.0->open3d==0.19.0)
+  Using cached zipp-3.23.1-py3-none-any.whl.metadata (3.6 kB)
+Collecting charset_normalizer<4,>=2 (from requests->dash>=2.6.0->open3d==0.19.0)
+  Using cached charset_normalizer-3.4.7-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (40 kB)
+Collecting idna<4,>=2.5 (from requests->dash>=2.6.0->open3d==0.19.0)
+  Using cached idna-3.15-py3-none-any.whl.metadata (7.7 kB)
+Collecting urllib3<3,>=1.26 (from requests->dash>=2.6.0->open3d==0.19.0)
+  Using cached urllib3-2.7.0-py3-none-any.whl.metadata (6.9 kB)
+Collecting certifi>=2023.5.7 (from requests->dash>=2.6.0->open3d==0.19.0)
+  Using cached certifi-2026.4.22-py3-none-any.whl.metadata (2.5 kB)
+Using cached open3d-0.19.0-cp312-cp312-manylinux_2_31_x86_64.whl (447.7 MB)
+Using cached numpy-2.2.6-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (16.5 MB)
+Using cached dash-4.1.0-py3-none-any.whl (7.2 MB)
+Using cached flask-3.1.3-py3-none-any.whl (103 kB)
+Using cached werkzeug-3.1.8-py3-none-any.whl (226 kB)
+Using cached blinker-1.9.0-py3-none-any.whl (8.5 kB)
+Using cached click-8.3.3-py3-none-any.whl (110 kB)
+Using cached ipywidgets-8.1.8-py3-none-any.whl (139 kB)
+Using cached jupyterlab_widgets-3.0.16-py3-none-any.whl (914 kB)
+Using cached widgetsnbextension-4.0.15-py3-none-any.whl (2.2 MB)
+Using cached comm-0.2.3-py3-none-any.whl (7.3 kB)
+Using cached ipython-9.13.0-py3-none-any.whl (627 kB)
+Using cached prompt_toolkit-3.0.52-py3-none-any.whl (391 kB)
+Using cached decorator-5.2.1-py3-none-any.whl (9.2 kB)
+Using cached ipython_pygments_lexers-1.1.1-py3-none-any.whl (8.1 kB)
+Using cached itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+Using cached jedi-0.20.0-py2.py3-none-any.whl (4.9 MB)
+Using cached parso-0.8.7-py2.py3-none-any.whl (107 kB)
+Using cached jinja2-3.1.6-py3-none-any.whl (134 kB)
+Using cached markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+Using cached matplotlib-3.10.9-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (8.8 MB)
+Using cached contourpy-1.3.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (362 kB)
+Using cached cycler-0.12.1-py3-none-any.whl (8.3 kB)
+Using cached fonttools-4.63.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (5.0 MB)
+Using cached kiwisolver-1.5.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (1.5 MB)
+Using cached matplotlib_inline-0.2.2-py3-none-any.whl (9.5 kB)
+Using cached nbformat-5.10.4-py3-none-any.whl (78 kB)
+Using cached fastjsonschema-2.21.2-py3-none-any.whl (24 kB)
+Using cached jsonschema-4.26.0-py3-none-any.whl (90 kB)
+Using cached attrs-26.1.0-py3-none-any.whl (67 kB)
+Using cached jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)
+Using cached jupyter_core-5.9.1-py3-none-any.whl (29 kB)
+Using cached pandas-3.0.3-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (10.9 MB)
+Using cached pexpect-4.9.0-py2.py3-none-any.whl (63 kB)
+Using cached pillow-12.2.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (7.1 MB)
+Using cached platformdirs-4.9.6-py3-none-any.whl (21 kB)
+Using cached plotly-6.7.0-py3-none-any.whl (9.9 MB)
+Using cached narwhals-2.21.0-py3-none-any.whl (451 kB)
+Using cached psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl (155 kB)
+Using cached ptyprocess-0.7.0-py2.py3-none-any.whl (13 kB)
+Using cached pygments-2.20.0-py3-none-any.whl (1.2 MB)
+Using cached pyparsing-3.3.2-py3-none-any.whl (122 kB)
+Using cached python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Using cached pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+Using cached referencing-0.37.0-py3-none-any.whl (26 kB)
+Using cached rpds_py-0.30.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (394 kB)
+Using cached scikit_learn-1.8.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (8.9 MB)
+Using cached joblib-1.5.3-py3-none-any.whl (309 kB)
+Using cached scipy-1.17.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (35.2 MB)
+Using cached six-1.17.0-py2.py3-none-any.whl (11 kB)
+Using cached stack_data-0.6.3-py3-none-any.whl (24 kB)
+Using cached asttokens-3.0.1-py3-none-any.whl (27 kB)
+Using cached executing-2.2.1-py2.py3-none-any.whl (28 kB)
+Using cached threadpoolctl-3.6.0-py3-none-any.whl (18 kB)
+Using cached traitlets-5.15.0-py3-none-any.whl (85 kB)
+Using cached typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+Using cached addict-2.4.0-py3-none-any.whl (3.8 kB)
+Using cached configargparse-1.7.5-py3-none-any.whl (27 kB)
+Using cached importlib_metadata-9.0.0-py3-none-any.whl (27 kB)
+Using cached zipp-3.23.1-py3-none-any.whl (10 kB)
+Using cached nest_asyncio-1.6.0-py3-none-any.whl (5.2 kB)
+Using cached pure_eval-0.2.3-py3-none-any.whl (11 kB)
+Using cached pyquaternion-0.9.9-py3-none-any.whl (14 kB)
+Using cached requests-2.34.2-py3-none-any.whl (73 kB)
+Using cached charset_normalizer-3.4.7-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (216 kB)
+Using cached idna-3.15-py3-none-any.whl (72 kB)
+Using cached urllib3-2.7.0-py3-none-any.whl (131 kB)
+Using cached certifi-2026.4.22-py3-none-any.whl (135 kB)
+Using cached retrying-1.4.2-py3-none-any.whl (10 kB)
+Using cached tqdm-4.67.3-py3-none-any.whl (78 kB)
+Using cached wcwidth-0.7.0-py3-none-any.whl (110 kB)
+Installing collected packages: pure-eval, ptyprocess, fastjsonschema, addict, zipp, widgetsnbextension, wcwidth, urllib3, typing_extensions, traitlets, tqdm, threadpoolctl, six, rpds-py, retrying, pyyaml, pyparsing, pygments, psutil, platformdirs, pillow, pexpect, parso, numpy, nest-asyncio, narwhals, markupsafe, kiwisolver, jupyterlab_widgets, joblib, itsdangerous, idna, fonttools, executing, decorator, cycler, configargparse, comm, click, charset_normalizer, certifi, blinker, attrs, asttokens, werkzeug, stack_data, scipy, requests, referencing, python-dateutil, pyquaternion, prompt_toolkit, plotly, matplotlib-inline, jupyter-core, jinja2, jedi, ipython-pygments-lexers, importlib-metadata, contourpy, scikit-learn, pandas, matplotlib, jsonschema-specifications, ipython, flask, jsonschema, ipywidgets, dash, nbformat, open3d
+
+Successfully installed addict-2.4.0 asttokens-3.0.1 attrs-26.1.0 blinker-1.9.0 certifi-2026.4.22 charset_normalizer-3.4.7 click-8.3.3 comm-0.2.3 configargparse-1.7.5 contourpy-1.3.3 cycler-0.12.1 dash-4.1.0 decorator-5.2.1 executing-2.2.1 fastjsonschema-2.21.2 flask-3.1.3 fonttools-4.63.0 idna-3.15 importlib-metadata-9.0.0 ipython-9.13.0 ipython-pygments-lexers-1.1.1 ipywidgets-8.1.8 itsdangerous-2.2.0 jedi-0.20.0 jinja2-3.1.6 joblib-1.5.3 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 jupyter-core-5.9.1 jupyterlab_widgets-3.0.16 kiwisolver-1.5.0 markupsafe-3.0.3 matplotlib-3.10.9 matplotlib-inline-0.2.2 narwhals-2.21.0 nbformat-5.10.4 nest-asyncio-1.6.0 numpy-2.2.6 open3d-0.19.0 pandas-3.0.3 parso-0.8.7 pexpect-4.9.0 pillow-12.2.0 platformdirs-4.9.6 plotly-6.7.0 prompt_toolkit-3.0.52 psutil-7.2.2 ptyprocess-0.7.0 pure-eval-0.2.3 pygments-2.20.0 pyparsing-3.3.2 pyquaternion-0.9.9 python-dateutil-2.9.0.post0 pyyaml-6.0.3 referencing-0.37.0 requests-2.34.2 retrying-1.4.2 rpds-py-0.30.0 scikit-learn-1.8.0 scipy-1.17.1 six-1.17.0 stack_data-0.6.3 threadpoolctl-3.6.0 tqdm-4.67.3 traitlets-5.15.0 typing_extensions-4.15.0 urllib3-2.7.0 wcwidth-0.7.0 werkzeug-3.1.8 widgetsnbextension-4.0.15 zipp-3.23.1
+{
+  "checks": {
+    "finite_geometry_values": true,
+    "normal_count_matches": true,
+    "normal_lengths_unit": true,
+    "open3d_import_resolves": true,
+    "point_count_matches": true,
+    "pointcloud_route_recorded": true,
+    "repo_commit_matches": true,
+    "voxel_count_matches": true
+  },
+  "normals": {
+    "count": 25,
+    "mean_normal": [
+      -0.1951800146,
+      -0.0975900073,
+      0.9759000729
+    ],
+    "normal_norm_max": 1.0,
+    "normal_norm_min": 1.0,
+    "normals_sha256": "80a86d4bc30b5a164bf2bf76b83c5bac4981f9a6e41efbc233afb384459be4e9"
+  },
+  "package_versions": {
+    "numpy": "2.2.6",
+    "open3d": "0.19.0"
+  },
+  "point_cloud": {
+    "bbox_max": [
+      1.0,
+      1.0,
+      0.3
+    ],
+    "bbox_min": [
+      -1.0,
+      -1.0,
+      -0.3
+    ],
+    "centroid": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "color_count": 25,
+    "colors_sha256": "94cf755c167a8309d35f0545cd40cd818d2753632d8149330f913730ab87a33e",
+    "point_count": 25,
+    "points_sha256": "a121963a3cd4a058d35960d8ad13c9aaf5aa05a4285a7cefce12bb9be29ef797"
+  },
+  "python": "3.12.3",
+  "repo": {
+    "commit": "1e7b17438687a0b0c1e5a7187321ac7044afe275",
+    "tag": "v0.19.0",
+    "url": "https://github.com/isl-org/Open3D"
+  },
+  "route": {
+    "normal_estimation": "PointCloud.estimate_normals(open3d.geometry.KDTreeSearchParamKNN(knn=8))",
+    "normal_orientation": "PointCloud.orient_normals_to_align_with_direction([-0.2, -0.1, 1.0])",
+    "package": "open3d",
+    "point_vector": "open3d.utility.Vector3dVector",
+    "pointcloud_class": "open3d.geometry.PointCloud",
+    "rendering_required": false,
+    "voxel_route": "PointCloud.voxel_down_sample(voxel_size=0.55)"
+  },
+  "success": true,
+  "success_level": "L4_cpu_deterministic_fallback",
+  "task_id": "open3d_pointcloud_minimal",
+  "voxel_downsample": {
+    "centroid": [
+      0.0,
+      0.0,
+      -0.0
+    ],
+    "point_count": 25,
+    "points_sha256": "82b33d13c5e69a08bcb491b835ba390f21458d838043953fabca816013f43899",
+    "voxel_size": 0.55
+  }
+}
+{
+  "artifact_dir": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/geometry/open3d_pointcloud_minimal/artifacts",
+  "artifact_sha256": "fe642880a6625b67f9f53ab91a0f5a9e41cc7e79cbf393260df227e2dd2ce3b3",
+  "checks": {
+    "finite_geometry_values": true,
+    "normal_count_matches": true,
+    "normal_lengths_unit": true,
+    "open3d_import_resolves": true,
+    "point_count_matches": true,
+    "pointcloud_route_recorded": true,
+    "repo_commit_matches": true,
+    "voxel_count_matches": true
+  },
+  "observed": {
+    "normal_count": 25,
+    "open3d_version": "0.19.0",
+    "point_count": 25,
+    "repo_commit": "1e7b17438687a0b0c1e5a7187321ac7044afe275",
+    "voxel_point_count": 25
+  },
+  "status": "pass",
+  "success_level": "L4_cpu_deterministic_fallback",
+  "task_id": "open3d_pointcloud_minimal"
+}
+[gold_install] wrote /inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/geometry/open3d_pointcloud_minimal/requirements_lock.txt

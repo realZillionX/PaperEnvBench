@@ -1,0 +1,6 @@
+{
+  "mode": "check_only",
+  "status": "pass",
+  "success_level": "L4_fallback",
+  "task_id": "openpcdet_pointcloud_minimal"
+}

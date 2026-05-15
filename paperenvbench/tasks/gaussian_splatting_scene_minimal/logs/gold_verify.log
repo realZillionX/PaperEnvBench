@@ -1,0 +1,12 @@
+{
+  "task_id": "gaussian_splatting_scene_minimal",
+  "status": "pass",
+  "success_level": "L4_cpu_deterministic_fallback",
+  "checks": {
+    "repo_commit_matches": true,
+    "train_render_route_recorded": true,
+    "cuda_extension_boundary_documented": true,
+    "scene_artifact_valid": true,
+    "semantic_output_valid": true
+  }
+}

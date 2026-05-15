@@ -1,0 +1,168 @@
+{
+  "checks": {
+    "cli_route_recorded": true,
+    "dataparser_route_recorded": true,
+    "nerfacto_model_route_recorded": true,
+    "pipeline_route_recorded": true,
+    "repo_commit_matches": true,
+    "tiny_ray_bundle_semantic": true,
+    "volume_rendering_finite": true
+  },
+  "numeric": {
+    "deltas": {
+      "0": [
+        0.24,
+        0.34,
+        0.24
+      ],
+      "1": [
+        0.22,
+        0.36,
+        0.26
+      ]
+    },
+    "mean_depth": 0.438423,
+    "mean_rgb": [
+      0.249961,
+      0.191085,
+      0.129177
+    ],
+    "ray_samples": [
+      {
+        "density": 1.2,
+        "depth": 0.18,
+        "ray": 0,
+        "rgb": [
+          0.8,
+          0.25,
+          0.1
+        ]
+      },
+      {
+        "density": 0.7,
+        "depth": 0.42,
+        "ray": 0,
+        "rgb": [
+          0.35,
+          0.55,
+          0.2
+        ]
+      },
+      {
+        "density": 0.25,
+        "depth": 0.76,
+        "ray": 0,
+        "rgb": [
+          0.1,
+          0.2,
+          0.7
+        ]
+      },
+      {
+        "density": 0.1,
+        "depth": 0.16,
+        "ray": 1,
+        "rgb": [
+          0.15,
+          0.2,
+          0.4
+        ]
+      },
+      {
+        "density": 0.45,
+        "depth": 0.38,
+        "ray": 1,
+        "rgb": [
+          0.35,
+          0.45,
+          0.8
+        ]
+      },
+      {
+        "density": 1.1,
+        "depth": 0.74,
+        "ray": 1,
+        "rgb": [
+          0.9,
+          0.75,
+          0.25
+        ]
+      }
+    ],
+    "rendered": {
+      "0": {
+        "accumulation": 0.443451,
+        "depth": 0.310955,
+        "final_transmittance": 0.556549,
+        "rgb": [
+          0.259211,
+          0.156781,
+          0.080874
+        ],
+        "weights": [
+          0.250238,
+          0.158797,
+          0.034415
+        ]
+      },
+      "1": {
+        "accumulation": 0.374998,
+        "depth": 0.565892,
+        "final_transmittance": 0.625002,
+        "rgb": [
+          0.240711,
+          0.225389,
+          0.177481
+        ],
+        "weights": [
+          0.02176,
+          0.146304,
+          0.206934
+        ]
+      }
+    }
+  },
+  "repo": {
+    "commit": "50e0e3c70c775e89333256213363badbf074f29d",
+    "commit_short": "50e0e3c",
+    "paper_title": "Nerfstudio: A Modular Framework for Neural Radiance Field Development",
+    "url": "https://github.com/nerfstudio-project/nerfstudio"
+  },
+  "route": {
+    "cli_entrypoint": "ns-train nerfacto --data <tiny-nerfstudio-scene> --max-num-iterations 1 --vis viewer",
+    "fallback_reason": "Full Nerfstudio training pulls GPU-oriented native packages such as nerfacc, gsplat, open3d, and viewer dependencies. The gold check records the real pinned nerfacto route and validates a deterministic CPU NeRF-style volume-rendering artifact instead of requiring those kernels.",
+    "method_config": {
+      "camera_optimizer": "SO3xR3",
+      "datamanager": "ParallelDataManagerConfig",
+      "dataparser": "NerfstudioDataParserConfig",
+      "eval_num_rays_per_batch": 4096,
+      "model": "NerfactoModelConfig",
+      "name": "nerfacto",
+      "pipeline": "VanillaPipelineConfig",
+      "train_num_rays_per_batch": 4096,
+      "trainer": "TrainerConfig"
+    },
+    "repo_files": [
+      "pyproject.toml",
+      "nerfstudio/configs/method_configs.py",
+      "nerfstudio/data/dataparsers/nerfstudio_dataparser.py",
+      "nerfstudio/data/datamanagers/parallel_datamanager.py",
+      "nerfstudio/models/nerfacto.py",
+      "nerfstudio/fields/nerfacto_field.py",
+      "nerfstudio/pipelines/base_pipeline.py",
+      "nerfstudio/scripts/train.py"
+    ]
+  },
+  "semantic": {
+    "claim": "CPU deterministic fallback validates the nerfacto dataparser and pipeline route with a tiny ray bundle.",
+    "success_condition": "The artifact must pin the upstream commit, name the ns-train nerfacto entrypoint, identify NerfstudioDataParserConfig, VanillaPipelineConfig, and NerfactoModelConfig, and contain finite volume-rendering outputs.",
+    "task": "Nerfstudio nerfacto tiny scene route validation"
+  },
+  "sha256": {
+    "numeric": "6c79b04c14fd135c5c7d13198a19cf4188840860020a47ed5b0cd503c16d9a60",
+    "route": "a49689bbc02ba7602d4e65948a3aef81d776ee02f92c56fafad131dd25f0a236",
+    "semantic": "8ede0b39ab9c312d3342408de216a2bc1c2eee0e2e77a68989d694d87e1315ce"
+  },
+  "success_level": "L4_cpu_deterministic_fallback",
+  "task_id": "nerfstudio_nerfacto_minimal"
+}

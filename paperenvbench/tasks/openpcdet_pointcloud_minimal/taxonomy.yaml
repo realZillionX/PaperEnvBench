@@ -1,0 +1,24 @@
+taxonomy:
+  modality:
+    primary: scientific_geometry_3d
+    secondary:
+      - point_cloud
+      - three_dimensional_detection
+      - openmmlab_stack
+      - voxel_detector
+      - output_artifact
+  environment_challenges:
+    - native_extension_build
+    - torch_cuda_matrix
+    - dataset_asset_missing
+    - hardware_pressure
+  verification_type:
+    - checkpoint_loading
+    - single_sample_inference
+    - output_artifact
+    - semantic_check
+  expected_skill_routes:
+    - global_reproducibility_safety
+    - geometry_3d_env_setup
+    - native_extension_repair
+    - torch_cuda_matrix_solver

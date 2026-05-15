@@ -1,0 +1,21 @@
+assets:
+  - asset_id: nerfstudio_repo_snapshot
+    type: git_repo
+    source: https://github.com/nerfstudio-project/nerfstudio
+    commit: 50e0e3c70c775e89333256213363badbf074f29d
+    local_path: repo_snapshot.json
+  - asset_id: expected_artifact_json
+    type: expected_output
+    source: verify.py
+    local_path: artifacts/expected_artifact.json
+    cached_path: paper-repro:runs/paperenvbench/geometry/nerfstudio_nerfacto_minimal/artifacts/expected_artifact.json
+  - asset_id: gold_install_log
+    type: execution_log
+    source: gold_install.sh
+    local_path: logs/gold_install.log
+    cached_path: paper-repro:runs/paperenvbench/geometry/nerfstudio_nerfacto_minimal/logs/gold_install.log
+  - asset_id: gold_verify_log
+    type: execution_log
+    source: verify.py
+    local_path: logs/gold_verify.log
+    cached_path: paper-repro:runs/paperenvbench/geometry/nerfstudio_nerfacto_minimal/logs/gold_verify.log

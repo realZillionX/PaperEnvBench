@@ -1,0 +1,52 @@
+[gold_install] run_root=/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/geometry/nerfstudio_nerfacto_minimal
+[gold_install] task_dir=/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/geometry/nerfstudio_nerfacto_minimal
+[gold_install] repo_dir=/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/geometry/nerfstudio_nerfacto_minimal/repo
+[gold_install] venv_dir=/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/geometry/nerfstudio_nerfacto_minimal/.venv
+[gold_install] commit=50e0e3c70c775e89333256213363badbf074f29d
+From https://github.com/nerfstudio-project/nerfstudio
+ * branch              50e0e3c70c775e89333256213363badbf074f29d -> FETCH_HEAD
+HEAD is now at 50e0e3c7 Add image tiling option to ColmapDataParser to use less memory (#3685)
+[gold_install] checked_out=50e0e3c70c775e89333256213363badbf074f29d 2025-07-28 19:28:48 -0700 Add image tiling option to ColmapDataParser to use less memory (#3685)
+Looking in indexes: http://nexus.sii.shaipower.online/repository/pypi/simple
+Requirement already satisfied: pip in ./.venv/lib/python3.12/site-packages (26.1.1)
+Requirement already satisfied: setuptools in ./.venv/lib/python3.12/site-packages (82.0.1)
+Requirement already satisfied: wheel in ./.venv/lib/python3.12/site-packages (0.47.0)
+Requirement already satisfied: packaging>=24.0 in ./.venv/lib/python3.12/site-packages (from wheel) (26.2)
+{
+  "artifact_dir": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/geometry/nerfstudio_nerfacto_minimal/artifacts",
+  "artifact_sha256": "b98422fda1bf90e95c4403ecdb00ab690bbea15ddea1e44383d655d064457ed2",
+  "checks": {
+    "cli_route_recorded": true,
+    "dataparser_route_recorded": true,
+    "nerfacto_model_route_recorded": true,
+    "pipeline_route_recorded": true,
+    "repo_commit_matches": true,
+    "tiny_ray_bundle_semantic": true,
+    "volume_rendering_finite": true
+  },
+  "observed": {
+    "numeric": {
+      "mean_depth": 0.438423,
+      "mean_rgb": [
+        0.249961,
+        0.191085,
+        0.129177
+      ]
+    },
+    "repo_commit": "50e0e3c70c775e89333256213363badbf074f29d",
+    "route": {
+      "camera_optimizer": "SO3xR3",
+      "datamanager": "ParallelDataManagerConfig",
+      "dataparser": "NerfstudioDataParserConfig",
+      "eval_num_rays_per_batch": 4096,
+      "model": "NerfactoModelConfig",
+      "name": "nerfacto",
+      "pipeline": "VanillaPipelineConfig",
+      "train_num_rays_per_batch": 4096,
+      "trainer": "TrainerConfig"
+    }
+  },
+  "status": "pass",
+  "success_level": "L4_cpu_deterministic_fallback",
+  "task_id": "nerfstudio_nerfacto_minimal"
+}

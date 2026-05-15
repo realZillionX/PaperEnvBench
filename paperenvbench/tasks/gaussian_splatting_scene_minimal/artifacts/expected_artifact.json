@@ -1,0 +1,113 @@
+{
+  "artifacts": {
+    "scene_ply": "expected_gaussian_scene.ply",
+    "summary": "expected_artifact.json"
+  },
+  "checks": {
+    "cuda_extension_boundary_documented": true,
+    "fallback_boundary_documented": true,
+    "repo_commit_matches": true,
+    "scene_artifact_valid": true,
+    "semantic_output_valid": true,
+    "train_render_route_recorded": true
+  },
+  "environment": {
+    "cuda_rasterizer_executed": false,
+    "device": "cpu",
+    "mode": "check_only",
+    "native_extensions_required_for_full_route": true
+  },
+  "evidence": {
+    "mode": "deterministic_cpu_fallback",
+    "pinned_files": [
+      "train.py",
+      "render.py",
+      "metrics.py",
+      "gaussian_renderer/__init__.py",
+      "scene/gaussian_model.py",
+      "scene/dataset_readers.py",
+      "arguments/__init__.py",
+      "environment.yml"
+    ],
+    "readme_route": "python train.py -s <path to COLMAP or NeRF Synthetic dataset>; python render.py -m <path to trained model>; python metrics.py -m <path to trained model>"
+  },
+  "repo": {
+    "commit": "54c035f7834b564019656c3e3fcc3646292f727d",
+    "url": "https://github.com/graphdeco-inria/gaussian-splatting"
+  },
+  "route": {
+    "core_code_paths": [
+      "train.py",
+      "render.py",
+      "gaussian_renderer/__init__.py",
+      "scene/gaussian_model.py",
+      "scene/dataset_readers.py",
+      "arguments/__init__.py"
+    ],
+    "dataset_route": "COLMAP or NeRF Synthetic scene via -s/--source_path",
+    "fused_ssim_submodule": "submodules/fused-ssim",
+    "knn_submodule": "submodules/simple-knn",
+    "metrics_script": "metrics.py",
+    "model_output": "output/<uuid> or --model_path",
+    "python_entrypoints": [
+      "train.py -s <scene> -m <model> --iterations <n>",
+      "render.py -m <model>",
+      "metrics.py -m <model>"
+    ],
+    "rasterizer_submodule": "submodules/diff-gaussian-rasterization",
+    "render_output": "<model_path>/{train,test}/ours_<iteration>/renders/*.png",
+    "render_script": "render.py",
+    "train_script": "train.py"
+  },
+  "scene": {
+    "background_rgb": [
+      0.02,
+      0.025,
+      0.03
+    ],
+    "camera_count": 3,
+    "depth_range": [
+      1.1,
+      2.35
+    ],
+    "extent_radius": 1.315295,
+    "gaussian_count": 5,
+    "image_height": 24,
+    "image_width": 32,
+    "mean_xyz": [
+      0.0,
+      -0.022,
+      0.46
+    ],
+    "opacity_mean": 0.664,
+    "render_rgb_mean": [
+      0.4512,
+      0.3608,
+      0.2915
+    ],
+    "render_rgb_std": [
+      0.2104,
+      0.1761,
+      0.1437
+    ],
+    "scale_mean": [
+      0.162,
+      0.14,
+      0.104
+    ]
+  },
+  "semantic": {
+    "description": "deterministic CPU fallback for the 3D Gaussian Splatting scene route with anisotropic Gaussian parameters, camera poses, and render statistics",
+    "expected_full_route": "train.py optimizes GaussianModel from SfM or synthetic scene inputs, then render.py loads the trained model and calls gaussian_renderer.render",
+    "fallback_reason": "the official optimizer and renderer require CUDA-ready PyTorch extensions diff-gaussian-rasterization and simple-knn, so check-only validation records the route and validates a tiny scene artifact on CPU",
+    "scene_mode": "cpu_deterministic_gaussian_scene_fallback"
+  },
+  "sha256": {
+    "route": "6f098e18a34884b3fa6b1987c8784ba97a2307ef5cc9af8daef9a93b6c4f9bd6",
+    "scene": "7a3d0884ab72579d7ff720184e194ac89b82984805e761d94b497bd35d11a6e6",
+    "semantic": "86b1abbaa0d94695b24524e114a0712fc4b1483e43fdb2f4c608ab96aebf1c8a"
+  },
+  "success": true,
+  "success_level": "L4_cpu_deterministic_fallback",
+  "task_id": "gaussian_splatting_scene_minimal"
+}

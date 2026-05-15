@@ -1,0 +1,10 @@
+[gold_install] task=gaussian_splatting_scene_minimal
+[gold_install] run_root=/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/geometry/gaussian_splatting_scene_minimal
+[gold_install] repo_url=https://github.com/graphdeco-inria/gaussian-splatting
+[gold_install] commit=54c035f7834b564019656c3e3fcc3646292f727d
+[gold_install] checked_out=54c035f7834b564019656c3e3fcc3646292f727d 2024-10-30T12:39:22+00:00 fix submodule name in environment.yml
+[gold_install] environment_yml=pytorch=1.12.1 torchvision=0.13.1 cudatoolkit=11.6 python=3.7.13
+[gold_install] submodules=diff-gaussian-rasterization simple-knn fused-ssim
+[gold_install] full_route=train.py -s <scene> -m <model>; render.py -m <model>; metrics.py -m <model>
+[gold_install] cpu_boundary=train.py and render.py allocate CUDA tensors and require diff_gaussian_rasterization/simple_knn native extensions
+[gold_install] fallback=deterministic CPU Gaussian scene artifact for check-only validation

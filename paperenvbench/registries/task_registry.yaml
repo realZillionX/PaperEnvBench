@@ -599,50 +599,50 @@ tasks:
     asset_ready: true
     selection_reason: "覆盖 pixel-control RL、渲染依赖和旧环境风险。"
   - task_id: open3d_pointcloud_minimal
-    candidate_status: selected_pending_gold
+    candidate_status: selected_gold
     split: dev
     repo_url: https://github.com/isl-org/Open3D
-    commit: pin_pending_gold
+    commit: 1e7b17438687a0b0c1e5a7187321ac7044afe275
     paper_title: "Open3D: A Modern Library for 3D Data Processing"
     taxonomy: {modality_primary: scientific_geometry_3d, environment_challenges: [system_package_missing, native_extension_build, hidden_dependency], verification_type: [import_graph, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, geometry_3d_env_setup, system_package_resolver, native_extension_repair]}
     asset_control: controlled_synthetic_point_cloud
-    gold_ready: false
-    verifier_ready: false
-    asset_ready: false
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
     selection_reason: "覆盖 point cloud IO、渲染 / headless 依赖和 3D artifact。"
   - task_id: nerfstudio_nerfacto_minimal
-    candidate_status: selected_pending_gold
+    candidate_status: selected_gold
     split: dev
     repo_url: https://github.com/nerfstudio-project/nerfstudio
-    commit: pin_pending_gold
+    commit: 50e0e3c70c775e89333256213363badbf074f29d
     paper_title: "Nerfstudio: A Modular Framework for Neural Radiance Field Development"
     taxonomy: {modality_primary: scientific_geometry_3d, environment_challenges: [native_extension_build, torch_cuda_matrix, system_package_missing, hardware_pressure], verification_type: [cli_help, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, geometry_3d_env_setup, native_extension_repair, torch_cuda_matrix_solver]}
     asset_control: controlled_tiny_nerf_scene_or_cli_fallback
-    gold_ready: false
-    verifier_ready: false
-    asset_ready: false
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
     selection_reason: "覆盖 NeRF 生态、CLI 和 tiny scene / config。"
   - task_id: gaussian_splatting_scene_minimal
-    candidate_status: selected_pending_gold
+    candidate_status: selected_gold
     split: val
     repo_url: https://github.com/graphdeco-inria/gaussian-splatting
-    commit: pin_pending_gold
+    commit: 54c035f7834b564019656c3e3fcc3646292f727d
     paper_title: "3D Gaussian Splatting for Real-Time Radiance Field Rendering"
     taxonomy: {modality_primary: scientific_geometry_3d, environment_challenges: [native_extension_build, torch_cuda_matrix, system_package_missing, hardware_pressure], verification_type: [checkpoint_loading, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, geometry_3d_env_setup, native_extension_repair, torch_cuda_matrix_solver]}
     asset_control: controlled_tiny_scene_or_prebuilt_fallback
-    gold_ready: false
-    verifier_ready: false
-    asset_ready: false
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
     selection_reason: "覆盖 3DGS native extension、scene asset 和渲染 artifact。"
   - task_id: openpcdet_pointcloud_minimal
-    candidate_status: selected_pending_gold
+    candidate_status: selected_gold
     split: test
     repo_url: https://github.com/open-mmlab/OpenPCDet
-    commit: pin_pending_gold
+    commit: 233f849829b6ac19afb8af8837a0246890908755
     paper_title: "OpenPCDet: An Open-source Toolbox for 3D Object Detection from Point Clouds"
     taxonomy: {modality_primary: scientific_geometry_3d, environment_challenges: [native_extension_build, torch_cuda_matrix, dataset_asset_missing, hardware_pressure], verification_type: [checkpoint_loading, single_sample_inference, output_artifact], expected_skill_routes: [global_reproducibility_safety, geometry_3d_env_setup, native_extension_repair, torch_cuda_matrix_solver]}
     asset_control: controlled_tiny_point_cloud_or_public_sample
-    gold_ready: false
-    verifier_ready: false
-    asset_ready: false
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
     selection_reason: "覆盖 3D detection、point cloud data 和 CUDA extension。"

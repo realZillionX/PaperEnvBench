@@ -1,0 +1,84 @@
+{
+  "task_id": "gaussian_splatting_scene_minimal",
+  "repo_name": "gaussian-splatting",
+  "repo_url": "https://github.com/graphdeco-inria/gaussian-splatting",
+  "repo_commit": "54c035f7834b564019656c3e3fcc3646292f727d",
+  "repo_commit_short": "54c035f",
+  "default_branch": "main",
+  "snapshot_observed_at": "2026-05-16T03:18:00+08:00",
+  "commit_observed": {
+    "author": "alanvinx",
+    "author_date": "2024-10-30T12:39:22Z",
+    "subject": "fix submodule name in environment.yml"
+  },
+  "license": "non-commercial research and evaluation",
+  "paper": {
+    "primary_title": "3D Gaussian Splatting for Real-Time Radiance Field Rendering",
+    "primary_url": "https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/3d_gaussian_splatting_high.pdf"
+  },
+  "source_tree": {
+    "package_manager": "conda + pip submodules",
+    "project_file": "environment.yml",
+    "module": null,
+    "primary_entrypoints": [
+      "train.py -s <COLMAP or NeRF Synthetic scene> -m <model_path>",
+      "render.py -m <model_path>",
+      "metrics.py -m <model_path>",
+      "gaussian_renderer.render",
+      "scene.gaussian_model.GaussianModel"
+    ],
+    "core_code_paths": [
+      "train.py",
+      "render.py",
+      "metrics.py",
+      "gaussian_renderer/__init__.py",
+      "scene/gaussian_model.py",
+      "scene/dataset_readers.py",
+      "arguments/__init__.py"
+    ]
+  },
+  "dependencies_declared": {
+    "environment.yml": [
+      "python=3.7.13",
+      "pytorch=1.12.1",
+      "torchvision=0.13.1",
+      "torchaudio=0.12.1",
+      "cudatoolkit=11.6",
+      "plyfile",
+      "tqdm",
+      "submodules/diff-gaussian-rasterization",
+      "submodules/simple-knn",
+      "submodules/fused-ssim",
+      "opencv-python",
+      "joblib"
+    ]
+  },
+  "dependency_notes": {
+    "cuda_strategy": "The official training and rendering path creates tensors on device='cuda' and imports diff_gaussian_rasterization plus simple_knn CUDA extensions.",
+    "submodule_strategy": "The repository README requires recursive clone; environment.yml installs diff-gaussian-rasterization, simple-knn, and fused-ssim from submodules.",
+    "cpu_fallback": "Gold check-only validation does not pretend to run the CUDA rasterizer. It records the real train/render route and validates a deterministic tiny Gaussian scene artifact."
+  },
+  "verification_contract": {
+    "output_artifact": "artifacts/expected_artifact.json",
+    "scene_artifact": "artifacts/expected_gaussian_scene.ply",
+    "success_level": "L4_cpu_deterministic_fallback",
+    "semantic_thresholds": {
+      "expected_gaussian_count": 5,
+      "expected_camera_count": 3,
+      "minimum_extent_radius": 1.0,
+      "opacity_mean_range": [
+        0.4,
+        0.9
+      ],
+      "render_rgb_mean_range": [
+        0.2,
+        0.7
+      ]
+    }
+  },
+  "gold_environment": {
+    "notebook": "paper-repro-ci-prep",
+    "remote_path_alias": "paper-repro:runs/paperenvbench/geometry/gaussian_splatting_scene_minimal",
+    "device": "cpu check-only fallback"
+  }
+}

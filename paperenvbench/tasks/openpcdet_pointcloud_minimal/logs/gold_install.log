@@ -1,0 +1,14 @@
+task_id=openpcdet_pointcloud_minimal
+root_dir=/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/geometry/openpcdet_pointcloud_minimal
+repo_dir=/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/geometry/openpcdet_pointcloud_minimal/repo
+venv_dir=/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/geometry/openpcdet_pointcloud_minimal/venv
+commit=233f849829b6ac19afb8af8837a0246890908755
+HEAD is now at 233f849 Merge pull request #2386 from Xuehaipiaoxiang/dev
+233f849829b6ac19afb8af8837a0246890908755
+python 3.12.3
+torch 2.8.0+cpu
+numpy 1.26.4
+pyyaml 6.0.3
+native_editable_install_status=1
+native editable install failed as expected on CPU-only fallback; see native_editable_install_probe.log.
+gold route: loaded tools/cfgs/kitti_models/pointpillar.yaml, executed common_utils mask / voxel center utilities, ran PointPillarScatter on deterministic CPU pillars, and wrote expected artifacts.

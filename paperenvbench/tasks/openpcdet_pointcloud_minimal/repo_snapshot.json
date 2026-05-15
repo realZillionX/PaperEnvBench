@@ -1,0 +1,76 @@
+{
+  "task_id": "openpcdet_pointcloud_minimal",
+  "repo_url": "https://github.com/open-mmlab/OpenPCDet",
+  "commit": "233f849829b6ac19afb8af8837a0246890908755",
+  "commit_short": "233f849",
+  "default_branch": "master",
+  "snapshot_observed_at": "2026-05-16T00:00:00+08:00",
+  "source_tree": {
+    "package_manager": "pip",
+    "build_backend": "setuptools",
+    "project_file": "setup.py",
+    "module": "pcdet",
+    "primary_entrypoints": [
+      "tools/demo.py",
+      "tools/test.py",
+      "tools/cfgs/kitti_models/pointpillar.yaml",
+      "pcdet/models/detectors/pointpillar.py"
+    ]
+  },
+  "dependencies_declared": [
+    "torch>=1.1",
+    "numpy",
+    "llvmlite",
+    "numba",
+    "tensorboardX",
+    "easydict",
+    "pyyaml",
+    "scikit-image",
+    "tqdm",
+    "SharedArray",
+    "opencv-python",
+    "pyquaternion",
+    "spconv"
+  ],
+  "dependency_notes": {
+    "native_extension_strategy": "OpenPCDet setup.py declares CUDAExtension modules for iou3d_nms, roiaware_pool3d, roipoint_pool3d, pointnet2, bev_pool, and ingroup_inds. The CPU gold route records this boundary instead of claiming compiled native inference.",
+    "fallback_strategy": "The verifier loads the pinned PointPillar YAML, imports pcdet/utils/common_utils.py with a SharedArray stub, runs deterministic CPU voxelization, and executes pcdet/models/backbones_2d/map_to_bev/pointpillar_scatter.py on synthetic pillars.",
+    "dataset_boundary": "No KITTI asset or checkpoint is required for the gold artifact; agents attempting full inference must record dataset, checkpoint, spconv, and native NMS status."
+  },
+  "verification_contract": {
+    "output_artifact": "artifacts/expected_artifact.json",
+    "preview_artifact": "artifacts/expected_pointcloud_bev.ppm",
+    "official_repo_code_paths": [
+      "setup.py",
+      "tools/cfgs/kitti_models/pointpillar.yaml",
+      "pcdet/datasets/processor/data_processor.py",
+      "pcdet/utils/common_utils.py",
+      "pcdet/models/backbones_2d/map_to_bev/pointpillar_scatter.py",
+      "pcdet/models/detectors/pointpillar.py"
+    ],
+    "semantic_thresholds": {
+      "expected_voxel_count": 5,
+      "expected_spatial_features_shape": [
+        1,
+        64,
+        496,
+        432
+      ],
+      "expected_success_level": "L4_fallback"
+    }
+  },
+  "checkpoint_strategy": {
+    "used_by_gold": false,
+    "reason": "The CPU gold package verifies the detector config and voxel / BEV route without claiming KITTI checkpoint inference because OpenPCDet native CUDA extensions and spconv are outside this CPU fallback.",
+    "if_used_by_agent": "Record checkpoint URL, cache path, checksum, dataset sample, config path, spconv version, and native NMS / ROI pooling status."
+  },
+  "gold_environment": {
+    "notebook": "paper-repro-ci-prep",
+    "remote_cwd_alias": "paper-repro:runs/paperenvbench/geometry/openpcdet_pointcloud_minimal",
+    "python": "3.12.3",
+    "torch": "2.8.0+cpu",
+    "numpy": "1.26.4",
+    "pyyaml": "6.0.3"
+  },
+  "remote_path_alias": "paper-repro:runs/paperenvbench/geometry/openpcdet_pointcloud_minimal/repo"
+}

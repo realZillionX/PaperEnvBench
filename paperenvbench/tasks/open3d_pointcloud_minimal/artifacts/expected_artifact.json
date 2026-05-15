@@ -1,0 +1,76 @@
+{
+  "checks": {
+    "finite_geometry_values": true,
+    "normal_count_matches": true,
+    "normal_lengths_unit": true,
+    "open3d_import_resolves": true,
+    "point_count_matches": true,
+    "pointcloud_route_recorded": true,
+    "repo_commit_matches": true,
+    "voxel_count_matches": true
+  },
+  "normals": {
+    "count": 25,
+    "mean_normal": [
+      -0.1951800146,
+      -0.0975900073,
+      0.9759000729
+    ],
+    "normal_norm_max": 1.0,
+    "normal_norm_min": 1.0,
+    "normals_sha256": "80a86d4bc30b5a164bf2bf76b83c5bac4981f9a6e41efbc233afb384459be4e9"
+  },
+  "package_versions": {
+    "numpy": "2.2.6",
+    "open3d": "0.19.0"
+  },
+  "point_cloud": {
+    "bbox_max": [
+      1.0,
+      1.0,
+      0.3
+    ],
+    "bbox_min": [
+      -1.0,
+      -1.0,
+      -0.3
+    ],
+    "centroid": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "color_count": 25,
+    "colors_sha256": "94cf755c167a8309d35f0545cd40cd818d2753632d8149330f913730ab87a33e",
+    "point_count": 25,
+    "points_sha256": "a121963a3cd4a058d35960d8ad13c9aaf5aa05a4285a7cefce12bb9be29ef797"
+  },
+  "python": "3.12.3",
+  "repo": {
+    "commit": "1e7b17438687a0b0c1e5a7187321ac7044afe275",
+    "tag": "v0.19.0",
+    "url": "https://github.com/isl-org/Open3D"
+  },
+  "route": {
+    "normal_estimation": "PointCloud.estimate_normals(open3d.geometry.KDTreeSearchParamKNN(knn=8))",
+    "normal_orientation": "PointCloud.orient_normals_to_align_with_direction([-0.2, -0.1, 1.0])",
+    "package": "open3d",
+    "point_vector": "open3d.utility.Vector3dVector",
+    "pointcloud_class": "open3d.geometry.PointCloud",
+    "rendering_required": false,
+    "voxel_route": "PointCloud.voxel_down_sample(voxel_size=0.55)"
+  },
+  "success": true,
+  "success_level": "L4_cpu_deterministic_fallback",
+  "task_id": "open3d_pointcloud_minimal",
+  "voxel_downsample": {
+    "centroid": [
+      0.0,
+      0.0,
+      -0.0
+    ],
+    "point_count": 25,
+    "points_sha256": "82b33d13c5e69a08bcb491b835ba390f21458d838043953fabca816013f43899",
+    "voxel_size": 0.55
+  }
+}

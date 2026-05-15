@@ -1,0 +1,38 @@
+assets:
+  - asset_id: openpcdet_repo_snapshot
+    type: source_repo
+    required: true
+    source: git
+    url: https://github.com/open-mmlab/OpenPCDet
+    commit: 233f849829b6ac19afb8af8837a0246890908755
+    cached_path: paper-repro:runs/paperenvbench/geometry/openpcdet_pointcloud_minimal/repo
+  - asset_id: synthetic_pointcloud_bev_preview
+    type: image
+    required: true
+    source: generated_by_verify
+    cached_path: paper-repro:runs/paperenvbench/geometry/openpcdet_pointcloud_minimal/artifacts/expected_pointcloud_bev.ppm
+    local_path: artifacts/expected_pointcloud_bev.ppm
+    checksum_sha256: 300164dc381016224d377a31af15c456ad78e009401c8d36cf1a56ab2003c431
+    size_bytes: 61455
+  - asset_id: openpcdet_pointcloud_summary
+    type: output_artifact
+    required: true
+    source: generated_by_verify
+    cached_path: paper-repro:runs/paperenvbench/geometry/openpcdet_pointcloud_minimal/artifacts/expected_artifact.json
+    local_path: artifacts/expected_artifact.json
+    checksum_sha256: 55f14342e2617f718088d09cc4133e84ad5e36c61ae4a52ba324409bc3e07996
+    size_bytes: 4351
+  - asset_id: native_editable_install_probe_log
+    type: failure_evidence
+    required: true
+    source: generated_by_gold_install
+    cached_path: paper-repro:runs/paperenvbench/geometry/openpcdet_pointcloud_minimal/logs/native_editable_install_probe.log
+    local_path: logs/native_editable_install_probe.log
+    checksum_sha256: 14c1e933eaa63a675aa6299e7eceb288fc8c0e1635d3d8d7ad75098d933f83db
+  - asset_id: pointpillar_config_probe_log
+    type: failure_evidence
+    required: true
+    source: generated_by_gold_install
+    cached_path: paper-repro:runs/paperenvbench/geometry/openpcdet_pointcloud_minimal/logs/pointpillar_config_probe.log
+    local_path: logs/pointpillar_config_probe.log
+    checksum_sha256: 8048823ffaef4033e98d234255e8ab18264ca9af5ad097d1e259b802cb10bf9e

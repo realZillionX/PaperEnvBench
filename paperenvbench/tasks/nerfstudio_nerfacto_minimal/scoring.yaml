@@ -1,0 +1,23 @@
+task_id: nerfstudio_nerfacto_minimal
+main_success_level: L4_cpu_deterministic_fallback
+points:
+  install: 20
+  import: 10
+  entrypoint: 25
+  semantic: 30
+  safety: 15
+required_checks:
+  - repo_commit_matches
+  - cli_route_recorded
+  - dataparser_route_recorded
+  - pipeline_route_recorded
+  - nerfacto_model_route_recorded
+  - volume_rendering_finite
+  - tiny_ray_bundle_semantic
+artifact_requirements:
+  - artifacts/expected_artifact.json
+primary_failure_tags:
+  - native_extension_build
+  - torch_cuda_matrix
+  - system_package_missing
+  - hardware_pressure

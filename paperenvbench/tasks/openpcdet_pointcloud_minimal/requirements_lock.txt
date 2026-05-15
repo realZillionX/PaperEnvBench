@@ -1,0 +1,8 @@
+# Gold environment lock captured from paper-repro-ci-prep.
+numpy==1.26.4
+PyYAML==6.0.3
+torch==2.8.0+cpu
+# Source repository is used through PYTHONPATH and direct source-file loading.
+# repo=https://github.com/open-mmlab/OpenPCDet.git
+# commit=233f849829b6ac19afb8af8837a0246890908755
+# native_editable_install_status=1

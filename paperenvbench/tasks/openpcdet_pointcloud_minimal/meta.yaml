@@ -1,0 +1,54 @@
+task_id: openpcdet_pointcloud_minimal
+paper_title: "OpenPCDet: An Open-source Toolbox for 3D Object Detection from Point Clouds"
+repo_url: https://github.com/open-mmlab/OpenPCDet
+commit: 233f849829b6ac19afb8af8837a0246890908755
+commit_short: 233f849
+paper_url: https://arxiv.org/abs/2007.08413
+license: Apache-2.0
+split: test
+modality:
+  primary: scientific_geometry_3d
+  secondary:
+    - point_cloud
+    - three_dimensional_detection
+    - openmmlab_stack
+    - voxel_detector
+    - output_artifact
+environment_challenges:
+  - native_extension_build
+  - torch_cuda_matrix
+  - dataset_asset_missing
+  - hardware_pressure
+verification:
+  type:
+    - checkpoint_loading
+    - single_sample_inference
+    - output_artifact
+    - semantic_check
+  command: python verify.py
+  minimum_success_level: L4_fallback
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4_fallback

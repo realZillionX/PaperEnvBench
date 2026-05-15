@@ -1,0 +1,12 @@
+primary_failure_tags:
+  - native_extension_build
+  - torch_cuda_matrix
+  - system_package_missing
+  - dataset_asset_missing
+  - hardware_pressure
+  - entrypoint_ambiguity
+anti_patterns:
+  - "Treating a plain import of train.py as success without resolving the CUDA rasterizer route."
+  - "Ignoring the repository submodules when installing diff-gaussian-rasterization and simple-knn."
+  - "Using a random unpinned checkout instead of the recorded graphdeco-inria commit."
+  - "Reporting success without a scene artifact or render-route evidence."

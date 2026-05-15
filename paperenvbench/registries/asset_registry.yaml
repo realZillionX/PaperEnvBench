@@ -551,3 +551,39 @@ assets:
     cached_path: paper-repro:runs/paperenvbench/rl/sac_ae_pixel_control_minimal/artifacts/expected_artifact.json
     local_artifact_path: paperenvbench/tasks/sac_ae_pixel_control_minimal/artifacts/expected_artifact.json
     status: gold_verified
+  - asset_id: open3d_pointcloud_minimal_summary
+    task_id: open3d_pointcloud_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: fe642880a6625b67f9f53ab91a0f5a9e41cc7e79cbf393260df227e2dd2ce3b3
+    cached_path: paper-repro:runs/paperenvbench/geometry/open3d_pointcloud_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/open3d_pointcloud_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: nerfstudio_nerfacto_minimal_summary
+    task_id: nerfstudio_nerfacto_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: b98422fda1bf90e95c4403ecdb00ab690bbea15ddea1e44383d655d064457ed2
+    cached_path: paper-repro:runs/paperenvbench/geometry/nerfstudio_nerfacto_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/nerfstudio_nerfacto_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: gaussian_splatting_scene_minimal_summary
+    task_id: gaussian_splatting_scene_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: 6f2affaa098de2e3181949791f1e4ffec5339bbf95f2807dde7466d023af215b
+    cached_path: paper-repro:runs/paperenvbench/geometry/gaussian_splatting_scene_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/gaussian_splatting_scene_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: openpcdet_pointcloud_minimal_summary
+    task_id: openpcdet_pointcloud_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: 55f14342e2617f718088d09cc4133e84ad5e36c61ae4a52ba324409bc3e07996
+    cached_path: paper-repro:runs/paperenvbench/geometry/openpcdet_pointcloud_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/openpcdet_pointcloud_minimal/artifacts/expected_artifact.json
+    status: gold_verified

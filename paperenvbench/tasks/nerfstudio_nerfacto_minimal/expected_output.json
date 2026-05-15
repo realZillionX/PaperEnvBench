@@ -1,0 +1,19 @@
+{
+  "task_id": "nerfstudio_nerfacto_minimal",
+  "expected_success_level": "L4_cpu_deterministic_fallback",
+  "required_artifact": "expected_artifact.json",
+  "semantic_thresholds": {
+    "expected_mean_rgb": [0.249961, 0.191085, 0.129177],
+    "expected_mean_depth": 0.438423,
+    "required_route_terms": [
+      "ns-train nerfacto",
+      "NerfstudioDataParserConfig",
+      "VanillaPipelineConfig",
+      "NerfactoModelConfig"
+    ]
+  },
+  "gold_observed": {
+    "artifact_sha256": "b98422fda1bf90e95c4403ecdb00ab690bbea15ddea1e44383d655d064457ed2",
+    "repo_commit": "50e0e3c70c775e89333256213363badbf074f29d"
+  }
+}

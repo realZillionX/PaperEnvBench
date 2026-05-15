@@ -1,0 +1,19 @@
+primary_failure_tags:
+  - system_package_missing
+  - native_extension_build
+  - hidden_dependency
+observed_failures:
+  - tag: native_extension_build
+    evidence: "Open3D is a C++ / Python library with CMake, third-party native dependencies, and large binary wheels."
+    mitigation: "The gold route pins the source repository and installs the matching Python wheel instead of rebuilding Open3D from source on the CPU notebook."
+  - tag: system_package_missing
+    evidence: "Visualization and headless rendering paths often require OpenGL / EGL / X11 system libraries."
+    mitigation: "The verifier avoids rendering and exercises CPU geometry APIs only: PointCloud construction, normal estimation, and voxel downsampling."
+  - tag: hidden_dependency
+    evidence: "Open3D import pulls a large compiled extension surface beyond the Python package metadata."
+    mitigation: "The verifier records import path, package version, native route evidence, and semantic geometry checks in the artifact."
+anti_patterns:
+  - "Treating `import open3d` as sufficient without running a PointCloud operation."
+  - "Launching visualization windows or headless rendering in the minimal CPU verifier."
+  - "Building Open3D from source before trying the pinned wheel route."
+  - "Using random point clouds without deterministic geometry and semantic checks."

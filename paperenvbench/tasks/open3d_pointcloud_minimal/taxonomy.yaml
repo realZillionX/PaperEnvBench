@@ -1,0 +1,20 @@
+taxonomy:
+  modality:
+    primary: scientific_geometry_3d
+    secondary:
+      - point_cloud_processing
+      - geometry_cpu
+      - synthetic_3d_asset
+  environment_challenges:
+    - system_package_missing
+    - native_extension_build
+    - hidden_dependency
+  verification_type:
+    - import_graph
+    - output_artifact
+    - semantic_check
+  expected_skill_routes:
+    - global_reproducibility_safety
+    - geometry_3d_env_setup
+    - system_package_resolver
+    - native_extension_repair

@@ -1,0 +1,24 @@
+{
+  "artifact_dir": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/geometry/open3d_pointcloud_minimal/artifacts",
+  "artifact_sha256": "fe642880a6625b67f9f53ab91a0f5a9e41cc7e79cbf393260df227e2dd2ce3b3",
+  "checks": {
+    "finite_geometry_values": true,
+    "normal_count_matches": true,
+    "normal_lengths_unit": true,
+    "open3d_import_resolves": true,
+    "point_count_matches": true,
+    "pointcloud_route_recorded": true,
+    "repo_commit_matches": true,
+    "voxel_count_matches": true
+  },
+  "observed": {
+    "normal_count": 25,
+    "open3d_version": "0.19.0",
+    "point_count": 25,
+    "repo_commit": "1e7b17438687a0b0c1e5a7187321ac7044afe275",
+    "voxel_point_count": 25
+  },
+  "status": "pass",
+  "success_level": "L4_cpu_deterministic_fallback",
+  "task_id": "open3d_pointcloud_minimal"
+}

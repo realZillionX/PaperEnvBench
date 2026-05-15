@@ -1,0 +1,42 @@
+{
+  "task_id": "openpcdet_pointcloud_minimal",
+  "required_artifact": "expected_artifact.json",
+  "required_side_artifact": "expected_pointcloud_bev.ppm",
+  "expected_repo_commit": "233f849829b6ac19afb8af8837a0246890908755",
+  "expected_success_level": "L4_fallback",
+  "semantic_thresholds": {
+    "expected_voxel_count": 5,
+    "expected_spatial_features_shape": [
+      1,
+      64,
+      496,
+      432
+    ],
+    "min_preview_size_bytes": 1024
+  },
+  "required_fields": [
+    "task_id",
+    "repo_commit",
+    "config",
+    "official_repo_code_paths",
+    "fallback_reason",
+    "input",
+    "output",
+    "checks",
+    "success_level"
+  ],
+  "gold_observed": {
+    "success_level": "L4_fallback",
+    "python": "3.9.6",
+    "package_versions": {
+      "torch": "not_installed_local_generation",
+      "numpy": "1.26.4"
+    },
+    "voxel_count": 5,
+    "bev_nonzero_cell_count": 5,
+    "voxel_coords_sha256": "99e0d65fc0ed9f4de2b9e1323804bb061132be3de2b9a5804be8695e6a2e091b",
+    "preview_sha256": "300164dc381016224d377a31af15c456ad78e009401c8d36cf1a56ab2003c431",
+    "preview_size_bytes": 61455,
+    "artifact_sha256": "55f14342e2617f718088d09cc4133e84ad5e36c61ae4a52ba324409bc3e07996"
+  }
+}

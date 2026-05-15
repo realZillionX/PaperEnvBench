@@ -1,0 +1,17 @@
+# Official upstream environment pins recorded from environment.yml at commit 54c035f.
+python==3.7.13
+pytorch==1.12.1
+torchvision==0.13.1
+torchaudio==0.12.1
+cudatoolkit==11.6
+plyfile
+tqdm
+opencv-python
+joblib
+
+# Local submodule packages required by the full CUDA route:
+submodules/diff-gaussian-rasterization
+submodules/simple-knn
+submodules/fused-ssim
+
+# Check-only verifier uses only Python standard library.

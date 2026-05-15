@@ -1,0 +1,50 @@
+task_id: open3d_pointcloud_minimal
+paper_title: "Open3D: A Modern Library for 3D Data Processing"
+repo_url: https://github.com/isl-org/Open3D
+commit: 1e7b17438687a0b0c1e5a7187321ac7044afe275
+commit_short: 1e7b174
+paper_url: https://arxiv.org/abs/1801.09847
+license: MIT
+split: dev
+modality:
+  primary: scientific_geometry_3d
+  secondary:
+    - point_cloud_processing
+    - geometry_cpu
+    - synthetic_3d_asset
+environment_challenges:
+  - system_package_missing
+  - native_extension_build
+  - hidden_dependency
+verification:
+  type:
+    - import_graph
+    - output_artifact
+    - semantic_check
+  command: python verify.py --check-only --json
+  minimum_success_level: L4_cpu_deterministic_fallback
+hardware:
+  gpu_required: false
+  gpu_optional: false
+  min_vram_gb: 0
+platform_constraints:
+  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4_fallback

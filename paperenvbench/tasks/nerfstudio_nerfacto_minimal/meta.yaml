@@ -1,0 +1,53 @@
+task_id: nerfstudio_nerfacto_minimal
+paper_title: "Nerfstudio: A Modular Framework for Neural Radiance Field Development"
+repo_url: https://github.com/nerfstudio-project/nerfstudio
+commit: 50e0e3c70c775e89333256213363badbf074f29d
+commit_short: 50e0e3c
+paper_url: https://arxiv.org/abs/2302.04264
+license: Apache-2.0
+split: dev
+modality:
+  primary: scientific_geometry_3d
+  secondary:
+    - nerf
+    - neural_rendering
+    - 3d_reconstruction
+    - camera_dataparser
+environment_challenges:
+  - native_extension_build
+  - torch_cuda_matrix
+  - system_package_missing
+  - hardware_pressure
+verification:
+  type:
+    - cli_help
+    - output_artifact
+    - semantic_check
+  command: python verify.py --check-only --json
+  minimum_success_level: L4_cpu_deterministic_fallback
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  package_manager:
+    - git
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4_fallback

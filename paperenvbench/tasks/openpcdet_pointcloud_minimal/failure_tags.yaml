@@ -1,0 +1,10 @@
+primary_failure_tags:
+  - native_extension_build
+  - torch_cuda_matrix
+  - dataset_asset_missing
+  - hardware_pressure
+anti_patterns:
+  - "Treating a bare `import pcdet` as detector verification when `setup.py` CUDAExtension modules are not built."
+  - "Claiming KITTI checkpoint inference without recording the checkpoint, data sample, and native NMS / spconv status."
+  - "Replacing OpenPCDet with a generic NumPy point cloud script without touching the pinned repository config or source utilities."
+  - "Using Docker to hide CUDA, spconv, and PyTorch compatibility boundaries."

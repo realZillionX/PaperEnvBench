@@ -1,0 +1,26 @@
+primary_failure_tags:
+  - native_extension_build
+  - torch_cuda_matrix
+  - system_package_missing
+  - hardware_pressure
+observed_gold_issues:
+  - tag: native_extension_build
+    issue: "Full Nerfstudio install pulls native packages such as nerfacc, gsplat, open3d, xatlas, pymeshlab, and viewer dependencies."
+    evidence: "pyproject.toml at commit 50e0e3c lists nerfacc==0.5.2, gsplat==1.4.0, open3d>=0.16.0, xatlas, and pymeshlab."
+    mitigation: "Gold validation records the real nerfacto route and uses a deterministic CPU volume-rendering artifact for check-only verification."
+  - tag: torch_cuda_matrix
+    issue: "The normal nerfacto route is GPU-oriented and enables mixed precision in method_configs.py."
+    evidence: "method_configs['nerfacto'] sets mixed_precision=True and routes through NerfactoModelConfig."
+    mitigation: "The fallback artifact does not require CUDA but still validates the method, dataparser, and pipeline route names."
+  - tag: system_package_missing
+    issue: "COLMAP, ffmpeg, and OpenGL/headless rendering dependencies may be needed for real capture processing or viewer paths."
+    evidence: "Nerfstudio exposes ns-process-data, ns-viewer, ns-render, and ns-export entrypoints."
+    mitigation: "The minimal task avoids raw capture processing and validates the training route contract."
+  - tag: hardware_pressure
+    issue: "Even tiny NeRF training can be slow or memory-heavy on CPU-only notebooks."
+    evidence: "The upstream nerfacto default uses 4096 train rays per batch and proposal networks."
+    mitigation: "The expected artifact uses a tiny two-ray deterministic fallback with finite RGB, depth, and transmittance checks."
+anti_patterns:
+  - "Accepting an import-only nerfstudio check as success."
+  - "Using an unpinned pip release instead of the pinned Git commit."
+  - "Replacing the nerfacto route with a different method such as splatfacto or vanilla-nerf."

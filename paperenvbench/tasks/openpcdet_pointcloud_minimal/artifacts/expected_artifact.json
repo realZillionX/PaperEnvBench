@@ -1,0 +1,213 @@
+{
+  "checks": {
+    "cpu_voxel_route_executed": true,
+    "native_extension_blocker_recorded": true,
+    "official_pointpillar_config_loaded": true,
+    "official_pointpillar_scatter_executed": true,
+    "official_range_filter_executed": true,
+    "official_voxel_center_utility_executed": true,
+    "preview_artifact_written": true,
+    "repo_commit_matches": true
+  },
+  "config": "tools/cfgs/kitti_models/pointpillar.yaml",
+  "fallback_reason": {
+    "checkpoint_inference_not_claimed": true,
+    "native_cuda_extensions": {
+      "declared_cuda_extensions": [
+        "iou3d_nms_cuda",
+        "roiaware_pool3d_cuda",
+        "roipoint_pool3d_cuda",
+        "pointnet2_stack_cuda",
+        "pointnet2_batch_cuda",
+        "bev_pool_ext",
+        "ingroup_inds_cuda"
+      ],
+      "expected_blocker": true,
+      "ok": false,
+      "reason": "OpenPCDet setup.py declares CUDAExtension modules; CPU fallback does not claim compiled detector NMS or ROI pooling.",
+      "setup_uses_cuda_extension": true
+    },
+    "runtime_stubs": {
+      "SharedArray": "stubbed_for_common_utils_import"
+    },
+    "spconv_voxel_generator_not_required_for_cpu_artifact": true
+  },
+  "input": {
+    "class_names": [
+      "Car",
+      "Pedestrian",
+      "Cyclist"
+    ],
+    "kept_point_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "max_points_per_voxel": 32,
+    "point_cloud_range": [
+      0.0,
+      -39.68,
+      -3.0,
+      69.12,
+      39.68,
+      1.0
+    ],
+    "raw_points_xyzi": [
+      [
+        3.2000000477,
+        -1.3999999762,
+        -1.2000000477,
+        0.9499999881
+      ],
+      [
+        3.2599999905,
+        -1.3600000143,
+        -1.1699999571,
+        0.8799999952
+      ],
+      [
+        3.3800001144,
+        -1.2000000477,
+        -1.1399999857,
+        0.7400000095
+      ],
+      [
+        8.0,
+        2.4000000954,
+        -1.0,
+        0.6000000238
+      ],
+      [
+        8.0900001526,
+        2.4600000381,
+        -0.9599999785,
+        0.5799999833
+      ],
+      [
+        8.3100004196,
+        2.5799999237,
+        -0.9100000262,
+        0.5199999809
+      ],
+      [
+        16.0,
+        -5.0,
+        -0.8000000119,
+        0.400000006
+      ],
+      [
+        69.5,
+        0.0,
+        -1.0,
+        0.3000000119
+      ],
+      [
+        1.0,
+        -45.0,
+        -1.0,
+        0.200000003
+      ]
+    ],
+    "voxel_size": [
+      0.16,
+      0.16,
+      4.0
+    ]
+  },
+  "official_repo_code_paths": [
+    "setup.py",
+    "tools/cfgs/kitti_models/pointpillar.yaml",
+    "pcdet/datasets/processor/data_processor.py",
+    "pcdet/utils/common_utils.py",
+    "pcdet/models/backbones_2d/map_to_bev/pointpillar_scatter.py",
+    "pcdet/models/detectors/pointpillar.py"
+  ],
+  "output": {
+    "bev_nonzero_cell_count": 5,
+    "filtered_point_count": 7,
+    "first_voxel_center_xyz": [
+      16.0799999237,
+      -5.0400009155,
+      -1.0
+    ],
+    "grid_size_xyz": [
+      432,
+      496,
+      1
+    ],
+    "pillar_feature_shape": [
+      5,
+      64
+    ],
+    "preview": {
+      "channels": 3,
+      "format": "ppm_p6",
+      "height": 128,
+      "sha256": "300164dc381016224d377a31af15c456ad78e009401c8d36cf1a56ab2003c431",
+      "size_bytes": 61455,
+      "width": 160
+    },
+    "rotated_first_point_xyz": [
+      3.4468853474,
+      -0.5647847056,
+      -1.2000000477
+    ],
+    "scatter_execution_mode": "numpy_equivalent_after_source_symbol_check",
+    "spatial_features_shape": [
+      1,
+      64,
+      496,
+      432
+    ],
+    "voxel_coords_sha256": "99e0d65fc0ed9f4de2b9e1323804bb061132be3de2b9a5804be8695e6a2e091b",
+    "voxel_coords_zyx": [
+      [
+        0,
+        216,
+        100
+      ],
+      [
+        0,
+        239,
+        20
+      ],
+      [
+        0,
+        240,
+        21
+      ],
+      [
+        0,
+        263,
+        50
+      ],
+      [
+        0,
+        264,
+        51
+      ]
+    ],
+    "voxel_count": 5,
+    "voxel_num_points": [
+      1,
+      2,
+      1,
+      2,
+      1
+    ]
+  },
+  "package_versions": {
+    "numpy": "1.26.4",
+    "python": "3.9.6",
+    "torch": "not_installed_local_generation"
+  },
+  "paper_model": "PointPillar point cloud detector",
+  "repo": "open-mmlab/OpenPCDet",
+  "repo_commit": "233f849829b6ac19afb8af8837a0246890908755",
+  "success_level": "L4_fallback",
+  "task_id": "openpcdet_pointcloud_minimal"
+}

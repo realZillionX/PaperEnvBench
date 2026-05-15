@@ -1,0 +1,30 @@
+{
+  "task_id": "gaussian_splatting_scene_minimal",
+  "expected_success_level": "L4_cpu_deterministic_fallback",
+  "expected_repo_commit": "54c035f7834b564019656c3e3fcc3646292f727d",
+  "required_artifacts": [
+    "artifacts/expected_artifact.json",
+    "artifacts/expected_gaussian_scene.ply"
+  ],
+  "route_requirements": {
+    "train_script": "train.py",
+    "render_script": "render.py",
+    "metrics_script": "metrics.py",
+    "rasterizer_submodule": "submodules/diff-gaussian-rasterization",
+    "knn_submodule": "submodules/simple-knn",
+    "scene_model": "scene/gaussian_model.py",
+    "renderer": "gaussian_renderer/__init__.py"
+  },
+  "semantic_requirements": {
+    "gaussian_count": 5,
+    "camera_count": 3,
+    "image_width": 32,
+    "image_height": 24,
+    "scene_mode": "cpu_deterministic_gaussian_scene_fallback",
+    "all_checks_must_pass": true
+  },
+  "notes": [
+    "The official full route requires CUDA extensions and a scene dataset, so check-only validation records the train/render route and validates a tiny deterministic Gaussian scene artifact.",
+    "A passing artifact must not claim that diff_gaussian_rasterization was executed on CPU."
+  ]
+}

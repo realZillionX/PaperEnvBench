@@ -1,0 +1,82 @@
+task_id: gaussian_splatting_scene_minimal
+paper_title: "3D Gaussian Splatting for Real-Time Radiance Field Rendering"
+repo_url: https://github.com/graphdeco-inria/gaussian-splatting
+commit: 54c035f7834b564019656c3e3fcc3646292f727d
+commit_short: 54c035f
+paper_url: https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/3d_gaussian_splatting_high.pdf
+license: non-commercial research and evaluation
+split: val
+modality:
+  primary: scientific_geometry_3d
+  secondary:
+    - gaussian_splatting
+    - novel_view_synthesis
+    - cuda_rasterization
+    - scene_rendering
+    - output_artifact
+environment_challenges:
+  - native_extension_build
+  - torch_cuda_matrix
+  - system_package_missing
+  - dataset_asset_missing
+  - hardware_pressure
+  - entrypoint_ambiguity
+verification:
+  type:
+    - checkpoint_loading
+    - output_artifact
+    - semantic_check
+  command: python verify.py --check-only --json
+  minimum_success_level: L4_cpu_deterministic_fallback
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  package_manager:
+    - venv
+    - pip
+    - conda
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4_fallback
+taxonomy:
+  modality:
+    primary: scientific_geometry_3d
+    secondary:
+      - gaussian_splatting
+      - novel_view_synthesis
+      - cuda_rasterization
+      - scene_rendering
+      - output_artifact
+  environment_challenges:
+    - native_extension_build
+    - torch_cuda_matrix
+    - system_package_missing
+    - dataset_asset_missing
+    - hardware_pressure
+    - entrypoint_ambiguity
+  verification_type:
+    - checkpoint_loading
+    - output_artifact
+    - semantic_check
+  expected_skill_routes:
+    - global_reproducibility_safety
+    - geometry_3d_env_setup
+    - native_extension_repair
+    - torch_cuda_matrix_solver
+    - minimal_entrypoint_discovery

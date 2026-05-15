@@ -1,0 +1,17 @@
+taxonomy:
+  modality_primary: scientific_geometry_3d
+  environment_challenges:
+    - native_extension_build
+    - torch_cuda_matrix
+    - system_package_missing
+    - hardware_pressure
+  verification_type:
+    - cli_help
+    - output_artifact
+    - semantic_check
+  expected_skill_routes:
+    - global_reproducibility_safety
+    - geometry_3d_env_setup
+    - native_extension_repair
+    - torch_cuda_matrix_solver
+    - minimal_entrypoint_discovery

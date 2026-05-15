@@ -1,0 +1,38 @@
+{
+  "artifact_dir": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/runs/paperenvbench/geometry/nerfstudio_nerfacto_minimal/artifacts",
+  "artifact_sha256": "b98422fda1bf90e95c4403ecdb00ab690bbea15ddea1e44383d655d064457ed2",
+  "checks": {
+    "cli_route_recorded": true,
+    "dataparser_route_recorded": true,
+    "nerfacto_model_route_recorded": true,
+    "pipeline_route_recorded": true,
+    "repo_commit_matches": true,
+    "tiny_ray_bundle_semantic": true,
+    "volume_rendering_finite": true
+  },
+  "observed": {
+    "numeric": {
+      "mean_depth": 0.438423,
+      "mean_rgb": [
+        0.249961,
+        0.191085,
+        0.129177
+      ]
+    },
+    "repo_commit": "50e0e3c70c775e89333256213363badbf074f29d",
+    "route": {
+      "camera_optimizer": "SO3xR3",
+      "datamanager": "ParallelDataManagerConfig",
+      "dataparser": "NerfstudioDataParserConfig",
+      "eval_num_rays_per_batch": 4096,
+      "model": "NerfactoModelConfig",
+      "name": "nerfacto",
+      "pipeline": "VanillaPipelineConfig",
+      "train_num_rays_per_batch": 4096,
+      "trainer": "TrainerConfig"
+    }
+  },
+  "status": "pass",
+  "success_level": "L4_cpu_deterministic_fallback",
+  "task_id": "nerfstudio_nerfacto_minimal"
+}

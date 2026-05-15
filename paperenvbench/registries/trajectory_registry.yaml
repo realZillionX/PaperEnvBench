@@ -719,3 +719,63 @@ trajectories:
     artifact_path: paperenvbench/tasks/sac_ae_pixel_control_minimal/artifacts/
     remote_artifact_path: paper-repro:runs/paperenvbench/rl/sac_ae_pixel_control_minimal/artifacts/
     status: gold_verified_l4_fallback
+  - trajectory_id: gold_open3d_pointcloud_minimal_cpu
+    task_id: open3d_pointcloud_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_cpu_deterministic_fallback
+    score: null
+    failure_tags:
+      - native_extension_build
+      - system_package_missing
+      - hidden_dependency
+      - verification_ambiguity
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/open3d_pointcloud_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/geometry/open3d_pointcloud_minimal/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_nerfstudio_nerfacto_minimal_cpu
+    task_id: nerfstudio_nerfacto_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_cpu_deterministic_fallback
+    score: null
+    failure_tags:
+      - native_extension_build
+      - torch_cuda_matrix
+      - system_package_missing
+      - hardware_pressure
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/nerfstudio_nerfacto_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/geometry/nerfstudio_nerfacto_minimal/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_gaussian_splatting_scene_minimal_cpu
+    task_id: gaussian_splatting_scene_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_cpu_deterministic_fallback
+    score: null
+    failure_tags:
+      - native_extension_build
+      - torch_cuda_matrix
+      - system_package_missing
+      - hardware_pressure
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/gaussian_splatting_scene_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/geometry/gaussian_splatting_scene_minimal/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_openpcdet_pointcloud_minimal_cpu
+    task_id: openpcdet_pointcloud_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - native_extension_build
+      - torch_cuda_matrix
+      - system_package_missing
+      - hidden_dependency
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/openpcdet_pointcloud_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/geometry/openpcdet_pointcloud_minimal/artifacts/
+    status: gold_verified_l4_fallback

@@ -1,6 +1,81 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+
+# PaperEnvBench artifact-only validation path. This exits before runtime imports
+# when --check-only is requested, so the standalone benchmark repo can verify
+# gold task packages without vendoring full upstream checkouts or weights.
+import argparse as _peb_argparse
+import hashlib as _peb_hashlib
+import json as _peb_json
+import pathlib as _peb_pathlib
+import sys as _peb_sys
+
+_PEB_TASK_ID = "dinov2_feature_minimal"
+_PEB_EXPECTED_ARTIFACT_SHA256 = "bb9f72c52699fe251976dff7015ff43210b7be3fd68a3a7c91830387389e119d"
+_PEB_REQUIRED_SIDE_ARTIFACTS = {'synthetic_input.png': 100}
+
+
+def _peb_sha256(path: _peb_pathlib.Path) -> str:
+    digest = _peb_hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def _peb_check_only() -> None:
+    if "--check-only" not in _peb_sys.argv:
+        return
+    parser = _peb_argparse.ArgumentParser(description=f"Check packaged gold artifact for {_PEB_TASK_ID}.")
+    parser.add_argument("--check-only", action="store_true")
+    parser.add_argument("--json", action="store_true")
+    parser.add_argument("--artifact-dir", "--output-dir", dest="artifact_dir", default="artifacts")
+    parser.add_argument("--artifact-name", default="expected_artifact.json")
+    parser.add_argument("--repo-dir", default=None)
+    args, _unknown = parser.parse_known_args()
+    task_root = _peb_pathlib.Path(__file__).resolve().parent
+    artifact_dir = _peb_pathlib.Path(args.artifact_dir)
+    if not artifact_dir.is_absolute():
+        artifact_dir = task_root / artifact_dir
+    artifact_path = artifact_dir / args.artifact_name
+    if not artifact_path.exists() and args.artifact_name != "expected_artifact.json":
+        artifact_path = artifact_dir / "expected_artifact.json"
+    payload = _peb_json.loads(artifact_path.read_text(encoding="utf-8"))
+    artifact_sha256 = _peb_sha256(artifact_path)
+    payload_checks = payload.get("checks", {})
+    payload_checks_true = all(bool(value) for value in payload_checks.values()) if isinstance(payload_checks, dict) else True
+    side_checks = {}
+    for name, min_size in _PEB_REQUIRED_SIDE_ARTIFACTS.items():
+        path = artifact_dir / name
+        side_checks[name] = path.exists() and path.stat().st_size >= int(min_size)
+    checks = {
+        "task_id_matches": payload.get("task_id") == _PEB_TASK_ID,
+        "artifact_sha256_matches": artifact_sha256 == _PEB_EXPECTED_ARTIFACT_SHA256,
+        "payload_checks_true": payload_checks_true,
+        "payload_success_not_false": payload.get("success", True) is not False,
+        "side_artifacts_present": all(side_checks.values()),
+    }
+    ok = all(checks.values())
+    result = {
+        "task_id": _PEB_TASK_ID,
+        "status": "pass" if ok else "fail",
+        "mode": "check_only",
+        "artifact_path": str(artifact_path),
+        "artifact_sha256": artifact_sha256,
+        "success_level": payload.get("success_level") or payload.get("expected_success_level"),
+        "checks": checks,
+        "side_artifacts": side_checks,
+    }
+    print(_peb_json.dumps(result, indent=2, sort_keys=True) if args.json else result["status"])
+    if not ok:
+        raise SystemExit(1)
+    raise SystemExit(0)
+
+
+_peb_check_only()
+
+
 import argparse
 import hashlib
 import importlib.metadata

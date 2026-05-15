@@ -1,0 +1,45 @@
+{
+  "task_id": "open3d_pointcloud_minimal",
+  "expected_success_level": "L4_cpu_deterministic_fallback",
+  "expected_repo_commit": "1e7b17438687a0b0c1e5a7187321ac7044afe275",
+  "package": {
+    "name": "open3d",
+    "version": "0.19.0",
+    "device": "cpu",
+    "rendering_required": false
+  },
+  "input": {
+    "kind": "synthetic_tilted_plane_point_cloud",
+    "point_count": 25,
+    "dtype": "float64"
+  },
+  "required_artifacts": [
+    "artifacts/expected_artifact.json"
+  ],
+  "semantic_requirements": {
+    "point_count": 25,
+    "normal_count": 25,
+    "voxel_point_count": 25,
+    "normal_norm_min_ge": 0.999999,
+    "normal_norm_max_le": 1.000001,
+    "finite_geometry_values": true,
+    "repo_commit_matches": true
+  },
+  "gold_observed": {
+    "success_level": "L4_cpu_deterministic_fallback",
+    "python": "3.12.3",
+    "package_versions": {
+      "open3d": "0.19.0",
+      "numpy": "2.2.6"
+    },
+    "artifact_sha256": "fe642880a6625b67f9f53ab91a0f5a9e41cc7e79cbf393260df227e2dd2ce3b3",
+    "points_sha256": "a121963a3cd4a058d35960d8ad13c9aaf5aa05a4285a7cefce12bb9be29ef797",
+    "normals_sha256": "80a86d4bc30b5a164bf2bf76b83c5bac4981f9a6e41efbc233afb384459be4e9",
+    "voxel_points_sha256": "82b33d13c5e69a08bcb491b835ba390f21458d838043953fabca816013f43899",
+    "all_checks_passed": true
+  },
+  "notes": [
+    "The gold route uses a pinned Open3D wheel and a pinned source checkout; full native source builds are not required for L4.",
+    "Visualization and rendering are intentionally out of scope for this CPU deterministic task."
+  ]
+}
