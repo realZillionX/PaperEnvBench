@@ -1,0 +1,73 @@
+{
+  "task_id": "stable_baselines3_cartpole_minimal",
+  "repo_name": "stable-baselines3",
+  "repo_url": "https://github.com/DLR-RM/stable-baselines3",
+  "repo_commit": "8da3e5eadeda14c63f42c62dbbe7dbb00c2fd458",
+  "repo_commit_short": "8da3e5e",
+  "commit_date": "2025-12-05T12:19:49+01:00",
+  "commit_author": "Antonin RAFFIN",
+  "commit_subject": "Release v2.7.1 (#2197)",
+  "license_file": "LICENSE",
+  "dependency_files": [
+    "pyproject.toml",
+    "setup.py"
+  ],
+  "observed_repository_files": [
+    "pyproject.toml",
+    "setup.py",
+    "stable_baselines3/__init__.py",
+    "stable_baselines3/ppo/ppo.py",
+    "stable_baselines3/common/env_util.py",
+    "stable_baselines3/common/vec_env/dummy_vec_env.py",
+    "tests/test_run.py"
+  ],
+  "entrypoints": [
+    {
+      "name": "stable_baselines3.PPO",
+      "target": "stable_baselines3/ppo/ppo.py",
+      "type": "python_api"
+    },
+    {
+      "name": "stable_baselines3.common.env_util.make_vec_env",
+      "target": "stable_baselines3/common/env_util.py",
+      "type": "environment_factory"
+    },
+    {
+      "name": "gymnasium.make(\"CartPole-v1\")",
+      "target": "external dependency from pyproject extra-free install",
+      "type": "simulation_environment"
+    }
+  ],
+  "package_manager": "pip",
+  "observed_environment": {
+    "device": "cpu",
+    "notebook": "paper-repro-ci-prep",
+    "python": "3.12",
+    "remote_cwd_alias": "paper-repro"
+  },
+  "validated_outputs": {
+    "local_artifact_dir": "paperenvbench/tasks/stable_baselines3_cartpole_minimal/artifacts",
+    "success_level": "L4_cpu_deterministic_fallback",
+    "environment_id": "CartPole-v1",
+    "algorithm": "PPO"
+  },
+  "taxonomy_hints": {
+    "modality_primary": "reinforcement_learning_simulation",
+    "environment_challenges": [
+      "hidden_dependency",
+      "torch_cuda_matrix",
+      "entrypoint_ambiguity"
+    ],
+    "verification_type": [
+      "training_smoke_test",
+      "semantic_check",
+      "output_artifact"
+    ],
+    "expected_skill_routes": [
+      "global_reproducibility_safety",
+      "rl_simulation_env_setup",
+      "torch_cuda_matrix_solver",
+      "minimal_entrypoint_discovery"
+    ]
+  }
+}

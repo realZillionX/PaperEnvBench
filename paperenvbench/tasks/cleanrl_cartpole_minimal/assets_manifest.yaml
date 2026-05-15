@@ -1,0 +1,19 @@
+assets:
+  - asset_id: cleanrl_cartpole_minimal_expected_artifact
+    type: json
+    required: true
+    cached_path: paperenvbench/tasks/cleanrl_cartpole_minimal/artifacts/expected_artifact.json
+    checksum: 0ff9241e0124a75e3dc002ab82313cae5b50dfc418332fb40636a3f51bc6caa7
+  - asset_id: cleanrl_cartpole_minimal_cpu_fallback_route
+    type: controlled_toy_env_metric
+    required: true
+    cached_path: paperenvbench/tasks/cleanrl_cartpole_minimal/artifacts/expected_artifact.json
+    checksum: 0ff9241e0124a75e3dc002ab82313cae5b50dfc418332fb40636a3f51bc6caa7
+external_assets:
+  - name: CleanRL repository
+    url: https://github.com/vwxyzjn/cleanrl
+    commit: fe8d8a03c41a7ef5b523e2e354bd01c363e786bb
+    required: true
+  - name: CartPole-v1 environment
+    required: false
+    note: "The check-only artifact records a deterministic no-external-asset PPO / CartPole fallback instead of requiring a live Gymnasium rollout."

@@ -1,0 +1,23 @@
+taxonomy:
+  modality:
+    primary: reinforcement_learning_simulation
+    secondary:
+      - reinforcement_learning
+      - cartpole
+      - ppo
+      - single_file_script
+      - gymnasium
+      - no_external_asset_toy_env
+  environment_challenges:
+    - hidden_dependency
+    - entrypoint_ambiguity
+    - system_package_missing
+  verification_type:
+    - training_smoke_test
+    - metric_smoke_test
+    - semantic_check
+  expected_skill_routes:
+    - global_reproducibility_safety
+    - rl_simulation_env_setup
+    - minimal_entrypoint_discovery
+    - system_package_resolver

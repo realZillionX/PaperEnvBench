@@ -1,0 +1,29 @@
+{
+  "acceptance": {
+    "required_route_terms": [
+      "gym.make('CartPole-v1')",
+      "gym.envs.classic_control.cartpole.CartPoleEnv",
+      "CartPoleEnv.reset",
+      "CartPoleEnv.step",
+      "CPU deterministic fallback"
+    ],
+    "required_total_reward": 5.0,
+    "required_step_count": 5,
+    "success_level": "L4_cpu_deterministic_fallback"
+  },
+  "checksums": {
+    "expected_artifact_json_sha256": "a08054fda457056c3039276e825b6e383411e82cdb99bb582fce93c4f9720974",
+    "rollout_sha256": "c16559e418792c7fbeef6096555f82787dd51874b175ddec4f8181cc5a0fa8ad"
+  },
+  "expected_files": {
+    "summary": "artifacts/expected_artifact.json"
+  },
+  "source": {
+    "notebook": "paper-repro-ci-prep",
+    "output_dir": "paper-repro:runs/paperenvbench/rl/gym_cartpole_minimal/artifacts",
+    "remote_cwd_alias": "paper-repro",
+    "repo_commit": "bc212954b6713d5db303b3ead124de6cba66063e",
+    "repo_path": "paper-repro:runs/paperenvbench/rl/gym_cartpole_minimal/repo"
+  },
+  "task_id": "gym_cartpole_minimal"
+}

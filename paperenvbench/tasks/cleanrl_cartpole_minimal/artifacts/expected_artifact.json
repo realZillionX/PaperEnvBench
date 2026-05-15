@@ -1,0 +1,225 @@
+{
+  "checks": {
+    "cartpole_semantics_valid": true,
+    "no_external_asset_required": true,
+    "ppo_metric_smoke_valid": true,
+    "repo_commit_matches": true,
+    "single_file_route_recorded": true,
+    "training_smoke_artifact_valid": true
+  },
+  "numeric": {
+    "actions": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "advantages": [
+      0.42,
+      0.18,
+      -0.11,
+      0.35,
+      -0.22,
+      0.09
+    ],
+    "approx_kl": -0.008333,
+    "clipped_ratios": [
+      1.030455,
+      1.020201,
+      0.951229,
+      1.051271,
+      0.980199,
+      1.020201
+    ],
+    "entropy": 0.693007,
+    "episode_return": 6.0,
+    "new_log_probs": [
+      -0.69,
+      -0.66,
+      -0.76,
+      -0.64,
+      -0.75,
+      -0.68
+    ],
+    "observations": [
+      [
+        0.0,
+        0.0,
+        0.02,
+        0.0
+      ],
+      [
+        0.02,
+        0.08,
+        0.018,
+        -0.03
+      ],
+      [
+        0.04,
+        -0.04,
+        0.015,
+        0.04
+      ],
+      [
+        0.03,
+        0.06,
+        0.01,
+        -0.02
+      ],
+      [
+        0.05,
+        -0.02,
+        0.008,
+        0.03
+      ],
+      [
+        0.06,
+        0.01,
+        0.005,
+        0.0
+      ]
+    ],
+    "old_log_probs": [
+      -0.72,
+      -0.68,
+      -0.71,
+      -0.69,
+      -0.73,
+      -0.7
+    ],
+    "policy_logits": [
+      [
+        0.0184,
+        -0.017
+      ],
+      [
+        0.00376,
+        -0.0002
+      ],
+      [
+        0.0267,
+        -0.02405
+      ],
+      [
+        0.0058,
+        -0.0027
+      ],
+      [
+        0.02156,
+        -0.0187
+      ],
+      [
+        0.0189,
+        -0.01585
+      ]
+    ],
+    "policy_loss": -0.125985,
+    "policy_probabilities": [
+      [
+        0.508849,
+        0.491151
+      ],
+      [
+        0.50099,
+        0.49901
+      ],
+      [
+        0.512685,
+        0.487315
+      ],
+      [
+        0.502125,
+        0.497875
+      ],
+      [
+        0.510064,
+        0.489936
+      ],
+      [
+        0.508687,
+        0.491313
+      ]
+    ],
+    "predicted_values": [
+      0.0564,
+      0.05096,
+      0.0652,
+      0.0524,
+      0.06296,
+      0.0622
+    ],
+    "ratios": [
+      1.030455,
+      1.020201,
+      0.951229,
+      1.051271,
+      0.980199,
+      1.020201
+    ],
+    "returns": [
+      1.2,
+      1.05,
+      0.82,
+      0.71,
+      0.55,
+      0.31
+    ],
+    "rewards": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "surrogate": [
+      0.432791,
+      0.183636,
+      -0.104635,
+      0.367945,
+      -0.215644,
+      0.091818
+    ],
+    "value_loss": 0.010567,
+    "values": [
+      1.08,
+      0.91,
+      0.9,
+      0.62,
+      0.65,
+      0.24
+    ]
+  },
+  "repo": {
+    "commit": "fe8d8a03c41a7ef5b523e2e354bd01c363e786bb",
+    "commit_short": "fe8d8a0",
+    "paper_title": "CleanRL: High-quality Single-file Implementations of Deep Reinforcement Learning Algorithms",
+    "url": "https://github.com/vwxyzjn/cleanrl"
+  },
+  "route": {
+    "command": "python cleanrl/ppo.py --env-id CartPole-v1 --total-timesteps 128 --num-envs 1 --num-steps 32 --num-minibatches 1 --update-epochs 2 --learning-rate 0.00025 --torch-deterministic True --cuda False --track False",
+    "dependency_route": "pyproject.toml pins gymnasium==0.29.1\uff1brequirements route includes torch, tyro, tensorboard, and stable-baselines3 helpers.",
+    "fallback_reason": "The artifact avoids a live Gymnasium / PyTorch training run during local check-only validation while preserving the CleanRL single-file PPO CartPole route.",
+    "repo_entrypoint": "cleanrl/ppo.py",
+    "repo_files": [
+      "cleanrl/ppo.py",
+      "pyproject.toml",
+      "requirements/requirements.txt",
+      "cleanrl_utils/evals/ppo_eval.py"
+    ]
+  },
+  "semantic": {
+    "claim": "CPU deterministic fallback validates clipped surrogate, value loss, discrete action policy, and no external asset requirement.",
+    "success_condition": "CartPole observation shape is 4, action space is discrete size 2, fixed rollout has positive return, and PPO metrics are finite.",
+    "task": "single-file PPO CartPole training smoke"
+  },
+  "sha256": {
+    "numeric": "40b0927b2d3cf490cd13d2f0598dcfd0a73075df9c7f74454ddcd85abf9d0504",
+    "route": "b8002015b9444db5bde617c827fd4bd9cd2fc5f4f22fd825771fab3bd0ec39f4",
+    "semantic": "312b70c7320fad4c1eaa731ce9e952a2f836a3c4f1cc57ed2e5a10a4fee3ac44"
+  },
+  "success_level": "L4_cpu_deterministic_fallback",
+  "task_id": "cleanrl_cartpole_minimal"
+}

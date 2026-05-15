@@ -1,0 +1,20 @@
+failure_tags:
+  primary:
+    - hidden_dependency
+    - entrypoint_ambiguity
+    - system_package_missing
+  observed:
+    - tag: hidden_dependency
+      evidence: "CleanRL is intentionally single-file oriented and not a modular import library；the usable route is the script plus CLI dependencies, not a package API."
+      mitigation: "Pin the repository, inspect `cleanrl/ppo.py`, and verify the explicit CartPole CLI route before attempting training."
+    - tag: entrypoint_ambiguity
+      evidence: "The repository contains many PPO variants for Atari, Procgen, continuous control, multi-GPU, JAX, and EnvPool；CartPole uses `cleanrl/ppo.py`."
+      mitigation: "Select `cleanrl/ppo.py --env-id CartPole-v1` and constrain timesteps, env count, minibatches, and tracking for CPU smoke."
+    - tag: system_package_missing
+      evidence: "A live Gymnasium environment stack can require extra simulator or rendering dependencies outside the Python script itself."
+      mitigation: "Keep the gold verifier check-only path dependency-light and record a deterministic PPO metric fallback."
+  non_goals:
+    - checkpoint_download
+    - dataset_asset_missing
+    - hardware_pressure
+    - native_extension_build

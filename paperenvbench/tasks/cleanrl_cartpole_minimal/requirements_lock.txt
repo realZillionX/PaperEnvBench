@@ -1,0 +1,7 @@
+# CPU deterministic fallback route.
+# Live CleanRL route from the pinned repository uses gymnasium==0.29.1 via pyproject.toml.
+gymnasium==0.29.1
+torch>=2.2,<2.8
+tyro
+tensorboard
+numpy

@@ -1,0 +1,16 @@
+scoring:
+  max_level: L4
+  minimum_accept_level: L4_cpu_deterministic_fallback
+  dimensions:
+    install: 0.2
+    import: 0.2
+    entrypoint: 0.2
+    semantic: 0.3
+    safety: 0.1
+  hidden_checks:
+    - repo_commit_matches
+    - cartpole_env_route_recorded
+    - reset_seed_route_recorded
+    - step_transition_trace_valid
+    - cpu_fallback_boundary_documented
+    - no_render_dependency_required

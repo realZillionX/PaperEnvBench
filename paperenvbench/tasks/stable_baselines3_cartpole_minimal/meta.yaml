@@ -1,0 +1,50 @@
+task_id: stable_baselines3_cartpole_minimal
+paper_title: "Stable-Baselines3: Reliable Reinforcement Learning Implementations"
+repo_url: https://github.com/DLR-RM/stable-baselines3
+commit: 8da3e5eadeda14c63f42c62dbbe7dbb00c2fd458
+commit_short: 8da3e5e
+paper_url: https://jmlr.org/papers/v22/20-1364.html
+license: MIT
+split: dev
+modality:
+  primary: reinforcement_learning_simulation
+  secondary:
+    - policy_gradient
+    - gymnasium_cartpole
+    - training_smoke_test
+environment_challenges:
+  - hidden_dependency
+  - torch_cuda_matrix
+  - entrypoint_ambiguity
+verification:
+  type:
+    - training_smoke_test
+    - semantic_check
+    - output_artifact
+  command: python verify.py --check-only --json
+  minimum_success_level: L4_cpu_deterministic_fallback
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4_fallback

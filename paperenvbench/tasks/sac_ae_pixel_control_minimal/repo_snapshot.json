@@ -1,0 +1,54 @@
+{
+  "task_id": "sac_ae_pixel_control_minimal",
+  "repo_url": "https://github.com/denisyarats/pytorch_sac_ae",
+  "commit": "7fa560e21c026c04bb8dcd72959ecf4e3424476c",
+  "commit_short": "7fa560e",
+  "default_branch": "master",
+  "license": "MIT",
+  "paper_title": "Improving Sample Efficiency in Model-Free Reinforcement Learning from Images",
+  "paper_url": "https://arxiv.org/abs/1910.01741",
+  "entrypoints": [
+    "train.py",
+    "sac_ae.py",
+    "encoder.py",
+    "decoder.py"
+  ],
+  "upstream_environment": {
+    "file": "conda_env.yml",
+    "python": "3.6",
+    "cuda": "cudatoolkit=9.2",
+    "pip_dependencies": [
+      "termcolor",
+      "git+git://github.com/deepmind/dm_control.git",
+      "git+git://github.com/denisyarats/dmc2gym.git",
+      "tb-nightly",
+      "imageio",
+      "imageio-ffmpeg"
+    ]
+  },
+  "gold_route": {
+    "success_level": "L4_cpu_deterministic_fallback",
+    "reason": "The full pixel-control route requires MuJoCo / DMControl rendering and long RL training. The deterministic fallback validates the pinned SAC-AE network path on CPU with a controlled pixel observation batch.",
+    "artifact": "artifacts/expected_artifact.json"
+  },
+  "taxonomy_hints": {
+    "modality_primary": "reinforcement_learning_simulation",
+    "environment_challenges": [
+      "system_package_missing",
+      "torch_cuda_matrix",
+      "entrypoint_ambiguity",
+      "hardware_pressure"
+    ],
+    "verification_type": [
+      "training_smoke_test",
+      "output_artifact",
+      "semantic_check"
+    ],
+    "expected_skill_routes": [
+      "global_reproducibility_safety",
+      "rl_simulation_env_setup",
+      "torch_cuda_matrix_solver",
+      "minimal_entrypoint_discovery"
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+# Gold generation environment observed on Inspire CPU notebook paper-repro-ci-prep.
+python==3.9.6
+torch==2.8.0
+numpy==2.0.2
+# Upstream full training dependencies are intentionally not required for check-only validation:
+# gym
+# dm_control
+# dmc2gym
+# imageio
+# imageio-ffmpeg

@@ -1,0 +1,7 @@
+[gold_install] repo_url=https://github.com/vwxyzjn/cleanrl.git
+[gold_install] commit=fe8d8a03c41a7ef5b523e2e354bd01c363e786bb
+[gold_install] git_ls_remote=fe8d8a03c41a7ef5b523e2e354bd01c363e786bb
+[gold_install] verified_files=cleanrl/ppo.py,cleanrl_utils/evals/ppo_eval.py,pyproject.toml,requirements/requirements.txt,README.md
+[gold_install] verified_route=python cleanrl/ppo.py --env-id CartPole-v1 --total-timesteps 128 --num-envs 1 --num-steps 32 --num-minibatches 1 --update-epochs 2 --learning-rate 0.00025 --torch-deterministic True --cuda False --track False
+[gold_install] fallback=deterministic_cpu_ppo_cartpole_metric_artifact
+[gold_install] cleanrl_cartpole_minimal gold route verified

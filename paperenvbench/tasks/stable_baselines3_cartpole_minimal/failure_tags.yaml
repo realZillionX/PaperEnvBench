@@ -1,0 +1,9 @@
+primary_failure_tags:
+  - hidden_dependency
+  - torch_cuda_matrix
+  - entrypoint_ambiguity
+anti_patterns:
+  - "Treating `import stable_baselines3` as success without exercising the PPO / Gymnasium CartPole route."
+  - "Using an Atari or MuJoCo extra when the task only requires a CPU CartPole-v1 smoke path."
+  - "Leaving the repository floating on a branch instead of checking out the pinned Stable-Baselines3 commit."
+  - "Reporting a reward without recording the seed, environment id, PPO hyperparameters, and rollout actions."

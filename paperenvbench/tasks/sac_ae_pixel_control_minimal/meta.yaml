@@ -1,0 +1,51 @@
+task_id: sac_ae_pixel_control_minimal
+paper_title: "Improving Sample Efficiency in Model-Free Reinforcement Learning from Images"
+repo_url: https://github.com/denisyarats/pytorch_sac_ae
+commit: 7fa560e21c026c04bb8dcd72959ecf4e3424476c
+commit_short: 7fa560e
+paper_url: https://arxiv.org/abs/1910.01741
+license: MIT
+split: test
+modality:
+  primary: reinforcement_learning_simulation
+  secondary:
+    - pixel_control
+    - soft_actor_critic
+    - autoencoder_representation
+environment_challenges:
+  - system_package_missing
+  - torch_cuda_matrix
+  - entrypoint_ambiguity
+  - hardware_pressure
+verification:
+  type:
+    - training_smoke_test
+    - output_artifact
+    - semantic_check
+  command: python verify.py --check-only --json
+  minimum_success_level: L4_cpu_deterministic_fallback
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4_fallback

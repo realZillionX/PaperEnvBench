@@ -659,3 +659,63 @@ trajectories:
     artifact_path: paperenvbench/tasks/recbole_sequential_minimal/artifacts/
     remote_artifact_path: paper-repro:runs/paperenvbench/graph/recbole_sequential_minimal/artifacts/
     status: gold_verified_l4_fallback
+  - trajectory_id: gold_gym_cartpole_minimal_cpu
+    task_id: gym_cartpole_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - python_version_conflict
+      - system_package_missing
+      - entrypoint_ambiguity
+      - verification_ambiguity
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/gym_cartpole_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/rl/gym_cartpole_minimal/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_stable_baselines3_cartpole_minimal_cpu
+    task_id: stable_baselines3_cartpole_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - python_version_conflict
+      - torch_cuda_matrix
+      - hidden_dependency
+      - entrypoint_ambiguity
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/stable_baselines3_cartpole_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/rl/stable_baselines3_cartpole_minimal/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_cleanrl_cartpole_minimal_cpu
+    task_id: cleanrl_cartpole_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - python_version_conflict
+      - torch_cuda_matrix
+      - hidden_dependency
+      - entrypoint_ambiguity
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/cleanrl_cartpole_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/rl/cleanrl_cartpole_minimal/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_sac_ae_pixel_control_minimal_cpu
+    task_id: sac_ae_pixel_control_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - torch_cuda_matrix
+      - system_package_missing
+      - hardware_pressure
+      - hidden_dependency
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/sac_ae_pixel_control_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/rl/sac_ae_pixel_control_minimal/artifacts/
+    status: gold_verified_l4_fallback

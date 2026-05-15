@@ -1,0 +1,30 @@
+{
+  "artifact_dir": "/Users/zillionx/Desktop/Paper Reproduction/PaperEnvBench/paperenvbench/tasks/cleanrl_cartpole_minimal/artifacts",
+  "artifact_sha256": "0ff9241e0124a75e3dc002ab82313cae5b50dfc418332fb40636a3f51bc6caa7",
+  "checks": {
+    "cartpole_semantics_valid": true,
+    "no_external_asset_required": true,
+    "ppo_metric_smoke_valid": true,
+    "repo_commit_matches": true,
+    "single_file_route_recorded": true,
+    "training_smoke_artifact_valid": true
+  },
+  "observed": {
+    "actions": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "episode_return": 6.0,
+    "policy_loss": -0.125985,
+    "repo_commit": "fe8d8a03c41a7ef5b523e2e354bd01c363e786bb",
+    "route": "python cleanrl/ppo.py --env-id CartPole-v1 --total-timesteps 128 --num-envs 1 --num-steps 32 --num-minibatches 1 --update-epochs 2 --learning-rate 0.00025 --torch-deterministic True --cuda False --track False",
+    "value_loss": 0.010567
+  },
+  "status": "pass",
+  "success_level": "L4_cpu_deterministic_fallback",
+  "task_id": "cleanrl_cartpole_minimal"
+}

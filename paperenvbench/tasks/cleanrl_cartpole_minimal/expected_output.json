@@ -1,0 +1,16 @@
+{
+  "task_id": "cleanrl_cartpole_minimal",
+  "success": true,
+  "success_level": "L4_cpu_deterministic_fallback",
+  "expected": {
+    "repo_commit": "fe8d8a03c41a7ef5b523e2e354bd01c363e786bb",
+    "route": "python cleanrl/ppo.py --env-id CartPole-v1 --total-timesteps 128 --num-envs 1 --num-steps 32 --num-minibatches 1 --update-epochs 2 --learning-rate 0.00025 --torch-deterministic True --cuda False --track False",
+    "metrics": {
+      "episode_return": 6.0,
+      "policy_loss": -0.125985,
+      "value_loss": 0.010567
+    },
+    "actions": [0, 0, 0, 0, 0, 0]
+  },
+  "artifact": "artifacts/expected_artifact.json"
+}

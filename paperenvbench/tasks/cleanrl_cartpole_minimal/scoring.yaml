@@ -1,0 +1,16 @@
+scoring:
+  max_level: L4
+  minimum_accept_level: L4_cpu_deterministic_fallback
+  dimensions:
+    install: 0.2
+    import: 0.1
+    entrypoint: 0.25
+    semantic: 0.35
+    safety: 0.1
+  hidden_checks:
+    - repo_commit_matches
+    - single_file_route_recorded
+    - cartpole_semantics_valid
+    - ppo_metric_smoke_valid
+    - training_smoke_artifact_valid
+    - no_external_asset_required

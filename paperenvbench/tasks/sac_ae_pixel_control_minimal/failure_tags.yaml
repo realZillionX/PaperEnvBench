@@ -1,0 +1,17 @@
+failure_tags:
+  - tag: system_package_missing
+    severity: high
+    evidence: "The original training route depends on dm_control, dmc2gym and pixel rendering stacks from a Python 3.6-era conda environment."
+    mitigation: "The gold task records the pixel-control boundary and uses a CPU deterministic fallback that exercises the pinned SAC-AE network route without MuJoCo rendering."
+  - tag: torch_cuda_matrix
+    severity: medium
+    evidence: "The upstream conda_env.yml pins cudatoolkit=9.2 and an unpinned pytorch package."
+    mitigation: "The verifier accepts a CPU torch environment and does not require CUDA."
+  - tag: entrypoint_ambiguity
+    severity: medium
+    evidence: "README usage points to train.py for long DMControl training, while the minimal evaluable route is inside sac_ae.py, encoder.py and decoder.py."
+    mitigation: "verify.py checks the pinned repo files and the SAC-AE actor, critic, encoder and decoder route explicitly."
+  - tag: hardware_pressure
+    severity: medium
+    evidence: "The paper route trains pixel observations for up to 1,000,000 steps with replay buffer capacity 1,000,000."
+    mitigation: "The benchmark task uses one deterministic pixel batch and shape-level SAC-AE checks as the L4 CPU fallback."

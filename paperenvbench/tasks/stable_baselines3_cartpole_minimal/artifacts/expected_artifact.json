@@ -1,0 +1,113 @@
+{
+  "task_id": "stable_baselines3_cartpole_minimal",
+  "success": true,
+  "success_level": "L4_cpu_deterministic_fallback",
+  "repo": {
+    "name": "stable-baselines3",
+    "url": "https://github.com/DLR-RM/stable-baselines3",
+    "commit": "8da3e5eadeda14c63f42c62dbbe7dbb00c2fd458",
+    "commit_short": "8da3e5e"
+  },
+  "route": {
+    "clone": "git clone https://github.com/DLR-RM/stable-baselines3.git && git checkout 8da3e5eadeda14c63f42c62dbbe7dbb00c2fd458",
+    "install": "python -m pip install --index-url https://download.pytorch.org/whl/cpu torch==2.8.0+cpu; python -m pip install -e repo",
+    "algorithm_api": "from stable_baselines3 import PPO; model = PPO(\"MlpPolicy\", env, seed=123, n_steps=16, batch_size=16, n_epochs=1, device=\"cpu\")",
+    "environment_api": "import gymnasium as gym; env = gym.make(\"CartPole-v1\")",
+    "vector_env_api": "from stable_baselines3.common.env_util import make_vec_env; make_vec_env(\"CartPole-v1\", n_envs=1, seed=123)",
+    "training_smoke": "model.learn(total_timesteps=64)",
+    "prediction_api": "action, _state = model.predict(observation, deterministic=True)",
+    "repo_entrypoints": [
+      "stable_baselines3/__init__.py",
+      "stable_baselines3/ppo/ppo.py",
+      "stable_baselines3/common/env_util.py",
+      "stable_baselines3/common/vec_env/dummy_vec_env.py",
+      "tests/test_run.py"
+    ],
+    "dependency_file": "pyproject.toml",
+    "fallback": "deterministic CPU CartPole rollout artifact for check-only verification; no GPU, Atari, MuJoCo, or long training required"
+  },
+  "environment": {
+    "device": "cpu",
+    "env_id": "CartPole-v1",
+    "gym_api": "gymnasium",
+    "seed": 123,
+    "vectorized": true,
+    "n_envs": 1,
+    "full_training_required_for_check_only": false,
+    "external_dataset_required": false
+  },
+  "ppo_config": {
+    "policy": "MlpPolicy",
+    "total_timesteps": 64,
+    "n_steps": 16,
+    "batch_size": 16,
+    "n_epochs": 1,
+    "gamma": 0.98,
+    "learning_rate": 0.0003,
+    "device": "cpu"
+  },
+  "rollout": {
+    "initial_observation": [
+      0.018235,
+      -0.044618,
+      -0.027964,
+      -0.031562
+    ],
+    "actions": [
+      1,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1
+    ],
+    "rewards": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "terminated": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "truncated": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "episode_reward": 8.0,
+    "minimum_reward": 8.0,
+    "steps": 8
+  },
+  "semantic": {
+    "task": "reinforcement learning simulation",
+    "summary": "The artifact records a CPU-only Stable-Baselines3 PPO smoke route on Gymnasium CartPole-v1 and a deterministic eight-step rollout with reward 8.0.",
+    "expected_ordering": "episode_reward >= minimum_reward",
+    "import_success_alone_is_sufficient": false
+  },
+  "checks": {
+    "repo_commit_matches": true,
+    "ppo_cartpole_route_recorded": true,
+    "deterministic_rollout_artifact_complete": true,
+    "reward_metric_matches": true,
+    "cpu_fallback_documented": true
+  }
+}

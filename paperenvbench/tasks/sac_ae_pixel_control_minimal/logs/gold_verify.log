@@ -1,0 +1,110 @@
+{
+  "checks": {
+    "action_bounds_valid": true,
+    "actor_route_present": true,
+    "cpu_fallback_declared": true,
+    "critic_route_present": true,
+    "decoder_route_present": true,
+    "pixel_observation_route": true,
+    "q_outputs_valid": true,
+    "reconstruction_shape_valid": true,
+    "repo_commit_matches": true
+  },
+  "fallback": {
+    "full_env_requires": [
+      "dm_control",
+      "dmc2gym",
+      "MuJoCo renderer",
+      "Python 3.6-era CUDA stack"
+    ],
+    "reason": "Full DMControl pixel training requires MuJoCo rendering and long replay-buffer training; the CPU gold route validates the pinned SAC-AE pixel network path deterministically.",
+    "used": true
+  },
+  "input": {
+    "action_shape": [
+      2
+    ],
+    "frame_stack": 3,
+    "image_size": 84,
+    "observation_shape": [
+      9,
+      84,
+      84
+    ],
+    "pixel_dtype": "float32 in [0, 255] before PixelEncoder normalization"
+  },
+  "numeric": {
+    "latent_mean_std": [
+      0.0179764852,
+      0.6876271367
+    ],
+    "latent_shape": [
+      1,
+      16
+    ],
+    "log_pi_shape": [
+      1,
+      1
+    ],
+    "log_std_shape": [
+      1,
+      2
+    ],
+    "mu": [
+      -0.1045399457,
+      -0.0815288052
+    ],
+    "mu_shape": [
+      1,
+      2
+    ],
+    "pi_shape": [
+      1,
+      2
+    ],
+    "q1_shape": [
+      1,
+      1
+    ],
+    "q2_shape": [
+      1,
+      1
+    ],
+    "q_values": [
+      0.6061774492,
+      0.198379606
+    ],
+    "reconstruction_mean_std": [
+      0.0015422521,
+      0.0144099928
+    ],
+    "reconstruction_shape": [
+      1,
+      9,
+      84,
+      84
+    ]
+  },
+  "repo": {
+    "commit": "7fa560e21c026c04bb8dcd72959ecf4e3424476c",
+    "commit_short": "7fa560e",
+    "paper_title": "Improving Sample Efficiency in Model-Free Reinforcement Learning from Images",
+    "url": "https://github.com/denisyarats/pytorch_sac_ae"
+  },
+  "route": {
+    "actor": "sac_ae.Actor",
+    "critic": "sac_ae.Critic with twin QFunction heads",
+    "decoder": "decoder.PixelDecoder",
+    "encoder": "encoder.PixelEncoder",
+    "entrypoint": "sac_ae.SacAeAgent",
+    "full_training_env": "dmc2gym.make(..., from_pixels=True) plus FrameStack",
+    "train_entrypoint": "train.py"
+  },
+  "sha256": {
+    "checks": "840d857aaeb26a3a47c8a276ebb239218b5da27ec94655f4dac3dd043b84a8cd",
+    "numeric": "60e54ace5453d5aea2d79f02de8a6da1dc712e35ab684b971c7cbda56a525bbe",
+    "route": "4d34fc5e5cf7cc512c5437ce99ba9ee5ddf7d421f914b60cea23c78e7d19e2ef"
+  },
+  "success_level": "L4_cpu_deterministic_fallback",
+  "task_id": "sac_ae_pixel_control_minimal"
+}

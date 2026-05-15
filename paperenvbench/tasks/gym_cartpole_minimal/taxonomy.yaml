@@ -1,0 +1,21 @@
+taxonomy:
+  modality:
+    primary: reinforcement_learning_simulation
+    secondary:
+      - classic_control
+      - cartpole
+      - environment_api
+      - deterministic_rollout
+  environment_challenges:
+    - python_version_conflict
+    - system_package_missing
+    - hidden_dependency
+  verification_type:
+    - import_graph
+    - single_sample_inference
+    - semantic_check
+  expected_skill_routes:
+    - global_reproducibility_safety
+    - rl_simulation_env_setup
+    - system_package_resolver
+    - minimal_entrypoint_discovery

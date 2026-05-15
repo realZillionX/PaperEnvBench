@@ -1,0 +1,20 @@
+assets:
+  - asset_id: gym_cartpole_minimal_expected_artifact
+    type: json
+    required: true
+    cached_path: paperenvbench/tasks/gym_cartpole_minimal/artifacts/expected_artifact.json
+    checksum: a08054fda457056c3039276e825b6e383411e82cdb99bb582fce93c4f9720974
+  - asset_id: gym_cartpole_minimal_cartpole_trace
+    type: inline_json
+    required: true
+    cached_path: paperenvbench/tasks/gym_cartpole_minimal/artifacts/expected_artifact.json:rollout
+    checksum: c16559e418792c7fbeef6096555f82787dd51874b175ddec4f8181cc5a0fa8ad
+    notes: "Deterministic CartPole-v1 reset(seed=123) plus five CPU step transitions under actions [1, 0, 1, 1, 0]."
+external_assets:
+  - name: OpenAI Gym repository
+    url: https://github.com/openai/gym
+    commit: bc212954b6713d5db303b3ead124de6cba66063e
+    required: true
+  - name: Classic control render assets
+    required: false
+    note: "The gold route does not render and therefore does not require pygame display assets."

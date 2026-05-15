@@ -1,0 +1,5 @@
+command=bash gold_install.sh
+status=pass
+repo_url=https://github.com/denisyarats/pytorch_sac_ae
+repo_commit=7fa560e21c026c04bb8dcd72959ecf4e3424476c
+note=Installed minimal CPU generation dependencies and validated check-only artifact.

@@ -1,0 +1,19 @@
+assets:
+  - asset_id: stable_baselines3_cartpole_minimal_expected_artifact
+    type: json
+    required: true
+    cached_path: paperenvbench/tasks/stable_baselines3_cartpole_minimal/artifacts/expected_artifact.json
+    checksum: 50de5d923d0d854727c54bd04ac034dce93dc30c88a3f24c1964c7836c94fa76
+  - asset_id: stable_baselines3_cartpole_minimal_deterministic_rollout
+    type: embedded_json
+    required: true
+    cached_path: paperenvbench/tasks/stable_baselines3_cartpole_minimal/artifacts/expected_artifact.json#rollout
+    checksum: null
+    notes: "The deterministic CartPole actions, rewards, termination flags, and reward threshold are embedded in expected_artifact.json for check-only verification."
+  - asset_id: stable_baselines3_cartpole_minimal_public_env_route
+    type: simulation_route
+    required: false
+    cached_path: gymnasium:CartPole-v1
+    source_url: https://gymnasium.farama.org/environments/classic_control/cart_pole/
+    checksum: null
+    notes: "Full agent attempts may run the live Gymnasium CartPole-v1 environment; hidden check-only validation uses the deterministic embedded rollout artifact."

@@ -1,0 +1,138 @@
+{
+  "checks": {
+    "cartpole_env_route_recorded": true,
+    "cpu_device": true,
+    "fallback_boundary_documented": true,
+    "no_render_dependency_required": true,
+    "repo_commit_matches": true,
+    "reset_seed_route_recorded": true,
+    "step_transition_trace_valid": true
+  },
+  "physics": {
+    "force_mag": 10.0,
+    "gravity": 9.8,
+    "kinematics_integrator": "euler",
+    "length": 0.5,
+    "masscart": 1.0,
+    "masspole": 0.1,
+    "tau": 0.02,
+    "theta_threshold_radians": 0.20943951023931953,
+    "x_threshold": 2.4
+  },
+  "repo": {
+    "commit": "bc212954b6713d5db303b3ead124de6cba66063e",
+    "name": "gym",
+    "paper_title": "OpenAI Gym",
+    "url": "https://github.com/openai/gym"
+  },
+  "reset": {
+    "info": {},
+    "observation": [
+      0.01823519,
+      -0.0446179,
+      -0.02796401,
+      -0.03156282
+    ],
+    "seed": 123
+  },
+  "rollout": {
+    "actions": [
+      1,
+      0,
+      1,
+      1,
+      0
+    ],
+    "all_not_terminated": true,
+    "all_not_truncated": true,
+    "final_observation": [
+      0.02946884,
+      0.15292421,
+      -0.05643985,
+      -0.37814762
+    ],
+    "steps": [
+      {
+        "action": 1,
+        "observation": [
+          0.01734283,
+          0.15089368,
+          -0.02859527,
+          -0.33293587
+        ],
+        "reward": 1.0,
+        "step": 1,
+        "terminated": false,
+        "truncated": false
+      },
+      {
+        "action": 0,
+        "observation": [
+          0.0203607,
+          -0.04380984,
+          -0.03525399,
+          -0.04940585
+        ],
+        "reward": 1.0,
+        "step": 2,
+        "terminated": false,
+        "truncated": false
+      },
+      {
+        "action": 1,
+        "observation": [
+          0.01948451,
+          0.15179942,
+          -0.0362421,
+          -0.35299995
+        ],
+        "reward": 1.0,
+        "step": 3,
+        "terminated": false,
+        "truncated": false
+      },
+      {
+        "action": 1,
+        "observation": [
+          0.02252049,
+          0.34741748,
+          -0.0433021,
+          -0.65688721
+        ],
+        "reward": 1.0,
+        "step": 4,
+        "terminated": false,
+        "truncated": false
+      },
+      {
+        "action": 0,
+        "observation": [
+          0.02946884,
+          0.15292421,
+          -0.05643985,
+          -0.37814762
+        ],
+        "reward": 1.0,
+        "step": 5,
+        "terminated": false,
+        "truncated": false
+      }
+    ],
+    "total_reward": 5.0
+  },
+  "route": {
+    "api": "gym.make('CartPole-v1') returns gym.envs.classic_control.cartpole.CartPoleEnv through the Gym registry.",
+    "clone": "git clone https://github.com/openai/gym && git checkout bc212954b6713d5db303b3ead124de6cba66063e",
+    "device": "cpu",
+    "entrypoint": "gym/envs/classic_control/cartpole.py::CartPoleEnv.reset and gym/envs/classic_control/cartpole.py::CartPoleEnv.step",
+    "fallback": "CPU deterministic fallback mirrors CartPoleEnv.reset(seed=123) and CartPoleEnv.step physics when archived Gym packaging or Python 3.12 compatibility blocks direct import.",
+    "render_mode": "None"
+  },
+  "semantic": {
+    "expected_behavior": "The controlled CartPole rollout executes reset once, then five step calls with reward 1.0 and no termination or truncation.",
+    "safety_boundary": "The task uses no rendering, no pygame window, no MuJoCo, no Atari ROM, no dataset, and no GPU.",
+    "task": "minimal OpenAI Gym CartPole environment API smoke"
+  },
+  "success_level": "L4_cpu_deterministic_fallback",
+  "task_id": "gym_cartpole_minimal"
+}

@@ -1,0 +1,25 @@
+scoring:
+  max_level: L4_cpu_deterministic_fallback
+  levels:
+    L0:
+      description: "Repository cannot be cloned or inspected."
+    L1:
+      description: "Pinned repository files are present but SAC-AE modules are not importable."
+    L2:
+      description: "Pixel encoder route imports but actor, critic or decoder routes are incomplete."
+    L3:
+      description: "CPU forward smoke runs but artifact lacks semantic evidence or deterministic checks."
+    L4_cpu_deterministic_fallback:
+      description: "Pinned SAC-AE repo route is represented with pixel observation shape, actor, critic, decoder and all semantic checks passing."
+required_checks:
+  - repo_commit_matches
+  - pixel_observation_route
+  - actor_route_present
+  - critic_route_present
+  - decoder_route_present
+  - action_bounds_valid
+  - q_outputs_valid
+  - reconstruction_shape_valid
+  - cpu_fallback_declared
+artifacts:
+  - artifacts/expected_artifact.json

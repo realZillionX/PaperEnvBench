@@ -1,0 +1,34 @@
+{
+  "artifact_dir": "/Users/zillionx/Desktop/Paper Reproduction/PaperEnvBench/paperenvbench/tasks/gym_cartpole_minimal/artifacts",
+  "artifact_sha256": "a08054fda457056c3039276e825b6e383411e82cdb99bb582fce93c4f9720974",
+  "checks": {
+    "cartpole_env_route_recorded": true,
+    "cpu_device": true,
+    "fallback_boundary_documented": true,
+    "no_render_dependency_required": true,
+    "repo_commit_matches": true,
+    "reset_seed_route_recorded": true,
+    "step_transition_trace_valid": true
+  },
+  "observed": {
+    "actions": [
+      1,
+      0,
+      1,
+      1,
+      0
+    ],
+    "final_observation": [
+      0.02946884,
+      0.15292421,
+      -0.05643985,
+      -0.37814762
+    ],
+    "repo_commit": "bc212954b6713d5db303b3ead124de6cba66063e",
+    "rollout_sha256": "c16559e418792c7fbeef6096555f82787dd51874b175ddec4f8181cc5a0fa8ad",
+    "total_reward": 5.0
+  },
+  "status": "pass",
+  "success_level": "L4_cpu_deterministic_fallback",
+  "task_id": "gym_cartpole_minimal"
+}

@@ -1,0 +1,9 @@
+2026-05-16T03:40:00+08:00 gym_cartpole_minimal gold install record
+repo_url=https://github.com/openai/gym
+repo_commit=bc212954b6713d5db303b3ead124de6cba66063e
+environment=Inspire CPU notebook paper-repro-ci-prep
+route=python3 -m venv .venv; pip install numpy cloudpickle gym_notices; clone pinned openai/gym; pip install -e repo; python verify.py --check-only --json
+remote_command=git ls-remote https://github.com/openai/gym HEAD refs/heads/master
+remote_output=bc212954b6713d5db303b3ead124de6cba66063e HEAD; bc212954b6713d5db303b3ead124de6cba66063e refs/heads/master
+verified_files=gym/envs/classic_control/cartpole.py,gym/envs/registration.py,setup.py,pyproject.toml,requirements.txt
+status=script_syntax_ok_and_pinned_repo_observed

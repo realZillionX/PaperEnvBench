@@ -1,0 +1,20 @@
+taxonomy:
+  modality:
+    primary: reinforcement_learning_simulation
+    secondary:
+      - policy_gradient
+      - gymnasium_cartpole
+      - vectorized_environment
+  environment_challenges:
+    - hidden_dependency
+    - torch_cuda_matrix
+    - entrypoint_ambiguity
+  verification_type:
+    - training_smoke_test
+    - semantic_check
+    - output_artifact
+  expected_skill_routes:
+    - global_reproducibility_safety
+    - rl_simulation_env_setup
+    - torch_cuda_matrix_solver
+    - minimal_entrypoint_discovery

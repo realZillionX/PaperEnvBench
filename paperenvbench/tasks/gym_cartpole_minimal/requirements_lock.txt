@@ -1,0 +1,4 @@
+cloudpickle>=1.2.0
+gym @ git+https://github.com/openai/gym@bc212954b6713d5db303b3ead124de6cba66063e
+gym_notices>=0.0.4
+numpy>=1.18.0

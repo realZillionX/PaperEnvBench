@@ -551,52 +551,52 @@ tasks:
     asset_ready: true
     selection_reason: "覆盖推荐系统配置、toy dataset 和 metric 输出。"
   - task_id: gym_cartpole_minimal
-    candidate_status: selected_pending_gold
+    candidate_status: selected_gold
     split: dev
     repo_url: https://github.com/openai/gym
-    commit: pin_pending_gold
+    commit: bc212954b6713d5db303b3ead124de6cba66063e
     paper_title: "OpenAI Gym"
     taxonomy: {modality_primary: reinforcement_learning_simulation, environment_challenges: [python_version_conflict, system_package_missing, hidden_dependency], verification_type: [import_graph, single_sample_inference, semantic_check], expected_skill_routes: [global_reproducibility_safety, rl_simulation_env_setup, system_package_resolver, minimal_entrypoint_discovery]}
     asset_control: no_external_asset_toy_env
-    gold_ready: false
-    verifier_ready: false
-    asset_ready: false
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
     selection_reason: "覆盖 RL 环境 API 和无外部资产 CartPole smoke。"
   - task_id: stable_baselines3_cartpole_minimal
-    candidate_status: selected_pending_gold
+    candidate_status: selected_gold
     split: dev
     repo_url: https://github.com/DLR-RM/stable-baselines3
-    commit: pin_pending_gold
+    commit: 8da3e5eadeda14c63f42c62dbbe7dbb00c2fd458
     paper_title: "Stable-Baselines3: Reliable Reinforcement Learning Implementations"
     taxonomy: {modality_primary: reinforcement_learning_simulation, environment_challenges: [hidden_dependency, torch_cuda_matrix, entrypoint_ambiguity], verification_type: [training_smoke_test, semantic_check, output_artifact], expected_skill_routes: [global_reproducibility_safety, rl_simulation_env_setup, torch_cuda_matrix_solver, minimal_entrypoint_discovery]}
     asset_control: no_external_asset_toy_env
-    gold_ready: false
-    verifier_ready: false
-    asset_ready: false
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
     selection_reason: "覆盖 RL training smoke、policy artifact 和 Gym compatibility。"
   - task_id: cleanrl_cartpole_minimal
-    candidate_status: selected_pending_gold
+    candidate_status: selected_gold
     split: val
     repo_url: https://github.com/vwxyzjn/cleanrl
-    commit: pin_pending_gold
+    commit: fe8d8a03c41a7ef5b523e2e354bd01c363e786bb
     paper_title: "CleanRL: High-quality Single-file Implementations of Deep Reinforcement Learning Algorithms"
     taxonomy: {modality_primary: reinforcement_learning_simulation, environment_challenges: [hidden_dependency, entrypoint_ambiguity, system_package_missing], verification_type: [training_smoke_test, metric_smoke_test, semantic_check], expected_skill_routes: [global_reproducibility_safety, rl_simulation_env_setup, minimal_entrypoint_discovery, system_package_resolver]}
     asset_control: no_external_asset_toy_env
-    gold_ready: false
-    verifier_ready: false
-    asset_ready: false
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
     selection_reason: "覆盖 single-file RL script、CLI 参数和短步训练。"
   - task_id: sac_ae_pixel_control_minimal
-    candidate_status: selected_pending_gold
+    candidate_status: selected_gold
     split: test
     repo_url: https://github.com/denisyarats/pytorch_sac_ae
-    commit: pin_pending_gold
+    commit: 7fa560e21c026c04bb8dcd72959ecf4e3424476c
     paper_title: "Improving Sample Efficiency in Model-Free Reinforcement Learning from Images"
     taxonomy: {modality_primary: reinforcement_learning_simulation, environment_challenges: [system_package_missing, torch_cuda_matrix, entrypoint_ambiguity, hardware_pressure], verification_type: [training_smoke_test, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, rl_simulation_env_setup, torch_cuda_matrix_solver, minimal_entrypoint_discovery]}
     asset_control: controlled_pixel_toy_env_or_import_fallback
-    gold_ready: false
-    verifier_ready: false
-    asset_ready: false
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
     selection_reason: "覆盖 pixel-control RL、渲染依赖和旧环境风险。"
   - task_id: open3d_pointcloud_minimal
     candidate_status: selected_pending_gold

@@ -1,0 +1,57 @@
+{
+  "dependency_files": [
+    "pyproject.toml",
+    "requirements/requirements.txt",
+    "requirements/requirements-atari.txt",
+    "requirements/requirements-mujoco.txt"
+  ],
+  "entrypoints": [
+    {
+      "name": "CleanRL PPO CartPole",
+      "target": "cleanrl/ppo.py",
+      "type": "python_script"
+    },
+    {
+      "name": "PPO evaluation helper",
+      "target": "cleanrl_utils/evals/ppo_eval.py",
+      "type": "python_api"
+    }
+  ],
+  "license_file": "LICENSE",
+  "observed_environment": {
+    "device": "cpu",
+    "notebook": "paper-repro-ci-prep",
+    "python": "3.12",
+    "remote_cwd_alias": "paper-repro"
+  },
+  "observed_repository_files": [
+    "cleanrl/ppo.py",
+    "cleanrl_utils/evals/ppo_eval.py",
+    "pyproject.toml",
+    "requirements/requirements.txt",
+    "README.md"
+  ],
+  "package_manager": "pip",
+  "repo_commit": "fe8d8a03c41a7ef5b523e2e354bd01c363e786bb",
+  "repo_commit_short": "fe8d8a0",
+  "repo_name": "cleanrl",
+  "repo_url": "https://github.com/vwxyzjn/cleanrl",
+  "task_id": "cleanrl_cartpole_minimal",
+  "validated_outputs": {
+    "local_artifact_dir": "paperenvbench/tasks/cleanrl_cartpole_minimal/artifacts",
+    "success_level": "L4_cpu_deterministic_fallback"
+  },
+  "taxonomy_hints": {
+    "modality_primary": "reinforcement_learning_simulation",
+    "environment_challenges": [
+      "hidden_dependency",
+      "entrypoint_ambiguity",
+      "system_package_missing"
+    ],
+    "verification_type": [
+      "training_smoke_test",
+      "metric_smoke_test",
+      "semantic_check"
+    ]
+  }
+}

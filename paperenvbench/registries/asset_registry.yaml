@@ -515,3 +515,39 @@ assets:
     cached_path: paper-repro:runs/paperenvbench/graph/recbole_sequential_minimal/artifacts/expected_artifact.json
     local_artifact_path: paperenvbench/tasks/recbole_sequential_minimal/artifacts/expected_artifact.json
     status: gold_verified
+  - asset_id: gym_cartpole_minimal_summary
+    task_id: gym_cartpole_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: a08054fda457056c3039276e825b6e383411e82cdb99bb582fce93c4f9720974
+    cached_path: paper-repro:runs/paperenvbench/rl/gym_cartpole_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/gym_cartpole_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: stable_baselines3_cartpole_minimal_summary
+    task_id: stable_baselines3_cartpole_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: 50de5d923d0d854727c54bd04ac034dce93dc30c88a3f24c1964c7836c94fa76
+    cached_path: paper-repro:runs/paperenvbench/rl/stable_baselines3_cartpole_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/stable_baselines3_cartpole_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: cleanrl_cartpole_minimal_summary
+    task_id: cleanrl_cartpole_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: 0ff9241e0124a75e3dc002ab82313cae5b50dfc418332fb40636a3f51bc6caa7
+    cached_path: paper-repro:runs/paperenvbench/rl/cleanrl_cartpole_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/cleanrl_cartpole_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: sac_ae_pixel_control_minimal_summary
+    task_id: sac_ae_pixel_control_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: 0138fc0880973698bc8a1935c0b8edc8b52713a70da89038a3ff447c5571a8bb
+    cached_path: paper-repro:runs/paperenvbench/rl/sac_ae_pixel_control_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/sac_ae_pixel_control_minimal/artifacts/expected_artifact.json
+    status: gold_verified

@@ -1,0 +1,15 @@
+assets:
+  - asset_id: sac_ae_pixel_control_minimal_expected_artifact
+    type: json
+    role: expected_output
+    local_path: artifacts/expected_artifact.json
+    cached_path: paper-repro:runs/paperenvbench/rl/sac_ae_pixel_control_minimal/artifacts/expected_artifact.json
+    generated_by: verify.py
+    required: true
+  - asset_id: sac_ae_pixel_control_minimal_gold_logs
+    type: text
+    role: execution_log
+    local_path: logs/gold_verify.log
+    cached_path: paper-repro:runs/paperenvbench/rl/sac_ae_pixel_control_minimal/logs/gold_verify.log
+    generated_by: verify.py --check-only --json
+    required: true

@@ -1,0 +1,10 @@
+task_id=stable_baselines3_cartpole_minimal
+repo_url=https://github.com/DLR-RM/stable-baselines3.git
+repo_commit=8da3e5eadeda14c63f42c62dbbe7dbb00c2fd458
+repo_commit_short=8da3e5e
+commit_subject=Release v2.7.1 (#2197)
+observed_repo_files=pyproject.toml,setup.py,stable_baselines3/__init__.py,stable_baselines3/ppo/ppo.py,stable_baselines3/common/env_util.py,stable_baselines3/common/vec_env/dummy_vec_env.py,tests/test_run.py
+install_route=git clone -> git checkout pinned commit -> python3 -m venv -> pip install CPU torch -> pip install -e repo -> PPO CartPole smoke
+ppo_cartpole_route=from stable_baselines3 import PPO; from stable_baselines3.common.env_util import make_vec_env; env=make_vec_env("CartPole-v1", n_envs=1, seed=123); PPO("MlpPolicy", env, seed=123, n_steps=16, batch_size=16, n_epochs=1, device="cpu").learn(total_timesteps=64)
+check_only_boundary=hidden verification validates the recorded pinned route and deterministic rollout artifact; it does not require GPU, Atari, MuJoCo, or long training
+bash_syntax=pass

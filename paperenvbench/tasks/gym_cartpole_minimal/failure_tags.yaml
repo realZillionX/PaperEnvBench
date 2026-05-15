@@ -1,0 +1,19 @@
+failure_tags:
+  primary:
+    - python_version_conflict
+    - system_package_missing
+    - hidden_dependency
+  observed:
+    - tag: python_version_conflict
+      evidence: "The pinned Gym setup metadata advertises Python 3.6-3.10 era support while the project CPU notebook uses Python 3.12."
+      mitigation: "Pin the repository commit and validate the stable CartPole physics route without relying on package metadata alone."
+    - tag: system_package_missing
+      evidence: "Classic-control rendering depends on pygame, but CartPole reset and step semantics do not require rendering."
+      mitigation: "Use render_mode=None and avoid pygame or display dependencies in the verifier."
+    - tag: hidden_dependency
+      evidence: "The environment API depends on numpy, cloudpickle, gym_notices, and the exact Gym reset / step return contract."
+      mitigation: "Record both the API route and a deterministic CPU fallback trace that mirrors gym/envs/classic_control/cartpole.py."
+  non_goals:
+    - checkpoint_download
+    - dataset_asset_missing
+    - hardware_pressure

@@ -1,0 +1,63 @@
+{
+  "asset_dependencies": [
+    {
+      "name": "deterministic_cartpole_trace",
+      "sha256": "c16559e418792c7fbeef6096555f82787dd51874b175ddec4f8181cc5a0fa8ad",
+      "type": "inline_json"
+    }
+  ],
+  "dependency_files": [
+    "setup.py",
+    "pyproject.toml",
+    "requirements.txt"
+  ],
+  "entrypoints": [
+    {
+      "name": "gym.make('CartPole-v1')",
+      "target": "gym/envs/registration.py",
+      "type": "python_api"
+    },
+    {
+      "name": "gym.envs.classic_control.cartpole.CartPoleEnv",
+      "target": "gym/envs/classic_control/cartpole.py",
+      "type": "python_api"
+    },
+    {
+      "name": "CartPoleEnv.reset",
+      "target": "gym/envs/classic_control/cartpole.py",
+      "type": "repo_method"
+    },
+    {
+      "name": "CartPoleEnv.step",
+      "target": "gym/envs/classic_control/cartpole.py",
+      "type": "repo_method"
+    }
+  ],
+  "license_file": "LICENSE.md",
+  "observed_environment": {
+    "device": "cpu",
+    "notebook": "paper-repro-ci-prep",
+    "python": "3.12",
+    "remote_cwd_alias": "paper-repro"
+  },
+  "observed_repository_files": [
+    "gym/envs/classic_control/cartpole.py",
+    "gym/envs/classic_control/__init__.py",
+    "gym/envs/registration.py",
+    "gym/spaces/discrete.py",
+    "gym/spaces/box.py",
+    "setup.py",
+    "pyproject.toml",
+    "requirements.txt"
+  ],
+  "package_manager": "pip",
+  "repo_commit": "bc212954b6713d5db303b3ead124de6cba66063e",
+  "repo_commit_short": "bc21295",
+  "repo_name": "gym",
+  "repo_url": "https://github.com/openai/gym",
+  "task_id": "gym_cartpole_minimal",
+  "validated_outputs": {
+    "local_artifact_dir": "paperenvbench/tasks/gym_cartpole_minimal/artifacts",
+    "success_level": "L4_cpu_deterministic_fallback"
+  }
+}

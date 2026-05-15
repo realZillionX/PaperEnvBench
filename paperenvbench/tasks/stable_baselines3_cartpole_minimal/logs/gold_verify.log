@@ -1,0 +1,8 @@
+task_id=stable_baselines3_cartpole_minimal
+command=python verify.py --check-only --json
+status=pass
+success_level=L4_cpu_deterministic_fallback
+algorithm=PPO
+environment_id=CartPole-v1
+episode_reward=8.0
+semantic=Stable-Baselines3 PPO route is recorded over a deterministic CPU Gymnasium CartPole-v1 rollout
