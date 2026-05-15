@@ -1,0 +1,20 @@
+assets:
+  - asset_id: lora_adapter_minimal_expected_artifact
+    type: json
+    required: true
+    cached_path: paperenvbench/tasks/lora_adapter_minimal/artifacts/expected_artifact.json
+    checksum: b92afc6a968bd8e095cd1dbc9037238b019e3768d80bfe3ce5abeafea5798de9
+  - asset_id: lora_adapter_minimal_pinned_repo
+    type: git_repo
+    required: true
+    cached_path: paper-repro:runs/paperenvbench/llm_nlp/lora_adapter_minimal/repo
+    source_url: https://github.com/microsoft/LoRA
+    checksum: c4593f060e6a368d7bb5af5273b8e42810cdef90
+    notes: "Pinned repository provides loralib.Linear, MergedLinear, mark_only_lora_as_trainable, and lora_state_dict."
+  - asset_id: lora_adapter_minimal_adapter_checkpoint_route
+    type: checkpoint
+    required: false
+    cached_path: paper-repro:models/lora_adapter_minimal/
+    source_url: generated_by_loralib.lora_state_dict
+    checksum: null
+    notes: "Check-only validation records adapter checkpoint semantics without downloading pretrained transformer weights."

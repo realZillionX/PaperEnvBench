@@ -1,0 +1,36 @@
+[gold_install] run_root=/tmp/fasttext-run
+[gold_install] repo_dir=/tmp/fasttext-run/fastText
+[gold_install] venv_dir=/tmp/fasttext-run/venv
+[gold_install] script_dir=/tmp/fasttext-run
+1142dc4c4ecbc19cc16eee5cdd28472e689267e6
+Here is the help! Usage:
+
+The following arguments are mandatory:
+  -input              training file path
+  -output             output file path
+
+The following arguments are optional:
+  -verbose            verbosity level [2]
+
+The following arguments for the dictionary are optional:
+  -minCount           minimal number of word occurences [1]
+  -minCountLabel      minimal number of label occurences [0]
+  -wordNgrams         max length of word ngram [1]
+  -bucket             number of buckets [2000000]
+  -minn               min length of char ngram [0]
+  -maxn               max length of char ngram [0]
+  -t                  sampling threshold [0.0001]
+  -label              labels prefix [__label__]
+
+Read 0M words
+Number of words:  40
+Number of labels: 2
+Progress: 100.0% words/sec/thread: 6311761 lr:  0.000000 avg.loss:  0.453941 ETA:   0h 0m 0s
+N	2
+P@1	1
+R@1	1
+__label__sports 0.816784 __label__tech 0.183236
+__label__tech 0.781195 __label__sports 0.218825
+python_api_labels __label__sports,__label__tech
+python_api_prediction (('__label__sports', '__label__tech'), array([0.816784, 0.183236]))
+[gold_install] wrote requirements_lock.txt

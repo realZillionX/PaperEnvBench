@@ -1,0 +1,4 @@
+[gold_install] repo_url=https://github.com/google-research/text-to-text-transfer-transformer.git
+[gold_install] commit=90dcc718148715bd8e0045ca964e15dbcfba9a1d
+[gold_install] verified_files=t5/models/mtf_model.py,t5/data/dataset_providers.py,t5/data/tasks.py,t5/models/gin/models/t5.1.1.small.gin
+[gold_install] t5_text_to_text_minimal gold install route verified

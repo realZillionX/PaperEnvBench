@@ -1,0 +1,50 @@
+task_id: fairseq_translation_minimal
+paper_title: "fairseq: A Fast, Extensible Toolkit for Sequence Modeling"
+repo_url: https://github.com/facebookresearch/fairseq
+commit: 3d262bb25690e4eb2e7d3c1309b1e9c406ca4b99
+commit_short: 3d262bb
+paper_url: https://arxiv.org/abs/1904.01038
+license: MIT
+split: test
+modality:
+  primary: llm_nlp
+  secondary:
+    - sequence_modeling
+    - machine_translation
+environment_challenges:
+  - native_extension_build
+  - torch_cuda_matrix
+  - python_version_conflict
+  - entrypoint_ambiguity
+verification:
+  type:
+    - cli_help
+    - single_sample_inference
+    - semantic_check
+  command: python verify.py --check-only --json
+  minimum_success_level: L4_cpu_deterministic_fallback
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4_fallback

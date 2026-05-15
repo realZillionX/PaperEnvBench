@@ -1,0 +1,18 @@
+assets:
+  - asset_id: fasttext_text_classification_minimal_expected_artifact
+    type: json
+    required: true
+    cached_path: paperenvbench/tasks/fasttext_text_classification_minimal/artifacts/expected_artifact.json
+    checksum: 2fb031be5930de5901899c8bf12273f31ce2e752f68d8041f0f41e91a78d4c83
+  - asset_id: fasttext_text_classification_minimal_toy_dataset
+    type: text_dataset
+    required: false
+    cached_path: generated_by_gold_install:data/train.txt,data/test.txt
+    checksum: null
+    notes: "Gold install writes an eight-line train file and two-line test file; their SHA-256 values are recorded inside expected_artifact.json."
+  - asset_id: fasttext_text_classification_minimal_model_bin
+    type: model_artifact
+    required: false
+    cached_path: generated_by_gold_install:data/model.bin
+    checksum: 67d1d698e33278f24a4503b46d73c3986fbc0c7d2cca1f5c107386344bb6dba9
+    notes: "Small CPU-trained fastText supervised model from the controlled toy dataset, not a downloaded checkpoint."

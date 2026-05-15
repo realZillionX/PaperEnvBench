@@ -1,0 +1,44 @@
+{
+  "artifact_dir": "/Users/zillionx/Desktop/Paper Reproduction/PaperEnvBench/paperenvbench/tasks/lora_adapter_minimal/artifacts",
+  "artifact_sha256": "b92afc6a968bd8e095cd1dbc9037238b019e3768d80bfe3ce5abeafea5798de9",
+  "checks": {
+    "adapter_state_dict_valid": true,
+    "fallback_boundary_documented": true,
+    "low_rank_delta_valid": true,
+    "repo_commit_matches": true,
+    "route_recorded": true,
+    "semantic_output_valid": true,
+    "trainable_filter_valid": true
+  },
+  "observed": {
+    "adapter": {
+      "frozen_base_parameters": 15,
+      "lora_alpha": 4,
+      "rank": 2,
+      "scaling": 2.0,
+      "state_dict_keys": [
+        "proj.lora_A",
+        "proj.lora_B"
+      ],
+      "trainable_parameters": 14
+    },
+    "repo_commit": "c4593f060e6a368d7bb5af5273b8e42810cdef90",
+    "route": {
+      "api": "loralib.Linear",
+      "checkpoint_save": "loralib.lora_state_dict(model)",
+      "merge_behavior": "model.eval() merges lora_B @ lora_A into the frozen base weight",
+      "trainable_filter": "loralib.mark_only_lora_as_trainable(model)"
+    },
+    "semantic": {
+      "description": "rank 2 low-rank adapter updates a frozen base linear layer; only lora_A and lora_B stay trainable",
+      "state_dict_keys": [
+        "proj.lora_A",
+        "proj.lora_B"
+      ],
+      "trainable_summary": "base weight frozen, rank 2 adapter trainable"
+    }
+  },
+  "status": "pass",
+  "success_level": "L4_cpu_deterministic_fallback",
+  "task_id": "lora_adapter_minimal"
+}

@@ -371,76 +371,76 @@ tasks:
     asset_ready: true
     selection_reason: "覆盖 image/audio/text 多模态预处理和 embedding 检查。"
   - task_id: bert_masked_lm_minimal
-    candidate_status: selected_pending_gold
+    candidate_status: selected_gold
     split: dev
     repo_url: https://github.com/google-research/bert
-    commit: pin_pending_gold
+    commit: eedf5716ce1268e56f0a50264a88cafad334ac61
     paper_title: "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding"
     taxonomy: {modality_primary: llm_nlp, environment_challenges: [python_version_conflict, checkpoint_download, stale_readme, hidden_dependency], verification_type: [checkpoint_loading, single_sample_inference, semantic_check], expected_skill_routes: [global_reproducibility_safety, checkpoint_validation, minimal_entrypoint_discovery, hidden_dependency_inferer]}
     asset_control: controlled_text_prompt_public_checkpoint_or_transformers_fallback
-    gold_ready: false
-    verifier_ready: false
-    asset_ready: false
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
     selection_reason: "覆盖经典 NLP 旧仓和现代 fallback 取舍。"
   - task_id: fasttext_text_classification_minimal
-    candidate_status: selected_pending_gold
+    candidate_status: selected_gold
     split: dev
     repo_url: https://github.com/facebookresearch/fastText
-    commit: pin_pending_gold
+    commit: 1142dc4c4ecbc19cc16eee5cdd28472e689267e6
     paper_title: "Bag of Tricks for Efficient Text Classification"
     taxonomy: {modality_primary: llm_nlp, environment_challenges: [native_extension_build, system_package_missing, entrypoint_ambiguity], verification_type: [cli_help, training_smoke_test, semantic_check], expected_skill_routes: [global_reproducibility_safety, native_extension_repair, system_package_resolver, minimal_entrypoint_discovery]}
     asset_control: controlled_toy_text_dataset_no_checkpoint
-    gold_ready: false
-    verifier_ready: false
-    asset_ready: false
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
     selection_reason: "覆盖 native build、CLI 和 toy text 分类 metric smoke。"
   - task_id: sentence_transformers_similarity_minimal
-    candidate_status: selected_pending_gold
+    candidate_status: selected_gold
     split: val
     repo_url: https://github.com/UKPLab/sentence-transformers
-    commit: pin_pending_gold
+    commit: 5b27be706546f5e094e0f506d8593250e9a37109
     paper_title: "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks"
     taxonomy: {modality_primary: llm_nlp, environment_challenges: [checkpoint_download, torch_cuda_matrix, hidden_dependency], verification_type: [checkpoint_loading, single_sample_inference, semantic_check], expected_skill_routes: [global_reproducibility_safety, checkpoint_validation, torch_cuda_matrix_solver, minimal_entrypoint_discovery]}
     asset_control: controlled_text_pairs_public_checkpoint
-    gold_ready: false
-    verifier_ready: false
-    asset_ready: false
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
     selection_reason: "覆盖 sentence embedding 和相似度语义检查。"
   - task_id: lora_adapter_minimal
-    candidate_status: selected_pending_gold
+    candidate_status: selected_gold
     split: test
     repo_url: https://github.com/microsoft/LoRA
-    commit: pin_pending_gold
+    commit: c4593f060e6a368d7bb5af5273b8e42810cdef90
     paper_title: "LoRA: Low-Rank Adaptation of Large Language Models"
     taxonomy: {modality_primary: llm_nlp, environment_challenges: [checkpoint_download, torch_cuda_matrix, entrypoint_ambiguity, hardware_pressure], verification_type: [import_graph, checkpoint_loading, semantic_check], expected_skill_routes: [global_reproducibility_safety, checkpoint_validation, torch_cuda_matrix_solver, minimal_entrypoint_discovery]}
     asset_control: controlled_tiny_model_or_synthetic_adapter
-    gold_ready: false
-    verifier_ready: false
-    asset_ready: false
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
     selection_reason: "覆盖 adapter 注入和参数 delta 验证。"
   - task_id: fairseq_translation_minimal
-    candidate_status: selected_pending_gold
+    candidate_status: selected_gold
     split: test
     repo_url: https://github.com/facebookresearch/fairseq
-    commit: pin_pending_gold
+    commit: 3d262bb25690e4eb2e7d3c1309b1e9c406ca4b99
     paper_title: "fairseq: A Fast, Extensible Toolkit for Sequence Modeling"
     taxonomy: {modality_primary: llm_nlp, environment_challenges: [native_extension_build, torch_cuda_matrix, python_version_conflict, entrypoint_ambiguity], verification_type: [cli_help, single_sample_inference, semantic_check], expected_skill_routes: [global_reproducibility_safety, native_extension_repair, torch_cuda_matrix_solver, minimal_entrypoint_discovery]}
     asset_control: controlled_toy_text_or_public_checkpoint
-    gold_ready: false
-    verifier_ready: false
-    asset_ready: false
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
     selection_reason: "覆盖 sequence modeling 工具链和 native extension 风险。"
   - task_id: t5_text_to_text_minimal
-    candidate_status: selected_pending_gold
+    candidate_status: selected_gold
     split: test
     repo_url: https://github.com/google-research/text-to-text-transfer-transformer
-    commit: pin_pending_gold
+    commit: 90dcc718148715bd8e0045ca964e15dbcfba9a1d
     paper_title: "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer"
     taxonomy: {modality_primary: llm_nlp, environment_challenges: [python_version_conflict, checkpoint_download, stale_readme, hidden_dependency], verification_type: [checkpoint_loading, single_sample_inference, semantic_check], expected_skill_routes: [global_reproducibility_safety, checkpoint_validation, hidden_dependency_inferer, minimal_entrypoint_discovery]}
     asset_control: controlled_text_prompt_public_checkpoint_or_transformers_fallback
-    gold_ready: false
-    verifier_ready: false
-    asset_ready: false
+    gold_ready: true
+    verifier_ready: true
+    asset_ready: true
     selection_reason: "覆盖旧 research code 与现代 transformers fallback 的边界。"
   - task_id: improved_diffusion_sample_minimal
     candidate_status: selected_pending_gold

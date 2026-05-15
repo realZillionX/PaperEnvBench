@@ -1,0 +1,2 @@
+loralib @ git+https://github.com/microsoft/LoRA.git@c4593f060e6a368d7bb5af5273b8e42810cdef90
+torch==2.8.0

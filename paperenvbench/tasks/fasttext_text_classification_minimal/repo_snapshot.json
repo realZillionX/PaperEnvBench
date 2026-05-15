@@ -1,0 +1,55 @@
+{
+  "dependency_files": [
+    "setup.py",
+    "Makefile",
+    "CMakeLists.txt",
+    "python/README.md"
+  ],
+  "entrypoints": [
+    {
+      "name": "fasttext CLI supervised",
+      "target": "./fasttext supervised -input train.txt -output model",
+      "type": "cli"
+    },
+    {
+      "name": "fasttext CLI test",
+      "target": "./fasttext test model.bin test.txt",
+      "type": "cli"
+    },
+    {
+      "name": "fasttext CLI predict-prob",
+      "target": "./fasttext predict-prob model.bin - 2",
+      "type": "cli"
+    },
+    {
+      "name": "Python API train_supervised",
+      "target": "fasttext.train_supervised(input='train.txt')",
+      "type": "python_api"
+    }
+  ],
+  "license_file": "LICENSE",
+  "observed_environment": {
+    "device": "cpu",
+    "notebook": "paper-repro-ci-prep",
+    "python": "3.12",
+    "remote_cwd_alias": "paper-repro"
+  },
+  "observed_repository_files": [
+    "Makefile",
+    "setup.py",
+    "src/main.cc",
+    "src/fasttext.cc",
+    "python/fasttext_module/fasttext/FastText.py",
+    "python/README.md"
+  ],
+  "package_manager": "apt + make + pip",
+  "repo_commit": "1142dc4c4ecbc19cc16eee5cdd28472e689267e6",
+  "repo_commit_short": "1142dc4",
+  "repo_name": "fastText",
+  "repo_url": "https://github.com/facebookresearch/fastText",
+  "task_id": "fasttext_text_classification_minimal",
+  "validated_outputs": {
+    "local_artifact_dir": "paperenvbench/tasks/fasttext_text_classification_minimal/artifacts",
+    "success_level": "L4_cpu_deterministic_fallback"
+  }
+}

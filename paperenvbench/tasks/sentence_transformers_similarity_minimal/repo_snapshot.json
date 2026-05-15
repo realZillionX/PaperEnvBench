@@ -1,0 +1,51 @@
+{
+  "dependency_files": [
+    "pyproject.toml"
+  ],
+  "entrypoints": [
+    {
+      "name": "SentenceTransformer",
+      "target": "sentence_transformers/sentence_transformer/model.py",
+      "type": "python_api"
+    },
+    {
+      "name": "sentence_transformers.util.cos_sim",
+      "target": "sentence_transformers/util/similarity.py",
+      "type": "python_api"
+    },
+    {
+      "name": "sentence_transformers.util.semantic_search",
+      "target": "sentence_transformers/util/retrieval.py",
+      "type": "python_api"
+    },
+    {
+      "name": "package exports",
+      "target": "sentence_transformers/__init__.py",
+      "type": "repo_file"
+    }
+  ],
+  "license_file": "LICENSE",
+  "observed_environment": {
+    "device": "cpu",
+    "notebook": "paper-repro-ci-prep",
+    "python": "3.12",
+    "remote_cwd_alias": "paper-repro"
+  },
+  "observed_repository_files": [
+    "pyproject.toml",
+    "sentence_transformers/__init__.py",
+    "sentence_transformers/sentence_transformer/model.py",
+    "sentence_transformers/util/similarity.py",
+    "sentence_transformers/util/retrieval.py"
+  ],
+  "package_manager": "pip",
+  "repo_commit": "5b27be706546f5e094e0f506d8593250e9a37109",
+  "repo_commit_short": "5b27be7",
+  "repo_name": "sentence-transformers",
+  "repo_url": "https://github.com/UKPLab/sentence-transformers",
+  "task_id": "sentence_transformers_similarity_minimal",
+  "validated_outputs": {
+    "local_artifact_dir": "paperenvbench/tasks/sentence_transformers_similarity_minimal/artifacts",
+    "success_level": "L4_cpu_deterministic_fallback"
+  }
+}

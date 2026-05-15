@@ -1,0 +1,13 @@
+assets:
+  - asset_id: sentence_transformers_similarity_minimal_expected_artifact
+    type: json
+    required: true
+    cached_path: paperenvbench/tasks/sentence_transformers_similarity_minimal/artifacts/expected_artifact.json
+    checksum: bf50bd3a850d834648aa44332eab504abfc6985b76a0371003505cafe2191233
+  - asset_id: sentence_transformers_similarity_minimal_checkpoint_route
+    type: checkpoint
+    required: false
+    cached_path: paper-repro:models/sentence_transformers_similarity_minimal/paraphrase-MiniLM-L3-v2/
+    source_url: https://huggingface.co/sentence-transformers/paraphrase-MiniLM-L3-v2
+    checksum: null
+    notes: "Check-only validation records the SentenceTransformer checkpoint route but avoids downloading model weights."

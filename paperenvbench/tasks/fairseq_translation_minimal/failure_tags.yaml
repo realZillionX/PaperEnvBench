@@ -1,0 +1,9 @@
+primary_failure_tags:
+  - native_extension_build
+  - torch_cuda_matrix
+  - python_version_conflict
+  - entrypoint_ambiguity
+anti_patterns:
+  - "Treating fairseq import success as sufficient without checking the fairseq-generate translation route."
+  - "Installing an unpinned fairseq wheel or a fork instead of cloning the pinned facebookresearch/fairseq commit."
+  - "Running a GPU-only or dataset-heavy path for a hidden CPU check-only translation task."

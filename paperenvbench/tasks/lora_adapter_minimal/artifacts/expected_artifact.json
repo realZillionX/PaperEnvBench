@@ -1,0 +1,107 @@
+{
+  "adapter": {
+    "frozen_base_parameters": 15,
+    "lora_alpha": 4,
+    "rank": 2,
+    "scaling": 2.0,
+    "state_dict_keys": [
+      "proj.lora_A",
+      "proj.lora_B"
+    ],
+    "trainable_parameters": 14
+  },
+  "checks": {
+    "adapter_state_dict_valid": true,
+    "fallback_boundary_documented": true,
+    "low_rank_delta_valid": true,
+    "repo_commit_matches": true,
+    "route_recorded": true,
+    "semantic_output_valid": true,
+    "trainable_filter_valid": true
+  },
+  "environment": {
+    "checkpoint_loaded": false,
+    "checkpoint_required_for_full_inference": true,
+    "device": "cpu"
+  },
+  "evidence": {
+    "large_checkpoint_required_for_check_only": false,
+    "mode": "deterministic_cpu_fallback",
+    "pinned_files": [
+      "setup.py",
+      "loralib/__init__.py",
+      "loralib/layers.py",
+      "loralib/utils.py",
+      "examples/NLG/src/model.py",
+      "examples/NLU/examples/text-classification/run_glue.py"
+    ]
+  },
+  "numeric": {
+    "adapter_delta": [
+      4.52,
+      -1.55,
+      -2.26
+    ],
+    "base_output": [
+      0.65,
+      -0.75,
+      -0.45
+    ],
+    "delta_weight": [
+      [
+        0.64,
+        -0.38,
+        -0.12,
+        1.06
+      ],
+      [
+        -0.1,
+        0.2,
+        0.3,
+        -0.4
+      ],
+      [
+        -0.32,
+        0.19,
+        0.06,
+        -0.53
+      ]
+    ],
+    "input": [
+      1.0,
+      -2.0,
+      0.5,
+      3.0
+    ],
+    "merged_output": [
+      5.17,
+      -2.3,
+      -2.71
+    ]
+  },
+  "repo": {
+    "commit": "c4593f060e6a368d7bb5af5273b8e42810cdef90",
+    "url": "https://github.com/microsoft/LoRA"
+  },
+  "route": {
+    "api": "loralib.Linear",
+    "checkpoint_save": "loralib.lora_state_dict(model)",
+    "merge_behavior": "model.eval() merges lora_B @ lora_A into the frozen base weight",
+    "trainable_filter": "loralib.mark_only_lora_as_trainable(model)"
+  },
+  "semantic": {
+    "description": "rank 2 low-rank adapter updates a frozen base linear layer; only lora_A and lora_B stay trainable",
+    "state_dict_keys": [
+      "proj.lora_A",
+      "proj.lora_B"
+    ],
+    "trainable_summary": "base weight frozen, rank 2 adapter trainable"
+  },
+  "sha256": {
+    "route": "e154fe44d4c429400b9823749f1aa653f8a619d5e07e11355566d0f245d27071",
+    "semantic": "97cd8a1b261d8f4e1854418bbd7656b6f67eb80268da954ce18ec386814f8bab"
+  },
+  "success": true,
+  "success_level": "L4_cpu_deterministic_fallback",
+  "task_id": "lora_adapter_minimal"
+}

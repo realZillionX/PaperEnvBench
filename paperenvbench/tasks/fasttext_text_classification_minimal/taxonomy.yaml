@@ -1,0 +1,19 @@
+taxonomy:
+  modality:
+    primary: llm_nlp
+    secondary:
+      - text_classification
+      - native_cli
+  environment_challenges:
+    - native_extension_build
+    - system_package_missing
+    - entrypoint_ambiguity
+  verification_type:
+    - cli_help
+    - training_smoke_test
+    - semantic_check
+  expected_skill_routes:
+    - global_reproducibility_safety
+    - native_extension_repair
+    - system_package_resolver
+    - minimal_entrypoint_discovery

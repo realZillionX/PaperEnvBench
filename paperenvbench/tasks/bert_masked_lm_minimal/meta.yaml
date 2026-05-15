@@ -1,0 +1,49 @@
+task_id: bert_masked_lm_minimal
+paper_title: "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding"
+repo_url: https://github.com/google-research/bert
+commit: eedf5716ce1268e56f0a50264a88cafad334ac61
+commit_short: eedf571
+paper_url: https://arxiv.org/abs/1810.04805
+license: Apache-2.0
+split: dev
+modality:
+  primary: llm_nlp
+  secondary:
+    - checkpoint_loading
+environment_challenges:
+  - python_version_conflict
+  - checkpoint_download
+  - stale_readme
+  - hidden_dependency
+verification:
+  type:
+    - checkpoint_loading
+    - single_sample_inference
+    - semantic_check
+  command: python verify.py --check-only --json
+  minimum_success_level: L4_cpu_deterministic_fallback
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4_fallback

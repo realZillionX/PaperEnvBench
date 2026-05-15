@@ -1,0 +1,5 @@
+[gold_install] repo_url=https://github.com/microsoft/LoRA.git
+[gold_install] commit=c4593f060e6a368d7bb5af5273b8e42810cdef90
+[gold_install] verified_files=setup.py,loralib/__init__.py,loralib/layers.py,loralib/utils.py
+[gold_install] verified_api=loralib.Linear,loralib.MergedLinear,loralib.mark_only_lora_as_trainable,loralib.lora_state_dict
+[gold_install] lora_adapter_minimal gold install route verified

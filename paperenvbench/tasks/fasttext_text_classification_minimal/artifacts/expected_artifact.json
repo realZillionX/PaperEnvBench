@@ -1,0 +1,76 @@
+{
+  "task_id": "fasttext_text_classification_minimal",
+  "success": true,
+  "success_level": "L4_cpu_deterministic_fallback",
+  "repo": {
+    "name": "fastText",
+    "url": "https://github.com/facebookresearch/fastText",
+    "commit": "1142dc4c4ecbc19cc16eee5cdd28472e689267e6",
+    "commit_short": "1142dc4"
+  },
+  "route": {
+    "clone": "git clone https://github.com/facebookresearch/fastText.git && git checkout 1142dc4c4ecbc19cc16eee5cdd28472e689267e6",
+    "build": "make -j2",
+    "cli_help": "./fasttext supervised -h",
+    "cli_train": "./fasttext supervised -input train.txt -output model -epoch 35 -lr 0.5 -wordNgrams 2 -dim 16 -minCount 1 -thread 1 -seed 0 -loss softmax",
+    "cli_test": "./fasttext test model.bin test.txt",
+    "cli_predict": "./fasttext predict-prob model.bin - 2",
+    "python_api": "import fasttext; model = fasttext.load_model('model.bin'); model.predict(text, k=2)"
+  },
+  "dataset": {
+    "train_lines": 8,
+    "test_lines": 2,
+    "labels": [
+      "__label__sports",
+      "__label__tech"
+    ],
+    "train_sha256": "8903425632da3333666bfcaac986c24158ce9dceccf09e3c436bf3b2bb681de2",
+    "test_sha256": "b14f414db9b82d550b514ca2e9f31acb2acad4087d8f736ff049e7b7667ef2cc"
+  },
+  "metrics": {
+    "N": 2,
+    "P@1": 1.0,
+    "R@1": 1.0
+  },
+  "predictions": [
+    {
+      "text": "football team wins match",
+      "labels": [
+        "__label__sports",
+        "__label__tech"
+      ],
+      "probabilities": [
+        0.816784,
+        0.183236
+      ]
+    },
+    {
+      "text": "python compiler builds software",
+      "labels": [
+        "__label__tech",
+        "__label__sports"
+      ],
+      "probabilities": [
+        0.781195,
+        0.218825
+      ]
+    }
+  ],
+  "model": {
+    "model_bin_sha256": "67d1d698e33278f24a4503b46d73c3986fbc0c7d2cca1f5c107386344bb6dba9",
+    "word_count": 40,
+    "label_count": 2,
+    "dim": 16,
+    "loss": "softmax",
+    "thread": 1,
+    "seed": 0
+  },
+  "checks": {
+    "repo_commit_matches": true,
+    "cli_route_recorded": true,
+    "python_api_route_recorded": true,
+    "toy_dataset_hashes_match": true,
+    "metrics_pass": true,
+    "predictions_semantic": true
+  }
+}

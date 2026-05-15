@@ -1,0 +1,49 @@
+task_id: sentence_transformers_similarity_minimal
+paper_title: "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks"
+repo_url: https://github.com/UKPLab/sentence-transformers
+commit: 5b27be706546f5e094e0f506d8593250e9a37109
+commit_short: 5b27be7
+paper_url: https://arxiv.org/abs/1908.10084
+license: Apache-2.0
+split: val
+modality:
+  primary: llm_nlp
+  secondary:
+    - checkpoint_loading
+    - semantic_check
+environment_challenges:
+  - checkpoint_download
+  - torch_cuda_matrix
+  - hidden_dependency
+verification:
+  type:
+    - checkpoint_loading
+    - single_sample_inference
+    - semantic_check
+  command: python verify.py --check-only --json
+  minimum_success_level: L4_cpu_deterministic_fallback
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4_fallback

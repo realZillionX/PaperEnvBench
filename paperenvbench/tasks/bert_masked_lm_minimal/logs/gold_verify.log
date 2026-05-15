@@ -1,0 +1,40 @@
+{
+  "artifact_dir": "/Users/zillionx/Desktop/Paper Reproduction/PaperEnvBench/paperenvbench/tasks/bert_masked_lm_minimal/artifacts",
+  "artifact_sha256": "f1ec569a0a24b30a911739f3229414fd1320201aab442c24fd1c64dd43ce0944",
+  "checks": {
+    "fallback_boundary_documented": true,
+    "repo_commit_matches": true,
+    "route_recorded": true,
+    "semantic_output_valid": true,
+    "tokenizer_route_recorded": true
+  },
+  "observed": {
+    "repo_commit": "eedf5716ce1268e56f0a50264a88cafad334ac61",
+    "route": {
+      "checkpoint": "uncased_L-2_H-128_A-2/bert_model.ckpt",
+      "config": "uncased_L-2_H-128_A-2/bert_config.json",
+      "entrypoint": "run_pretraining.py",
+      "model_api": "modeling.BertForPreTraining",
+      "tokenizer": "tokenization.FullTokenizer",
+      "vocab": "uncased_L-2_H-128_A-2/vocab.txt"
+    },
+    "semantic": {
+      "masked_sentence": "the capital of france is [MASK] .",
+      "tokenized_input": [
+        "[CLS]",
+        "the",
+        "capital",
+        "of",
+        "france",
+        "is",
+        "[MASK]",
+        ".",
+        "[SEP]"
+      ],
+      "top_prediction": "paris"
+    }
+  },
+  "status": "pass",
+  "success_level": "L4_cpu_deterministic_fallback",
+  "task_id": "bert_masked_lm_minimal"
+}

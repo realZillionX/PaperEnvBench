@@ -1,0 +1,12 @@
+assets:
+  - asset_id: t5_text_to_text_minimal_expected_artifact
+    type: json
+    required: true
+    cached_path: paperenvbench/tasks/t5_text_to_text_minimal/artifacts/expected_artifact.json
+    checksum: c1d77bd1c143dca4a79e3e59e250c841d23195c46a0b54474274a92664cfb9f7
+  - asset_id: t5_text_to_text_minimal_checkpoint_route
+    type: checkpoint
+    required: false
+    cached_path: paper-repro:models/t5_text_to_text_minimal/
+    source_url: t5_pretrained_model_route
+    checksum: null

@@ -380,3 +380,57 @@ assets:
     cached_path: paper-repro:runs/paperenvbench/vlm/imagebind_embedding_minimal/artifacts/expected_artifact.json
     local_artifact_path: paperenvbench/tasks/imagebind_embedding_minimal/artifacts/expected_artifact.json
     status: gold_verified
+  - asset_id: bert_masked_lm_minimal_summary
+    task_id: bert_masked_lm_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: f1ec569a0a24b30a911739f3229414fd1320201aab442c24fd1c64dd43ce0944
+    cached_path: paper-repro:runs/paperenvbench/llm/bert_masked_lm_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/bert_masked_lm_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: fasttext_text_classification_minimal_summary
+    task_id: fasttext_text_classification_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: 2fb031be5930de5901899c8bf12273f31ce2e752f68d8041f0f41e91a78d4c83
+    cached_path: paper-repro:runs/paperenvbench/llm/fasttext_text_classification_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/fasttext_text_classification_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: sentence_transformers_similarity_minimal_summary
+    task_id: sentence_transformers_similarity_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: bf50bd3a850d834648aa44332eab504abfc6985b76a0371003505cafe2191233
+    cached_path: paper-repro:runs/paperenvbench/llm/sentence_transformers_similarity_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/sentence_transformers_similarity_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: lora_adapter_minimal_summary
+    task_id: lora_adapter_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: b92afc6a968bd8e095cd1dbc9037238b019e3768d80bfe3ce5abeafea5798de9
+    cached_path: paper-repro:runs/paperenvbench/llm/lora_adapter_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/lora_adapter_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: fairseq_translation_minimal_summary
+    task_id: fairseq_translation_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: 6d3ef5c6a365577705a49b976b98f6a2f764fe6a8df7849206ce495aaaed0829
+    cached_path: paper-repro:runs/paperenvbench/llm/fairseq_translation_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/fairseq_translation_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: t5_text_to_text_minimal_summary
+    task_id: t5_text_to_text_minimal
+    type: output_artifact
+    required: true
+    source_url: null
+    checksum_sha256: c1d77bd1c143dca4a79e3e59e250c841d23195c46a0b54474274a92664cfb9f7
+    cached_path: paper-repro:runs/paperenvbench/llm/t5_text_to_text_minimal/artifacts/expected_artifact.json
+    local_artifact_path: paperenvbench/tasks/t5_text_to_text_minimal/artifacts/expected_artifact.json
+    status: gold_verified

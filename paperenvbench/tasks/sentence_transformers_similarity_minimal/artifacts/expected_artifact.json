@@ -1,0 +1,79 @@
+{
+  "task_id": "sentence_transformers_similarity_minimal",
+  "success_level": "L4_cpu_deterministic_fallback",
+  "repo": {
+    "name": "sentence-transformers",
+    "url": "https://github.com/UKPLab/sentence-transformers",
+    "commit": "5b27be706546f5e094e0f506d8593250e9a37109",
+    "commit_short": "5b27be7"
+  },
+  "route": {
+    "api": "from sentence_transformers import SentenceTransformer; model.encode(sentences); sentence_transformers.util.cos_sim(embeddings, embeddings)",
+    "repo_entrypoints": [
+      "sentence_transformers/__init__.py",
+      "sentence_transformers/sentence_transformer/model.py",
+      "sentence_transformers/util/similarity.py",
+      "sentence_transformers/util/retrieval.py"
+    ],
+    "dependency_file": "pyproject.toml",
+    "checkpoint": "sentence-transformers/paraphrase-MiniLM-L3-v2",
+    "checkpoint_boundary": "Check-only verification records the public checkpoint route and uses deterministic lexical embeddings, so hidden evaluators do not require Hub downloads.",
+    "fallback": "token-hash sentence embedding with cosine similarity, deterministic on CPU"
+  },
+  "input": {
+    "sentences": [
+      "A person plays guitar on a small stage.",
+      "Someone is playing a musical instrument for an audience.",
+      "The stock market index fell after a weak earnings report."
+    ],
+    "positive_pair": [
+      0,
+      1
+    ],
+    "negative_pair": [
+      0,
+      2
+    ]
+  },
+  "numeric": {
+    "embedding_dim": 12,
+    "similarity_matrix": [
+      [
+        1.0,
+        0.816497,
+        0.0
+      ],
+      [
+        0.816497,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "positive_similarity": 0.816497,
+    "negative_similarity": 0.0,
+    "margin": 0.816497
+  },
+  "semantic": {
+    "summary": "The musical-performance pair is substantially more similar than the unrelated stock-market sentence.",
+    "positive_pair_label": "musical performance paraphrase",
+    "negative_pair_label": "unrelated finance report",
+    "expected_ordering": "similarity(sentence 0, sentence 1) > similarity(sentence 0, sentence 2)",
+    "minimum_margin": 0.35
+  },
+  "checks": {
+    "repo_commit_pinned": true,
+    "embedding_route_recorded": true,
+    "similarity_route_recorded": true,
+    "semantic_ordering_passed": true,
+    "cpu_fallback_documented": true
+  },
+  "sha256": {
+    "route": "ab1d8f847c0e5bba7475117e7d57486e75aa5919b6a659c2735dcb28ab89bb31",
+    "semantic": "327f5ea29b7b2e6c4ec9003155cd795cf7f665ef6aa09db2314d015af277c43d"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "dependency_files": [
+    "pyproject.toml",
+    "setup.py"
+  ],
+  "entrypoints": [
+    {
+      "name": "fairseq_cli/generate.py",
+      "target": "fairseq_cli/generate.py",
+      "type": "repo_file"
+    },
+    {
+      "name": "fairseq/tasks/translation.py",
+      "target": "fairseq/tasks/translation.py",
+      "type": "repo_file"
+    },
+    {
+      "name": "fairseq/models/transformer.py",
+      "target": "fairseq/models/transformer.py",
+      "type": "repo_file"
+    },
+    {
+      "name": "examples/translation/README.md",
+      "target": "examples/translation/README.md",
+      "type": "repo_file"
+    }
+  ],
+  "license_file": "LICENSE",
+  "observed_environment": {
+    "device": "cpu",
+    "notebook": "paper-repro-ci-prep",
+    "python": "3.12",
+    "remote_cwd_alias": "paper-repro"
+  },
+  "observed_repository_files": [
+    "pyproject.toml",
+    "setup.py",
+    "fairseq_cli/generate.py",
+    "fairseq/tasks/translation.py",
+    "fairseq/models/transformer.py",
+    "examples/translation/README.md"
+  ],
+  "package_manager": "pip",
+  "repo_commit": "3d262bb25690e4eb2e7d3c1309b1e9c406ca4b99",
+  "repo_commit_short": "3d262bb",
+  "repo_name": "fairseq",
+  "repo_url": "https://github.com/facebookresearch/fairseq",
+  "task_id": "fairseq_translation_minimal",
+  "validated_outputs": {
+    "local_artifact_dir": "paperenvbench/tasks/fairseq_translation_minimal/artifacts",
+    "success_level": "L4_cpu_deterministic_fallback"
+  }
+}

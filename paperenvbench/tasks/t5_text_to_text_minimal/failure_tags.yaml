@@ -1,0 +1,8 @@
+primary_failure_tags:
+  - python_version_conflict
+  - checkpoint_download
+  - stale_readme
+  - hidden_dependency
+anti_patterns:
+  - "Treating a TensorFlow import as a completed T5 text-to-text reproduction."
+  - "Downloading large checkpoints during check-only verification instead of validating the pinned task and gin config route."

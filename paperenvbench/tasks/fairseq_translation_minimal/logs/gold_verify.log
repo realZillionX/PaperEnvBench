@@ -1,0 +1,25 @@
+{
+  "artifact_dir": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/PaperEnvBench/paperenvbench/tasks/fairseq_translation_minimal/artifacts",
+  "artifact_sha256": "6d3ef5c6a365577705a49b976b98f6a2f764fe6a8df7849206ce495aaaed0829",
+  "checks": {
+    "fallback_boundary_documented": true,
+    "generate_route_recorded": true,
+    "native_extension_boundary_documented": true,
+    "repo_commit_matches": true,
+    "translation_semantic_output_valid": true
+  },
+  "observed": {
+    "repo_commit": "3d262bb25690e4eb2e7d3c1309b1e9c406ca4b99",
+    "semantic": {
+      "generated_translation": "hello world !",
+      "normalization": "lowercase tokenized toy translation",
+      "reference_translation": "hello world !",
+      "source_language": "de",
+      "source_text": "hallo welt !",
+      "target_language": "en"
+    }
+  },
+  "status": "pass",
+  "success_level": "L4_cpu_deterministic_fallback",
+  "task_id": "fairseq_translation_minimal"
+}

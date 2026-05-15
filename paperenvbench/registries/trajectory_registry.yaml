@@ -434,3 +434,93 @@ trajectories:
     artifact_path: paperenvbench/tasks/imagebind_embedding_minimal/artifacts/
     remote_artifact_path: paper-repro:runs/paperenvbench/vlm/imagebind_embedding_minimal/artifacts/
     status: gold_verified_l4_fallback
+  - trajectory_id: gold_bert_masked_lm_minimal_cpu
+    task_id: bert_masked_lm_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - python_version_conflict
+      - checkpoint_download
+      - stale_readme
+      - hidden_dependency
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/bert_masked_lm_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/llm/bert_masked_lm_minimal/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_fasttext_text_classification_minimal_cpu
+    task_id: fasttext_text_classification_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - native_extension_build
+      - system_package_missing
+      - python_version_conflict
+      - entrypoint_ambiguity
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/fasttext_text_classification_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/llm/fasttext_text_classification_minimal/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_sentence_transformers_similarity_minimal_cpu
+    task_id: sentence_transformers_similarity_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - checkpoint_download
+      - torch_cuda_matrix
+      - hidden_dependency
+      - verification_ambiguity
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/sentence_transformers_similarity_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/llm/sentence_transformers_similarity_minimal/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_lora_adapter_minimal_cpu
+    task_id: lora_adapter_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - python_version_conflict
+      - torch_cuda_matrix
+      - hidden_dependency
+      - entrypoint_ambiguity
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/lora_adapter_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/llm/lora_adapter_minimal/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_fairseq_translation_minimal_cpu
+    task_id: fairseq_translation_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - native_extension_build
+      - torch_cuda_matrix
+      - python_version_conflict
+      - entrypoint_ambiguity
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/fairseq_translation_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/llm/fairseq_translation_minimal/artifacts/
+    status: gold_verified_l4_fallback
+  - trajectory_id: gold_t5_text_to_text_minimal_cpu
+    task_id: t5_text_to_text_minimal
+    model: human_orchestrated
+    condition: cpu_gold_construction
+    final_level: L4_fallback
+    score: null
+    failure_tags:
+      - python_version_conflict
+      - checkpoint_download
+      - stale_readme
+      - hidden_dependency
+    skill_calls: []
+    artifact_path: paperenvbench/tasks/t5_text_to_text_minimal/artifacts/
+    remote_artifact_path: paper-repro:runs/paperenvbench/llm/t5_text_to_text_minimal/artifacts/
+    status: gold_verified_l4_fallback

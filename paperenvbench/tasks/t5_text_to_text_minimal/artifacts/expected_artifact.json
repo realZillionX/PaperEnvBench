@@ -1,0 +1,51 @@
+{
+  "checks": {
+    "fallback_boundary_documented": true,
+    "repo_commit_matches": true,
+    "route_recorded": true,
+    "semantic_output_valid": true
+  },
+  "environment": {
+    "checkpoint_loaded": false,
+    "device": "cpu"
+  },
+  "evidence": {
+    "checkpoint_required_for_check_only": false,
+    "mode": "deterministic_cpu_config_semantic_fallback",
+    "pinned_files": [
+      "t5/models/mtf_model.py",
+      "t5/data/dataset_providers.py",
+      "t5/data/tasks.py",
+      "t5/models/gin/models/t5.1.1.small.gin"
+    ]
+  },
+  "numeric": {
+    "token_lengths": [
+      6,
+      2
+    ]
+  },
+  "repo": {
+    "commit": "90dcc718148715bd8e0045ca964e15dbcfba9a1d",
+    "url": "https://github.com/google-research/text-to-text-transfer-transformer"
+  },
+  "route": {
+    "api": "t5.models.MtfModel",
+    "gin_config": "t5/models/gin/models/t5.1.1.small.gin",
+    "mixture_registry": "t5.data.MixtureRegistry",
+    "package": "t5",
+    "task_registry": "t5.data.TaskRegistry"
+  },
+  "semantic": {
+    "answer": "Hallo Welt",
+    "format": "text-to-text",
+    "prompt": "translate English to German: Hello world"
+  },
+  "sha256": {
+    "route": "ffa038db9cdb3a993599c582a07052b20df8b50c825809700da7605191cc650c",
+    "semantic": "3b5eadb71d9eecd127ad3d1dde020cfe20ccb8b80932588443fbb54f760e68fe"
+  },
+  "success": true,
+  "success_level": "L4_cpu_config_semantic_fallback",
+  "task_id": "t5_text_to_text_minimal"
+}

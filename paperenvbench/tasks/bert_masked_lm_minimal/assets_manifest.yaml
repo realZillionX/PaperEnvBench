@@ -1,0 +1,13 @@
+assets:
+  - asset_id: bert_masked_lm_minimal_expected_artifact
+    type: json
+    required: true
+    cached_path: paperenvbench/tasks/bert_masked_lm_minimal/artifacts/expected_artifact.json
+    checksum: f1ec569a0a24b30a911739f3229414fd1320201aab442c24fd1c64dd43ce0944
+  - asset_id: bert_masked_lm_minimal_tiny_checkpoint_route
+    type: checkpoint
+    required: false
+    cached_path: paper-repro:models/bert_masked_lm_minimal/uncased_L-2_H-128_A-2/
+    source_url: https://storage.googleapis.com/bert_models/2020_02_20/uncased_L-2_H-128_A-2.zip
+    checksum: null
+    notes: "Check-only validation records the official BERT-Tiny route but avoids checkpoint download."

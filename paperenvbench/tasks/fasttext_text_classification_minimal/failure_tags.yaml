@@ -1,0 +1,19 @@
+failure_tags:
+  primary:
+    - native_extension_build
+    - system_package_missing
+    - entrypoint_ambiguity
+  observed:
+    - tag: native_extension_build
+      evidence: "The pinned repository builds both a C++ CLI through Makefile and Python bindings through setup.py / pybind11."
+      mitigation: "Install a C++17-capable compiler, make, Python build tooling, pybind11, and NumPy before invoking the repo entrypoints."
+    - tag: system_package_missing
+      evidence: "A minimal CPU notebook needs git, make, g++, and ca-certificates before cloning and compiling fastText."
+      mitigation: "Use apt on the CPU notebook for system packages, then keep Python packages inside a venv."
+    - tag: entrypoint_ambiguity
+      evidence: "The repository exposes both ./fasttext CLI commands and the fasttext Python API."
+      mitigation: "Gold route records CLI supervised / test / predict-prob and Python train_supervised / load_model routes."
+  non_goals:
+    - checkpoint_download
+    - torch_cuda_matrix
+    - hardware_pressure

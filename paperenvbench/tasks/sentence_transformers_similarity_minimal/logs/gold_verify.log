@@ -1,0 +1,8 @@
+task_id=sentence_transformers_similarity_minimal
+command=python verify.py --check-only --json
+status=pass
+success_level=L4_cpu_deterministic_fallback
+positive_similarity=0.816497
+negative_similarity=0.0
+margin=0.816497
+semantic_ordering=similarity(sentence 0, sentence 1) > similarity(sentence 0, sentence 2)

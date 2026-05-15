@@ -1,0 +1,5 @@
+[gold_install] repo_url=https://github.com/google-research/bert.git
+[gold_install] commit=eedf5716ce1268e56f0a50264a88cafad334ac61
+[gold_install] verified_files=requirements.txt,run_pretraining.py,modeling.py,tokenization.py,create_pretraining_data.py,extract_features.py
+[gold_install] tensorflow_boundary=repo requirements.txt states tensorflow >= 1.11.0; gold route installs tensorflow-cpu==2.16.2 for modern CPU environment and uses deterministic check-only artifact
+[gold_install] bert_masked_lm_minimal gold install route verified

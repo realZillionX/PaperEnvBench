@@ -1,0 +1,51 @@
+task_id: fasttext_text_classification_minimal
+paper_title: "Bag of Tricks for Efficient Text Classification"
+repo_url: https://github.com/facebookresearch/fastText
+commit: 1142dc4c4ecbc19cc16eee5cdd28472e689267e6
+commit_short: 1142dc4
+paper_url: https://arxiv.org/abs/1607.01759
+license: MIT
+split: dev
+modality:
+  primary: llm_nlp
+  secondary:
+    - text_classification
+    - native_cli
+environment_challenges:
+  - native_extension_build
+  - system_package_missing
+  - entrypoint_ambiguity
+verification:
+  type:
+    - cli_help
+    - training_smoke_test
+    - semantic_check
+  command: python verify.py --check-only --json
+  minimum_success_level: L4_cpu_deterministic_fallback
+hardware:
+  gpu_required: false
+  gpu_optional: false
+  min_vram_gb: 0
+platform_constraints:
+  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  package_manager:
+    - apt
+    - make
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4_fallback

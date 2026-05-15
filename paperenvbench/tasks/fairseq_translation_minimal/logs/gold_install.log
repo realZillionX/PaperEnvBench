@@ -1,0 +1,18 @@
+[remote] notebook=paper-repro-ci-prep
+[remote] cwd=/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/PaperEnvBench/paperenvbench/tasks/fairseq_translation_minimal
+[remote] python=Python 3.12.3
+[remote] git_head=3d262bb25690e4eb2e7d3c1309b1e9c406ca4b99
+[remote] bash_n=pass
+[remote] expected_files_probe
+present meta.yaml
+present taxonomy.yaml
+present failure_tags.yaml
+present assets_manifest.yaml
+present repo_snapshot.json
+present gold_install.sh
+present verify.py
+present expected_output.json
+present requirements_lock.txt
+present scoring.yaml
+present README_eval.md
+present artifacts/expected_artifact.json

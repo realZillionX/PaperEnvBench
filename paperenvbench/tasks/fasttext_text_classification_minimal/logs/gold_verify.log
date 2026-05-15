@@ -1,0 +1,21 @@
+{
+  "checks": {
+    "cli_route_recorded": true,
+    "metrics_pass": true,
+    "predictions_semantic": true,
+    "python_api_route_recorded": true,
+    "repo_commit_matches": true,
+    "toy_dataset_hashes_match": true
+  },
+  "observed": {
+    "repo_commit": "1142dc4c4ecbc19cc16eee5cdd28472e689267e6",
+    "test_metrics": {
+      "N": 2,
+      "P@1": 1.0,
+      "R@1": 1.0
+    }
+  },
+  "status": "pass",
+  "success_level": "L4_cpu_deterministic_fallback",
+  "task_id": "fasttext_text_classification_minimal"
+}

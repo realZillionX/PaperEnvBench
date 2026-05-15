@@ -1,0 +1,59 @@
+{
+  "dependency_files": [
+    "setup.py",
+    "examples/NLG/requirement.txt",
+    "examples/NLU/environment.yml"
+  ],
+  "entrypoints": [
+    {
+      "name": "loralib/__init__.py",
+      "target": "loralib/__init__.py",
+      "type": "repo_file"
+    },
+    {
+      "name": "loralib/layers.py",
+      "target": "loralib/layers.py",
+      "type": "repo_file"
+    },
+    {
+      "name": "loralib/utils.py",
+      "target": "loralib/utils.py",
+      "type": "repo_file"
+    },
+    {
+      "name": "examples/NLG/src/model.py",
+      "target": "examples/NLG/src/model.py",
+      "type": "repo_file"
+    },
+    {
+      "name": "examples/NLU/examples/text-classification/run_glue.py",
+      "target": "examples/NLU/examples/text-classification/run_glue.py",
+      "type": "repo_file"
+    }
+  ],
+  "license_file": "LICENSE.md",
+  "observed_environment": {
+    "device": "cpu",
+    "notebook": "paper-repro-ci-prep",
+    "python": "3.12",
+    "remote_cwd_alias": "paper-repro"
+  },
+  "observed_repository_files": [
+    "setup.py",
+    "loralib/__init__.py",
+    "loralib/layers.py",
+    "loralib/utils.py",
+    "examples/NLG/src/model.py",
+    "examples/NLU/examples/text-classification/run_glue.py"
+  ],
+  "package_manager": "pip",
+  "repo_commit": "c4593f060e6a368d7bb5af5273b8e42810cdef90",
+  "repo_commit_short": "c4593f0",
+  "repo_name": "LoRA",
+  "repo_url": "https://github.com/microsoft/LoRA",
+  "task_id": "lora_adapter_minimal",
+  "validated_outputs": {
+    "local_artifact_dir": "paperenvbench/tasks/lora_adapter_minimal/artifacts",
+    "success_level": "L4_cpu_deterministic_fallback"
+  }
+}

@@ -1,0 +1,50 @@
+task_id: t5_text_to_text_minimal
+paper_title: "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer"
+repo_url: https://github.com/google-research/text-to-text-transfer-transformer
+commit: 90dcc718148715bd8e0045ca964e15dbcfba9a1d
+commit_short: 90dcc71
+paper_url: https://arxiv.org/abs/1910.10683
+license: Apache-2.0
+split: test
+modality:
+  primary: llm_nlp
+  secondary:
+    - text_generation
+    - checkpoint_loading
+environment_challenges:
+  - python_version_conflict
+  - checkpoint_download
+  - stale_readme
+  - hidden_dependency
+verification:
+  type:
+    - checkpoint_loading
+    - single_sample_inference
+    - semantic_check
+  command: python verify.py --check-only --json
+  minimum_success_level: L4_cpu_config_semantic_fallback
+hardware:
+  gpu_required: false
+  gpu_optional: true
+  min_vram_gb: 0
+platform_constraints:
+  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  package_manager:
+    - venv
+    - pip
+  forbidden:
+    - docker build
+    - docker run
+    - docker compose
+visibility:
+  agent_visible:
+    - repo_url
+    - commit
+    - task_prompt
+    - repo_files
+    - public_readme
+  hidden:
+    - gold_install.sh
+    - expected_output.json
+    - hidden_verify.py
+status: gold_verified_l4_fallback

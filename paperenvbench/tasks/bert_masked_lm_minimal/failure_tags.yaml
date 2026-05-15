@@ -1,0 +1,9 @@
+primary_failure_tags:
+  - python_version_conflict
+  - checkpoint_download
+  - stale_readme
+  - hidden_dependency
+anti_patterns:
+  - "Treating modern transformers import success as equivalent to validating the pinned google-research/bert TensorFlow entrypoint."
+  - "Downloading full BERT checkpoints during check-only validation instead of recording a CPU-safe deterministic fallback boundary."
+  - "Skipping tokenizer evidence for masked-LM tasks, which hides WordPiece and vocab compatibility failures."

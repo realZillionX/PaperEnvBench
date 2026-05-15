@@ -1,0 +1,69 @@
+{
+  "checks": {
+    "fallback_boundary_documented": true,
+    "generate_route_recorded": true,
+    "native_extension_boundary_documented": true,
+    "repo_commit_matches": true,
+    "translation_semantic_output_valid": true
+  },
+  "environment": {
+    "checkpoint_loaded": false,
+    "checkpoint_required_for_full_inference": true,
+    "device": "cpu",
+    "native_extension_compiled_for_check_only": false
+  },
+  "evidence": {
+    "mode": "deterministic_cpu_fallback",
+    "pinned_files": [
+      "pyproject.toml",
+      "setup.py",
+      "fairseq_cli/generate.py",
+      "fairseq/tasks/translation.py",
+      "fairseq/models/transformer.py",
+      "examples/translation/README.md"
+    ],
+    "translation_pipeline": [
+      "toy parallel text",
+      "fairseq-preprocess",
+      "fairseq-generate",
+      "semantic exact-match normalization"
+    ]
+  },
+  "numeric": {
+    "token_count_source": [
+      3
+    ],
+    "token_count_target": [
+      3
+    ],
+    "toy_bleu": [
+      100.0
+    ]
+  },
+  "repo": {
+    "commit": "3d262bb25690e4eb2e7d3c1309b1e9c406ca4b99",
+    "url": "https://github.com/facebookresearch/fairseq"
+  },
+  "route": {
+    "api": "fairseq_cli.generate.main",
+    "cli": "fairseq-generate data-bin/iwslt14.tokenized.de-en --path checkpoint.pt --beam 5 --remove-bpe",
+    "dataset": "IWSLT14 German-English toy sentence pair",
+    "model": "fairseq.models.transformer.TransformerModel",
+    "task": "fairseq.tasks.translation.TranslationTask"
+  },
+  "semantic": {
+    "generated_translation": "hello world !",
+    "normalization": "lowercase tokenized toy translation",
+    "reference_translation": "hello world !",
+    "source_language": "de",
+    "source_text": "hallo welt !",
+    "target_language": "en"
+  },
+  "sha256": {
+    "route": "60b191cfa304c40c6571a4eb69b3945470ab5c636eade8e1d6212ecf6cefd08b",
+    "semantic": "5614590fa5742ae94de6755fb1650adc9ec8d60b6b509caed39b427b6eed3911"
+  },
+  "success": true,
+  "success_level": "L4_cpu_deterministic_fallback",
+  "task_id": "fairseq_translation_minimal"
+}

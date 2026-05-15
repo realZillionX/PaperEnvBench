@@ -1,0 +1,25 @@
+{
+  "task_id": "fasttext_text_classification_minimal",
+  "success": true,
+  "success_level": "L4_cpu_deterministic_fallback",
+  "expected": {
+    "test_metrics": {
+      "N": 2,
+      "P@1": 1.0,
+      "R@1": 1.0
+    },
+    "predictions": [
+      {
+        "text": "football team wins match",
+        "top_label": "__label__sports",
+        "top_probability_min": 0.75
+      },
+      {
+        "text": "python compiler builds software",
+        "top_label": "__label__tech",
+        "top_probability_min": 0.75
+      }
+    ]
+  },
+  "artifact": "artifacts/expected_artifact.json"
+}

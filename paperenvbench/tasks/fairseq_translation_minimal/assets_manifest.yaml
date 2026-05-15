@@ -1,0 +1,12 @@
+assets:
+  - asset_id: fairseq_translation_minimal_expected_artifact
+    type: json
+    required: true
+    cached_path: paperenvbench/tasks/fairseq_translation_minimal/artifacts/expected_artifact.json
+    checksum: 6d3ef5c6a365577705a49b976b98f6a2f764fe6a8df7849206ce495aaaed0829
+  - asset_id: fairseq_translation_minimal_toy_parallel_text
+    type: text
+    required: false
+    cached_path: paper-repro:data/fairseq_translation_minimal/toy.de-en/
+    checksum: null
+    notes: "Check-only validation records the deterministic toy translation route; a full agent attempt may materialize the toy source and reference files before fairseq-preprocess."

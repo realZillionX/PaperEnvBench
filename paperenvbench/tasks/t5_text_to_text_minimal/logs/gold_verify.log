@@ -1,0 +1,20 @@
+{
+  "artifact_sha256": "c1d77bd1c143dca4a79e3e59e250c841d23195c46a0b54474274a92664cfb9f7",
+  "checks": {
+    "fallback_boundary_documented": true,
+    "repo_commit_matches": true,
+    "route_recorded": true,
+    "semantic_output_valid": true
+  },
+  "observed": {
+    "repo_commit": "90dcc718148715bd8e0045ca964e15dbcfba9a1d",
+    "semantic": {
+      "answer": "Hallo Welt",
+      "format": "text-to-text",
+      "prompt": "translate English to German: Hello world"
+    }
+  },
+  "status": "pass",
+  "success_level": "L4_cpu_config_semantic_fallback",
+  "task_id": "t5_text_to_text_minimal"
+}

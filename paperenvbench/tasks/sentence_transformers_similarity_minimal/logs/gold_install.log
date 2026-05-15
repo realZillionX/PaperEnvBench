@@ -1,0 +1,8 @@
+task_id=sentence_transformers_similarity_minimal
+repo_url=https://github.com/UKPLab/sentence-transformers.git
+repo_commit=5b27be706546f5e094e0f506d8593250e9a37109
+observed_repo_files=pyproject.toml,sentence_transformers/__init__.py,sentence_transformers/sentence_transformer/model.py,sentence_transformers/util/similarity.py,sentence_transformers/util/retrieval.py
+install_route=git clone -> git checkout pinned commit -> python3 -m venv -> pip install -e repo -> SentenceTransformer checkpoint inference
+checkpoint_route=sentence-transformers/paraphrase-MiniLM-L3-v2
+check_only_boundary=hidden verification does not download checkpoint; it validates the recorded route and deterministic semantic artifact
+bash_syntax=pass

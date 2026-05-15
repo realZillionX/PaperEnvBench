@@ -1,0 +1,9 @@
+primary_failure_tags:
+  - checkpoint_download
+  - torch_cuda_matrix
+  - entrypoint_ambiguity
+  - hardware_pressure
+anti_patterns:
+  - "Treating loralib import success as sufficient without proving low-rank adapter math or trainable-parameter filtering."
+  - "Running full NLU/NLG finetuning or large checkpoint downloads for check-only validation instead of using a deterministic adapter artifact."
+  - "Saving a full model state dict when the LoRA route requires lora_state_dict adapter-only checkpoint semantics."

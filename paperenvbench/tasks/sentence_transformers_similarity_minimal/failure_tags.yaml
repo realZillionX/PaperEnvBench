@@ -1,0 +1,8 @@
+primary_failure_tags:
+  - checkpoint_download
+  - torch_cuda_matrix
+  - hidden_dependency
+anti_patterns:
+  - "Treating `import sentence_transformers` as success without exercising `SentenceTransformer.encode` and cosine-similarity routing."
+  - "Downloading a Hub checkpoint during hidden check-only verification instead of using cached assets or the documented deterministic CPU fallback."
+  - "Reporting arbitrary vector numbers without a semantic ordering check over controlled sentence pairs."

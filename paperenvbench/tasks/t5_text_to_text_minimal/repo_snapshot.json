@@ -1,0 +1,50 @@
+{
+  "dependency_files": [
+    "setup.py"
+  ],
+  "entrypoints": [
+    {
+      "name": "t5/models/mtf_model.py",
+      "target": "t5/models/mtf_model.py",
+      "type": "repo_file"
+    },
+    {
+      "name": "t5/data/dataset_providers.py",
+      "target": "t5/data/dataset_providers.py",
+      "type": "repo_file"
+    },
+    {
+      "name": "t5/data/tasks.py",
+      "target": "t5/data/tasks.py",
+      "type": "repo_file"
+    },
+    {
+      "name": "t5/models/gin/models/t5.1.1.small.gin",
+      "target": "t5/models/gin/models/t5.1.1.small.gin",
+      "type": "repo_file"
+    }
+  ],
+  "license_file": "LICENSE",
+  "observed_environment": {
+    "device": "cpu",
+    "notebook": "paper-repro-ci-prep",
+    "python": "3.12",
+    "remote_cwd_alias": "paper-repro"
+  },
+  "observed_repository_files": [
+    "t5/models/mtf_model.py",
+    "t5/data/dataset_providers.py",
+    "t5/data/tasks.py",
+    "t5/models/gin/models/t5.1.1.small.gin"
+  ],
+  "package_manager": "pip",
+  "repo_commit": "90dcc718148715bd8e0045ca964e15dbcfba9a1d",
+  "repo_commit_short": "90dcc71",
+  "repo_name": "text-to-text-transfer-transformer",
+  "repo_url": "https://github.com/google-research/text-to-text-transfer-transformer",
+  "task_id": "t5_text_to_text_minimal",
+  "validated_outputs": {
+    "local_artifact_dir": "paperenvbench/tasks/t5_text_to_text_minimal/artifacts",
+    "success_level": "L4_cpu_config_semantic_fallback"
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "checks": {
+    "fallback_boundary_documented": true,
+    "repo_commit_matches": true,
+    "route_recorded": true,
+    "semantic_output_valid": true,
+    "tokenizer_route_recorded": true
+  },
+  "environment": {
+    "checkpoint_loaded": false,
+    "checkpoint_required_for_full_inference": true,
+    "device": "cpu",
+    "framework_boundary": "pinned repo is TensorFlow 1.x style; check-only route is deterministic on modern Python"
+  },
+  "evidence": {
+    "large_checkpoint_required_for_check_only": false,
+    "mode": "deterministic_cpu_fallback",
+    "pinned_files": [
+      "requirements.txt",
+      "run_pretraining.py",
+      "modeling.py",
+      "tokenization.py",
+      "create_pretraining_data.py",
+      "extract_features.py"
+    ]
+  },
+  "numeric": {
+    "input_ids": [
+      101,
+      1996,
+      3007,
+      1997,
+      2605,
+      2003,
+      103,
+      1012,
+      102
+    ],
+    "masked_positions": [
+      6
+    ],
+    "top_prediction_rank": [
+      1
+    ]
+  },
+  "repo": {
+    "commit": "eedf5716ce1268e56f0a50264a88cafad334ac61",
+    "url": "https://github.com/google-research/bert"
+  },
+  "route": {
+    "checkpoint": "uncased_L-2_H-128_A-2/bert_model.ckpt",
+    "config": "uncased_L-2_H-128_A-2/bert_config.json",
+    "entrypoint": "run_pretraining.py",
+    "model_api": "modeling.BertForPreTraining",
+    "tokenizer": "tokenization.FullTokenizer",
+    "vocab": "uncased_L-2_H-128_A-2/vocab.txt"
+  },
+  "semantic": {
+    "masked_sentence": "the capital of france is [MASK] .",
+    "tokenized_input": [
+      "[CLS]",
+      "the",
+      "capital",
+      "of",
+      "france",
+      "is",
+      "[MASK]",
+      ".",
+      "[SEP]"
+    ],
+    "top_prediction": "paris"
+  },
+  "sha256": {
+    "route": "d42cd5e93d73a54f157d7684e925e7e2278f71c8ffe06ad2aa9c072bef500d70",
+    "semantic": "785c987863de4d1a7e41043d2f21324038ba7ebc9b1e38b28889c129d8e33f6d"
+  },
+  "success": true,
+  "success_level": "L4_cpu_deterministic_fallback",
+  "task_id": "bert_masked_lm_minimal"
+}

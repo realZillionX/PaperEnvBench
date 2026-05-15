@@ -1,0 +1,19 @@
+taxonomy:
+  modality:
+    primary: llm_nlp
+    secondary:
+      - checkpoint_loading
+      - semantic_check
+  environment_challenges:
+    - checkpoint_download
+    - torch_cuda_matrix
+    - hidden_dependency
+  verification_type:
+    - checkpoint_loading
+    - single_sample_inference
+    - semantic_check
+  expected_skill_routes:
+    - global_reproducibility_safety
+    - checkpoint_validation
+    - torch_cuda_matrix_solver
+    - minimal_entrypoint_discovery
