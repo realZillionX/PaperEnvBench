@@ -62,10 +62,12 @@ agent 输出包括：
 
 - `repo_profile.json`：仓库画像和 taxonomy hints。
 - `install_plan.json`：安装、修复和验证计划。
+- environment file 或 lock 说明：记录 Python 版本、核心依赖、CPU/GPU 需求、系统包和入口命令假设。
 - `attempt.log`：执行日志。
 - `artifacts/`：最小复现 artifact。
 - `trajectory.json`：agent 行为轨迹。
 - `failure_report.json`：失败归因。
+- human intervention notes：区分 agent 自动完成、人工提示、人工修复和外部协助。
 - `score.json`：evaluator 输出。
 
 评测侧保留：
@@ -209,6 +211,7 @@ python3 verify.py --check-only --json
 attempt/
   repo_profile.json
   install_plan.json
+  requirements_lock.txt
   failure_report.json
   attempt.log
   artifacts/
@@ -319,6 +322,8 @@ PaperEnvBench 面向受控 agent 评测，必须保持以下边界：
 - Secrets 只能通过临时环境变量传入。
 - Docker 可以作为 README 信息来源，但最终 benchmark solution 默认应走 conda / venv / pip / shell 路线，除非任务显式允许。
 - Algorithm patch 必须与 environment compatibility patch 区分记录。
+- 复现过程应主要由 agent 通过受控工具完成，人工提示、人工修复和外部协助必须写入 trajectory 或 failure report。
+- 破坏性命令、批量删除、系统级安装和大规模下载必须可解释、可审计，并受平台约束限制。
 
 ## 与 ICOPD 的关系
 
