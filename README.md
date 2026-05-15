@@ -141,9 +141,32 @@ PaperEnvBench 同时报告层级结果和连续分数。
 | L3 | 最小入口 | help、demo、toy command 或 checkpoint loading 可运行 |
 | L4 | 语义 artifact | 单样本 inference 或输出 artifact 通过 verifier |
 
-连续分数用于部分分和误差分析。总分记为 $S$，默认计算方式为 $S=0.10s_{\mathrm{repo}}+0.20s_{\mathrm{install}}+0.20s_{\mathrm{import}}+0.25s_{\mathrm{entrypoint}}+0.20s_{\mathrm{semantic}}+0.05s_{\mathrm{safety}}$。
+连续分数用于部分分和误差分析，默认总分为：
 
-`Level` 使用累计门控，而不是用总分阈值直接切分。令 $s_0=s_{\mathrm{repo}}$、$s_1=s_{\mathrm{install}}$、$s_2=s_{\mathrm{import}}$、$s_3=s_{\mathrm{entrypoint}}$、$s_4=s_{\mathrm{semantic}}$；每个任务可以在 `scoring.yaml` 中定义阈值 $\alpha_0,\ldots,\alpha_4$。对层级 $L_\ell$，累计 gate 为 $G_\ell(\tau,\xi)=\prod_{r=0}^{\ell}\mathbf{1}[s_r(\tau,\xi)\ge\alpha_r]$，最终层级为 $\mathrm{Level}(\tau,\xi)=\max\{L_\ell\mid G_\ell(\tau,\xi)=1\}$。
+$S=0.10s_{\mathrm{repo}}+0.20s_{\mathrm{install}}+0.20s_{\mathrm{import}}+0.25s_{\mathrm{entrypoint}}+0.20s_{\mathrm{semantic}}+0.05s_{\mathrm{safety}}$
+
+其中各分项对应如下：
+
+| 分项 | 含义 |
+| --- | --- |
+| $s_{\mathrm{repo}}$ | 仓库理解 |
+| $s_{\mathrm{install}}$ | 环境安装 |
+| $s_{\mathrm{import}}$ | 核心导入 |
+| $s_{\mathrm{entrypoint}}$ | 最小入口 |
+| $s_{\mathrm{semantic}}$ | 语义 artifact 验证 |
+| $s_{\mathrm{safety}}$ | 安全性 |
+
+`Level` 使用累计门控，而不是用总分阈值直接切分。每个任务可以在 `scoring.yaml` 中定义阈值：
+
+$\alpha_0,\ldots,\alpha_4$
+
+令 $s_0$ 到 $s_4$ 分别对应 repo、install、import、entrypoint 和 semantic。对层级 $L_\ell$，累计 gate 定义为：
+
+$G_\ell(\tau,\xi)=\prod_{r=0}^{\ell}\mathbf{1}[s_r(\tau,\xi)\ge\alpha_r]$
+
+最终层级定义为：
+
+$\mathrm{Level}(\tau,\xi)=\max\{L_\ell\mid G_\ell(\tau,\xi)=1\}$
 
 因此，L4 必须先通过 L0 到 L3，再通过 semantic artifact 检查。Safety 不提升 `Level`，但严重违规可以限制最终等级。
 
