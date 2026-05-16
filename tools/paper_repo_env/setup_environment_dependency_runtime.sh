@@ -80,6 +80,7 @@ fi
 if [[ "$SKIP_PROBE" -eq 0 ]]; then
   "$PYTHON_BIN" tools/paper_repo_env/run_environment_dependency_suite.py \
     --profile native_python_build_runtime \
+    --profile gpu_occupancy_guard \
     --profile torch_vision_audio_cuda_matrix \
     --json \
     --strict \

@@ -1,0 +1,198 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PaperEnvBench attempt environment dependency report",
+  "type": "object",
+  "required": [
+    "runtime",
+    "python_packages",
+    "dependency_profiles",
+    "route_boundary",
+    "verification",
+    "validation_experiments"
+  ],
+  "properties": {
+    "runtime": {
+      "type": "object",
+      "description": "Observed runtime evidence such as python, platform, nvidia-smi, torch.cuda, CUDA wheel tags, GPU memory and system build tools."
+    },
+    "dependency_profiles": {
+      "type": "array",
+      "description": "Environment dependency slices relevant to the task.",
+      "items": {
+        "type": "object",
+        "required": [
+          "profile_id",
+          "status"
+        ],
+        "properties": {
+          "profile_id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "blocked",
+              "partial",
+              "not_applicable"
+            ]
+          },
+          "evidence": {
+            "type": [
+              "object",
+              "array",
+              "string"
+            ]
+          },
+          "blockers": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "python_packages": {
+      "type": [
+        "array",
+        "object"
+      ],
+      "description": "Installed package evidence such as torch, torchvision, torchaudio, framework packages and task-specific dependency pins."
+    },
+    "system_packages": {
+      "type": [
+        "array",
+        "object"
+      ],
+      "description": "System package and binary probes such as ffmpeg, libsndfile, libGL, gcc, g++, cmake, ninja, nvcc and pkg-config."
+    },
+    "native_extensions": {
+      "type": [
+        "array",
+        "object",
+        "null"
+      ],
+      "description": "Native C++ / CUDA extension build or import evidence."
+    },
+    "checkpoints_and_assets": {
+      "type": [
+        "array",
+        "object",
+        "null"
+      ],
+      "description": "Checkpoint, dataset, asset, cache, license and checksum boundary evidence."
+    },
+    "route_boundary": {
+      "type": "object",
+      "description": "Full repository route and any reduced route used for the attempt.",
+      "required": [
+        "full_repository_route",
+        "attempt_route"
+      ],
+      "properties": {
+        "full_repository_route": {
+          "type": [
+            "array",
+            "string"
+          ]
+        },
+        "attempt_route": {
+          "type": [
+            "array",
+            "string"
+          ]
+        },
+        "reduced_route_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "checkpoint_boundary": {
+          "type": [
+            "object",
+            "array",
+            "string",
+            "null"
+          ]
+        },
+        "native_extension_boundary": {
+          "type": [
+            "object",
+            "array",
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "verification": {
+      "type": "object",
+      "description": "Commands or probe results proving the runtime and route evidence.",
+      "properties": {
+        "commands": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "probe_results": {
+          "type": [
+            "array",
+            "object"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "validation_experiments": {
+      "type": [
+        "array",
+        "object"
+      ],
+      "description": "Small but representative paper-key experiment checks, including command, status, output artifacts and metrics.",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "command",
+          "status"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "command": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "blocked",
+              "partial",
+              "failed"
+            ]
+          },
+          "metrics": {
+            "type": [
+              "object",
+              "array"
+            ]
+          },
+          "artifacts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

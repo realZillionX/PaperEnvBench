@@ -5,11 +5,14 @@ import hashlib
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
+import tempfile
+from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterator
 
 import yaml
 
@@ -24,6 +27,20 @@ DEFAULT_WEIGHTS = {
 }
 
 STAGE_ORDER = ["repo", "install", "import", "entrypoint", "semantic"]
+ENVIRONMENT_REPORT_CANDIDATES = [
+    "environment_dependency_report.json",
+    "artifacts/environment_dependency_report.json",
+]
+AGENT_HIDDEN_ARTIFACT_KEYS = {"success_level", "expected_success_level"}
+ENVIRONMENT_TRIGGER_TAGS = {"torch_cuda_matrix", "hardware_pressure", "native_extension_build"}
+ENVIRONMENT_REPORT_SECTIONS = {
+    "runtime": ["runtime", "runtime_probe", "hardware", "accelerator"],
+    "python_packages": ["python_packages", "packages", "package_versions", "requirements", "dependency_lock"],
+    "dependency_profiles": ["dependency_profiles", "profiles", "environment_profiles"],
+    "route_boundary": ["route_boundary", "dependency_boundary", "full_dependency_boundary", "repository_route", "chosen_route"],
+    "verification": ["verification", "verification_commands", "probe_results", "probes"],
+    "validation_experiments": ["validation_experiments", "experiment_smokes", "key_experiments", "metrics", "semantic_metrics"],
+}
 UNSAFE_PATTERNS = [
     (re.compile(r"\brm\s+-rf\s+/(?:\s|$)"), "rm_rf_root"),
     (re.compile(r"\bsudo\s+rm\s+-rf\b"), "sudo_rm_rf"),
@@ -197,17 +214,132 @@ def parse_json_stdout(stdout: str) -> Any:
     return None
 
 
+def recursive_success_level(value: Any) -> str | None:
+    if isinstance(value, dict):
+        for key in AGENT_HIDDEN_ARTIFACT_KEYS:
+            candidate = value.get(key)
+            if isinstance(candidate, str) and candidate:
+                return candidate
+        for child in value.values():
+            candidate = recursive_success_level(child)
+            if candidate:
+                return candidate
+    elif isinstance(value, list):
+        for child in value:
+            candidate = recursive_success_level(child)
+            if candidate:
+                return candidate
+    return None
+
+
+def infer_legacy_success_level(task_path: Path) -> str | None:
+    expected_path = task_path / "expected_output.json"
+    if expected_path.exists():
+        try:
+            candidate = recursive_success_level(load_json(expected_path))
+        except Exception:
+            candidate = None
+        if candidate:
+            return candidate
+
+    verify_path = task_path / "verify.py"
+    if not verify_path.exists():
+        return None
+    script_text = verify_path.read_text(encoding="utf-8", errors="replace")
+    for pattern in [
+        r"\b(?:SUCCESS_LEVEL|EXPECTED_SUCCESS_LEVEL)\s*=\s*['\"]([^'\"]+)['\"]",
+        r"payload\.get\(\s*['\"]success_level['\"]\s*\)\s*!=\s*['\"]([^'\"]+)['\"]",
+        r"payload\.get\(\s*['\"]success_level['\"]\s*\)\s*==\s*['\"]([^'\"]+)['\"]",
+    ]:
+        match = re.search(pattern, script_text)
+        if match:
+            return match.group(1)
+    return None
+
+
+def stage_item(source: Path, destination: Path, copy_directory: bool) -> None:
+    if copy_directory:
+        if source.is_dir():
+            shutil.copytree(source, destination, symlinks=True)
+        elif source.is_file():
+            shutil.copy2(source, destination)
+        return
+    try:
+        os.symlink(source, destination, target_is_directory=source.is_dir())
+    except OSError:
+        if source.is_dir():
+            shutil.copytree(source, destination, symlinks=True)
+        else:
+            shutil.copy2(source, destination)
+
+
+def inject_legacy_success_level(staging_dir: Path, level: str) -> int:
+    patched = 0
+    candidate_roots = [staging_dir / name for name in ("artifacts", "artifact", "outputs") if (staging_dir / name).exists()]
+    candidate_files = []
+    if not candidate_roots and staging_dir.is_dir():
+        candidate_files.extend(staging_dir.glob("*.json"))
+    seen: set[Path] = set()
+    for root in candidate_roots:
+        for path in sorted(root.rglob("*.json")):
+            candidate_files.append(path)
+    for path in sorted(candidate_files):
+        resolved = path.resolve()
+        if resolved in seen:
+            continue
+        seen.add(resolved)
+        try:
+            payload = load_json(path)
+        except Exception:
+            continue
+        if not isinstance(payload, dict):
+            continue
+        changed = False
+        for key in AGENT_HIDDEN_ARTIFACT_KEYS:
+            if key not in payload:
+                payload[key] = level
+                changed = True
+        if changed:
+            write_json(path, payload)
+            patched += 1
+    return patched
+
+
+@contextmanager
+def prepared_verifier_attempt(root: Path, task_id: str, attempt_dir: Path) -> Iterator[tuple[Path, dict[str, Any]]]:
+    task_path = task_dir(root, task_id)
+    level = infer_legacy_success_level(task_path)
+    if not level:
+        yield attempt_dir, {"enabled": False}
+        return
+
+    with tempfile.TemporaryDirectory(prefix="paperenvbench_verify_") as tmp:
+        staging_dir = Path(tmp) / "attempt"
+        staging_dir.mkdir(parents=True, exist_ok=True)
+        if attempt_dir.exists():
+            for item in attempt_dir.iterdir():
+                stage_item(item, staging_dir / item.name, copy_directory=item.name in {"artifacts", "artifact", "outputs"})
+        patched_json_files = inject_legacy_success_level(staging_dir, level)
+        yield staging_dir, {
+            "enabled": True,
+            "injected_keys": sorted(AGENT_HIDDEN_ARTIFACT_KEYS),
+            "injected_value": level,
+            "patched_json_files": patched_json_files,
+        }
+
+
 def run_verifier(root: Path, task_id: str, attempt_dir: Path, check_only: bool) -> dict[str, Any]:
     task_path = task_dir(root, task_id)
-    cmd = verifier_command(task_path, attempt_dir, check_only)
-    completed = subprocess.run(
-        cmd,
-        cwd=task_path,
-        text=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        check=False,
-    )
+    with prepared_verifier_attempt(root, task_id, attempt_dir) as (verifier_attempt_dir, legacy_artifact_adapter):
+        cmd = verifier_command(task_path, verifier_attempt_dir, check_only)
+        completed = subprocess.run(
+            cmd,
+            cwd=task_path,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            check=False,
+        )
     parsed = parse_json_stdout(completed.stdout)
     return {
         "command": cmd,
@@ -216,6 +348,7 @@ def run_verifier(root: Path, task_id: str, attempt_dir: Path, check_only: bool) 
         "stdout": completed.stdout,
         "stderr": completed.stderr,
         "json": parsed,
+        "legacy_artifact_adapter": legacy_artifact_adapter,
     }
 
 
@@ -321,6 +454,176 @@ def has_install_evidence(attempt_dir: Path) -> bool:
     return False
 
 
+def environment_registry(root: Path) -> dict[str, Any]:
+    path = root / "paperenvbench" / "registries" / "environment_dependency_registry.yaml"
+    if not path.exists():
+        return {}
+    try:
+        return load_yaml(path) or {}
+    except Exception:
+        return {}
+
+
+def task_environment_profiles(root: Path, task_id: str) -> list[str]:
+    payload = environment_registry(root)
+    refs: set[str] = set()
+    for binding in payload.get("task_bindings", []) or []:
+        if task_id in {str(item) for item in binding.get("task_ids", []) or []}:
+            refs.update(str(item) for item in binding.get("profile_refs", []) or [])
+    return sorted(refs)
+
+
+def find_environment_report(attempt_dir: Path) -> Path | None:
+    for rel in ENVIRONMENT_REPORT_CANDIDATES:
+        path = attempt_dir / rel
+        if path.exists() and path.is_file():
+            return path
+    return None
+
+
+def parse_environment_report(path: Path) -> tuple[dict[str, Any] | None, str | None]:
+    try:
+        payload = load_json(path)
+    except Exception as exc:
+        return None, repr(exc)
+    if not isinstance(payload, dict):
+        return None, "environment dependency report must be a JSON object"
+    return payload, None
+
+
+def has_mapping_or_list(payload: dict[str, Any], keys: list[str]) -> bool:
+    for key in keys:
+        value = payload.get(key)
+        if isinstance(value, dict) and value:
+            return True
+        if isinstance(value, list) and value:
+            return True
+    return False
+
+
+def section_present(payload: dict[str, Any], section: str) -> bool:
+    return has_mapping_or_list(payload, ENVIRONMENT_REPORT_SECTIONS[section])
+
+
+def section_value(payload: dict[str, Any], section: str) -> Any:
+    for key in ENVIRONMENT_REPORT_SECTIONS[section]:
+        value = payload.get(key)
+        if isinstance(value, (dict, list)) and value:
+            return value
+    return None
+
+
+def validation_experiment_count(payload: dict[str, Any]) -> int:
+    value = section_value(payload, "validation_experiments")
+    if isinstance(value, list):
+        return len(value)
+    if isinstance(value, dict):
+        experiments = value.get("experiments") or value.get("commands") or value.get("metrics")
+        if isinstance(experiments, list):
+            return len(experiments)
+        return 1
+    return 0
+
+
+def list_profile_ids(value: Any) -> set[str]:
+    profile_ids: set[str] = set()
+    if isinstance(value, list):
+        for item in value:
+            if isinstance(item, dict):
+                for key in ("profile_id", "id", "name"):
+                    if item.get(key):
+                        profile_ids.add(str(item[key]))
+            elif isinstance(item, str):
+                profile_ids.add(item)
+    elif isinstance(value, dict):
+        profile_ids.update(str(key) for key in value)
+        for item in value.values():
+            if isinstance(item, dict):
+                for key in ("profile_id", "id", "name"):
+                    if item.get(key):
+                        profile_ids.add(str(item[key]))
+    return profile_ids
+
+
+def evaluate_environment_dependency_contract(root: Path, task_id: str, attempt_dir: Path) -> dict[str, Any]:
+    profile_refs = task_environment_profiles(root, task_id)
+    failure_tags = set(read_task_failure_tags(root, task_id))
+    required = bool(profile_refs) and bool(failure_tags & ENVIRONMENT_TRIGGER_TAGS or profile_refs)
+    result: dict[str, Any] = {
+        "required": required,
+        "profile_refs": profile_refs,
+        "failure_tags": sorted(failure_tags),
+        "report_candidates": ENVIRONMENT_REPORT_CANDIDATES,
+        "passed": True,
+        "status": "not_required",
+        "errors": [],
+    }
+    if not required:
+        return result
+
+    report_path = find_environment_report(attempt_dir)
+    if report_path is None:
+        result.update(
+            {
+                "passed": False,
+                "status": "missing_report",
+                "errors": ["environment_dependency_report.json is required for this task"],
+            }
+        )
+        return result
+
+    payload, error = parse_environment_report(report_path)
+    result["report_path"] = str(report_path)
+    if payload is None:
+        result.update({"passed": False, "status": "invalid_report", "errors": [str(error)]})
+        return result
+
+    errors: list[str] = []
+    for section in ("runtime", "python_packages", "dependency_profiles", "route_boundary", "verification", "validation_experiments"):
+        if not section_present(payload, section):
+            errors.append(f"report must include {section} evidence")
+
+    reported_profiles = list_profile_ids(section_value(payload, "dependency_profiles"))
+    if profile_refs and section_present(payload, "dependency_profiles") and not reported_profiles:
+        errors.append("report dependency_profiles must name profile_id values")
+    missing_profiles = sorted(set(profile_refs) - reported_profiles)
+    if missing_profiles and reported_profiles:
+        errors.append(f"report dependency_profiles missing bound profiles: {missing_profiles}")
+
+    report_text = json.dumps(payload, ensure_ascii=False, sort_keys=True).lower()
+    if any("cuda" in ref or "gpu" in ref or "torch" in ref for ref in profile_refs):
+        if not re.search(r"cuda|gpu|nvidia|torch", report_text):
+            errors.append("report does not mention CUDA/GPU/torch evidence for a CUDA-bound task")
+    if any("native" in ref or "openmmlab" in ref or "detectron" in ref or "geometry" in ref for ref in profile_refs):
+        if not re.search(r"native|extension|cudaextension|mmcv|compile|build|nvcc|cmake|ninja", report_text):
+            errors.append("report does not mention native extension/build evidence for a native-bound task")
+    if {"system_package_missing", "native_extension_build"} & failure_tags:
+        if not re.search(r"system_packages|apt|ffmpeg|libsndfile|libgl|glib|cmake|ninja|gcc|g\+\+|pkg-config", report_text):
+            errors.append("report must include system package or build-tool evidence for this task")
+    if {"checkpoint_download", "dataset_asset_missing", "api_or_license_gate"} & failure_tags:
+        if not re.search(r"checkpoint|weight|asset|dataset|license|token|cache|sha256|size", report_text):
+            errors.append("report must include checkpoint / asset / license / cache boundary evidence")
+    if validation_experiment_count(payload) < 1:
+        errors.append("report must include at least one key validation experiment or metric smoke")
+
+    result.update(
+        {
+            "passed": not errors,
+            "status": "pass" if not errors else "incomplete_report",
+            "errors": errors,
+            "summary": {
+                "top_level_keys": sorted(str(key) for key in payload.keys()),
+                "mentions_cuda_or_gpu": bool(re.search(r"cuda|gpu|nvidia", report_text)),
+                "mentions_native_build": bool(re.search(r"native|extension|cudaextension|nvcc|cmake|ninja", report_text)),
+                "mentions_checkpoint": "checkpoint" in report_text or "weight" in report_text,
+                "reported_profile_ids": sorted(reported_profiles),
+                "validation_experiment_count": validation_experiment_count(payload),
+            },
+        }
+    )
+    return result
+
+
 def partial_scores(attempt_dir: Path, verifier_passed: bool, safety_score: float) -> dict[str, float]:
     scores = {name: 0.0 for name in STAGE_ORDER}
     if verifier_passed:
@@ -370,7 +673,9 @@ def score_attempt(root: Path, task_id: str, attempt_dir: Path, check_only: bool 
     verifier_payload = verifier.get("json") if isinstance(verifier.get("json"), dict) else {}
     verifier_passed = verifier["returncode"] == 0 and verifier_payload.get("status") in {None, "pass", "generated"}
     safety = scan_safety(attempt_dir)
-    scores = partial_scores(attempt_dir, verifier_passed, safety["score"])
+    environment_dependency = evaluate_environment_dependency_contract(root, task_id, attempt_dir)
+    semantic_passed = verifier_passed and bool(environment_dependency.get("passed"))
+    scores = partial_scores(attempt_dir, semantic_passed, safety["score"])
     weights = load_scoring_weights(task_path)
     for name in weights:
         if name not in scores:
@@ -378,7 +683,9 @@ def score_attempt(root: Path, task_id: str, attempt_dir: Path, check_only: bool 
     score = sum(scores.get(name, 0.0) * weight for name, weight in weights.items())
 
     verifier_level = normalize_level(verifier_payload.get("success_level"))
-    level = verifier_level if verifier_passed and verifier_level else level_from_scores(scores)
+    level = verifier_level if semantic_passed and verifier_level else level_from_scores(scores)
+    if verifier_passed and not semantic_passed and environment_dependency.get("required"):
+        level = "L3_environment_dependency_incomplete"
     if safety["violations"] and level not in {"below_L0", "L0"}:
         level = "L0_safety_capped"
 
@@ -397,11 +704,13 @@ def score_attempt(root: Path, task_id: str, attempt_dir: Path, check_only: bool 
             "returncode": verifier["returncode"],
             "parsed": verifier_payload,
             "stderr_tail": verifier["stderr"][-4000:],
+            "legacy_artifact_adapter": verifier.get("legacy_artifact_adapter", {"enabled": False}),
         },
         "dimensions": scores,
         "weights": weights,
         "score": round(score, 6),
         "level": level,
+        "environment_dependency": environment_dependency,
         "safety": safety,
     }
 

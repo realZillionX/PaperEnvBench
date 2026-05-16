@@ -23,6 +23,7 @@ PaperEnvBench 关注一个具体、真实、经常被低估的问题：给定一
 | 环境依赖 registry | `paperenvbench/registries/environment_dependency_registry.yaml` |
 | 环境依赖 suite | `tools/paper_repo_env/run_environment_dependency_suite.py` |
 | 环境依赖绑定 | 由 `validate_task_package.py` 对触发任务强制校验 |
+| GPU 占用 / 可见性证明 | `tools/paper_repo_env/gpu_occupancy_guard.py`，默认要求 `nvidia-smi` 采样达到 15%+ GPU utilization |
 
 任务模态分布：
 
@@ -93,12 +94,22 @@ paperenvbench/registries/environment_dependency_registry.yaml
 
 该 registry 覆盖 Python 包版本矩阵、系统库、加速器 runtime、native extension、checkpoint / license gate 和最小 smoke 证据。典型切片包括 `torch` / `torchvision` / `torchaudio` wheel 矩阵、OpenMMLab native ops、Detectron2 / GroundingDINO extension、diffusion / VLM checkpoint route、PyG / DGL graph runtime、3DGS / OpenPCDet / Nerfstudio geometry extension，以及文本 native build surface。
 
+对绑定了 CUDA、native extension、accelerator 或 hardware-pressure profile 的任务，agent attempt 现在必须额外产出 `environment_dependency_report.json`。该报告需要记录 `runtime`、`python_packages`、`dependency_profiles`、`route_boundary`、`verification` 和 `validation_experiments`，说明真实论文仓库路线需要哪些 Python / 系统包 / GPU / CUDA / native / checkpoint 依赖、当前运行时实际探测到了什么、如果使用轻量路线则具体 blocker 是什么，并给出至少一个小而代表性的关键实验验证或 metric smoke。evaluator 在这类任务上会把缺失或不完整的环境依赖报告限制在 `L3_environment_dependency_incomplete`，避免把“artifact 形状对了但环境边界被丢掉”的结果记为 L4。
+
+报告 schema 记录在：
+
+```text
+docs/environment_dependency_report_schema.json
+```
+
 环境依赖 suite 负责根据 registry 运行 probe，并生成结构化 JSON：
 
 ```bash
 python3 tools/paper_repo_env/run_environment_dependency_suite.py --profile accelerator_runtime_base --json
+python3 tools/paper_repo_env/gpu_occupancy_guard.py --min-utilization 15 --duration-seconds 60 --json --strict
 python3 tools/paper_repo_env/run_environment_dependency_suite.py --task mmdetection_fasterrcnn_minimal --json
 python3 tools/paper_repo_env/run_environment_dependency_suite.py --group geometry_runtime --json
+python3 tools/paper_repo_env/validate_environment_dependency_report.py --task-id mmdetection_fasterrcnn_minimal --attempt-dir <attempt_dir> --strict
 ```
 
 每个 probe 都应返回 `pass`、`blocked` 或 `error`，并把 blocker 写成可聚合字段，而不是只留下不可复查的终端日志。任务 evaluator 继续检查 agent attempt artifact；环境依赖 suite 用来验证任务真实路线所需的运行时能力，并为失败归因提供证据。
@@ -194,6 +205,8 @@ $G_\ell(\tau,\xi)=\prod_{r=0}^{\ell}\mathbf{1}[s_r(\tau,\xi)\ge\alpha_r]$
 $\mathrm{Level}(\tau,\xi)=\max\{L_\ell\mid G_\ell(\tau,\xi)=1\}$
 
 因此，L4 必须先通过 L0 到 L3，再通过 semantic artifact 检查。Safety 不提升 `Level`，但严重违规可以限制最终等级。
+
+Agent-facing task prompts do not require the model to write scoring-layer fields such as `success_level` or `expected_success_level` into artifacts. Some legacy task verifiers still contain those historical fields；the evaluator adapts them only inside a temporary scoring copy and does not mutate the submitted attempt. The agent contract is the reproducible environment, route evidence, artifact schema and validation metrics, while level assignment remains evaluator-side logic.
 
 ## 快速开始
 

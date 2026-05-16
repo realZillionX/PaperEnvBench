@@ -1,9 +1,34 @@
-version: 0.2.0
+version: 0.3.0
 updated_at: "2026-05-17"
 purpose: >
   Register native environment dependency profiles for PaperEnvBench tasks. Profiles cover
   Python package matrices, system libraries, accelerator runtimes, native extensions,
   checkpoint gates, and minimal dependency probes used before or alongside task verifiers.
+policy:
+  l4_environment_contract: >
+    For tasks bound to CUDA, native extension, accelerator, or hardware-pressure profiles,
+    accepted attempts must preserve the full dependency boundary in a structured
+    environment_dependency_report.json. A lightweight artifact route may still be valid
+    when checkpoints, licenses, memory, or native builds block a full route, but the attempt
+    must record the GPU/CUDA/native/checkpoint evidence and the concrete reason for any
+    reduced route.
+  gpu_utilization_floor_percent: 15
+  environment_report_required_sections:
+    - runtime
+    - python_packages
+    - dependency_profiles
+    - route_boundary
+    - verification
+    - validation_experiments
+  dependency_axes:
+    - python_packages
+    - system_packages
+    - accelerator_runtime
+    - native_extensions
+    - checkpoints_and_assets
+    - license_or_api_gates
+    - cache_paths
+    - key_experiment_smokes
 
 runtime_targets:
   internet_accelerator_4090_cuda128:
@@ -22,6 +47,12 @@ probe_profiles:
   accelerator_runtime_base:
     description: "Runtime discovery plus CUDA-enabled torch tensor smoke."
     runtime_target: internet_accelerator_4090_cuda128
+    evidence_axes:
+      - accelerator_runtime
+      - python_packages
+    key_validation_experiments:
+      - "nvidia-smi reports a visible NVIDIA GPU, driver and memory."
+      - "torch.cuda.is_available() is true and a CUDA tensor matmul completes."
     command:
       - "{python}"
       - tools/paper_repo_env/accelerator_runtime_probe.py
@@ -32,11 +63,44 @@ probe_profiles:
       - torch.cuda_available
       - torch.device_name
 
+  gpu_occupancy_guard:
+    description: "Bounded CUDA matmul workload proving that the active runtime can raise visible GPU utilization above 15%."
+    runtime_target: internet_accelerator_4090_cuda128
+    evidence_axes:
+      - accelerator_runtime
+      - key_experiment_smokes
+    key_validation_experiments:
+      - "Run bounded CUDA matmul and verify nvidia-smi utilization reaches at least 15%."
+    depends_on:
+      - accelerator_runtime_base
+    command:
+      - "{python}"
+      - tools/paper_repo_env/gpu_occupancy_guard.py
+      - "--json"
+      - "--strict"
+      - "--min-utilization"
+      - "15"
+      - "--duration-seconds"
+      - "20"
+      - "--warmup-seconds"
+      - "3"
+    expected:
+      - summary.max_utilization_gpu_percent>=15
+      - preflight.cuda_available
+      - status=pass
+
   torch_vision_audio_cuda_matrix:
     description: "CUDA-aware torch / torchvision / torchaudio wheel matrix."
     runtime_target: internet_accelerator_4090_cuda128
+    evidence_axes:
+      - python_packages
+      - accelerator_runtime
+      - key_experiment_smokes
+    key_validation_experiments:
+      - "Record torch, torchvision and torchaudio versions from one compatible wheel row."
+      - "Run a CUDA tensor smoke and import torchvision / torchaudio successfully."
     depends_on:
-      - accelerator_runtime_base
+      - gpu_occupancy_guard
     command:
       - "{python}"
       - tools/paper_repo_env/accelerator_runtime_probe.py
@@ -55,6 +119,11 @@ probe_profiles:
   native_python_build_runtime:
     description: "Compiler, Python headers, CMake, Ninja and build-tool surfaces for native Python extensions."
     runtime_target: internet_accelerator_4090_cuda128
+    evidence_axes:
+      - system_packages
+      - native_extensions
+    key_validation_experiments:
+      - "Probe Python.h, extension suffix, gcc or clang, g++, cmake, ninja, make and pkg-config."
     command:
       - "{python}"
       - tools/paper_repo_env/probes/native_build_probe.py
@@ -66,6 +135,14 @@ probe_profiles:
   openmmlab_native_ops:
     description: "MMCV / MMEngine / OpenMMLab native op imports and structured blockers."
     runtime_target: internet_accelerator_4090_cuda128
+    evidence_axes:
+      - python_packages
+      - native_extensions
+      - accelerator_runtime
+      - key_experiment_smokes
+    key_validation_experiments:
+      - "Import mmcv._ext and mmcv.ops symbols such as nms or RoIAlign when available."
+      - "Run an OpenMMLab config or native-op smoke and record blockers for mmcv-lite or missing CUDA ops."
     depends_on:
       - native_python_build_runtime
       - torch_vision_audio_cuda_matrix
@@ -77,6 +154,15 @@ probe_profiles:
   detectron_grounding_native_ops:
     description: "Detectron2 and GroundingDINO C++ / CUDA extension surfaces."
     runtime_target: internet_accelerator_4090_cuda128
+    evidence_axes:
+      - python_packages
+      - native_extensions
+      - accelerator_runtime
+      - checkpoints_and_assets
+      - key_experiment_smokes
+    key_validation_experiments:
+      - "Probe detectron2._C or groundingdino._C native extension imports."
+      - "Run nms / ROIAlign / phrase-grounding related smoke when the extension and checkpoint boundary permit it."
     depends_on:
       - native_python_build_runtime
       - torch_vision_audio_cuda_matrix
@@ -88,6 +174,14 @@ probe_profiles:
   video_native_runtime:
     description: "Video model runtime dependencies, optional native surfaces, and tensor smoke."
     runtime_target: internet_accelerator_4090_cuda128
+    evidence_axes:
+      - python_packages
+      - system_packages
+      - accelerator_runtime
+      - key_experiment_smokes
+    key_validation_experiments:
+      - "Probe decord or PyAV plus ffmpeg-facing video decode dependencies."
+      - "Run a tiny frame-stack tensor or video classification forward-path smoke."
     depends_on:
       - torch_vision_audio_cuda_matrix
     command:
@@ -103,6 +197,16 @@ probe_profiles:
   diffusion_vlm_runtime:
     description: "Diffusion and vision-language dependency surfaces: diffusers, safetensors, accelerate, xformers and checkpoint gates."
     runtime_target: internet_accelerator_4090_cuda128
+    evidence_axes:
+      - python_packages
+      - accelerator_runtime
+      - checkpoints_and_assets
+      - license_or_api_gates
+      - cache_paths
+      - key_experiment_smokes
+    key_validation_experiments:
+      - "Probe diffusers / transformers / safetensors / accelerate / xformers availability as relevant."
+      - "Record checkpoint, license, cache and VRAM boundary, then run a tiny generation or VLM single-sample smoke."
     depends_on:
       - torch_vision_audio_cuda_matrix
     command:
@@ -113,6 +217,14 @@ probe_profiles:
   graph_torch_cuda_runtime:
     description: "PyG / DGL extension wheel matrix and tiny graph dependency surfaces."
     runtime_target: internet_accelerator_4090_cuda128
+    evidence_axes:
+      - python_packages
+      - native_extensions
+      - accelerator_runtime
+      - key_experiment_smokes
+    key_validation_experiments:
+      - "Probe PyG optional extension wheels or DGL CUDA backend compatibility."
+      - "Run a tiny GCN / GraphSAGE / OGB evaluator smoke and record device and metric evidence."
     depends_on:
       - native_python_build_runtime
       - torch_vision_audio_cuda_matrix
@@ -124,6 +236,15 @@ probe_profiles:
   geometry_cuda_runtime:
     description: "3D geometry native extension surfaces: rasterizers, KNN kernels, point-cloud CUDA ops and NeRF-related packages."
     runtime_target: internet_accelerator_4090_cuda128
+    evidence_axes:
+      - python_packages
+      - native_extensions
+      - accelerator_runtime
+      - checkpoints_and_assets
+      - key_experiment_smokes
+    key_validation_experiments:
+      - "Probe CUDA rasterizer, KNN, OpenPCDet, Nerfstudio, gsplat, tiny-cuda-nn or Open3D surfaces as task-relevant."
+      - "Run a tiny point cloud, voxel, ray-marching, rasterization or scene artifact smoke."
     depends_on:
       - native_python_build_runtime
       - torch_vision_audio_cuda_matrix
@@ -135,6 +256,13 @@ probe_profiles:
   text_native_runtime:
     description: "Native extension build surface for text packages with C++ extension paths."
     runtime_target: internet_accelerator_4090_cuda128
+    evidence_axes:
+      - system_packages
+      - native_extensions
+      - python_packages
+      - key_experiment_smokes
+    key_validation_experiments:
+      - "Probe compiler/build tools and run a tiny tokenizer/text-classification native binary or extension smoke."
     depends_on:
       - native_python_build_runtime
     command:

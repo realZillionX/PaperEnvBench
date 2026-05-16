@@ -126,10 +126,34 @@ def validate_environment_dependency_registry(tasks: list[dict[str, Any]], enviro
     runtime_targets = environment_registry.get("runtime_targets", {})
     probe_profiles = environment_registry.get("probe_profiles", {})
     task_bindings = environment_registry.get("task_bindings", [])
+    policy = environment_registry.get("policy", {})
     if not runtime_targets:
         errors.append("environment_dependency_registry.yaml: missing runtime_targets")
     if not probe_profiles:
         errors.append("environment_dependency_registry.yaml: missing probe_profiles")
+    if not isinstance(policy, dict) or not policy.get("l4_environment_contract"):
+        errors.append("environment_dependency_registry.yaml: missing policy.l4_environment_contract")
+    if int(policy.get("gpu_utilization_floor_percent", 0) or 0) < 15:
+        errors.append("environment_dependency_registry.yaml: gpu_utilization_floor_percent must be at least 15")
+    required_report_sections = set(str(item) for item in policy.get("environment_report_required_sections", []) or [])
+    expected_report_sections = {"runtime", "python_packages", "dependency_profiles", "route_boundary", "verification", "validation_experiments"}
+    missing_report_sections = sorted(expected_report_sections - required_report_sections)
+    if missing_report_sections:
+        errors.append(f"environment_dependency_registry.yaml: missing environment_report_required_sections {missing_report_sections}")
+    dependency_axes = set(str(item) for item in policy.get("dependency_axes", []) or [])
+    expected_axes = {"python_packages", "system_packages", "accelerator_runtime", "native_extensions", "checkpoints_and_assets", "key_experiment_smokes"}
+    missing_axes = sorted(expected_axes - dependency_axes)
+    if missing_axes:
+        errors.append(f"environment_dependency_registry.yaml: missing dependency_axes {missing_axes}")
+    if "gpu_occupancy_guard" not in probe_profiles:
+        errors.append("environment_dependency_registry.yaml: missing gpu_occupancy_guard profile")
+    else:
+        command_text = " ".join(str(item) for item in probe_profiles["gpu_occupancy_guard"].get("command", []))
+        if "gpu_occupancy_guard.py" not in command_text or "--min-utilization" not in command_text:
+            errors.append("environment_dependency_registry.yaml: gpu_occupancy_guard command must run gpu_occupancy_guard.py with --min-utilization")
+    torch_profile = probe_profiles.get("torch_vision_audio_cuda_matrix", {})
+    if "gpu_occupancy_guard" not in [str(item) for item in torch_profile.get("depends_on", []) or []]:
+        errors.append("environment_dependency_registry.yaml: torch_vision_audio_cuda_matrix must depend on gpu_occupancy_guard")
     if not isinstance(task_bindings, list) or not task_bindings:
         errors.append("environment_dependency_registry.yaml: missing task_bindings")
         return errors
@@ -169,6 +193,12 @@ def validate_environment_dependency_registry(tasks: list[dict[str, Any]], enviro
         target = profile.get("runtime_target")
         if target and target not in runtime_targets:
             errors.append(f"environment_dependency_registry.yaml:{profile_id}: unknown runtime_target {target}")
+        evidence_axes = profile.get("evidence_axes")
+        if not isinstance(evidence_axes, list) or not evidence_axes:
+            errors.append(f"environment_dependency_registry.yaml:{profile_id}: evidence_axes must be a nonempty list")
+        experiments = profile.get("key_validation_experiments")
+        if not isinstance(experiments, list) or not experiments:
+            errors.append(f"environment_dependency_registry.yaml:{profile_id}: key_validation_experiments must be a nonempty list")
         command = profile.get("command")
         if not isinstance(command, list) or not command:
             errors.append(f"environment_dependency_registry.yaml:{profile_id}: command must be a nonempty list")
