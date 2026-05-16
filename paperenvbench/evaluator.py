@@ -38,6 +38,14 @@ ENVIRONMENT_REPORT_SECTIONS = {
     "python_packages": ["python_packages", "packages", "package_versions", "requirements", "dependency_lock"],
     "dependency_profiles": ["dependency_profiles", "profiles", "environment_profiles"],
     "route_boundary": ["route_boundary", "dependency_boundary", "full_dependency_boundary", "repository_route", "chosen_route"],
+    "dependency_inventory": ["dependency_inventory", "full_dependency_inventory", "declared_dependencies", "dependency_plan"],
+    "heavyweight_dependency_decisions": [
+        "heavyweight_dependency_decisions",
+        "heavy_dependencies",
+        "large_dependency_decisions",
+        "blocked_dependencies",
+        "deferred_dependencies",
+    ],
     "verification": ["verification", "verification_commands", "probe_results", "probes"],
     "validation_experiments": ["validation_experiments", "experiment_smokes", "key_experiments", "metrics", "semantic_metrics"],
 }
@@ -525,6 +533,44 @@ def validation_experiment_count(payload: dict[str, Any]) -> int:
     return 0
 
 
+def structured_item_count(value: Any) -> int:
+    if isinstance(value, list):
+        return len(value)
+    if isinstance(value, dict):
+        total = 0
+        for child in value.values():
+            if isinstance(child, list):
+                total += len(child)
+            elif isinstance(child, dict):
+                total += max(1, structured_item_count(child))
+            elif child:
+                total += 1
+        return max(1, total) if value else 0
+    return 0
+
+
+def contains_decision_status(value: Any) -> bool:
+    allowed = {
+        "installed",
+        "probed",
+        "blocked",
+        "deferred_with_evidence",
+        "not_required_by_visible_route",
+        "not_applicable",
+        "partial",
+        "pass",
+    }
+    if isinstance(value, dict):
+        for key in ("status", "decision"):
+            candidate = value.get(key)
+            if isinstance(candidate, str) and candidate in allowed:
+                return True
+        return any(contains_decision_status(child) for child in value.values())
+    if isinstance(value, list):
+        return any(contains_decision_status(child) for child in value)
+    return False
+
+
 def list_profile_ids(value: Any) -> set[str]:
     profile_ids: set[str] = set()
     if isinstance(value, list):
@@ -579,7 +625,17 @@ def evaluate_environment_dependency_contract(root: Path, task_id: str, attempt_d
         return result
 
     errors: list[str] = []
-    for section in ("runtime", "python_packages", "dependency_profiles", "route_boundary", "verification", "validation_experiments"):
+    required_sections = (
+        "runtime",
+        "python_packages",
+        "dependency_profiles",
+        "route_boundary",
+        "dependency_inventory",
+        "heavyweight_dependency_decisions",
+        "verification",
+        "validation_experiments",
+    )
+    for section in required_sections:
         if not section_present(payload, section):
             errors.append(f"report must include {section} evidence")
 
@@ -591,6 +647,17 @@ def evaluate_environment_dependency_contract(root: Path, task_id: str, attempt_d
         errors.append(f"report dependency_profiles missing bound profiles: {missing_profiles}")
 
     report_text = json.dumps(payload, ensure_ascii=False, sort_keys=True).lower()
+    dependency_inventory = section_value(payload, "dependency_inventory")
+    heavyweight_decisions = section_value(payload, "heavyweight_dependency_decisions")
+    if structured_item_count(dependency_inventory) < 1:
+        errors.append("report dependency_inventory must enumerate repository dependencies, including large or blocked ones")
+    if structured_item_count(heavyweight_decisions) < 1:
+        errors.append("report heavyweight_dependency_decisions must record large/gated/native/GPU dependency decisions")
+    if heavyweight_decisions is not None and not contains_decision_status(heavyweight_decisions):
+        errors.append("report heavyweight_dependency_decisions must include decision/status values such as installed, probed, blocked or deferred_with_evidence")
+    if re.search(r"large|multi-gb|too large|heavy|gated|license|checkpoint|dataset|native|cuda|gpu", report_text):
+        if not re.search(r"installed|probed|blocked|deferred_with_evidence|cache|sha256|size|license|memory|build log|compile", report_text):
+            errors.append("report mentions heavy dependencies but lacks concrete install/probe/blocker evidence")
     if any("cuda" in ref or "gpu" in ref or "torch" in ref for ref in profile_refs):
         if not re.search(r"cuda|gpu|nvidia|torch", report_text):
             errors.append("report does not mention CUDA/GPU/torch evidence for a CUDA-bound task")
@@ -617,6 +684,8 @@ def evaluate_environment_dependency_contract(root: Path, task_id: str, attempt_d
                 "mentions_native_build": bool(re.search(r"native|extension|cudaextension|nvcc|cmake|ninja", report_text)),
                 "mentions_checkpoint": "checkpoint" in report_text or "weight" in report_text,
                 "reported_profile_ids": sorted(reported_profiles),
+                "dependency_inventory_count": structured_item_count(dependency_inventory),
+                "heavyweight_dependency_decision_count": structured_item_count(heavyweight_decisions),
                 "validation_experiment_count": validation_experiment_count(payload),
             },
         }

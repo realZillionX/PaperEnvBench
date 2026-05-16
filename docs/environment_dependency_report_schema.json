@@ -7,6 +7,8 @@
     "python_packages",
     "dependency_profiles",
     "route_boundary",
+    "dependency_inventory",
+    "heavyweight_dependency_decisions",
     "verification",
     "validation_experiments"
   ],
@@ -128,6 +130,100 @@
         }
       },
       "additionalProperties": true
+    },
+    "dependency_inventory": {
+      "type": [
+        "array",
+        "object"
+      ],
+      "description": "Complete task dependency inventory discovered from repository files and documentation. Include Python packages, system packages, CUDA or accelerator stack, native extensions, checkpoints, datasets, simulator/rendering dependencies, cache paths and license/API gates even when the final bounded route cannot install or execute all of them.",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "kind",
+          "status"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "installed",
+              "probed",
+              "blocked",
+              "deferred_with_evidence",
+              "not_required_by_visible_route",
+              "not_applicable"
+            ]
+          },
+          "evidence": {
+            "type": [
+              "object",
+              "array",
+              "string"
+            ]
+          },
+          "blocker": {
+            "type": [
+              "object",
+              "array",
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "heavyweight_dependency_decisions": {
+      "type": [
+        "array",
+        "object"
+      ],
+      "description": "Decision log for large, slow, gated or hardware-sensitive dependencies. Do not omit multi-GB checkpoints, datasets, CUDA/native builds or simulator stacks merely because the bounded validation route is smaller.",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "decision",
+          "evidence"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "decision": {
+            "type": "string",
+            "enum": [
+              "installed",
+              "probed",
+              "blocked",
+              "deferred_with_evidence",
+              "not_required_by_visible_route"
+            ]
+          },
+          "evidence": {
+            "type": [
+              "object",
+              "array",
+              "string"
+            ]
+          },
+          "reason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
     },
     "verification": {
       "type": "object",

@@ -136,12 +136,31 @@ def validate_environment_dependency_registry(tasks: list[dict[str, Any]], enviro
     if int(policy.get("gpu_utilization_floor_percent", 0) or 0) < 15:
         errors.append("environment_dependency_registry.yaml: gpu_utilization_floor_percent must be at least 15")
     required_report_sections = set(str(item) for item in policy.get("environment_report_required_sections", []) or [])
-    expected_report_sections = {"runtime", "python_packages", "dependency_profiles", "route_boundary", "verification", "validation_experiments"}
+    expected_report_sections = {
+        "runtime",
+        "python_packages",
+        "dependency_profiles",
+        "route_boundary",
+        "dependency_inventory",
+        "heavyweight_dependency_decisions",
+        "verification",
+        "validation_experiments",
+    }
     missing_report_sections = sorted(expected_report_sections - required_report_sections)
     if missing_report_sections:
         errors.append(f"environment_dependency_registry.yaml: missing environment_report_required_sections {missing_report_sections}")
     dependency_axes = set(str(item) for item in policy.get("dependency_axes", []) or [])
-    expected_axes = {"python_packages", "system_packages", "accelerator_runtime", "native_extensions", "checkpoints_and_assets", "key_experiment_smokes"}
+    expected_axes = {
+        "python_packages",
+        "system_packages",
+        "accelerator_runtime",
+        "native_extensions",
+        "checkpoints_and_assets",
+        "full_dependency_inventory",
+        "heavyweight_dependency_decisions",
+        "blocked_dependency_evidence",
+        "key_experiment_smokes",
+    }
     missing_axes = sorted(expected_axes - dependency_axes)
     if missing_axes:
         errors.append(f"environment_dependency_registry.yaml: missing dependency_axes {missing_axes}")
@@ -208,6 +227,9 @@ def validate_environment_dependency_registry(tasks: list[dict[str, Any]], enviro
             if unknown_deps:
                 errors.append(f"environment_dependency_registry.yaml:{profile_id}: unknown depends_on {unknown_deps}")
 
+    missing_all = sorted(task_ids - covered)
+    if missing_all:
+        errors.append(f"environment_dependency_registry.yaml: missing dependency bindings for all-task coverage {missing_all}")
     missing = sorted(required_bound_tasks - covered)
     if missing:
         errors.append(f"environment_dependency_registry.yaml: missing dependency bindings for {missing}")

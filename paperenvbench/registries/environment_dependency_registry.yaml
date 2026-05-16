@@ -1,4 +1,4 @@
-version: 0.3.0
+version: 0.4.0
 updated_at: "2026-05-17"
 purpose: >
   Register native environment dependency profiles for PaperEnvBench tasks. Profiles cover
@@ -6,18 +6,22 @@ purpose: >
   checkpoint gates, and minimal dependency probes used before or alongside task verifiers.
 policy:
   l4_environment_contract: >
-    For tasks bound to CUDA, native extension, accelerator, or hardware-pressure profiles,
-    accepted attempts must preserve the full dependency boundary in a structured
-    environment_dependency_report.json. A lightweight artifact route may still be valid
-    when checkpoints, licenses, memory, or native builds block a full route, but the attempt
-    must record the GPU/CUDA/native/checkpoint evidence and the concrete reason for any
-    reduced route.
+    Every accepted attempt must preserve the full dependency boundary in a structured
+    environment_dependency_report.json. Large checkpoints, CUDA wheels, native extensions,
+    datasets, system libraries, simulators, rendering stacks, license gates, and API gates
+    must be explicitly included in the dependency inventory. A lightweight artifact route
+    may still be valid when checkpoints, licenses, memory, native builds, datasets, or
+    runtime limits block a full route, but the attempt must record what was installed,
+    what was probed, what was blocked, and the concrete evidence for any reduced route.
+    Do not omit a dependency merely because it is large or inconvenient.
   gpu_utilization_floor_percent: 15
   environment_report_required_sections:
     - runtime
     - python_packages
     - dependency_profiles
     - route_boundary
+    - dependency_inventory
+    - heavyweight_dependency_decisions
     - verification
     - validation_experiments
   dependency_axes:
@@ -28,6 +32,9 @@ policy:
     - checkpoints_and_assets
     - license_or_api_gates
     - cache_paths
+    - full_dependency_inventory
+    - heavyweight_dependency_decisions
+    - blocked_dependency_evidence
     - key_experiment_smokes
 
 runtime_targets:
@@ -270,6 +277,29 @@ probe_profiles:
       - tools/paper_repo_env/probes/native_build_probe.py
       - "--json"
 
+  rl_simulation_runtime:
+    description: "RL and simulator dependency surfaces: Gym / Gymnasium, MuJoCo or display backends, PyTorch policy stacks and rollout metric smokes."
+    runtime_target: internet_accelerator_4090_cuda128
+    evidence_axes:
+      - python_packages
+      - system_packages
+      - accelerator_runtime
+      - checkpoints_and_assets
+      - key_experiment_smokes
+    key_validation_experiments:
+      - "Probe Gym or Gymnasium, rendering/display blockers, MuJoCo or simulator gates when task-relevant."
+      - "Run a short deterministic rollout or one-step policy/training smoke and record reward, episode length or loss metrics."
+    depends_on:
+      - torch_vision_audio_cuda_matrix
+    command:
+      - "{python}"
+      - tools/paper_repo_env/accelerator_runtime_probe.py
+      - "--json"
+      - "--module"
+      - gym
+      - "--module"
+      - gymnasium
+
 task_bindings:
   - group: audio_torch_runtime
     task_ids:
@@ -335,9 +365,11 @@ task_bindings:
 
   - group: llm_nlp_torch_runtime
     task_ids:
+      - bert_masked_lm_minimal
       - sentence_transformers_similarity_minimal
       - lora_adapter_minimal
       - fairseq_translation_minimal
+      - t5_text_to_text_minimal
     profile_refs:
       - torch_vision_audio_cuda_matrix
 
@@ -362,15 +394,18 @@ task_bindings:
       - pyg_gcn_minimal
       - dgl_graphsage_minimal
       - ogb_nodeprop_minimal
+      - recbole_sequential_minimal
     profile_refs:
       - graph_torch_cuda_runtime
 
   - group: rl_runtime
     task_ids:
+      - cleanrl_cartpole_minimal
+      - gym_cartpole_minimal
       - stable_baselines3_cartpole_minimal
       - sac_ae_pixel_control_minimal
     profile_refs:
-      - torch_vision_audio_cuda_matrix
+      - rl_simulation_runtime
 
   - group: geometry_runtime
     task_ids:
