@@ -52,6 +52,31 @@ def write_json(path: Path, payload: Any) -> None:
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
+def file_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def git_commit(root: Path) -> str | None:
+    try:
+        completed = subprocess.run(
+            ["git", "-C", str(root), "rev-parse", "HEAD"],
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+            check=False,
+            timeout=10,
+        )
+    except Exception:
+        return None
+    if completed.returncode != 0:
+        return None
+    return completed.stdout.strip() or None
+
+
 def repo_root_from_arg(root: Path) -> Path:
     root = root.resolve()
     if (root / "paperenvbench" / "registries" / "task_registry.yaml").exists():
@@ -349,6 +374,10 @@ def score_attempt(root: Path, task_id: str, attempt_dir: Path, check_only: bool 
         "generated_at": utc_now(),
         "task_id": task_id,
         "attempt_dir": str(attempt_dir.resolve()),
+        "evaluator_metadata": {
+            "paperenvbench_git_commit": git_commit(root),
+            "evaluator_file_sha256": file_sha256(Path(__file__).resolve()),
+        },
         "verifier": {
             "command": verifier["command"],
             "cwd": verifier["cwd"],
