@@ -61,7 +61,20 @@ def file_sha256(path: Path) -> str:
 
 
 def git_commit(root: Path) -> str | None:
+    root = root.resolve()
+    if not (root / ".git").exists():
+        return None
     try:
+        top_level = subprocess.run(
+            ["git", "-C", str(root), "rev-parse", "--show-toplevel"],
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+            check=False,
+            timeout=10,
+        )
+        if top_level.returncode != 0 or Path(top_level.stdout.strip()).resolve() != root:
+            return None
         completed = subprocess.run(
             ["git", "-C", str(root), "rev-parse", "HEAD"],
             text=True,
