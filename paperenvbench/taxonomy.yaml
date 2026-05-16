@@ -55,6 +55,19 @@ verification_entry_axis:
   - metric_smoke_test
   - training_smoke_test
   - semantic_check
+environment_dependency_axis:
+  package_matrix:
+    description: "The task depends on a compatible package and wheel matrix across Python, framework, and optional extension versions."
+  system_library:
+    description: "The task depends on external system libraries, codecs, compilers, headers, or command-line tools."
+  native_extension:
+    description: "The task depends on native C++ / CUDA / Rust / Fortran extension imports or builds."
+  accelerator_runtime:
+    description: "The task depends on an accelerator-visible runtime and tensor smoke evidence."
+  checkpoint_or_license_gate:
+    description: "The task depends on checkpoint availability, accepted licenses, model cache state, or runtime token injection."
+  runtime_memory_pressure:
+    description: "The task can fail because the minimal route exceeds available memory or practical runtime limits."
 skill_route_axis:
   L0:
     - global_reproducibility_safety

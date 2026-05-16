@@ -1,0 +1,254 @@
+version: 0.2.0
+updated_at: "2026-05-17"
+purpose: >
+  Register native environment dependency profiles for PaperEnvBench tasks. Profiles cover
+  Python package matrices, system libraries, accelerator runtimes, native extensions,
+  checkpoint gates, and minimal dependency probes used before or alongside task verifiers.
+
+runtime_targets:
+  internet_accelerator_4090_cuda128:
+    workspace: "可上网GPU资源"
+    notebook: paperenvbench-4
+    project: "CI-情境智能"
+    compute_group: "4090-cuda12.8-2"
+    accelerator: "NVIDIA GeForce RTX 4090"
+    accelerator_memory_gb: 48
+    driver_observed: "570.124.06"
+    cuda_observed: "12.8"
+    python: "3.12"
+    status: active_probe_target
+
+probe_profiles:
+  accelerator_runtime_base:
+    description: "Runtime discovery plus CUDA-enabled torch tensor smoke."
+    runtime_target: internet_accelerator_4090_cuda128
+    command:
+      - "{python}"
+      - tools/paper_repo_env/accelerator_runtime_probe.py
+      - "--json"
+      - "--strict"
+    expected:
+      - nvidia_smi.gpus
+      - torch.cuda_available
+      - torch.device_name
+
+  torch_vision_audio_cuda_matrix:
+    description: "CUDA-aware torch / torchvision / torchaudio wheel matrix."
+    runtime_target: internet_accelerator_4090_cuda128
+    depends_on:
+      - accelerator_runtime_base
+    command:
+      - "{python}"
+      - tools/paper_repo_env/accelerator_runtime_probe.py
+      - "--json"
+      - "--strict"
+      - "--module"
+      - torchvision
+      - "--module"
+      - torchaudio
+    expected:
+      - torch.version
+      - torch.cuda_compiled
+      - torchvision.version
+      - torchaudio.version
+
+  native_python_build_runtime:
+    description: "Compiler, Python headers, CMake, Ninja and build-tool surfaces for native Python extensions."
+    runtime_target: internet_accelerator_4090_cuda128
+    command:
+      - "{python}"
+      - tools/paper_repo_env/probes/native_build_probe.py
+      - "--json"
+    expected:
+      - python_headers.python_h_exists
+      - compiler_available
+
+  openmmlab_native_ops:
+    description: "MMCV / MMEngine / OpenMMLab native op imports and structured blockers."
+    runtime_target: internet_accelerator_4090_cuda128
+    depends_on:
+      - native_python_build_runtime
+      - torch_vision_audio_cuda_matrix
+    command:
+      - "{python}"
+      - tools/paper_repo_env/probes/openmmlab_native_probe.py
+      - "--json"
+
+  detectron_grounding_native_ops:
+    description: "Detectron2 and GroundingDINO C++ / CUDA extension surfaces."
+    runtime_target: internet_accelerator_4090_cuda128
+    depends_on:
+      - native_python_build_runtime
+      - torch_vision_audio_cuda_matrix
+    command:
+      - "{python}"
+      - tools/paper_repo_env/probes/detectron_grounding_probe.py
+      - "--json"
+
+  video_native_runtime:
+    description: "Video model runtime dependencies, optional native surfaces, and tensor smoke."
+    runtime_target: internet_accelerator_4090_cuda128
+    depends_on:
+      - torch_vision_audio_cuda_matrix
+    command:
+      - "{python}"
+      - tools/paper_repo_env/accelerator_runtime_probe.py
+      - "--json"
+      - "--strict"
+      - "--module"
+      - decord
+      - "--module"
+      - av
+
+  diffusion_vlm_runtime:
+    description: "Diffusion and vision-language dependency surfaces: diffusers, safetensors, accelerate, xformers and checkpoint gates."
+    runtime_target: internet_accelerator_4090_cuda128
+    depends_on:
+      - torch_vision_audio_cuda_matrix
+    command:
+      - "{python}"
+      - tools/paper_repo_env/probes/diffusion_vlm_probe.py
+      - "--json"
+
+  graph_torch_cuda_runtime:
+    description: "PyG / DGL extension wheel matrix and tiny graph dependency surfaces."
+    runtime_target: internet_accelerator_4090_cuda128
+    depends_on:
+      - native_python_build_runtime
+      - torch_vision_audio_cuda_matrix
+    command:
+      - "{python}"
+      - tools/paper_repo_env/probes/graph_torch_cuda_probe.py
+      - "--json"
+
+  geometry_cuda_runtime:
+    description: "3D geometry native extension surfaces: rasterizers, KNN kernels, point-cloud CUDA ops and NeRF-related packages."
+    runtime_target: internet_accelerator_4090_cuda128
+    depends_on:
+      - native_python_build_runtime
+      - torch_vision_audio_cuda_matrix
+    command:
+      - "{python}"
+      - tools/paper_repo_env/probes/geometry_cuda_probe.py
+      - "--json"
+
+  text_native_runtime:
+    description: "Native extension build surface for text packages with C++ extension paths."
+    runtime_target: internet_accelerator_4090_cuda128
+    depends_on:
+      - native_python_build_runtime
+    command:
+      - "{python}"
+      - tools/paper_repo_env/probes/native_build_probe.py
+      - "--json"
+
+task_bindings:
+  - group: audio_torch_runtime
+    task_ids:
+      - whisper_asr_minimal
+      - demucs_music_separation
+      - silero_vad_speech_activity
+      - encodec_audio_codec_minimal
+      - speechbrain_keyword_spotting
+    profile_refs:
+      - torch_vision_audio_cuda_matrix
+
+  - group: image_representation_runtime
+    task_ids:
+      - dino_vit_feature_minimal
+      - dinov2_feature_minimal
+      - convnext_classification_minimal
+      - mae_reconstruction_minimal
+      - moco_feature_minimal
+    profile_refs:
+      - torch_vision_audio_cuda_matrix
+
+  - group: detection_segmentation_runtime
+    task_ids:
+      - sam_mask_minimal
+      - detr_object_detection_minimal
+    profile_refs:
+      - torch_vision_audio_cuda_matrix
+
+  - group: detectron_grounding_runtime
+    task_ids:
+      - detectron2_maskrcnn_minimal
+      - groundingdino_phrase_grounding_minimal
+    profile_refs:
+      - detectron_grounding_native_ops
+
+  - group: openmmlab_runtime
+    task_ids:
+      - mmdetection_fasterrcnn_minimal
+      - mmsegmentation_segformer_minimal
+      - mmaction2_recognition_minimal
+    profile_refs:
+      - openmmlab_native_ops
+
+  - group: video_runtime
+    task_ids:
+      - pytorchvideo_classification_minimal
+      - slowfast_video_classification_minimal
+      - videomae_classification_minimal
+      - timesformer_video_transformer_minimal
+    profile_refs:
+      - video_native_runtime
+
+  - group: vision_language_runtime
+    task_ids:
+      - clip_zeroshot_minimal
+      - open_clip_zeroshot_minimal
+      - blip_caption_minimal
+      - lavis_blip2_minimal
+      - llava_single_image_minimal
+      - imagebind_embedding_minimal
+    profile_refs:
+      - diffusion_vlm_runtime
+
+  - group: llm_nlp_torch_runtime
+    task_ids:
+      - sentence_transformers_similarity_minimal
+      - lora_adapter_minimal
+      - fairseq_translation_minimal
+    profile_refs:
+      - torch_vision_audio_cuda_matrix
+
+  - group: text_native_runtime
+    task_ids:
+      - fasttext_text_classification_minimal
+    profile_refs:
+      - text_native_runtime
+
+  - group: diffusion_runtime
+    task_ids:
+      - improved_diffusion_sample_minimal
+      - guided_diffusion_sample_minimal
+      - latent_diffusion_sample_minimal
+      - stable_diffusion_text2img_minimal
+      - diffusers_tiny_pipeline_minimal
+    profile_refs:
+      - diffusion_vlm_runtime
+
+  - group: graph_runtime
+    task_ids:
+      - pyg_gcn_minimal
+      - dgl_graphsage_minimal
+      - ogb_nodeprop_minimal
+    profile_refs:
+      - graph_torch_cuda_runtime
+
+  - group: rl_runtime
+    task_ids:
+      - stable_baselines3_cartpole_minimal
+      - sac_ae_pixel_control_minimal
+    profile_refs:
+      - torch_vision_audio_cuda_matrix
+
+  - group: geometry_runtime
+    task_ids:
+      - open3d_pointcloud_minimal
+      - nerfstudio_nerfacto_minimal
+      - gaussian_splatting_scene_minimal
+      - openpcdet_pointcloud_minimal
+    profile_refs:
+      - geometry_cuda_runtime

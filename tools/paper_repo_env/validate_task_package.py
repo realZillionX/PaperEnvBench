@@ -44,6 +44,8 @@ EXPECTED_MODALITIES = Counter(
     }
 )
 
+ENVIRONMENT_DEPENDENCY_TRIGGER_TAGS = {"torch_cuda_matrix", "hardware_pressure", "native_extension_build"}
+
 
 def load_yaml(path: Path) -> Any:
     with path.open("r", encoding="utf-8") as f:
@@ -77,6 +79,7 @@ def run_check_only(task_root: Path, task_id: str) -> None:
 def validate_registry(root: Path) -> dict[str, Any]:
     taxonomy = load_yaml(root / "paperenvbench/taxonomy.yaml")
     registry = load_yaml(root / "paperenvbench/registries/task_registry.yaml")
+    environment_registry = load_yaml(root / "paperenvbench/registries/environment_dependency_registry.yaml")
     tasks = registry["tasks"]
 
     errors: list[str] = []
@@ -107,10 +110,81 @@ def validate_registry(root: Path) -> dict[str, Any]:
         if verifiers - allowed_verifiers:
             errors.append(f"{task_id}: unknown verifier tags {sorted(verifiers - allowed_verifiers)}")
 
+    errors.extend(validate_environment_dependency_registry(tasks, environment_registry))
+
     if errors:
         raise SystemExit("\n".join(errors))
 
     return registry
+
+
+def validate_environment_dependency_registry(tasks: list[dict[str, Any]], environment_registry: dict[str, Any]) -> list[str]:
+    errors: list[str] = []
+    if not isinstance(environment_registry, dict):
+        return ["environment_dependency_registry.yaml: expected mapping"]
+
+    runtime_targets = environment_registry.get("runtime_targets", {})
+    probe_profiles = environment_registry.get("probe_profiles", {})
+    task_bindings = environment_registry.get("task_bindings", [])
+    if not runtime_targets:
+        errors.append("environment_dependency_registry.yaml: missing runtime_targets")
+    if not probe_profiles:
+        errors.append("environment_dependency_registry.yaml: missing probe_profiles")
+    if not isinstance(task_bindings, list) or not task_bindings:
+        errors.append("environment_dependency_registry.yaml: missing task_bindings")
+        return errors
+
+    task_ids = {str(task["task_id"]) for task in tasks}
+    required_bound_tasks = {
+        str(task["task_id"])
+        for task in tasks
+        if set(task["taxonomy"]["environment_challenges"]) & ENVIRONMENT_DEPENDENCY_TRIGGER_TAGS
+    }
+    covered: set[str] = set()
+    duplicate_cover: list[str] = []
+    profile_ids = set(probe_profiles)
+
+    for binding in task_bindings:
+        group = binding.get("group", "<missing group>")
+        ids = binding.get("task_ids", [])
+        refs = binding.get("profile_refs", [])
+        if not isinstance(ids, list) or not ids:
+            errors.append(f"environment_dependency_registry.yaml:{group}: task_ids must be a nonempty list")
+            continue
+        if not isinstance(refs, list) or not refs:
+            errors.append(f"environment_dependency_registry.yaml:{group}: profile_refs must be a nonempty list")
+        unknown_refs = sorted(set(str(ref) for ref in refs) - profile_ids)
+        if unknown_refs:
+            errors.append(f"environment_dependency_registry.yaml:{group}: unknown profile_refs {unknown_refs}")
+        for task_id in ids:
+            task_id = str(task_id)
+            if task_id not in task_ids:
+                errors.append(f"environment_dependency_registry.yaml:{group}: unknown task_id {task_id}")
+                continue
+            if task_id in covered:
+                duplicate_cover.append(task_id)
+            covered.add(task_id)
+
+    for profile_id, profile in probe_profiles.items():
+        target = profile.get("runtime_target")
+        if target and target not in runtime_targets:
+            errors.append(f"environment_dependency_registry.yaml:{profile_id}: unknown runtime_target {target}")
+        command = profile.get("command")
+        if not isinstance(command, list) or not command:
+            errors.append(f"environment_dependency_registry.yaml:{profile_id}: command must be a nonempty list")
+        depends_on = profile.get("depends_on", [])
+        if depends_on:
+            unknown_deps = sorted(set(str(dep) for dep in depends_on) - profile_ids)
+            if unknown_deps:
+                errors.append(f"environment_dependency_registry.yaml:{profile_id}: unknown depends_on {unknown_deps}")
+
+    missing = sorted(required_bound_tasks - covered)
+    if missing:
+        errors.append(f"environment_dependency_registry.yaml: missing dependency bindings for {missing}")
+    if duplicate_cover:
+        errors.append(f"environment_dependency_registry.yaml: duplicate task bindings for {sorted(set(duplicate_cover))}")
+
+    return errors
 
 
 def validate_task(root: Path, task_id: str, run_verifier: bool = False) -> None:
