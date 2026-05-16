@@ -40,7 +40,7 @@ def load_json(path: Path) -> Any:
 
 def read_attempt_text(attempt_dir: Path) -> str:
     chunks: list[str] = []
-    for pattern in ["*.log", "logs/*.log", "*.txt", "score.json"]:
+    for pattern in ["*.log", "logs/*.log", "*.txt", "install_plan.json", "repo_profile.json"]:
         for path in sorted(attempt_dir.glob(pattern))[:30]:
             if path.is_file() and path.stat().st_size <= 1_000_000:
                 chunks.append(path.read_text(encoding="utf-8", errors="replace"))

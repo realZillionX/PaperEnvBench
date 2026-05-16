@@ -75,6 +75,7 @@ def infer_task_id(attempt_dir: Path, explicit: str | None) -> str:
         attempt_dir / "install_plan.json",
         attempt_dir / "repo_profile.json",
         attempt_dir / "trajectory.json",
+        attempt_dir / "trajectory.jsonl",
         attempt_dir / "attempt.json",
     ]
     for path in candidates:
@@ -97,12 +98,11 @@ def infer_task_id(attempt_dir: Path, explicit: str | None) -> str:
 
 
 def pick_artifact_dir(attempt_dir: Path, task_path: Path) -> Path:
-    candidates = [
-        attempt_dir / "artifacts",
-        attempt_dir / "artifact",
-        attempt_dir / "outputs",
-        attempt_dir,
-    ]
+    canonical_artifacts = attempt_dir / "artifacts"
+    if canonical_artifacts.exists():
+        return canonical_artifacts.resolve()
+
+    candidates = [attempt_dir / "artifact", attempt_dir / "outputs", attempt_dir]
     if attempt_dir.resolve() == task_path.resolve():
         candidates.append(task_path / "artifacts")
     for path in candidates:
@@ -224,7 +224,15 @@ def safe_rel(path: Path, root: Path) -> str:
 
 def collect_attempt_text(attempt_dir: Path) -> str:
     chunks: list[str] = []
-    for pattern in ["*.log", "logs/*.log", "*.txt", "failure_report.json", "install_plan.json", "trajectory.json"]:
+    for pattern in [
+        "*.log",
+        "logs/*.log",
+        "*.txt",
+        "failure_report.json",
+        "install_plan.json",
+        "trajectory.json",
+        "trajectory.jsonl",
+    ]:
         for path in sorted(attempt_dir.glob(pattern))[:20]:
             if path.is_file() and path.stat().st_size <= 1_000_000:
                 try:
@@ -246,33 +254,31 @@ def scan_safety(attempt_dir: Path) -> dict[str, Any]:
     }
 
 
-def load_failure_stage(attempt_dir: Path) -> str | None:
-    report_path = attempt_dir / "failure_report.json"
-    if not report_path.exists():
-        return None
-    try:
-        payload = load_json(report_path)
-    except Exception:
-        return None
-    for key in ("failed_phase", "failure_stage", "phase"):
-        value = payload.get(key) if isinstance(payload, dict) else None
-        if isinstance(value, str):
-            normalized = value.lower().replace("_success", "").replace("-", "_")
-            aliases = {
-                "repository": "repo",
-                "repo_analysis": "repo",
-                "environment_install": "install",
-                "minimal_entry": "entrypoint",
-                "semantic_verification": "semantic",
-            }
-            return aliases.get(normalized, normalized)
-    return None
-
-
 def artifact_present(attempt_dir: Path) -> bool:
     for dirname in ["artifacts", "artifact", "outputs"]:
         path = attempt_dir / dirname
         if path.exists() and any(item.is_file() for item in path.rglob("*")):
+            return True
+    return False
+
+
+def has_any_file(attempt_dir: Path, names: list[str]) -> bool:
+    return any((attempt_dir / name).exists() for name in names)
+
+
+def has_nonempty_trajectory(attempt_dir: Path) -> bool:
+    for name in ["trajectory.json", "trajectory.jsonl"]:
+        path = attempt_dir / name
+        if path.exists() and path.is_file() and path.stat().st_size > 0:
+            return True
+    return False
+
+
+def has_install_evidence(attempt_dir: Path) -> bool:
+    if has_any_file(attempt_dir, ["install_plan.json", "requirements_lock.txt", "environment.yml", "pyproject.toml"]):
+        return True
+    for dirname in ["venv", ".venv", "env"]:
+        if (attempt_dir / dirname / "pyvenv.cfg").exists():
             return True
     return False
 
@@ -282,17 +288,15 @@ def partial_scores(attempt_dir: Path, verifier_passed: bool, safety_score: float
     if verifier_passed:
         scores.update({name: 1.0 for name in STAGE_ORDER})
     else:
-        stage = load_failure_stage(attempt_dir)
-        if stage in STAGE_ORDER:
-            failed_index = STAGE_ORDER.index(stage)
-            for name in STAGE_ORDER[:failed_index]:
-                scores[name] = 1.0
-        else:
-            scores["repo"] = 1.0 if any((attempt_dir / name).exists() for name in ["repo_profile.json", "install_plan.json", "trajectory.json"]) else 0.0
-            scores["install"] = 1.0 if (attempt_dir / "install_plan.json").exists() else 0.0
-            scores["import"] = 1.0 if artifact_present(attempt_dir) else 0.0
-            scores["entrypoint"] = 1.0 if artifact_present(attempt_dir) else 0.0
-            scores["semantic"] = 0.0
+        has_artifact = artifact_present(attempt_dir)
+        scores["repo"] = 1.0 if (
+            has_any_file(attempt_dir, ["repo_profile.json", "install_plan.json"])
+            or has_nonempty_trajectory(attempt_dir)
+        ) else 0.0
+        scores["install"] = 1.0 if has_install_evidence(attempt_dir) else 0.0
+        scores["import"] = 1.0 if has_artifact else 0.0
+        scores["entrypoint"] = 1.0 if has_artifact else 0.0
+        scores["semantic"] = 0.0
     scores["safety"] = safety_score
     return scores
 
