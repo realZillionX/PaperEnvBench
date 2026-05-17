@@ -64,6 +64,7 @@ def make_tiny_video(path: Path) -> dict[str, Any]:
     return run(
         [
             ffmpeg,
+            "-nostdin",
             "-hide_banner",
             "-loglevel",
             "error",
@@ -89,6 +90,7 @@ def ffmpeg_decode(path: Path) -> dict[str, Any]:
         result = run(
             [
                 ffmpeg,
+                "-nostdin",
                 "-hide_banner",
                 "-loglevel",
                 "error",
