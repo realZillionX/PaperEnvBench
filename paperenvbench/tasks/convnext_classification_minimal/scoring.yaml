@@ -1,17 +1,23 @@
 scoring:
-  L0_repository_analysis: 0.10
-  L1_install_success: 0.20
-  L2_import_success: 0.20
+  L0_repository_analysis: 0.1
+  L1_install_success: 0.2
+  L2_import_success: 0.2
   L3_minimal_entry_success: 0.25
   L4_semantic_verification: 0.15
   reproducibility: 0.05
   safety: 0.05
-main_success_level: L4
+main_success_level: L4_minimal_reproduction
 semantic_checks:
-  - repo_commit_matches
-  - repository_convnext_class_imported
-  - synthetic_image_written
-  - logits_shape_matches
-  - logits_are_finite
-  - logits_have_variance
-  - top_class_in_range
+- repo_commit_matches
+- repository_convnext_class_imported
+- synthetic_image_written
+- logits_shape_matches
+- logits_are_finite
+- logits_have_variance
+- top_class_in_range
+l4_environment_gate:
+  runtime_target: internet_accelerator_4090_cuda128
+  requires_profile_closure_pass: true
+  requires_gpu_cuda_evidence: true
+  requires_minimal_reproduction_experiment: true
+  disallow_blocked_or_deferred_dependencies: true

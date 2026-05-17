@@ -2,24 +2,35 @@ scoring:
   max_level: L4_cpu_deterministic_fallback
   levels:
     L0:
-      description: "Repository cannot be cloned or inspected."
+      description: Repository cannot be cloned or inspected.
     L1:
-      description: "Pinned repository files are present but SAC-AE modules are not importable."
+      description: Pinned repository files are present but SAC-AE modules are not
+        importable.
     L2:
-      description: "Pixel encoder route imports but actor, critic or decoder routes are incomplete."
+      description: Pixel encoder route imports but actor, critic or decoder routes
+        are incomplete.
     L3:
-      description: "CPU forward smoke runs but artifact lacks semantic evidence or deterministic checks."
+      description: CPU forward smoke runs but artifact lacks semantic evidence or
+        deterministic checks.
     L4_cpu_deterministic_fallback:
-      description: "Pinned SAC-AE repo route is represented with pixel observation shape, actor, critic, decoder and all semantic checks passing."
+      description: Pinned SAC-AE repo route is represented with pixel observation
+        shape, actor, critic, decoder and all semantic checks passing.
 required_checks:
-  - repo_commit_matches
-  - pixel_observation_route
-  - actor_route_present
-  - critic_route_present
-  - decoder_route_present
-  - action_bounds_valid
-  - q_outputs_valid
-  - reconstruction_shape_valid
-  - cpu_fallback_declared
+- repo_commit_matches
+- pixel_observation_route
+- actor_route_present
+- critic_route_present
+- decoder_route_present
+- action_bounds_valid
+- q_outputs_valid
+- reconstruction_shape_valid
+- cpu_fallback_declared
 artifacts:
-  - artifacts/expected_artifact.json
+- artifacts/expected_artifact.json
+main_success_level: L4_minimal_reproduction
+l4_environment_gate:
+  runtime_target: internet_accelerator_4090_cuda128
+  requires_profile_closure_pass: true
+  requires_gpu_cuda_evidence: true
+  requires_minimal_reproduction_experiment: true
+  disallow_blocked_or_deferred_dependencies: true

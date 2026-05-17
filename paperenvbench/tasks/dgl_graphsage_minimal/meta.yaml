@@ -1,5 +1,5 @@
 task_id: dgl_graphsage_minimal
-paper_title: "Deep Graph Library"
+paper_title: Deep Graph Library
 repo_url: https://github.com/dmlc/dgl
 commit: c6c874bf7ea085beb04ea1487cfd216a0bacd6c1
 commit_short: c6c874b
@@ -9,43 +9,65 @@ split: dev
 modality:
   primary: graph_learning_recommender
   secondary:
-    - graph_neural_network
-    - node_classification
-    - graphsage
+  - graph_neural_network
+  - node_classification
+  - graphsage
 environment_challenges:
-  - native_extension_build
-  - torch_cuda_matrix
-  - hidden_dependency
+- native_extension_build
+- torch_cuda_matrix
+- hidden_dependency
 verification:
   type:
-    - import_graph
-    - training_smoke_test
-    - semantic_check
+  - import_graph
+  - training_smoke_test
+  - semantic_check
   command: python verify.py --check-only --json
-  minimum_success_level: L4_cpu_deterministic_fallback
+  minimum_success_level: L4_minimal_reproduction
 hardware:
-  gpu_required: false
-  gpu_optional: true
-  min_vram_gb: 0
+  gpu_required: true
+  gpu_optional: false
+  min_vram_gb: 24
+  accelerator: NVIDIA GeForce RTX 4090
+  cuda_required: true
 platform_constraints:
-  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  run_environment: Inspire GPU notebook paperenvbench (可上网GPU资源 / 4090 / CUDA 12.8)
   package_manager:
-    - git
-    - venv
-    - pip
+  - git
+  - venv
+  - pip
   forbidden:
-    - docker build
-    - docker run
-    - docker compose
+  - docker build
+  - docker run
+  - docker compose
 visibility:
   agent_visible:
-    - repo_url
-    - commit
-    - task_prompt
-    - repo_files
-    - public_readme
+  - repo_url
+  - commit
+  - task_prompt
+  - repo_files
+  - public_readme
   hidden:
-    - gold_install.sh
-    - expected_output.json
-    - hidden_verify.py
-status: gold_verified_l4_fallback
+  - gold_install.sh
+  - expected_output.json
+  - hidden_verify.py
+status: gold_package_ready_l4_environment_contract
+runtime_target: internet_accelerator_4090_cuda128
+environment_contract:
+  runtime_target: internet_accelerator_4090_cuda128
+  dependency_profiles:
+  - native_python_build_runtime
+  - accelerator_runtime_base
+  - gpu_occupancy_guard
+  - torch_vision_audio_cuda_matrix
+  - graph_torch_cuda_runtime
+  gpu:
+    required_for_standard_reproduction: true
+    cuda_required: true
+    accelerator: NVIDIA GeForce RTX 4090
+    min_vram_gb: 24
+    gpu_occupancy_floor_percent: 15
+  l4_requires:
+  - requires_profile_closure_pass
+  - requires_gpu_cuda_evidence
+  - requires_minimal_reproduction_experiment
+  - disallow_blocked_or_deferred_dependencies

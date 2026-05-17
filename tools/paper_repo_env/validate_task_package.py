@@ -45,6 +45,13 @@ EXPECTED_MODALITIES = Counter(
 )
 
 ENVIRONMENT_DEPENDENCY_TRIGGER_TAGS = {"torch_cuda_matrix", "hardware_pressure", "native_extension_build"}
+REQUIRED_RUNTIME_TARGET = "internet_accelerator_4090_cuda128"
+REQUIRED_L4_ENVIRONMENT_GATE = {
+    "requires_profile_closure_pass",
+    "requires_gpu_cuda_evidence",
+    "requires_minimal_reproduction_experiment",
+    "disallow_blocked_or_deferred_dependencies",
+}
 
 
 def load_yaml(path: Path) -> Any:
@@ -186,6 +193,28 @@ def validate_environment_dependency_registry(tasks: list[dict[str, Any]], enviro
     covered: set[str] = set()
     duplicate_cover: list[str] = []
     profile_ids = set(probe_profiles)
+    profile_closures: dict[str, list[str]] = {}
+
+    def visit_profile(profile_id: str, resolved: list[str], visiting: set[str]) -> None:
+        if profile_id in resolved or profile_id not in probe_profiles:
+            return
+        if profile_id in visiting:
+            errors.append(f"environment_dependency_registry.yaml:{profile_id}: dependency cycle")
+            return
+        visiting.add(profile_id)
+        for dep in probe_profiles[profile_id].get("depends_on", []) or []:
+            visit_profile(str(dep), resolved, visiting)
+        visiting.remove(profile_id)
+        resolved.append(profile_id)
+
+    def closure(refs: list[str]) -> list[str]:
+        key = ",".join(sorted(str(ref) for ref in refs))
+        if key not in profile_closures:
+            resolved: list[str] = []
+            for ref in sorted(str(item) for item in refs):
+                visit_profile(ref, resolved, set())
+            profile_closures[key] = resolved
+        return profile_closures[key]
 
     for binding in task_bindings:
         group = binding.get("group", "<missing group>")
@@ -199,6 +228,10 @@ def validate_environment_dependency_registry(tasks: list[dict[str, Any]], enviro
         unknown_refs = sorted(set(str(ref) for ref in refs) - profile_ids)
         if unknown_refs:
             errors.append(f"environment_dependency_registry.yaml:{group}: unknown profile_refs {unknown_refs}")
+        expanded_refs = set(closure([str(ref) for ref in refs]))
+        for required_profile in ("accelerator_runtime_base", "gpu_occupancy_guard"):
+            if required_profile not in expanded_refs:
+                errors.append(f"environment_dependency_registry.yaml:{group}: profile closure must include {required_profile}")
         for task_id in ids:
             task_id = str(task_id)
             if task_id not in task_ids:
@@ -239,6 +272,31 @@ def validate_environment_dependency_registry(tasks: list[dict[str, Any]], enviro
     return errors
 
 
+def task_bound_profiles(environment_registry: dict[str, Any], task_id: str) -> list[str]:
+    profiles = environment_registry.get("probe_profiles", {})
+    refs: set[str] = set()
+    for binding in environment_registry.get("task_bindings", []) or []:
+        if task_id in {str(item) for item in binding.get("task_ids", []) or []}:
+            refs.update(str(item) for item in binding.get("profile_refs", []) or [])
+    resolved: list[str] = []
+    visiting: set[str] = set()
+
+    def visit(profile_id: str) -> None:
+        if profile_id in resolved or profile_id not in profiles:
+            return
+        if profile_id in visiting:
+            return
+        visiting.add(profile_id)
+        for dep in profiles[profile_id].get("depends_on", []) or []:
+            visit(str(dep))
+        visiting.remove(profile_id)
+        resolved.append(profile_id)
+
+    for ref in sorted(refs):
+        visit(ref)
+    return resolved
+
+
 def validate_task(root: Path, task_id: str, run_verifier: bool = False) -> None:
     task_root = root / "paperenvbench/tasks" / task_id
     if not task_root.exists():
@@ -248,7 +306,9 @@ def validate_task(root: Path, task_id: str, run_verifier: bool = False) -> None:
     if missing:
         raise SystemExit(f"{task_id}: missing files: {missing}")
 
-    for rel in ["meta.yaml", "taxonomy.yaml", "assets_manifest.yaml", "failure_tags.yaml", "scoring.yaml"]:
+    meta = load_yaml(task_root / "meta.yaml") or {}
+    scoring = load_yaml(task_root / "scoring.yaml") or {}
+    for rel in ["taxonomy.yaml", "assets_manifest.yaml", "failure_tags.yaml"]:
         load_yaml(task_root / rel)
     for rel in ["repo_snapshot.json", "expected_output.json", "artifacts/expected_artifact.json"]:
         load_json(task_root / rel)
@@ -260,6 +320,34 @@ def validate_task(root: Path, task_id: str, run_verifier: bool = False) -> None:
     check_command(["bash", "-n", str(task_root / "gold_install.sh")])
     check_command([sys.executable, "-m", "py_compile", str(task_root / "verify.py")])
     verify_cli_contract(task_root, task_id)
+    environment_registry = load_yaml(root / "paperenvbench/registries/environment_dependency_registry.yaml")
+    expected_profiles = task_bound_profiles(environment_registry, task_id)
+    if meta.get("runtime_target") != REQUIRED_RUNTIME_TARGET:
+        raise SystemExit(f"{task_id}: meta.yaml must set runtime_target: {REQUIRED_RUNTIME_TARGET}")
+    contract = meta.get("environment_contract")
+    if not isinstance(contract, dict):
+        raise SystemExit(f"{task_id}: meta.yaml missing environment_contract")
+    if contract.get("runtime_target") != REQUIRED_RUNTIME_TARGET:
+        raise SystemExit(f"{task_id}: environment_contract.runtime_target mismatch")
+    if set(contract.get("dependency_profiles", []) or []) != set(expected_profiles):
+        raise SystemExit(f"{task_id}: environment_contract.dependency_profiles must match environment registry closure")
+    gpu_contract = contract.get("gpu")
+    if not isinstance(gpu_contract, dict) or gpu_contract.get("required_for_standard_reproduction") is not True:
+        raise SystemExit(f"{task_id}: environment_contract.gpu.required_for_standard_reproduction must be true")
+    if int(gpu_contract.get("gpu_occupancy_floor_percent", 0) or 0) < 15:
+        raise SystemExit(f"{task_id}: environment_contract.gpu.gpu_occupancy_floor_percent must be at least 15")
+    l4_requires = set(contract.get("l4_requires", []) or [])
+    missing_l4 = REQUIRED_L4_ENVIRONMENT_GATE - l4_requires
+    if missing_l4:
+        raise SystemExit(f"{task_id}: environment_contract.l4_requires missing {sorted(missing_l4)}")
+    l4_gate = scoring.get("l4_environment_gate") if isinstance(scoring, dict) else None
+    if not isinstance(l4_gate, dict):
+        raise SystemExit(f"{task_id}: scoring.yaml missing l4_environment_gate")
+    for key in REQUIRED_L4_ENVIRONMENT_GATE:
+        if l4_gate.get(key) is not True:
+            raise SystemExit(f"{task_id}: scoring.yaml l4_environment_gate.{key} must be true")
+    if l4_gate.get("runtime_target") != REQUIRED_RUNTIME_TARGET:
+        raise SystemExit(f"{task_id}: scoring.yaml l4_environment_gate.runtime_target mismatch")
     if run_verifier:
         run_check_only(task_root, task_id)
 

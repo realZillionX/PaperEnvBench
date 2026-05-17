@@ -39,6 +39,21 @@ ENVIRONMENT_REPORT_CANDIDATES = [
 ]
 AGENT_HIDDEN_ARTIFACT_KEYS = {"success_level", "expected_success_level"}
 ENVIRONMENT_TRIGGER_TAGS = {"torch_cuda_matrix", "hardware_pressure", "native_extension_build"}
+ENVIRONMENT_PASS_STATUSES = {"pass", "passed", "ok", "success", "completed", "installed", "probed"}
+ENVIRONMENT_BLOCKING_STATUSES = {"blocked", "deferred_with_evidence", "partial", "not_applicable", "failed", "error"}
+MINIMAL_REPRODUCTION_TERMS = {
+    "minimal_reproduction",
+    "paper_minimal_reproduction",
+    "task_verifier",
+    "verify.py",
+    "single_sample_inference",
+    "training_smoke",
+    "metric_smoke",
+    "inference",
+    "render",
+    "rollout",
+    "sample",
+}
 ENVIRONMENT_REPORT_SECTIONS = {
     "runtime": ["runtime", "runtime_probe", "hardware", "accelerator"],
     "python_packages": ["python_packages", "packages", "package_versions", "requirements", "dependency_lock"],
@@ -636,12 +651,38 @@ def environment_registry(root: Path) -> dict[str, Any]:
         return {}
 
 
+def expand_profile_closure(profiles: dict[str, Any], selected: set[str]) -> list[str]:
+    resolved: list[str] = []
+    visiting: set[str] = set()
+
+    def visit(profile_id: str) -> None:
+        if profile_id in resolved:
+            return
+        if profile_id in visiting:
+            return
+        profile = profiles.get(profile_id)
+        if not isinstance(profile, dict):
+            return
+        visiting.add(profile_id)
+        for dependency in profile.get("depends_on", []) or []:
+            visit(str(dependency))
+        visiting.remove(profile_id)
+        resolved.append(profile_id)
+
+    for profile_id in sorted(selected):
+        visit(profile_id)
+    return resolved
+
+
 def task_environment_profiles(root: Path, task_id: str) -> list[str]:
     payload = environment_registry(root)
     refs: set[str] = set()
     for binding in payload.get("task_bindings", []) or []:
         if task_id in {str(item) for item in binding.get("task_ids", []) or []}:
             refs.update(str(item) for item in binding.get("profile_refs", []) or [])
+    profiles = payload.get("probe_profiles", {})
+    if isinstance(profiles, dict):
+        return expand_profile_closure(profiles, refs)
     return sorted(refs)
 
 
@@ -755,6 +796,98 @@ def list_profile_ids(value: Any) -> set[str]:
     return profile_ids
 
 
+def profile_statuses(value: Any) -> dict[str, str | None]:
+    statuses: dict[str, str | None] = {}
+    if isinstance(value, list):
+        for item in value:
+            if not isinstance(item, dict):
+                continue
+            profile_id = item.get("profile_id") or item.get("id") or item.get("name")
+            if profile_id:
+                status = item.get("status") or item.get("result") or item.get("decision")
+                statuses[str(profile_id)] = str(status).lower() if status is not None else None
+    elif isinstance(value, dict):
+        for key, item in value.items():
+            if isinstance(item, dict):
+                status = item.get("status") or item.get("result") or item.get("decision")
+                statuses[str(key)] = str(status).lower() if status is not None else None
+            elif isinstance(item, str):
+                statuses[str(key)] = item.lower()
+    return statuses
+
+
+def flatten_text(value: Any) -> str:
+    if isinstance(value, dict):
+        return " ".join(str(key) + " " + flatten_text(child) for key, child in value.items())
+    if isinstance(value, list):
+        return " ".join(flatten_text(item) for item in value)
+    return str(value)
+
+
+def status_is_pass(value: Any) -> bool:
+    if isinstance(value, bool):
+        return value is True
+    if value is None:
+        return False
+    return str(value).strip().lower() in ENVIRONMENT_PASS_STATUSES
+
+
+def status_is_blocking(value: Any) -> bool:
+    if value is None:
+        return False
+    return str(value).strip().lower() in ENVIRONMENT_BLOCKING_STATUSES
+
+
+def validation_experiment_statuses(value: Any) -> list[tuple[str, str | None, str]]:
+    items: list[Any]
+    if isinstance(value, list):
+        items = value
+    elif isinstance(value, dict):
+        for key in ("experiments", "commands", "metrics", "items"):
+            child = value.get(key)
+            if isinstance(child, list):
+                items = child
+                break
+        else:
+            items = [value]
+    else:
+        return []
+
+    statuses: list[tuple[str, str | None, str]] = []
+    for index, item in enumerate(items):
+        if isinstance(item, dict):
+            name = str(item.get("name") or item.get("id") or item.get("command") or f"experiment_{index}")
+            status = item.get("status") or item.get("result")
+            statuses.append((name, str(status).lower() if status is not None else None, flatten_text(item).lower()))
+        else:
+            statuses.append((f"experiment_{index}", None, flatten_text(item).lower()))
+    return statuses
+
+
+def has_gpu_pass_evidence(payload: dict[str, Any]) -> bool:
+    text = json.dumps(payload, ensure_ascii=False, sort_keys=True).lower()
+    explicit_true_patterns = [
+        r'"cuda_available"\s*:\s*true',
+        r'"torch\.cuda\.is_available"\s*:\s*true',
+        r'torch\.cuda\.is_available\(\)\s*[=:]\s*true',
+        r'"device"\s*:\s*"cuda',
+        r'"device_type"\s*:\s*"cuda"',
+        r'"status"\s*:\s*"pass"[^{}]*(?:cuda|gpu|nvidia|torch)',
+        r'(?:max_utilization_gpu_percent|gpu_utilization_floor_percent|utilization\.gpu)[^0-9]{0,40}(?:1[5-9]|[2-9][0-9])',
+    ]
+    return any(re.search(pattern, text) for pattern in explicit_true_patterns)
+
+
+def has_minimal_reproduction_experiment(statuses: list[tuple[str, str | None, str]]) -> bool:
+    for name, status, text in statuses:
+        if not status_is_pass(status):
+            continue
+        haystack = f"{name} {text}".lower()
+        if any(term in haystack for term in MINIMAL_REPRODUCTION_TERMS):
+            return True
+    return False
+
+
 def evaluate_environment_dependency_contract(root: Path, task_id: str, attempt_dir: Path) -> dict[str, Any]:
     profile_refs = task_environment_profiles(root, task_id)
     failure_tags = set(read_task_failure_tags(root, task_id))
@@ -803,12 +936,24 @@ def evaluate_environment_dependency_contract(root: Path, task_id: str, attempt_d
         if not section_present(payload, section):
             errors.append(f"report must include {section} evidence")
 
-    reported_profiles = list_profile_ids(section_value(payload, "dependency_profiles"))
+    dependency_profile_section = section_value(payload, "dependency_profiles")
+    reported_profiles = list_profile_ids(dependency_profile_section)
+    reported_profile_statuses = profile_statuses(dependency_profile_section)
     if profile_refs and section_present(payload, "dependency_profiles") and not reported_profiles:
         errors.append("report dependency_profiles must name profile_id values")
     missing_profiles = sorted(set(profile_refs) - reported_profiles)
-    if missing_profiles and reported_profiles:
+    if missing_profiles:
         errors.append(f"report dependency_profiles missing bound profiles: {missing_profiles}")
+    nonpassing_profiles = {
+        profile_id: reported_profile_statuses.get(profile_id)
+        for profile_id in profile_refs
+        if profile_id in reported_profile_statuses and not status_is_pass(reported_profile_statuses.get(profile_id))
+    }
+    if nonpassing_profiles:
+        errors.append(f"report dependency_profiles must pass all bound profiles for L4: {nonpassing_profiles}")
+    missing_profile_statuses = sorted(profile_id for profile_id in profile_refs if profile_id in reported_profiles and profile_id not in reported_profile_statuses)
+    if missing_profile_statuses:
+        errors.append(f"report dependency_profiles missing status values for bound profiles: {missing_profile_statuses}")
 
     report_text = json.dumps(payload, ensure_ascii=False, sort_keys=True).lower()
     dependency_inventory = section_value(payload, "dependency_inventory")
@@ -822,9 +967,15 @@ def evaluate_environment_dependency_contract(root: Path, task_id: str, attempt_d
     if re.search(r"large|multi-gb|too large|heavy|gated|license|checkpoint|dataset|native|cuda|gpu", report_text):
         if not re.search(r"installed|probed|blocked|deferred_with_evidence|cache|sha256|size|license|memory|build log|compile", report_text):
             errors.append("report mentions heavy dependencies but lacks concrete install/probe/blocker evidence")
-    if any("cuda" in ref or "gpu" in ref or "torch" in ref for ref in profile_refs):
+    requires_gpu_evidence = (
+        bool({"torch_cuda_matrix", "hardware_pressure"} & failure_tags)
+        or any("cuda" in ref or "gpu" in ref or "torch" in ref or "accelerator" in ref for ref in profile_refs)
+    )
+    if requires_gpu_evidence:
         if not re.search(r"cuda|gpu|nvidia|torch", report_text):
             errors.append("report does not mention CUDA/GPU/torch evidence for a CUDA-bound task")
+        if not has_gpu_pass_evidence(payload):
+            errors.append("report must include positive GPU/CUDA evidence, such as cuda_available=true, CUDA device execution, or GPU utilization >= 15%")
     if any("native" in ref or "openmmlab" in ref or "detectron" in ref or "geometry" in ref for ref in profile_refs):
         if not re.search(r"native|extension|cudaextension|mmcv|compile|build|nvcc|cmake|ninja", report_text):
             errors.append("report does not mention native extension/build evidence for a native-bound task")
@@ -834,8 +985,17 @@ def evaluate_environment_dependency_contract(root: Path, task_id: str, attempt_d
     if {"checkpoint_download", "dataset_asset_missing", "api_or_license_gate"} & failure_tags:
         if not re.search(r"checkpoint|weight|asset|dataset|license|token|cache|sha256|size", report_text):
             errors.append("report must include checkpoint / asset / license / cache boundary evidence")
+    validation_section = section_value(payload, "validation_experiments")
+    experiment_statuses = validation_experiment_statuses(validation_section)
     if validation_experiment_count(payload) < 1:
         errors.append("report must include at least one key validation experiment or metric smoke")
+    failing_experiments = {name: status for name, status, _ in experiment_statuses if not status_is_pass(status)}
+    if failing_experiments:
+        errors.append(f"report validation_experiments must all pass for L4: {failing_experiments}")
+    if experiment_statuses and not has_minimal_reproduction_experiment(experiment_statuses):
+        errors.append("report validation_experiments must include a passed task minimal reproduction, verifier, inference, render, rollout, sample, or metric smoke")
+    if heavyweight_decisions is not None and any(status_is_blocking(item.get("decision") or item.get("status")) for item in walk_dicts(heavyweight_decisions)):
+        errors.append("report heavyweight_dependency_decisions contains blocked, partial, deferred, or not_applicable decisions; L4 requires the full minimal reproduction dependency route to be installed or probed")
 
     result.update(
         {
@@ -848,9 +1008,16 @@ def evaluate_environment_dependency_contract(root: Path, task_id: str, attempt_d
                 "mentions_native_build": bool(re.search(r"native|extension|cudaextension|nvcc|cmake|ninja", report_text)),
                 "mentions_checkpoint": "checkpoint" in report_text or "weight" in report_text,
                 "reported_profile_ids": sorted(reported_profiles),
+                "required_profile_ids": profile_refs,
+                "reported_profile_statuses": reported_profile_statuses,
                 "dependency_inventory_count": structured_item_count(dependency_inventory),
                 "heavyweight_dependency_decision_count": structured_item_count(heavyweight_decisions),
                 "validation_experiment_count": validation_experiment_count(payload),
+                "validation_experiment_statuses": [
+                    {"name": name, "status": status}
+                    for name, status, _ in experiment_statuses
+                ],
+                "gpu_pass_evidence": has_gpu_pass_evidence(payload),
             },
         }
     )

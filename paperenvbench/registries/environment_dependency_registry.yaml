@@ -1,4 +1,4 @@
-version: 0.4.0
+version: 0.5.0
 updated_at: "2026-05-17"
 purpose: >
   Register native environment dependency profiles for PaperEnvBench tasks. Profiles cover
@@ -193,13 +193,13 @@ probe_profiles:
       - torch_vision_audio_cuda_matrix
     command:
       - "{python}"
-      - tools/paper_repo_env/accelerator_runtime_probe.py
+      - tools/paper_repo_env/probes/video_decode_probe.py
       - "--json"
       - "--strict"
-      - "--module"
-      - decord
-      - "--module"
-      - av
+    expected:
+      - status=pass
+      - torch.cuda_available
+      - ffmpeg.create_tiny_video.returncode=0
 
   diffusion_vlm_runtime:
     description: "Diffusion and vision-language dependency surfaces: diffusers, safetensors, accelerate, xformers and checkpoint gates."
@@ -234,6 +234,7 @@ probe_profiles:
       - "Run a tiny GCN / GraphSAGE / OGB evaluator smoke and record device and metric evidence."
     depends_on:
       - native_python_build_runtime
+      - gpu_occupancy_guard
       - torch_vision_audio_cuda_matrix
     command:
       - "{python}"
@@ -272,6 +273,7 @@ probe_profiles:
       - "Probe compiler/build tools and run a tiny tokenizer/text-classification native binary or extension smoke."
     depends_on:
       - native_python_build_runtime
+      - gpu_occupancy_guard
     command:
       - "{python}"
       - tools/paper_repo_env/probes/native_build_probe.py
@@ -293,12 +295,13 @@ probe_profiles:
       - torch_vision_audio_cuda_matrix
     command:
       - "{python}"
-      - tools/paper_repo_env/accelerator_runtime_probe.py
+      - tools/paper_repo_env/probes/rl_simulation_probe.py
       - "--json"
-      - "--module"
-      - gym
-      - "--module"
-      - gymnasium
+      - "--strict"
+    expected:
+      - status=pass
+      - torch.cuda_available
+      - cartpole_rollout.ok
 
 task_bindings:
   - group: audio_torch_runtime

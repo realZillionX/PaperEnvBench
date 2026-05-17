@@ -1,24 +1,33 @@
 scoring:
-  L0_repository_analysis: 0.10
-  L1_install_success: 0.20
+  L0_repository_analysis: 0.1
+  L1_install_success: 0.2
   L2_import_success: 0.15
   L3_minimal_entry_success: 0.25
-  L4_semantic_verification: 0.20
+  L4_semantic_verification: 0.2
   reproducibility: 0.05
   safety: 0.05
-main_success_level: L4_fallback
+main_success_level: L4_minimal_reproduction
 level_definitions:
-  L0_repository_analysis: "Identify Demucs entry points, audio system dependencies, stale dependency constraints, and checkpoint risks."
-  L1_install_success: "Create an isolated venv, install ffmpeg, install compatible torch and torchaudio, and install the pinned repo."
-  L2_import_success: "Import demucs.separate and resolve package-shadowing issues."
-  L3_minimal_entry_success: "Run the separation CLI or equivalent entry point on one synthetic WAV."
-  L4_semantic_verification: "Produce a separated stem WAV and verify sample rate, channels, frame count, non-empty PCM payload, and artifact metadata."
+  L0_repository_analysis: Identify Demucs entry points, audio system dependencies,
+    stale dependency constraints, and checkpoint risks.
+  L1_install_success: Create an isolated venv, install ffmpeg, install compatible
+    torch and torchaudio, and install the pinned repo.
+  L2_import_success: Import demucs.separate and resolve package-shadowing issues.
+  L3_minimal_entry_success: Run the separation CLI or equivalent entry point on one
+    synthetic WAV.
+  L4_semantic_verification: Produce a separated stem WAV and verify sample rate, channels,
+    frame count, non-empty PCM payload, and artifact metadata.
 semantic_checks:
-  - generated_synthetic_mix_exists
-  - demucs_unittest_model_runs_on_cpu
-  - vocals_wav_exists
-  - vocals_wav_has_expected_sample_rate
-  - vocals_wav_has_expected_channels
-  - vocals_wav_has_nonzero_pcm
-  - verification_result_json_exists
-
+- generated_synthetic_mix_exists
+- demucs_unittest_model_runs_on_cpu
+- vocals_wav_exists
+- vocals_wav_has_expected_sample_rate
+- vocals_wav_has_expected_channels
+- vocals_wav_has_nonzero_pcm
+- verification_result_json_exists
+l4_environment_gate:
+  runtime_target: internet_accelerator_4090_cuda128
+  requires_profile_closure_pass: true
+  requires_gpu_cuda_evidence: true
+  requires_minimal_reproduction_experiment: true
+  disallow_blocked_or_deferred_dependencies: true

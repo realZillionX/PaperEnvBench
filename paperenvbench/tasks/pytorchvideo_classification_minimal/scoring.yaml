@@ -4,31 +4,42 @@ levels:
   L0:
     description: Repository cannot be cloned or pinned.
     required_checks:
-      - repo_commit_matches
+    - repo_commit_matches
   L1:
-    description: Python environment installs the editable pinned repository and imports PyTorchVideo.
+    description: Python environment installs the editable pinned repository and imports
+      PyTorchVideo.
     required_checks:
-      - hubconf_exists
-      - model_loaded_from_local_hub
+    - hubconf_exists
+    - model_loaded_from_local_hub
   L2:
     description: Local torch hub entrypoint builds the video classification model.
     required_checks:
-      - model_is_eval
+    - model_is_eval
   L3:
     description: Deterministic synthetic video and side artifacts are generated.
     required_checks:
-      - synthetic_clip_written
-      - representative_frame_written
+    - synthetic_clip_written
+    - representative_frame_written
   L4_fallback:
-    description: The pinned repository model executes a CPU single clip forward pass and produces non-degenerate classification logits.
+    description: The pinned repository model executes a CPU single clip forward pass
+      and produces non-degenerate classification logits.
     required_checks:
-      - logits_artifact_written
-      - logits_shape_matches
-      - logits_are_finite
-      - logits_have_variance
-      - probabilities_are_normalized
-      - top_class_in_range
+    - logits_artifact_written
+    - logits_shape_matches
+    - logits_are_finite
+    - logits_have_variance
+    - probabilities_are_normalized
+    - top_class_in_range
 thresholds:
-  expected_logits_shape: [1, 400]
-  min_logits_std: 0.000001
-  max_probability_sum_error: 0.00001
+  expected_logits_shape:
+  - 1
+  - 400
+  min_logits_std: 1.0e-06
+  max_probability_sum_error: 1.0e-05
+main_success_level: L4_minimal_reproduction
+l4_environment_gate:
+  runtime_target: internet_accelerator_4090_cuda128
+  requires_profile_closure_pass: true
+  requires_gpu_cuda_evidence: true
+  requires_minimal_reproduction_experiment: true
+  disallow_blocked_or_deferred_dependencies: true

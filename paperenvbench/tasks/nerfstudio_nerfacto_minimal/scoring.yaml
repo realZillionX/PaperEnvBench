@@ -1,5 +1,5 @@
 task_id: nerfstudio_nerfacto_minimal
-main_success_level: L4_cpu_deterministic_fallback
+main_success_level: L4_minimal_reproduction
 points:
   install: 20
   import: 10
@@ -7,17 +7,23 @@ points:
   semantic: 30
   safety: 15
 required_checks:
-  - repo_commit_matches
-  - cli_route_recorded
-  - dataparser_route_recorded
-  - pipeline_route_recorded
-  - nerfacto_model_route_recorded
-  - volume_rendering_finite
-  - tiny_ray_bundle_semantic
+- repo_commit_matches
+- cli_route_recorded
+- dataparser_route_recorded
+- pipeline_route_recorded
+- nerfacto_model_route_recorded
+- volume_rendering_finite
+- tiny_ray_bundle_semantic
 artifact_requirements:
-  - artifacts/expected_artifact.json
+- artifacts/expected_artifact.json
 primary_failure_tags:
-  - native_extension_build
-  - torch_cuda_matrix
-  - system_package_missing
-  - hardware_pressure
+- native_extension_build
+- torch_cuda_matrix
+- system_package_missing
+- hardware_pressure
+l4_environment_gate:
+  runtime_target: internet_accelerator_4090_cuda128
+  requires_profile_closure_pass: true
+  requires_gpu_cuda_evidence: true
+  requires_minimal_reproduction_experiment: true
+  disallow_blocked_or_deferred_dependencies: true

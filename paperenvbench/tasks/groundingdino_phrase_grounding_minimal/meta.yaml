@@ -1,5 +1,6 @@
 task_id: groundingdino_phrase_grounding_minimal
-paper_title: "Grounding DINO: Marrying DINO with Grounded Pre-Training for Open-Set Object Detection"
+paper_title: 'Grounding DINO: Marrying DINO with Grounded Pre-Training for Open-Set
+  Object Detection'
 repo_url: https://github.com/IDEA-Research/GroundingDINO
 commit: 856dde20aee659246248e20734ef9ba5214f5e44
 paper_url: https://arxiv.org/abs/2303.05499
@@ -8,43 +9,67 @@ split: test
 modality:
   primary: object_detection_segmentation
   secondary:
-    - vision_language_multimodal
-    - checkpoint_loading
-    - output_artifact
+  - vision_language_multimodal
+  - checkpoint_loading
+  - output_artifact
 environment_challenges:
-  - native_extension_build
-  - checkpoint_download
-  - torch_cuda_matrix
-  - hidden_dependency
-  - python_version_conflict
+- native_extension_build
+- checkpoint_download
+- torch_cuda_matrix
+- hidden_dependency
+- python_version_conflict
 verification:
   type:
-    - checkpoint_loading
-    - single_sample_inference
-    - output_artifact
-    - semantic_check
-  command: python verify.py --repo-dir repo --checkpoint-path models/groundingdino_swint_ogc.pth --output-dir artifacts
+  - checkpoint_loading
+  - single_sample_inference
+  - output_artifact
+  - semantic_check
+  command: python verify.py --check-only --json
+  minimum_success_level: L4_minimal_reproduction
 hardware:
-  gpu_required: false
-  gpu_optional: true
-  min_vram_gb: 0
+  gpu_required: true
+  gpu_optional: false
+  min_vram_gb: 24
+  accelerator: NVIDIA GeForce RTX 4090
+  cuda_required: true
 platform_constraints:
   package_manager:
-    - venv
-    - pip
+  - venv
+  - pip
   forbidden:
-    - docker build
-    - docker run
-    - docker compose
+  - docker build
+  - docker run
+  - docker compose
+  run_environment: Inspire GPU notebook paperenvbench (可上网GPU资源 / 4090 / CUDA 12.8)
 visibility:
   agent_visible:
-    - repo_url
-    - commit
-    - task_prompt
-    - repo_files
-    - public_readme
+  - repo_url
+  - commit
+  - task_prompt
+  - repo_files
+  - public_readme
   hidden:
-    - gold_install.sh
-    - expected_output.json
-    - hidden_verify.py
+  - gold_install.sh
+  - expected_output.json
+  - hidden_verify.py
 status: gold_verified_l4
+runtime_target: internet_accelerator_4090_cuda128
+environment_contract:
+  runtime_target: internet_accelerator_4090_cuda128
+  dependency_profiles:
+  - native_python_build_runtime
+  - accelerator_runtime_base
+  - gpu_occupancy_guard
+  - torch_vision_audio_cuda_matrix
+  - detectron_grounding_native_ops
+  gpu:
+    required_for_standard_reproduction: true
+    cuda_required: true
+    accelerator: NVIDIA GeForce RTX 4090
+    min_vram_gb: 24
+    gpu_occupancy_floor_percent: 15
+  l4_requires:
+  - requires_profile_closure_pass
+  - requires_gpu_cuda_evidence
+  - requires_minimal_reproduction_experiment
+  - disallow_blocked_or_deferred_dependencies

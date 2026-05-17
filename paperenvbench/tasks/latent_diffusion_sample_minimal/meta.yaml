@@ -1,5 +1,5 @@
 task_id: latent_diffusion_sample_minimal
-paper_title: "High-Resolution Image Synthesis with Latent Diffusion Models"
+paper_title: High-Resolution Image Synthesis with Latent Diffusion Models
 repo_url: https://github.com/CompVis/latent-diffusion
 commit: a506df5756472e2ebaf9078affdde2c4f1502cd4
 commit_short: a506df5
@@ -9,44 +9,65 @@ split: val
 modality:
   primary: diffusion_generation
   secondary:
-    - text_to_image
-    - latent_diffusion
-    - autoencoder_kl
-    - ddim_sampling
+  - text_to_image
+  - latent_diffusion
+  - autoencoder_kl
+  - ddim_sampling
 environment_challenges:
-  - checkpoint_download
-  - torch_cuda_matrix
-  - hidden_dependency
-  - system_package_missing
+- checkpoint_download
+- torch_cuda_matrix
+- hidden_dependency
+- system_package_missing
 verification:
   type:
-    - checkpoint_loading
-    - output_artifact
-    - semantic_check
+  - checkpoint_loading
+  - output_artifact
+  - semantic_check
   command: python verify.py --check-only --json
-  minimum_success_level: L4_fallback
+  minimum_success_level: L4_minimal_reproduction
 hardware:
-  gpu_required: false
-  gpu_optional: true
-  min_vram_gb: 0
+  gpu_required: true
+  gpu_optional: false
+  min_vram_gb: 16
+  accelerator: NVIDIA GeForce RTX 4090
+  cuda_required: true
 platform_constraints:
-  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  run_environment: Inspire GPU notebook paperenvbench (可上网GPU资源 / 4090 / CUDA 12.8)
   package_manager:
-    - venv
-    - pip
+  - venv
+  - pip
   forbidden:
-    - docker build
-    - docker run
-    - docker compose
+  - docker build
+  - docker run
+  - docker compose
 visibility:
   agent_visible:
-    - repo_url
-    - commit
-    - task_prompt
-    - repo_files
-    - public_readme
+  - repo_url
+  - commit
+  - task_prompt
+  - repo_files
+  - public_readme
   hidden:
-    - gold_install.sh
-    - expected_output.json
-    - hidden_verify.py
-status: gold_verified_l4_fallback
+  - gold_install.sh
+  - expected_output.json
+  - hidden_verify.py
+status: gold_package_ready_l4_environment_contract
+runtime_target: internet_accelerator_4090_cuda128
+environment_contract:
+  runtime_target: internet_accelerator_4090_cuda128
+  dependency_profiles:
+  - accelerator_runtime_base
+  - gpu_occupancy_guard
+  - torch_vision_audio_cuda_matrix
+  - diffusion_vlm_runtime
+  gpu:
+    required_for_standard_reproduction: true
+    cuda_required: true
+    accelerator: NVIDIA GeForce RTX 4090
+    min_vram_gb: 16
+    gpu_occupancy_floor_percent: 15
+  l4_requires:
+  - requires_profile_closure_pass
+  - requires_gpu_cuda_evidence
+  - requires_minimal_reproduction_experiment
+  - disallow_blocked_or_deferred_dependencies

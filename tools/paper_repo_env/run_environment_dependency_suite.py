@@ -112,6 +112,72 @@ def parse_json_stdout(stdout: str) -> Any:
     return None
 
 
+def dotted_value(payload: Any, dotted_path: str) -> Any:
+    current = payload
+    parts = dotted_path.split(".")
+    for index, part in enumerate(parts):
+        if isinstance(current, dict) and part in current:
+            current = current[part]
+            continue
+        if index == 0 and isinstance(current, dict) and isinstance(current.get("modules"), dict) and part in current["modules"]:
+            current = current["modules"][part]
+            continue
+        return None
+    return current
+
+
+def compare_values(actual: Any, operator: str, expected: str) -> bool:
+    if operator == "=":
+        return str(actual).lower() == expected.lower()
+    try:
+        left = float(actual)
+        right = float(expected)
+    except (TypeError, ValueError):
+        return False
+    if operator == ">=":
+        return left >= right
+    if operator == "<=":
+        return left <= right
+    if operator == ">":
+        return left > right
+    if operator == "<":
+        return left < right
+    return False
+
+
+def evaluate_expected(parsed: Any, expected: list[Any]) -> list[dict[str, Any]]:
+    results: list[dict[str, Any]] = []
+    if not expected:
+        return results
+    for raw_expectation in expected:
+        expectation = str(raw_expectation)
+        operator = None
+        for candidate in (">=", "<=", ">", "<", "="):
+            if candidate in expectation:
+                operator = candidate
+                break
+        if operator:
+            path, expected_value = [part.strip() for part in expectation.split(operator, 1)]
+            actual = dotted_value(parsed, path)
+            passed = compare_values(actual, operator, expected_value)
+        else:
+            path = expectation.strip()
+            expected_value = None
+            actual = dotted_value(parsed, path)
+            passed = actual not in (None, False, "", [], {})
+        results.append(
+            {
+                "expectation": expectation,
+                "path": path,
+                "operator": operator or "exists",
+                "expected": expected_value,
+                "actual": actual,
+                "passed": passed,
+            }
+        )
+    return results
+
+
 def infer_status(returncode: int, parsed: Any) -> str:
     if returncode != 0:
         return "error"
@@ -151,6 +217,10 @@ def run_profile(root: Path, profile_id: str, profile: dict[str, Any], python_exe
     if parsed is None:
         parsed = parse_json_stdout(completed.stdout)
     status = infer_status(completed.returncode, parsed)
+    expectation_results = evaluate_expected(parsed, profile.get("expected", []) or [])
+    expectation_failures = [item for item in expectation_results if not item["passed"]]
+    if status == "pass" and expectation_failures:
+        status = "blocked"
     return {
         "profile_id": profile_id,
         "description": profile.get("description"),
@@ -162,6 +232,7 @@ def run_profile(root: Path, profile_id: str, profile: dict[str, Any], python_exe
         "stdout_tail": completed.stdout[-4000:],
         "stderr_tail": completed.stderr[-4000:],
         "parsed_summary": summarize_parsed(parsed),
+        "expectations": expectation_results,
     }
 
 

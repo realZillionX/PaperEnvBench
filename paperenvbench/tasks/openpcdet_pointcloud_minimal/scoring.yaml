@@ -1,18 +1,24 @@
 scoring:
-  L0_repository_analysis: 0.10
-  L1_install_success: 0.20
-  L2_import_success: 0.20
+  L0_repository_analysis: 0.1
+  L1_install_success: 0.2
+  L2_import_success: 0.2
   L3_minimal_entry_success: 0.25
   L4_semantic_verification: 0.15
   reproducibility: 0.05
   safety: 0.05
-main_success_level: L4_fallback
+main_success_level: L4_minimal_reproduction
 semantic_checks:
-  - repo_commit_matches
-  - official_pointpillar_config_loaded
-  - official_range_filter_executed
-  - cpu_voxel_route_executed
-  - official_voxel_center_utility_executed
-  - official_pointpillar_scatter_executed
-  - native_extension_blocker_recorded
-  - preview_artifact_written
+- repo_commit_matches
+- official_pointpillar_config_loaded
+- official_range_filter_executed
+- cpu_voxel_route_executed
+- official_voxel_center_utility_executed
+- official_pointpillar_scatter_executed
+- native_extension_blocker_recorded
+- preview_artifact_written
+l4_environment_gate:
+  runtime_target: internet_accelerator_4090_cuda128
+  requires_profile_closure_pass: true
+  requires_gpu_cuda_evidence: true
+  requires_minimal_reproduction_experiment: true
+  disallow_blocked_or_deferred_dependencies: true

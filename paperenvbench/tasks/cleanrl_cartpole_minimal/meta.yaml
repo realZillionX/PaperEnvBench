@@ -1,5 +1,6 @@
 task_id: cleanrl_cartpole_minimal
-paper_title: "CleanRL: High-quality Single-file Implementations of Deep Reinforcement Learning Algorithms"
+paper_title: 'CleanRL: High-quality Single-file Implementations of Deep Reinforcement
+  Learning Algorithms'
 repo_url: https://github.com/vwxyzjn/cleanrl
 commit: fe8d8a03c41a7ef5b523e2e354bd01c363e786bb
 commit_short: fe8d8a0
@@ -9,44 +10,65 @@ split: val
 modality:
   primary: reinforcement_learning_simulation
   secondary:
-    - reinforcement_learning
-    - cartpole
-    - ppo
-    - gymnasium
+  - reinforcement_learning
+  - cartpole
+  - ppo
+  - gymnasium
 environment_challenges:
-  - hidden_dependency
-  - entrypoint_ambiguity
-  - system_package_missing
+- hidden_dependency
+- entrypoint_ambiguity
+- system_package_missing
 verification:
   type:
-    - training_smoke_test
-    - metric_smoke_test
-    - semantic_check
+  - training_smoke_test
+  - metric_smoke_test
+  - semantic_check
   command: python verify.py --check-only --json
-  minimum_success_level: L4_cpu_deterministic_fallback
+  minimum_success_level: L4_minimal_reproduction
 hardware:
-  gpu_required: false
+  gpu_required: true
   gpu_optional: false
-  min_vram_gb: 0
+  min_vram_gb: 16
+  accelerator: NVIDIA GeForce RTX 4090
+  cuda_required: true
 platform_constraints:
-  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  run_environment: Inspire GPU notebook paperenvbench (可上网GPU资源 / 4090 / CUDA 12.8)
   package_manager:
-    - git
-    - venv
-    - pip
+  - git
+  - venv
+  - pip
   forbidden:
-    - docker build
-    - docker run
-    - docker compose
+  - docker build
+  - docker run
+  - docker compose
 visibility:
   agent_visible:
-    - repo_url
-    - commit
-    - task_prompt
-    - repo_files
-    - public_readme
+  - repo_url
+  - commit
+  - task_prompt
+  - repo_files
+  - public_readme
   hidden:
-    - gold_install.sh
-    - expected_output.json
-    - hidden_verify.py
-status: gold_verified_l4_fallback
+  - gold_install.sh
+  - expected_output.json
+  - hidden_verify.py
+status: gold_package_ready_l4_environment_contract
+runtime_target: internet_accelerator_4090_cuda128
+environment_contract:
+  runtime_target: internet_accelerator_4090_cuda128
+  dependency_profiles:
+  - accelerator_runtime_base
+  - gpu_occupancy_guard
+  - torch_vision_audio_cuda_matrix
+  - rl_simulation_runtime
+  gpu:
+    required_for_standard_reproduction: true
+    cuda_required: true
+    accelerator: NVIDIA GeForce RTX 4090
+    min_vram_gb: 16
+    gpu_occupancy_floor_percent: 15
+  l4_requires:
+  - requires_profile_closure_pass
+  - requires_gpu_cuda_evidence
+  - requires_minimal_reproduction_experiment
+  - disallow_blocked_or_deferred_dependencies

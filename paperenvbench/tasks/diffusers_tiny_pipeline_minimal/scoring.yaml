@@ -1,6 +1,6 @@
 scoring:
   max_level: L4
-  minimum_accept_level: L4_tiny_pipeline_cpu
+  minimum_accept_level: L4_minimal_reproduction
   dimensions:
     install: 0.2
     import: 0.2
@@ -8,8 +8,15 @@ scoring:
     semantic: 0.3
     safety: 0.1
   hidden_checks:
-    - repo_commit_matches
-    - diffusion_pipeline_route_recorded
-    - scheduler_route_recorded
-    - semantic_output_valid
-    - tiny_pipeline_boundary_documented
+  - repo_commit_matches
+  - diffusion_pipeline_route_recorded
+  - scheduler_route_recorded
+  - semantic_output_valid
+  - tiny_pipeline_boundary_documented
+main_success_level: L4_minimal_reproduction
+l4_environment_gate:
+  runtime_target: internet_accelerator_4090_cuda128
+  requires_profile_closure_pass: true
+  requires_gpu_cuda_evidence: true
+  requires_minimal_reproduction_experiment: true
+  disallow_blocked_or_deferred_dependencies: true

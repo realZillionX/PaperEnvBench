@@ -1,5 +1,5 @@
 task_id: detectron2_maskrcnn_minimal
-paper_title: "Detectron2 / Mask R-CNN"
+paper_title: Detectron2 / Mask R-CNN
 repo_url: https://github.com/facebookresearch/detectron2
 commit: e0ec4e189d438848521aee7926f9900e114229f5
 paper_url: https://arxiv.org/abs/1703.06870
@@ -8,45 +8,69 @@ split: dev
 modality:
   primary: object_detection_segmentation
   secondary:
-    - instance_segmentation
-    - native_extension
-    - checkpoint_loading
-    - output_artifact
+  - instance_segmentation
+  - native_extension
+  - checkpoint_loading
+  - output_artifact
 environment_challenges:
-  - native_extension_build
-  - system_package_missing
-  - hidden_dependency
-  - torch_cuda_matrix
-  - checkpoint_download
+- native_extension_build
+- system_package_missing
+- hidden_dependency
+- torch_cuda_matrix
+- checkpoint_download
 verification:
   type:
-    - checkpoint_loading
-    - single_sample_inference
-    - output_artifact
-    - semantic_check
-  command: python verify.py
+  - checkpoint_loading
+  - single_sample_inference
+  - output_artifact
+  - semantic_check
+  command: python verify.py --check-only --json
+  minimum_success_level: L4_minimal_reproduction
 hardware:
-  gpu_required: false
-  gpu_optional: true
-  min_vram_gb: 0
+  gpu_required: true
+  gpu_optional: false
+  min_vram_gb: 24
+  accelerator: NVIDIA GeForce RTX 4090
+  cuda_required: true
 platform_constraints:
   package_manager:
-    - apt
-    - venv
-    - pip
+  - apt
+  - venv
+  - pip
   forbidden:
-    - docker build
-    - docker run
-    - docker compose
+  - docker build
+  - docker run
+  - docker compose
+  run_environment: Inspire GPU notebook paperenvbench (可上网GPU资源 / 4090 / CUDA 12.8)
 visibility:
   agent_visible:
-    - repo_url
-    - commit
-    - task_prompt
-    - repo_files
-    - public_readme
+  - repo_url
+  - commit
+  - task_prompt
+  - repo_files
+  - public_readme
   hidden:
-    - gold_install.sh
-    - expected_output.json
-    - hidden_verify.py
+  - gold_install.sh
+  - expected_output.json
+  - hidden_verify.py
 status: gold_verified_l4
+runtime_target: internet_accelerator_4090_cuda128
+environment_contract:
+  runtime_target: internet_accelerator_4090_cuda128
+  dependency_profiles:
+  - native_python_build_runtime
+  - accelerator_runtime_base
+  - gpu_occupancy_guard
+  - torch_vision_audio_cuda_matrix
+  - detectron_grounding_native_ops
+  gpu:
+    required_for_standard_reproduction: true
+    cuda_required: true
+    accelerator: NVIDIA GeForce RTX 4090
+    min_vram_gb: 24
+    gpu_occupancy_floor_percent: 15
+  l4_requires:
+  - requires_profile_closure_pass
+  - requires_gpu_cuda_evidence
+  - requires_minimal_reproduction_experiment
+  - disallow_blocked_or_deferred_dependencies

@@ -41,9 +41,9 @@ tasks:
     gold_ready: true
     verifier_ready: true
     asset_ready: true
-    selection_reason: "音频 / CLI / checkpoint / ffmpeg 的种子任务，已有远端 CPU L4 smoke。"
+    selection_reason: "音频 / CLI / checkpoint / ffmpeg 的种子任务，已迁移到 GPU L4 环境 gate。"
   - task_id: demucs_music_separation
-    candidate_status: gold_verified_l4_fallback
+    candidate_status: gold_package_ready_l4_environment_contract
     split: dev
     repo_url: https://github.com/facebookresearch/demucs
     commit: e976d93ecc3865e5757426930257e200846a520a
@@ -101,7 +101,7 @@ tasks:
       environment_challenges: [checkpoint_download, torch_cuda_matrix, hidden_dependency, dataset_asset_missing, verification_ambiguity]
       verification_type: [import_graph, single_sample_inference, output_artifact, semantic_check]
       expected_skill_routes: [global_reproducibility_safety, audio_env_setup, checkpoint_validation, minimal_entrypoint_discovery]
-    asset_control: controlled_toy_audio_public_or_fallback_checkpoint
+    asset_control: controlled_toy_audio_public_checkpoint_or_documented_gate
     gold_ready: true
     verifier_ready: true
     asset_ready: true
@@ -131,7 +131,7 @@ tasks:
     asset_ready: true
     selection_reason: "覆盖现代视觉表征仓库和 hub / checkpoint 路线。"
   - task_id: convnext_classification_minimal
-    candidate_status: gold_verified_l4_fallback
+    candidate_status: gold_package_ready_l4_environment_contract
     split: val
     repo_url: https://github.com/facebookresearch/ConvNeXt
     commit: 048efcea897d999aed302f2639b6270aedf8d4c8
@@ -177,7 +177,7 @@ tasks:
     gold_ready: true
     verifier_ready: true
     asset_ready: true
-    selection_reason: "分割 / checkpoint / mask artifact 的种子任务，已有远端 CPU L4 smoke。"
+    selection_reason: "分割 / checkpoint / mask artifact 的种子任务，已迁移到 GPU L4 环境 gate。"
   - task_id: detectron2_maskrcnn_minimal
     candidate_status: gold_verified_l4
     split: dev
@@ -191,7 +191,7 @@ tasks:
     asset_ready: true
     selection_reason: "代表 detectron2 native extension 和 COCO-style output。"
   - task_id: mmdetection_fasterrcnn_minimal
-    candidate_status: gold_verified_l4_fallback
+    candidate_status: gold_package_ready_l4_environment_contract
     split: val
     repo_url: https://github.com/open-mmlab/mmdetection
     commit: cfd5d3a985b0249de009b67d04f37263e11cdf3d
@@ -227,7 +227,7 @@ tasks:
     asset_ready: true
     selection_reason: "覆盖 phrase grounding、文本条件 detection 和编译风险。"
   - task_id: mmsegmentation_segformer_minimal
-    candidate_status: gold_verified_l4_fallback
+    candidate_status: gold_package_ready_l4_environment_contract
     split: test
     repo_url: https://github.com/open-mmlab/mmsegmentation
     commit: b040e147adfa027bbc071b624bedf0ae84dfc922
@@ -239,7 +239,7 @@ tasks:
     asset_ready: true
     selection_reason: "覆盖 semantic segmentation mask artifact 与 OpenMMLab 配置。"
   - task_id: pytorchvideo_classification_minimal
-    candidate_status: gold_verified_l4_fallback
+    candidate_status: gold_package_ready_l4_environment_contract
     split: dev
     repo_url: https://github.com/facebookresearch/pytorchvideo
     commit: f3142bb05cdb56af0704ab6f0adfb0c7bbafe4a0
@@ -251,7 +251,7 @@ tasks:
     asset_ready: true
     selection_reason: "代表视频分类、帧解码和 pretrained model。"
   - task_id: slowfast_video_classification_minimal
-    candidate_status: gold_verified_l4_fallback
+    candidate_status: gold_package_ready_l4_environment_contract
     split: dev
     repo_url: https://github.com/facebookresearch/SlowFast
     commit: 287ec0076846560f44a9327e931a5a2360240533
@@ -263,7 +263,7 @@ tasks:
     asset_ready: true
     selection_reason: "覆盖旧版视频模型和多路径输入处理。"
   - task_id: videomae_classification_minimal
-    candidate_status: gold_verified_l4_fallback
+    candidate_status: gold_package_ready_l4_environment_contract
     split: val
     repo_url: https://github.com/MCG-NJU/VideoMAE
     commit: 14ef8d856287c94ef1f985fe30f958eb4ec2c55d
@@ -275,7 +275,7 @@ tasks:
     asset_ready: true
     selection_reason: "覆盖 video transformer 和 clip sampling 语义检查。"
   - task_id: mmaction2_recognition_minimal
-    candidate_status: gold_verified_l4_fallback
+    candidate_status: gold_package_ready_l4_environment_contract
     split: test
     repo_url: https://github.com/open-mmlab/mmaction2
     commit: a5a167dff2399e2d182a60332325f9c0d4663517
@@ -287,7 +287,7 @@ tasks:
     asset_ready: true
     selection_reason: "覆盖 OpenMMLab 视频栈、decord / ffmpeg 和配置依赖。"
   - task_id: timesformer_video_transformer_minimal
-    candidate_status: gold_verified_l4_fallback
+    candidate_status: gold_package_ready_l4_environment_contract
     split: test
     repo_url: https://github.com/facebookresearch/TimeSformer
     commit: a5ef29a7b7264baff199a30b3306ac27de901133
@@ -309,7 +309,7 @@ tasks:
     gold_ready: true
     verifier_ready: true
     asset_ready: true
-    selection_reason: "视觉语言 / 权重下载 / 概率输出种子任务，已有远端 CPU L4 smoke。"
+    selection_reason: "视觉语言 / 权重下载 / 概率输出种子任务，已迁移到 GPU L4 环境 gate。"
   - task_id: open_clip_zeroshot_minimal
     candidate_status: selected_gold
     split: dev
@@ -341,7 +341,7 @@ tasks:
     commit: 506965b9c4a18c1e565bd32acaccabe0198433f7
     paper_title: "BLIP-2: Bootstrapping Language-Image Pre-training with Frozen Image Encoders and Large Language Models"
     taxonomy: {modality_primary: vision_language_multimodal, environment_challenges: [checkpoint_download, torch_cuda_matrix, hidden_dependency, hardware_pressure], verification_type: [checkpoint_loading, single_sample_inference, semantic_check], expected_skill_routes: [global_reproducibility_safety, vision_language_env_setup, checkpoint_validation, torch_cuda_matrix_solver]}
-    asset_control: controlled_synthetic_image_public_or_fallback_checkpoint
+    asset_control: controlled_synthetic_image_public_checkpoint_or_documented_gate
     gold_ready: true
     verifier_ready: true
     asset_ready: true
@@ -377,11 +377,11 @@ tasks:
     commit: eedf5716ce1268e56f0a50264a88cafad334ac61
     paper_title: "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding"
     taxonomy: {modality_primary: llm_nlp, environment_challenges: [python_version_conflict, checkpoint_download, stale_readme, hidden_dependency], verification_type: [checkpoint_loading, single_sample_inference, semantic_check], expected_skill_routes: [global_reproducibility_safety, checkpoint_validation, minimal_entrypoint_discovery, hidden_dependency_inferer]}
-    asset_control: controlled_text_prompt_public_checkpoint_or_transformers_fallback
+    asset_control: controlled_text_prompt_public_checkpoint_or_documented_gate
     gold_ready: true
     verifier_ready: true
     asset_ready: true
-    selection_reason: "覆盖经典 NLP 旧仓和现代 fallback 取舍。"
+    selection_reason: "覆盖经典 NLP 旧仓和完整依赖边界取舍。"
   - task_id: fasttext_text_classification_minimal
     candidate_status: selected_gold
     split: dev
@@ -437,11 +437,11 @@ tasks:
     commit: 90dcc718148715bd8e0045ca964e15dbcfba9a1d
     paper_title: "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer"
     taxonomy: {modality_primary: llm_nlp, environment_challenges: [python_version_conflict, checkpoint_download, stale_readme, hidden_dependency], verification_type: [checkpoint_loading, single_sample_inference, semantic_check], expected_skill_routes: [global_reproducibility_safety, checkpoint_validation, hidden_dependency_inferer, minimal_entrypoint_discovery]}
-    asset_control: controlled_text_prompt_public_checkpoint_or_transformers_fallback
+    asset_control: controlled_text_prompt_public_checkpoint_or_documented_gate
     gold_ready: true
     verifier_ready: true
     asset_ready: true
-    selection_reason: "覆盖旧 research code 与现代 transformers fallback 的边界。"
+    selection_reason: "覆盖旧 research code 与现代 transformers 路线与完整依赖边界。"
   - task_id: improved_diffusion_sample_minimal
     candidate_status: selected_gold
     split: dev
@@ -473,7 +473,7 @@ tasks:
     commit: a506df5756472e2ebaf9078affdde2c4f1502cd4
     paper_title: "High-Resolution Image Synthesis with Latent Diffusion Models"
     taxonomy: {modality_primary: diffusion_generation, environment_challenges: [checkpoint_download, torch_cuda_matrix, hidden_dependency, system_package_missing], verification_type: [checkpoint_loading, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, diffusion_env_setup, checkpoint_validation, system_package_resolver]}
-    asset_control: controlled_prompt_public_checkpoint_or_tiny_fallback
+    asset_control: controlled_prompt_public_checkpoint_or_documented_gate
     gold_ready: true
     verifier_ready: true
     asset_ready: true
@@ -485,7 +485,7 @@ tasks:
     commit: 21f890f9da3cfbeaba8e2ac3c425ee9e998d5229
     paper_title: "High-Resolution Image Synthesis with Latent Diffusion Models"
     taxonomy: {modality_primary: diffusion_generation, environment_challenges: [checkpoint_download, torch_cuda_matrix, api_or_license_gate, hardware_pressure], verification_type: [checkpoint_loading, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, diffusion_env_setup, checkpoint_validation, torch_cuda_matrix_solver]}
-    asset_control: license_review_or_tiny_fallback
+    asset_control: license_review_or_full_dependency_gate
     gold_ready: true
     verifier_ready: true
     asset_ready: true
@@ -593,7 +593,7 @@ tasks:
     commit: 7fa560e21c026c04bb8dcd72959ecf4e3424476c
     paper_title: "Improving Sample Efficiency in Model-Free Reinforcement Learning from Images"
     taxonomy: {modality_primary: reinforcement_learning_simulation, environment_challenges: [system_package_missing, torch_cuda_matrix, entrypoint_ambiguity, hardware_pressure], verification_type: [training_smoke_test, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, rl_simulation_env_setup, torch_cuda_matrix_solver, minimal_entrypoint_discovery]}
-    asset_control: controlled_pixel_toy_env_or_import_fallback
+    asset_control: controlled_pixel_toy_env_or_simulator_dependency_gate
     gold_ready: true
     verifier_ready: true
     asset_ready: true
@@ -617,7 +617,7 @@ tasks:
     commit: 50e0e3c70c775e89333256213363badbf074f29d
     paper_title: "Nerfstudio: A Modular Framework for Neural Radiance Field Development"
     taxonomy: {modality_primary: scientific_geometry_3d, environment_challenges: [native_extension_build, torch_cuda_matrix, system_package_missing, hardware_pressure], verification_type: [cli_help, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, geometry_3d_env_setup, native_extension_repair, torch_cuda_matrix_solver]}
-    asset_control: controlled_tiny_nerf_scene_or_cli_fallback
+    asset_control: controlled_tiny_nerf_scene_or_full_route_gate
     gold_ready: true
     verifier_ready: true
     asset_ready: true
@@ -629,7 +629,7 @@ tasks:
     commit: 54c035f7834b564019656c3e3fcc3646292f727d
     paper_title: "3D Gaussian Splatting for Real-Time Radiance Field Rendering"
     taxonomy: {modality_primary: scientific_geometry_3d, environment_challenges: [native_extension_build, torch_cuda_matrix, system_package_missing, hardware_pressure], verification_type: [checkpoint_loading, output_artifact, semantic_check], expected_skill_routes: [global_reproducibility_safety, geometry_3d_env_setup, native_extension_repair, torch_cuda_matrix_solver]}
-    asset_control: controlled_tiny_scene_or_prebuilt_fallback
+    asset_control: controlled_tiny_scene_or_native_route_gate
     gold_ready: true
     verifier_ready: true
     asset_ready: true

@@ -19,7 +19,7 @@
     },
     "dependency_profiles": {
       "type": "array",
-      "description": "Environment dependency slices relevant to the task.",
+      "description": "Environment dependency slices relevant to the task. For L4, every profile in the task's bound profile closure must be present with status=pass.",
       "items": {
         "type": "object",
         "required": [
@@ -186,7 +186,7 @@
         "array",
         "object"
       ],
-      "description": "Decision log for large, slow, gated or hardware-sensitive dependencies. Do not omit multi-GB checkpoints, datasets, CUDA/native builds or simulator stacks merely because the bounded validation route is smaller.",
+      "description": "Decision log for large, slow, gated or hardware-sensitive dependencies. Do not omit multi-GB checkpoints, datasets, CUDA/native builds or simulator stacks merely because the bounded validation route is smaller. Blocked, partial, not_applicable, or deferred decisions may explain lower levels, but L4 requires the full minimal reproduction dependency route to be installed or probed.",
       "items": {
         "type": "object",
         "required": [
@@ -249,7 +249,7 @@
         "array",
         "object"
       ],
-      "description": "Small but representative paper-key experiment checks, including command, status, output artifacts and metrics.",
+      "description": "Small but representative paper-key experiment checks, including command, status, output artifacts and metrics. L4 requires at least one passed task minimal reproduction, verifier, single-sample inference, render, rollout, sample, or metric smoke.",
       "items": {
         "type": "object",
         "required": [

@@ -1,5 +1,5 @@
 task_id: stable_baselines3_cartpole_minimal
-paper_title: "Stable-Baselines3: Reliable Reinforcement Learning Implementations"
+paper_title: 'Stable-Baselines3: Reliable Reinforcement Learning Implementations'
 repo_url: https://github.com/DLR-RM/stable-baselines3
 commit: 8da3e5eadeda14c63f42c62dbbe7dbb00c2fd458
 commit_short: 8da3e5e
@@ -9,42 +9,63 @@ split: dev
 modality:
   primary: reinforcement_learning_simulation
   secondary:
-    - policy_gradient
-    - gymnasium_cartpole
-    - training_smoke_test
+  - policy_gradient
+  - gymnasium_cartpole
+  - training_smoke_test
 environment_challenges:
-  - hidden_dependency
-  - torch_cuda_matrix
-  - entrypoint_ambiguity
+- hidden_dependency
+- torch_cuda_matrix
+- entrypoint_ambiguity
 verification:
   type:
-    - training_smoke_test
-    - semantic_check
-    - output_artifact
+  - training_smoke_test
+  - semantic_check
+  - output_artifact
   command: python verify.py --check-only --json
-  minimum_success_level: L4_cpu_deterministic_fallback
+  minimum_success_level: L4_minimal_reproduction
 hardware:
-  gpu_required: false
-  gpu_optional: true
-  min_vram_gb: 0
+  gpu_required: true
+  gpu_optional: false
+  min_vram_gb: 16
+  accelerator: NVIDIA GeForce RTX 4090
+  cuda_required: true
 platform_constraints:
-  run_environment: "Inspire CPU notebook paper-repro-ci-prep"
+  run_environment: Inspire GPU notebook paperenvbench (可上网GPU资源 / 4090 / CUDA 12.8)
   package_manager:
-    - venv
-    - pip
+  - venv
+  - pip
   forbidden:
-    - docker build
-    - docker run
-    - docker compose
+  - docker build
+  - docker run
+  - docker compose
 visibility:
   agent_visible:
-    - repo_url
-    - commit
-    - task_prompt
-    - repo_files
-    - public_readme
+  - repo_url
+  - commit
+  - task_prompt
+  - repo_files
+  - public_readme
   hidden:
-    - gold_install.sh
-    - expected_output.json
-    - hidden_verify.py
-status: gold_verified_l4_fallback
+  - gold_install.sh
+  - expected_output.json
+  - hidden_verify.py
+status: gold_package_ready_l4_environment_contract
+runtime_target: internet_accelerator_4090_cuda128
+environment_contract:
+  runtime_target: internet_accelerator_4090_cuda128
+  dependency_profiles:
+  - accelerator_runtime_base
+  - gpu_occupancy_guard
+  - torch_vision_audio_cuda_matrix
+  - rl_simulation_runtime
+  gpu:
+    required_for_standard_reproduction: true
+    cuda_required: true
+    accelerator: NVIDIA GeForce RTX 4090
+    min_vram_gb: 16
+    gpu_occupancy_floor_percent: 15
+  l4_requires:
+  - requires_profile_closure_pass
+  - requires_gpu_cuda_evidence
+  - requires_minimal_reproduction_experiment
+  - disallow_blocked_or_deferred_dependencies

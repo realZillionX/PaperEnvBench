@@ -1,5 +1,5 @@
 task_id: mmaction2_recognition_minimal
-main_success_level: L4_fallback
+main_success_level: L4_minimal_reproduction
 points:
   install: 20
   import: 15
@@ -7,21 +7,27 @@ points:
   semantic: 30
   safety: 15
 required_checks:
-  - repo_commit_matches
-  - config_loaded
-  - pipeline_decoded_video
-  - recognizer_built_from_registry
-  - backbone_is_resnet
-  - head_is_tsn_head
-  - parameter_count_large_enough
-  - prediction_shape_matches
-  - scores_are_finite
-  - scores_are_normalized
-  - features_have_variance
-  - synthetic_video_written
+- repo_commit_matches
+- config_loaded
+- pipeline_decoded_video
+- recognizer_built_from_registry
+- backbone_is_resnet
+- head_is_tsn_head
+- parameter_count_large_enough
+- prediction_shape_matches
+- scores_are_finite
+- scores_are_normalized
+- features_have_variance
+- synthetic_video_written
 artifact_requirements:
-  - artifacts/expected_artifact.json
-  - artifacts/synthetic_action.mp4
+- artifacts/expected_artifact.json
+- artifacts/synthetic_action.mp4
 native_boundary:
   expected: mmcv-lite fallback
   required_evidence: logs/mmcv_native_binary_probe.log
+l4_environment_gate:
+  runtime_target: internet_accelerator_4090_cuda128
+  requires_profile_closure_pass: true
+  requires_gpu_cuda_evidence: true
+  requires_minimal_reproduction_experiment: true
+  disallow_blocked_or_deferred_dependencies: true
