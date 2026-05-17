@@ -1,11 +1,19 @@
 assets:
-  - asset_id: whisper_tiny_checkpoint
+  - asset_id: whisper_tiny_en_checkpoint
     type: checkpoint
     required: true
-    cached_path: paper-repro:models/whisper/
-    checksum: null
-  - asset_id: synthetic_sine_audio
+    cached_path: paper-repro:PaperEnvBench/runs/source_aligned_gold_20260518/whisper_asr_minimal/models/tiny.en.pt
+    checksum: d3dd57d32accea0b295c96e26691aa14d8822fac7d9d27d5dc00b4ca2826dd03
+    size_bytes: 75571315
+  - asset_id: whisper_jfk_flac_input
     type: audio
     required: true
-    cached_path: paper-repro:outputs/whisper_smoke/whisper_sine.wav
-    checksum: null
+    cached_path: paperenvbench/tasks/whisper_asr_minimal/artifacts/input_jfk.flac
+    checksum: 63a4b1e4c1dc655ac70961ffbf518acd249df237e5a0152faae9a4a836949715
+    size_bytes: 1152693
+  - asset_id: whisper_source_aligned_artifact_bundle
+    type: output_artifact
+    required: true
+    cached_path: paperenvbench/tasks/whisper_asr_minimal/artifacts/
+    checksum: 688f17948d258869546a6e9253b642f69678cfe63bb38c408cccfd3e37474cd3
+    note: "SHA is for artifacts/run_metadata.json; per-file output hashes are recorded inside that metadata."

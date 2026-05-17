@@ -1,6 +1,58 @@
 {
-  "score": 1.0128719806671143,
-  "mask_pixels": 14637,
-  "image": "outputs/sam_smoke/test_image.png",
-  "mask": "outputs/sam_smoke/mask.png"
+  "all_scores": [
+    0.6899464130401611,
+    0.9809321165084839,
+    0.970623254776001
+  ],
+  "checkpoint_path": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/PaperEnvBench/runs/source_aligned_gold_20260518/sam_mask_minimal/models/sam/sam_vit_b_01ec64.pth",
+  "checkpoint_sha256": "ec2df62732614e57411cdcf32a23ffdf28910380d03139ee0f4fcbe91eb8c912",
+  "checkpoint_size_bytes": 375042383,
+  "device": "cuda",
+  "entrypoint": "SamPredictor.predict point prompt",
+  "input_image": "artifacts/expected_input.png",
+  "input_image_sha256": "da65f94ef9ccf941f2a94e53aa9f98c841733952b9183c78212cfb6dc80528fa",
+  "input_shape": [
+    256,
+    256,
+    3
+  ],
+  "logits_shape": [
+    3,
+    256,
+    256
+  ],
+  "mask": "artifacts/expected_artifact.png",
+  "mask_pixels": 1313,
+  "mask_sha256": "948e23a4f15ff9c03e4d1cd7bda3b3a7705941ac2ffec18d9f852b16ad3a8241",
+  "mask_shape": [
+    256,
+    256
+  ],
+  "mask_unique_values": [
+    0,
+    1
+  ],
+  "model_type": "vit_b",
+  "prompt": {
+    "multimask_output": true,
+    "point_coords": [
+      [
+        128,
+        130
+      ]
+    ],
+    "point_labels": [
+      1
+    ]
+  },
+  "repo_commit": "dca509fe793f601edb92606367a655c15ac00fdf",
+  "score": 0.9809321165084839,
+  "selected_mask_index": 1,
+  "task_id": "sam_mask_minimal",
+  "torch": {
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4090",
+    "torch_cuda": "12.8",
+    "version": "2.11.0+cu128"
+  }
 }

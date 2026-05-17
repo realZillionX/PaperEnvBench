@@ -8,8 +8,12 @@ scoring:
   safety: 0.05
 main_success_level: L4_minimal_reproduction
 semantic_checks:
-- checkpoint_loads
-- mask_png_exists
+- sam_vit_b_checkpoint_sha256_matches
+- sam_predictor_forward_evidence
+- cuda_device_evidence_present
+- input_png_sha256_matches
+- mask_png_sha256_matches
+- mask_pixels_recomputed_from_png
 - mask_area_in_expected_range
 - summary_json_exists
 l4_environment_gate:

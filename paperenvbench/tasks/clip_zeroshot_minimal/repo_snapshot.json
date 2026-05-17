@@ -22,22 +22,34 @@
     }
   ],
   "observed_environment": {
-    "notebook": "paper-repro-ci-prep",
-    "remote_cwd_alias": "paper-repro",
+    "notebook": "paperenvbench",
+    "remote_cwd_alias": "paper-repro:PaperEnvBench",
     "python": "3.12",
-    "device": "cpu"
+    "device": "cuda",
+    "accelerator": "NVIDIA GeForce RTX 4090",
+    "torch": "2.11.0+cu128",
+    "torch_cuda": "12.8"
   },
   "asset_dependencies": [
     {
       "type": "checkpoint",
       "name": "ViT-B/32",
-      "cached_path": "paper-repro:models/clip/ViT-B-32.pt",
-      "sha256": "40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af"
+      "cached_path": "paper-repro:PaperEnvBench/runs/source_aligned_gold_20260518/clip_zeroshot_minimal/models/ViT-B-32.pt",
+      "sha256": "40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af",
+      "size_bytes": 353976522
+    },
+    {
+      "type": "input_image",
+      "name": "CLIP.png",
+      "cached_path": "paperenvbench/tasks/clip_zeroshot_minimal/artifacts/expected_artifact.png",
+      "sha256": "308a3ca4503f1c7a07803916c369d78c4ef501e5ab7fc727da9b5e1d2f9ec85b",
+      "source": "repo/CLIP.png"
     }
   ],
   "validated_outputs": {
-    "remote_output_dir": "paper-repro:outputs/clip_smoke",
+    "remote_output_dir": "paper-repro:PaperEnvBench/runs/source_aligned_gold_20260518/clip_zeroshot_minimal/artifacts",
     "local_artifact_dir": "paperenvbench/tasks/clip_zeroshot_minimal/artifacts",
-    "success_level": "L4"
+    "success_level": "L4_minimal_reproduction",
+    "semantic_result": "README labels over CLIP.png ranked `a diagram` first with probability 0.99267578125 on CUDA."
   }
 }

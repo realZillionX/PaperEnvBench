@@ -26,22 +26,33 @@
     }
   ],
   "observed_environment": {
-    "notebook": "paper-repro-ci-prep",
-    "remote_cwd_alias": "paper-repro",
+    "notebook": "paperenvbench",
+    "remote_cwd_alias": "paper-repro:PaperEnvBench",
     "python": "3.12",
-    "device": "cpu"
+    "device": "cuda",
+    "accelerator": "NVIDIA GeForce RTX 4090",
+    "torch": "2.11.0+cu128",
+    "torch_cuda": "12.8"
   },
   "asset_dependencies": [
     {
       "type": "checkpoint",
       "name": "sam_vit_b_01ec64.pth",
-      "cached_path": "paper-repro:models/sam/sam_vit_b_01ec64.pth",
-      "sha256": "ec2df62732614e57411cdcf32a23ffdf28910380d03139ee0f4fcbe91eb8c912"
+      "cached_path": "paper-repro:PaperEnvBench/runs/source_aligned_gold_20260518/sam_mask_minimal/models/sam/sam_vit_b_01ec64.pth",
+      "sha256": "ec2df62732614e57411cdcf32a23ffdf28910380d03139ee0f4fcbe91eb8c912",
+      "size_bytes": 375042383
+    },
+    {
+      "type": "input_image",
+      "name": "predictor_prompt_image",
+      "cached_path": "paperenvbench/tasks/sam_mask_minimal/artifacts/expected_input.png",
+      "sha256": "da65f94ef9ccf941f2a94e53aa9f98c841733952b9183c78212cfb6dc80528fa"
     }
   ],
   "validated_outputs": {
-    "remote_output_dir": "paper-repro:outputs/sam_smoke",
+    "remote_output_dir": "paper-repro:PaperEnvBench/runs/source_aligned_gold_20260518/sam_mask_minimal/artifacts",
     "local_artifact_dir": "paperenvbench/tasks/sam_mask_minimal/artifacts",
-    "success_level": "L4"
+    "success_level": "L4_minimal_reproduction",
+    "semantic_result": "SamPredictor loaded vit_b checkpoint on CUDA and produced a non-empty 256 x 256 mask with 1313 foreground pixels."
   }
 }

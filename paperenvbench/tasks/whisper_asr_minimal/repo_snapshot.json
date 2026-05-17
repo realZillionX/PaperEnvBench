@@ -1,61 +1,60 @@
 {
-  "branch": "main",
-  "dirty": false,
-  "gold_outputs": {
-    "outputs/whisper_smoke/whisper_sine.json": {
-      "size_bytes": 46
-    },
-    "outputs/whisper_smoke/whisper_sine.srt": {
-      "size_bytes": 0
-    },
-    "outputs/whisper_smoke/whisper_sine.tsv": {
-      "size_bytes": 15
-    },
-    "outputs/whisper_smoke/whisper_sine.txt": {
-      "size_bytes": 0
-    },
-    "outputs/whisper_smoke/whisper_sine.vtt": {
-      "size_bytes": 8
-    }
-  },
-  "key_files": {
-    "README.md": {
-      "exists": true,
-      "size_bytes": 8246
-    },
-    "pyproject.toml": {
-      "exists": true,
-      "size_bytes": 1418
-    },
-    "whisper/__init__.py": {
-      "exists": true,
-      "size_bytes": 7432
-    },
-    "whisper/audio.py": {
-      "exists": true,
-      "size_bytes": 4945
-    },
-    "whisper/transcribe.py": {
-      "exists": true,
-      "size_bytes": 30366
-    }
-  },
-  "observed_remote_path": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/repos/whisper",
+  "task_id": "whisper_asr_minimal",
+  "repo_name": "whisper",
+  "repo_url": "https://github.com/openai/whisper",
+  "repo_commit": "04f449b8a437f1bbd3dba5c9f826aca972e7709a",
+  "repo_commit_short": "04f449b",
   "package_manager": "pip",
-  "python_entrypoints": [
+  "dependency_files": [
+    "pyproject.toml"
+  ],
+  "system_dependencies": [
+    "ffmpeg",
+    "ffprobe"
+  ],
+  "entrypoints": [
     {
+      "type": "console_script",
       "name": "whisper",
-      "target": "whisper.transcribe:cli",
-      "type": "console_script"
+      "target": "whisper.transcribe:cli"
+    },
+    {
+      "type": "python_api",
+      "name": "whisper.load_model",
+      "target": "whisper"
     }
   ],
-  "remote_path_alias": "paper-repro:repos/whisper",
-  "repo_commit": "04f449b",
-  "repo_commit_full": "04f449b8a437f1bbd3dba5c9f826aca972e7709a",
-  "repo_name": "whisper",
-  "repo_url": "https://github.com/openai/whisper.git",
-  "snapshot_command": "inspire notebook exec paper-repro-ci-prep --cwd paper-repro",
-  "task_id": "whisper_asr_minimal",
+  "observed_environment": {
+    "notebook": "paperenvbench",
+    "remote_cwd_alias": "paper-repro:PaperEnvBench",
+    "python": "3.12",
+    "device": "cuda",
+    "accelerator": "NVIDIA GeForce RTX 4090",
+    "torch": "2.11.0+cu128",
+    "torch_cuda": "12.8"
+  },
+  "asset_dependencies": [
+    {
+      "type": "checkpoint",
+      "name": "tiny.en",
+      "cached_path": "paper-repro:PaperEnvBench/runs/source_aligned_gold_20260518/whisper_asr_minimal/models/tiny.en.pt",
+      "sha256": "d3dd57d32accea0b295c96e26691aa14d8822fac7d9d27d5dc00b4ca2826dd03",
+      "size_bytes": 75571315
+    },
+    {
+      "type": "input_audio",
+      "name": "tests/jfk.flac",
+      "cached_path": "paperenvbench/tasks/whisper_asr_minimal/artifacts/input_jfk.flac",
+      "sha256": "63a4b1e4c1dc655ac70961ffbf518acd249df237e5a0152faae9a4a836949715",
+      "duration_seconds": 11.0
+    }
+  ],
+  "validated_outputs": {
+    "remote_output_dir": "paper-repro:PaperEnvBench/runs/source_aligned_gold_20260518/whisper_asr_minimal/artifacts",
+    "local_artifact_dir": "paperenvbench/tasks/whisper_asr_minimal/artifacts",
+    "success_level": "L4_minimal_reproduction",
+    "semantic_result": "tiny.en transcribed JFK speech into two English segments on CUDA."
+  },
   "taxonomy_hints": {
     "environment_challenges": [
       "system_package_missing",

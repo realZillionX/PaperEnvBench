@@ -1,35 +1,85 @@
 {
   "task_id": "sam_mask_minimal",
   "source": {
-    "notebook": "paper-repro-ci-prep",
-    "remote_cwd_alias": "paper-repro",
-    "repo_path": "paper-repro:repos/segment-anything",
+    "notebook": "paperenvbench",
+    "remote_cwd_alias": "paper-repro:PaperEnvBench",
+    "remote_run_dir": "paper-repro:PaperEnvBench/runs/source_aligned_gold_20260518/sam_mask_minimal",
+    "repo_url": "https://github.com/facebookresearch/segment-anything",
     "repo_commit": "dca509fe793f601edb92606367a655c15ac00fdf",
-    "venv": "paper-repro:envs/paper-repro-cpu",
-    "smoke_log": "paper-repro:logs/30_sam_smoke.log",
-    "output_dir": "paper-repro:outputs/sam_smoke"
+    "runtime_target": "internet_accelerator_4090_cuda128",
+    "torch": {
+      "version": "2.11.0+cu128",
+      "cuda": "12.8",
+      "gpu": "NVIDIA GeForce RTX 4090"
+    }
   },
   "expected_files": {
     "summary": "artifacts/expected_artifact.json",
     "mask": "artifacts/expected_artifact.png",
     "input": "artifacts/expected_input.png"
   },
+  "route_requirements": {
+    "entrypoint": "SamPredictor.predict point prompt",
+    "model_type": "vit_b",
+    "checkpoint": "sam_vit_b_01ec64.pth",
+    "prompt": {
+      "point_coords": [
+        [
+          128,
+          130
+        ]
+      ],
+      "point_labels": [
+        1
+      ],
+      "multimask_output": true
+    },
+    "device": "cuda",
+    "required_evidence": [
+      "sam_model_registry",
+      "SamPredictor",
+      "checkpoint SHA and size",
+      "input image SHA",
+      "mask SHA",
+      "score",
+      "mask pixels",
+      "CUDA torch evidence"
+    ]
+  },
+  "semantic_requirements": {
+    "score_must_be_finite": true,
+    "mask_pixels_min": 1000,
+    "mask_pixels_max": 60000,
+    "mask_must_be_nonempty_and_nonfull": true
+  },
   "gold_payload": {
-    "score": 1.0128719806671143,
-    "mask_pixels": 14637,
-    "image": "outputs/sam_smoke/test_image.png",
-    "mask": "outputs/sam_smoke/mask.png"
+    "entrypoint": "SamPredictor.predict point prompt",
+    "model_type": "vit_b",
+    "checkpoint_sha256": "ec2df62732614e57411cdcf32a23ffdf28910380d03139ee0f4fcbe91eb8c912",
+    "input_image_sha256": "da65f94ef9ccf941f2a94e53aa9f98c841733952b9183c78212cfb6dc80528fa",
+    "mask_sha256": "948e23a4f15ff9c03e4d1cd7bda3b3a7705941ac2ffec18d9f852b16ad3a8241",
+    "score": 0.9809321165084839,
+    "mask_pixels": 1313,
+    "mask_shape": [
+      256,
+      256
+    ],
+    "device": "cuda"
   },
   "acceptance": {
     "score_must_be_finite": true,
     "mask_pixels_min": 1000,
     "mask_pixels_max": 60000,
-    "requires_nonempty_mask_png": true
+    "requires_checkpoint_sha256": true,
+    "requires_input_image_sha256": true,
+    "requires_mask_sha256": true,
+    "requires_mask_pixel_recount": true,
+    "requires_cuda_evidence": true
   },
   "checksums": {
-    "expected_artifact_json_sha256": "38b5b90eb3a7c9e0a112adae7a9da6cc551d189e6af497ff9a387cd99a34299f",
-    "expected_artifact_png_sha256": "79090435d45049ea4a34535746994c5c526764efecb72c222de4c6158f00bbc2",
-    "expected_input_png_sha256": "020a843b7db79ef6ad7cf58fe3bae979256efaad5d7b00058b786a09a5850928",
+    "expected_artifact_json_sha256": "b96c0867bb3f2cb246fcbc1b349c419b1f2c5897f7e9f1d8744174b9b58b9f72",
+    "expected_artifact_png_sha256": "948e23a4f15ff9c03e4d1cd7bda3b3a7705941ac2ffec18d9f852b16ad3a8241",
+    "expected_input_png_sha256": "da65f94ef9ccf941f2a94e53aa9f98c841733952b9183c78212cfb6dc80528fa",
     "checkpoint_sha256": "ec2df62732614e57411cdcf32a23ffdf28910380d03139ee0f4fcbe91eb8c912"
   }
 }

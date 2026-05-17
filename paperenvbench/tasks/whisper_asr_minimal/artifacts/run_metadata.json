@@ -1,0 +1,103 @@
+{
+  "audio_duration_seconds": 11.0,
+  "checkpoint_path": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/PaperEnvBench/runs/source_aligned_gold_20260518/whisper_asr_minimal/models/tiny.en.pt",
+  "checkpoint_sha256": "d3dd57d32accea0b295c96e26691aa14d8822fac7d9d27d5dc00b4ca2826dd03",
+  "checkpoint_size_bytes": 75571315,
+  "command": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/PaperEnvBench/.venv/bin/whisper /inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/PaperEnvBench/runs/source_aligned_gold_20260518/whisper_asr_minimal/artifacts/input_jfk.flac --model tiny.en --model_dir /inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/PaperEnvBench/runs/source_aligned_gold_20260518/whisper_asr_minimal/models --language en --device cuda --output_dir /inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/PaperEnvBench/runs/source_aligned_gold_20260518/whisper_asr_minimal/outputs/whisper_jfk --output_format all",
+  "device": "cuda",
+  "entrypoint": "whisper CLI",
+  "input_audio": "artifacts/input_jfk.flac",
+  "input_audio_sha256": "63a4b1e4c1dc655ac70961ffbf518acd249df237e5a0152faae9a4a836949715",
+  "language": "en",
+  "model_name": "tiny.en",
+  "output_files": {
+    "expected_artifact.json": {
+      "sha256": "0e5cc579fd449ec39c4215d94a3966c2cd37adcbc1f1695b49909e658009d1b9",
+      "size_bytes": 825
+    },
+    "expected_artifact.srt": {
+      "sha256": "8c7fa4d57ed97cca5a24007d302e924d26d05807e56018980e287e5947fcdfc1",
+      "size_bytes": 173
+    },
+    "expected_artifact.tsv": {
+      "sha256": "91f2399fae3adb31b9e33ececdf3c7f3463f542dfac820687819780bf9bae579",
+      "size_bytes": 140
+    },
+    "expected_artifact.txt": {
+      "sha256": "109b852822c6f3686beb9a2cce3224b57c9ac99f00ab21673678866e9cabf427",
+      "size_bytes": 107
+    },
+    "expected_artifact.vtt": {
+      "sha256": "6879168e44095b44ad91ba11574937cdaba3756815beefae8ca3bc8faada808a",
+      "size_bytes": 165
+    }
+  },
+  "repo_commit": "04f449b8a437f1bbd3dba5c9f826aca972e7709a",
+  "segments": [
+    {
+      "avg_logprob": -0.2897473368151435,
+      "compression_ratio": 1.3417721518987342,
+      "end": 8.0,
+      "id": 0,
+      "no_speech_prob": 0.0632646232843399,
+      "seek": 0,
+      "start": 0.0,
+      "temperature": 0.0,
+      "text": " And so, my fellow Americans ask not what your country can do for you",
+      "tokens": [
+        50363,
+        843,
+        523,
+        11,
+        616,
+        5891,
+        3399,
+        1265,
+        407,
+        644,
+        534,
+        1499,
+        460,
+        466,
+        329,
+        345,
+        50763
+      ]
+    },
+    {
+      "avg_logprob": -0.2897473368151435,
+      "compression_ratio": 1.3417721518987342,
+      "end": 11.0,
+      "id": 1,
+      "no_speech_prob": 0.0632646232843399,
+      "seek": 0,
+      "start": 8.0,
+      "temperature": 0.0,
+      "text": " ask what you can do for your country.",
+      "tokens": [
+        50763,
+        1265,
+        644,
+        345,
+        460,
+        466,
+        329,
+        534,
+        1499,
+        13,
+        50913
+      ]
+    }
+  ],
+  "segments_count": 2,
+  "task_id": "whisper_asr_minimal",
+  "text": " And so, my fellow Americans ask not what your country can do for you ask what you can do for your country.",
+  "torch": {
+    "cuda_available": true,
+    "device": "cuda",
+    "device_count": 4,
+    "gpu_name": "NVIDIA GeForce RTX 4090",
+    "torch_cuda": "12.8",
+    "torch_version": "2.11.0+cu128"
+  }
+}

@@ -1,32 +1,76 @@
 {
   "task_id": "clip_zeroshot_minimal",
   "source": {
-    "notebook": "paper-repro-ci-prep",
-    "remote_cwd_alias": "paper-repro",
-    "repo_path": "paper-repro:repos/CLIP",
+    "notebook": "paperenvbench",
+    "remote_cwd_alias": "paper-repro:PaperEnvBench",
+    "remote_run_dir": "paper-repro:PaperEnvBench/runs/source_aligned_gold_20260518/clip_zeroshot_minimal",
+    "repo_url": "https://github.com/openai/CLIP",
     "repo_commit": "d05afc436d78f1c48dc0dbf8e5980a9d471f35f6",
-    "venv": "paper-repro:envs/paper-repro-cpu",
-    "smoke_log": "paper-repro:logs/20_clip_smoke.log",
-    "output_dir": "paper-repro:outputs/clip_smoke"
+    "runtime_target": "internet_accelerator_4090_cuda128",
+    "torch": {
+      "version": "2.11.0+cu128",
+      "cuda": "12.8",
+      "gpu": "NVIDIA GeForce RTX 4090"
+    }
   },
   "expected_files": {
-    "probabilities": "artifacts/expected_artifact.json",
+    "summary": "artifacts/expected_artifact.json",
     "image": "artifacts/expected_artifact.png"
   },
+  "route_requirements": {
+    "entrypoint": "Upstream README zero-shot image classification example",
+    "model_name": "ViT-B/32",
+    "input_image": "repo/CLIP.png",
+    "labels": [
+      "a diagram",
+      "a dog",
+      "a cat"
+    ],
+    "device": "cuda",
+    "required_evidence": [
+      "clip.load",
+      "clip.tokenize",
+      "preprocess",
+      "model forward",
+      "checkpoint SHA and size",
+      "input image SHA",
+      "logits",
+      "probabilities"
+    ]
+  },
+  "semantic_requirements": {
+    "top_label": "a diagram",
+    "min_top_probability": 0.9,
+    "probabilities_sum_to_one": true
+  },
   "gold_payload": {
-    "a white image with a black square": 0.9996488094329834,
-    "a photo of a dog": 4.988279033568688e-05,
-    "a handwritten equation": 0.0003012118104379624
+    "entrypoint": "README zero-shot image classification example",
+    "model_name": "ViT-B/32",
+    "checkpoint_sha256": "40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af",
+    "input_image_sha256": "308a3ca4503f1c7a07803916c369d78c4ef501e5ab7fc727da9b5e1d2f9ec85b",
+    "labels": [
+      "a diagram",
+      "a dog",
+      "a cat"
+    ],
+    "top_label": "a diagram",
+    "top_probability": 0.99267578125,
+    "device": "cuda"
   },
   "acceptance": {
     "probabilities_sum_to_one": true,
-    "top_label": "a white image with a black square",
-    "min_top_probability": 0.5,
-    "requires_nonempty_image_artifact": true
+    "top_label": "a diagram",
+    "min_top_probability": 0.9,
+    "requires_readme_labels": true,
+    "requires_logits": true,
+    "requires_checkpoint_sha256": true,
+    "requires_input_image_sha256": true,
+    "requires_forward_evidence": true,
+    "requires_cuda_evidence": true
   },
   "checksums": {
-    "expected_artifact_json_sha256": "521d65e2ce3f7b4277aab140c41a0758cbb5f04a7e6a30dbd237f34dec80bfa1",
-    "expected_artifact_png_sha256": "2f8b89489c2a188e3e689466fe6b2fe0db2d261388c43871e1b9086104904263",
+    "expected_artifact_json_sha256": "c8cdea9c0fea13c434430984223386c2f7a46152a435c7491bc8f4d5bff6ae70",
+    "expected_artifact_png_sha256": "308a3ca4503f1c7a07803916c369d78c4ef501e5ab7fc727da9b5e1d2f9ec85b",
     "checkpoint_sha256": "40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af"
   }
 }

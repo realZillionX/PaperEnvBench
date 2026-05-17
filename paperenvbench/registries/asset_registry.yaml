@@ -1,14 +1,23 @@
-version: 0.2.0
-updated_at: "2026-05-16"
+version: 0.2.1
+updated_at: "2026-05-18"
 assets:
-  - asset_id: whisper_tiny_checkpoint
+  - asset_id: whisper_tiny_en_checkpoint
     task_id: whisper_asr_minimal
     type: checkpoint
     required: true
-    source_url: null
-    checksum: null
-    cached_path: paper-repro:models/whisper/
-    local_artifact_path: paperenvbench/tasks/whisper_asr_minimal/artifacts/
+    source_url: https://openaipublic.azureedge.net/main/whisper/models/d3dd57d32accea0b295c96e26691aa14d8822fac7d9d27d5dc00b4ca2826dd03/tiny.en.pt
+    checksum: d3dd57d32accea0b295c96e26691aa14d8822fac7d9d27d5dc00b4ca2826dd03
+    cached_path: paper-repro:PaperEnvBench/runs/source_aligned_gold_20260518/whisper_asr_minimal/models/tiny.en.pt
+    local_artifact_path: paperenvbench/tasks/whisper_asr_minimal/artifacts/run_metadata.json
+    status: gold_verified
+  - asset_id: whisper_jfk_flac_input
+    task_id: whisper_asr_minimal
+    type: input_audio
+    required: true
+    source_url: repo_snapshot:tests/jfk.flac
+    checksum: 63a4b1e4c1dc655ac70961ffbf518acd249df237e5a0152faae9a4a836949715
+    cached_path: paper-repro:PaperEnvBench/runs/source_aligned_gold_20260518/whisper_asr_minimal/artifacts/input_jfk.flac
+    local_artifact_path: paperenvbench/tasks/whisper_asr_minimal/artifacts/input_jfk.flac
     status: gold_verified
   - asset_id: demucs_unittest_cpu_artifact
     task_id: demucs_music_separation
@@ -51,19 +60,46 @@ assets:
     task_id: clip_zeroshot_minimal
     type: checkpoint
     required: true
-    source_url: null
-    checksum: null
-    cached_path: paper-repro:models/clip/ViT-B-32.pt
+    source_url: https://openaipublic.azureedge.net/clip/models/40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af/ViT-B-32.pt
+    checksum: 40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af
+    cached_path: paper-repro:PaperEnvBench/runs/source_aligned_gold_20260518/clip_zeroshot_minimal/models/ViT-B-32.pt
     local_artifact_path: paperenvbench/tasks/clip_zeroshot_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: clip_readme_png_input
+    task_id: clip_zeroshot_minimal
+    type: input_image
+    required: true
+    source_url: repo_snapshot:CLIP.png
+    checksum: 308a3ca4503f1c7a07803916c369d78c4ef501e5ab7fc727da9b5e1d2f9ec85b
+    cached_path: paper-repro:PaperEnvBench/runs/source_aligned_gold_20260518/clip_zeroshot_minimal/artifacts/expected_artifact.png
+    local_artifact_path: paperenvbench/tasks/clip_zeroshot_minimal/artifacts/expected_artifact.png
     status: gold_verified
   - asset_id: sam_vit_b_checkpoint
     task_id: sam_mask_minimal
     type: checkpoint
     required: true
-    source_url: null
-    checksum: null
-    cached_path: paper-repro:models/sam/sam_vit_b_01ec64.pth
+    source_url: https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth
+    checksum: ec2df62732614e57411cdcf32a23ffdf28910380d03139ee0f4fcbe91eb8c912
+    cached_path: paper-repro:PaperEnvBench/runs/source_aligned_gold_20260518/sam_mask_minimal/models/sam/sam_vit_b_01ec64.pth
     local_artifact_path: paperenvbench/tasks/sam_mask_minimal/artifacts/expected_artifact.json
+    status: gold_verified
+  - asset_id: sam_predictor_prompt_input
+    task_id: sam_mask_minimal
+    type: input_image
+    required: true
+    source_url: generated_by_gold_install
+    checksum: da65f94ef9ccf941f2a94e53aa9f98c841733952b9183c78212cfb6dc80528fa
+    cached_path: paper-repro:PaperEnvBench/runs/source_aligned_gold_20260518/sam_mask_minimal/artifacts/expected_input.png
+    local_artifact_path: paperenvbench/tasks/sam_mask_minimal/artifacts/expected_input.png
+    status: gold_verified
+  - asset_id: sam_predictor_mask_output
+    task_id: sam_mask_minimal
+    type: output_artifact
+    required: true
+    source_url: generated_by_gold_install
+    checksum: 948e23a4f15ff9c03e4d1cd7bda3b3a7705941ac2ffec18d9f852b16ad3a8241
+    cached_path: paper-repro:PaperEnvBench/runs/source_aligned_gold_20260518/sam_mask_minimal/artifacts/expected_artifact.png
+    local_artifact_path: paperenvbench/tasks/sam_mask_minimal/artifacts/expected_artifact.png
     status: gold_verified
   - asset_id: moco_cpu_encoder_feature_artifact
     task_id: moco_feature_minimal

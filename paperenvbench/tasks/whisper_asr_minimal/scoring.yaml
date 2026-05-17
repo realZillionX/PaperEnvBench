@@ -9,8 +9,13 @@ scoring:
 main_success_level: L4_minimal_reproduction
 semantic_checks:
 - output_json_exists
-- transcript_field_present
-- artifact_bundle_nonempty
+- whisper_help_and_cli_inference_evidence
+- tiny_en_checkpoint_sha256_matches
+- jfk_audio_sha256_matches
+- cuda_device_evidence_present
+- transcript_nonempty_with_expected_phrases
+- transcript_segments_present
+- side_artifact_bundle_nonempty
 l4_environment_gate:
   runtime_target: internet_accelerator_4090_cuda128
   requires_profile_closure_pass: true

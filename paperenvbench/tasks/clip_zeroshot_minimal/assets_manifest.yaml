@@ -2,10 +2,17 @@ assets:
   - asset_id: clip_vit_b_32_checkpoint
     type: checkpoint
     required: true
-    cached_path: paper-repro:models/clip/ViT-B-32.pt
-    checksum: null
-  - asset_id: clip_synthetic_image
+    cached_path: paper-repro:PaperEnvBench/runs/source_aligned_gold_20260518/clip_zeroshot_minimal/models/ViT-B-32.pt
+    checksum: 40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af
+    size_bytes: 353976522
+  - asset_id: clip_readme_image
     type: image
     required: true
-    cached_path: paper-repro:outputs/clip_smoke/
-    checksum: null
+    cached_path: paperenvbench/tasks/clip_zeroshot_minimal/artifacts/expected_artifact.png
+    checksum: 308a3ca4503f1c7a07803916c369d78c4ef501e5ab7fc727da9b5e1d2f9ec85b
+    source: repo/CLIP.png
+  - asset_id: clip_readme_forward_summary
+    type: output_artifact
+    required: true
+    cached_path: paperenvbench/tasks/clip_zeroshot_minimal/artifacts/expected_artifact.json
+    checksum: c8cdea9c0fea13c434430984223386c2f7a46152a435c7491bc8f4d5bff6ae70

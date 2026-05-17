@@ -1,34 +1,79 @@
 {
   "task_id": "whisper_asr_minimal",
   "source": {
-    "notebook": "paper-repro-ci-prep",
-    "remote_cwd_alias": "paper-repro",
-    "repo_path": "paper-repro:repos/whisper",
-    "repo_commit": "04f449b",
-    "venv": "paper-repro:envs/paper-repro-cpu",
-    "smoke_log": "paper-repro:logs/10_whisper_smoke.log",
-    "output_dir": "paper-repro:outputs/whisper_smoke"
+    "notebook": "paperenvbench",
+    "remote_cwd_alias": "paper-repro:PaperEnvBench",
+    "remote_run_dir": "paper-repro:PaperEnvBench/runs/source_aligned_gold_20260518/whisper_asr_minimal",
+    "repo_url": "https://github.com/openai/whisper",
+    "repo_commit": "04f449b8a437f1bbd3dba5c9f826aca972e7709a",
+    "runtime_target": "internet_accelerator_4090_cuda128",
+    "torch": {
+      "version": "2.11.0+cu128",
+      "cuda": "12.8",
+      "gpu": "NVIDIA GeForce RTX 4090"
+    }
   },
   "expected_files": {
-    "json": "outputs/whisper_smoke/whisper_sine.json",
-    "txt": "outputs/whisper_smoke/whisper_sine.txt",
+    "json": "artifacts/expected_artifact.json",
+    "txt": "artifacts/expected_artifact.txt",
     "side_artifacts": [
-      "outputs/whisper_smoke/whisper_sine.tsv",
-      "outputs/whisper_smoke/whisper_sine.vtt"
+      "artifacts/expected_artifact.tsv",
+      "artifacts/expected_artifact.vtt",
+      "artifacts/expected_artifact.srt"
+    ],
+    "run_metadata": "artifacts/run_metadata.json",
+    "input_audio": "artifacts/input_jfk.flac"
+  },
+  "route_requirements": {
+    "entrypoint": "whisper --help plus one CLI transcription or equivalent minimal inference",
+    "model_name": "tiny.en",
+    "input_audio": "Use the repository JFK speech sample `tests/jfk.flac` or an equivalent short real speech sample; do not use a silent or sine-only audio file.",
+    "device": "cuda",
+    "required_evidence": [
+      "repo commit",
+      "checkpoint SHA and size",
+      "input audio SHA and duration",
+      "CUDA torch evidence",
+      "nonempty transcript",
+      "segment timestamps"
     ]
   },
+  "semantic_requirements": {
+    "language": "en",
+    "transcript_must_be_nonempty": true,
+    "segments_min": 1,
+    "side_artifacts_min": 1
+  },
   "gold_payload": {
-    "text": "",
-    "segments": [],
-    "language": "en"
+    "model_name": "tiny.en",
+    "checkpoint_sha256": "d3dd57d32accea0b295c96e26691aa14d8822fac7d9d27d5dc00b4ca2826dd03",
+    "input_audio_sha256": "63a4b1e4c1dc655ac70961ffbf518acd249df237e5a0152faae9a4a836949715",
+    "language": "en",
+    "segments_count": 2,
+    "text_contains": [
+      "fellow Americans",
+      "what your country can do for you",
+      "what you can do for your country"
+    ],
+    "device": "cuda"
   },
   "acceptance": {
+    "must_run_whisper_help": true,
     "json_must_parse": true,
-    "json_text_field_type": "str",
-    "json_segments_field_type": "list",
-    "language": "en",
-    "txt_must_exist": true,
     "txt_matches_json_text_after_whitespace_normalization": true,
-    "requires_nonempty_side_artifact": true
+    "requires_nonempty_transcript": true,
+    "requires_at_least_one_segment": true,
+    "requires_nonempty_side_artifact": true,
+    "requires_checkpoint_sha256": true,
+    "requires_input_audio_sha256": true,
+    "requires_cuda_evidence": true
+  },
+  "checksums": {
+    "expected_artifact_json_sha256": "0e5cc579fd449ec39c4215d94a3966c2cd37adcbc1f1695b49909e658009d1b9",
+    "expected_artifact_txt_sha256": "109b852822c6f3686beb9a2cce3224b57c9ac99f00ab21673678866e9cabf427",
+    "expected_artifact_tsv_sha256": "91f2399fae3adb31b9e33ececdf3c7f3463f542dfac820687819780bf9bae579",
+    "expected_artifact_vtt_sha256": "6879168e44095b44ad91ba11574937cdaba3756815beefae8ca3bc8faada808a",
+    "expected_artifact_srt_sha256": "8c7fa4d57ed97cca5a24007d302e924d26d05807e56018980e287e5947fcdfc1",
+    "run_metadata_json_sha256": "688f17948d258869546a6e9253b642f69678cfe63bb38c408cccfd3e37474cd3"
   }
 }

@@ -1,11 +1,11 @@
-version: 0.2.0
-updated_at: "2026-05-16"
+version: 0.2.1
+updated_at: "2026-05-18"
 trajectories:
-  - trajectory_id: gold_whisper_asr_minimal_cpu
+  - trajectory_id: gold_whisper_asr_minimal_source_aligned_gpu
     task_id: whisper_asr_minimal
     model: human_orchestrated
-    condition: cpu_gold_migration
-    final_level: L4
+    condition: source_aligned_gpu_gold_construction
+    final_level: L4_minimal_reproduction
     score: null
     failure_tags:
       - system_package_missing
@@ -14,7 +14,7 @@ trajectories:
       - entrypoint_ambiguity
     skill_calls: []
     artifact_path: paperenvbench/tasks/whisper_asr_minimal/artifacts/
-    remote_artifact_path: paper-repro:outputs/whisper_smoke/
+    remote_artifact_path: paper-repro:PaperEnvBench/runs/source_aligned_gold_20260518/whisper_asr_minimal/artifacts/
     status: gold_verified_l4
   - trajectory_id: gold_demucs_music_separation_cpu
     task_id: demucs_music_separation
@@ -81,31 +81,31 @@ trajectories:
     artifact_path: paperenvbench/tasks/speechbrain_keyword_spotting/artifacts/
     remote_artifact_path: paper-repro:runs/paperenvbench/audio/speechbrain_keyword_spotting/artifacts/
     status: gold_verified_l4
-  - trajectory_id: seed_clip_cpu_smoke
+  - trajectory_id: gold_clip_zeroshot_minimal_source_aligned_gpu
     task_id: clip_zeroshot_minimal
     model: human_orchestrated
-    condition: cpu_gold_migration
-    final_level: L4
+    condition: source_aligned_gpu_gold_construction
+    final_level: L4_minimal_reproduction
     score: null
     failure_tags:
       - torch_cuda_matrix
       - checkpoint_download
     skill_calls: []
     artifact_path: paperenvbench/tasks/clip_zeroshot_minimal/artifacts/
-    remote_artifact_path: paper-repro:outputs/clip_smoke/
+    remote_artifact_path: paper-repro:PaperEnvBench/runs/source_aligned_gold_20260518/clip_zeroshot_minimal/artifacts/
     status: gold_verified_l4
-  - trajectory_id: gold_sam_mask_minimal_cpu
+  - trajectory_id: gold_sam_mask_minimal_source_aligned_gpu
     task_id: sam_mask_minimal
     model: human_orchestrated
-    condition: cpu_gold_migration
-    final_level: L4
+    condition: source_aligned_gpu_gold_construction
+    final_level: L4_minimal_reproduction
     score: null
     failure_tags:
       - checkpoint_download
       - system_package_missing
     skill_calls: []
     artifact_path: paperenvbench/tasks/sam_mask_minimal/artifacts/
-    remote_artifact_path: paper-repro:outputs/sam_smoke/
+    remote_artifact_path: paper-repro:PaperEnvBench/runs/source_aligned_gold_20260518/sam_mask_minimal/artifacts/
     status: gold_verified_l4
   - trajectory_id: gold_moco_feature_minimal_cpu
     task_id: moco_feature_minimal

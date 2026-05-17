@@ -1,5 +1,53 @@
 {
-  "a white image with a black square": 0.9996488094329834,
-  "a photo of a dog": 4.988279033568688e-05,
-  "a handwritten equation": 0.0003012118104379624
+  "checkpoint_path": "/inspire/ssd/project/embodied-multimodality/tongjingqi-CZXS25110029/Paper Reproduction/PaperEnvBench/runs/source_aligned_gold_20260518/clip_zeroshot_minimal/models/ViT-B-32.pt",
+  "checkpoint_sha256": "40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af",
+  "checkpoint_size_bytes": 353976522,
+  "device": "cuda",
+  "entrypoint": "README zero-shot image classification example",
+  "forward_evidence": {
+    "used_clip_load": true,
+    "used_clip_tokenize": true,
+    "used_model_forward": true,
+    "used_preprocess": true
+  },
+  "image_tensor_shape": [
+    1,
+    3,
+    224,
+    224
+  ],
+  "input_image": "artifacts/expected_artifact.png",
+  "input_image_sha256": "308a3ca4503f1c7a07803916c369d78c4ef501e5ab7fc727da9b5e1d2f9ec85b",
+  "input_image_source": "repo/CLIP.png",
+  "labels": [
+    "a diagram",
+    "a dog",
+    "a cat"
+  ],
+  "logits_per_image": [
+    25.546875,
+    20.09375,
+    19.75
+  ],
+  "model_name": "ViT-B/32",
+  "probabilities": {
+    "a cat": 0.0030155181884765625,
+    "a diagram": 0.99267578125,
+    "a dog": 0.004253387451171875
+  },
+  "probability_sum": 0.9999446868896484,
+  "repo_commit": "d05afc436d78f1c48dc0dbf8e5980a9d471f35f6",
+  "task_id": "clip_zeroshot_minimal",
+  "text_tensor_shape": [
+    3,
+    77
+  ],
+  "top_label": "a diagram",
+  "top_probability": 0.99267578125,
+  "torch": {
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 4090",
+    "torch_cuda": "12.8",
+    "version": "2.11.0+cu128"
+  }
 }

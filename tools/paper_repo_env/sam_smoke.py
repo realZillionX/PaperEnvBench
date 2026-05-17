@@ -14,37 +14,54 @@ def main() -> None:
     if not checkpoint.exists():
         raise FileNotFoundError(f"Missing checkpoint: {checkpoint}")
 
-    out_dir = Path("outputs/sam_smoke")
+    out_dir = Path("artifacts")
     out_dir.mkdir(parents=True, exist_ok=True)
 
     image_path = out_dir / "test_image.png"
     image = Image.new("RGB", (256, 256), "white")
     draw = ImageDraw.Draw(image)
-    draw.rectangle((68, 68, 188, 188), fill=(30, 144, 255))
-    image.save(image_path)
+    draw.rectangle([72, 56, 188, 204], fill=(35, 35, 35))
+    draw.ellipse([112, 96, 152, 136], fill=(220, 220, 220))
+    image.save(out_dir / "expected_input.png")
 
     image_np = np.asarray(image)
+    if not torch.cuda.is_available():
+        raise RuntimeError("SAM L4 smoke requires CUDA")
     sam = sam_model_registry["vit_b"](checkpoint=str(checkpoint))
-    sam.to(device="cpu")
+    sam.to(device="cuda")
     predictor = SamPredictor(sam)
 
     with torch.no_grad():
         predictor.set_image(image_np)
-        masks, scores, _ = predictor.predict(
-            point_coords=np.array([[128, 128]]),
+        masks, scores, logits = predictor.predict(
+            point_coords=np.array([[128, 130]]),
             point_labels=np.array([1]),
-            multimask_output=False,
+            multimask_output=True,
         )
 
-    mask = masks[0].astype(np.uint8) * 255
-    Image.fromarray(mask).save(out_dir / "mask.png")
+    selected = int(np.argmax(scores))
+    mask = masks[selected].astype(np.uint8) * 255
+    Image.fromarray(mask).save(out_dir / "expected_artifact.png")
     summary = {
-        "score": float(scores[0]),
-        "mask_pixels": int(masks[0].sum()),
-        "image": str(image_path),
-        "mask": str(out_dir / "mask.png"),
+        "task_id": "sam_mask_minimal",
+        "entrypoint": "SamPredictor.predict point prompt",
+        "model_type": "vit_b",
+        "score": float(scores[selected]),
+        "all_scores": [float(item) for item in scores.tolist()],
+        "selected_mask_index": selected,
+        "mask_pixels": int(masks[selected].sum()),
+        "logits_shape": list(logits.shape),
+        "image": "artifacts/expected_input.png",
+        "mask": "artifacts/expected_artifact.png",
+        "device": "cuda",
+        "torch": {
+            "version": torch.__version__,
+            "cuda_available": bool(torch.cuda.is_available()),
+            "torch_cuda": torch.version.cuda,
+            "gpu_name": torch.cuda.get_device_name(0),
+        },
     }
-    (out_dir / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
+    (out_dir / "expected_artifact.json").write_text(json.dumps(summary, indent=2, sort_keys=True), encoding="utf-8")
     print(json.dumps(summary, ensure_ascii=False, indent=2))
 
 

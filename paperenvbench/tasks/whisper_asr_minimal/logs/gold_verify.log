@@ -1,8 +1,24 @@
-whisper_asr_minimal gold verify
-repo_commit=04f449b
-json=outputs/whisper_smoke/whisper_sine.json size=46
-txt=outputs/whisper_smoke/whisper_sine.txt size=0
-tsv=outputs/whisper_smoke/whisper_sine.tsv size=15
-vtt=outputs/whisper_smoke/whisper_sine.vtt size=8
-transcript_text_repr=''
-semantic_checks=PASS
+{
+  "artifact_dir": "/Users/zillionx/Desktop/Paper Reproduction/PaperEnvBench/paperenvbench/tasks/whisper_asr_minimal/artifacts",
+  "checks": {
+    "cuda_device_evidence_present": true,
+    "jfk_audio_sha256_matches": true,
+    "output_json_exists": true,
+    "side_artifact_bundle_nonempty": true,
+    "tiny_en_checkpoint_sha256_matches": true,
+    "transcript_nonempty_with_expected_phrases": true,
+    "transcript_segments_present": true,
+    "whisper_help_and_cli_inference_evidence": true
+  },
+  "observed": {
+    "checkpoint_sha256": "d3dd57d32accea0b295c96e26691aa14d8822fac7d9d27d5dc00b4ca2826dd03",
+    "device": "cuda",
+    "input_audio_sha256": "63a4b1e4c1dc655ac70961ffbf518acd249df237e5a0152faae9a4a836949715",
+    "language": "en",
+    "segments_count": 2,
+    "text": "And so, my fellow Americans ask not what your country can do for you ask what you can do for your country."
+  },
+  "status": "pass",
+  "success_level": "L4",
+  "task_id": "whisper_asr_minimal"
+}

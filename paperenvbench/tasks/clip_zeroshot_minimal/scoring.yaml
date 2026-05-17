@@ -8,8 +8,12 @@ scoring:
   safety: 0.05
 main_success_level: L4_minimal_reproduction
 semantic_checks:
-- label_probs_json_exists
-- probability_vector_valid
+- readme_clip_png_sha256_matches
+- vit_b_32_checkpoint_sha256_matches
+- readme_labels_exact
+- clip_load_tokenize_preprocess_forward_evidence
+- cuda_device_evidence_present
+- logits_probability_consistency
 - expected_label_rank_present
 l4_environment_gate:
   runtime_target: internet_accelerator_4090_cuda128

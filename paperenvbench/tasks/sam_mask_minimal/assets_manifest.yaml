@@ -2,10 +2,21 @@ assets:
   - asset_id: sam_vit_b_checkpoint
     type: checkpoint
     required: true
-    cached_path: paper-repro:models/sam/sam_vit_b_01ec64.pth
-    checksum: null
-  - asset_id: sam_synthetic_image
+    cached_path: paper-repro:PaperEnvBench/runs/source_aligned_gold_20260518/sam_mask_minimal/models/sam/sam_vit_b_01ec64.pth
+    checksum: ec2df62732614e57411cdcf32a23ffdf28910380d03139ee0f4fcbe91eb8c912
+    size_bytes: 375042383
+  - asset_id: sam_predictor_input_image
     type: image
     required: true
-    cached_path: paper-repro:outputs/sam_smoke/
-    checksum: null
+    cached_path: paperenvbench/tasks/sam_mask_minimal/artifacts/expected_input.png
+    checksum: da65f94ef9ccf941f2a94e53aa9f98c841733952b9183c78212cfb6dc80528fa
+  - asset_id: sam_predictor_mask_png
+    type: output_artifact
+    required: true
+    cached_path: paperenvbench/tasks/sam_mask_minimal/artifacts/expected_artifact.png
+    checksum: 948e23a4f15ff9c03e4d1cd7bda3b3a7705941ac2ffec18d9f852b16ad3a8241
+  - asset_id: sam_predictor_summary
+    type: output_artifact
+    required: true
+    cached_path: paperenvbench/tasks/sam_mask_minimal/artifacts/expected_artifact.json
+    checksum: b96c0867bb3f2cb246fcbc1b349c419b1f2c5897f7e9f1d8744174b9b58b9f72
