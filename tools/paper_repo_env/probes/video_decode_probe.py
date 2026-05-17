@@ -80,6 +80,33 @@ def make_tiny_video(path: Path) -> dict[str, Any]:
     )
 
 
+def ffmpeg_decode(path: Path) -> dict[str, Any]:
+    ffmpeg = shutil.which("ffmpeg")
+    if not ffmpeg:
+        return {"ok": False, "error": "ffmpeg binary is unavailable"}
+    with tempfile.TemporaryDirectory(prefix="paperenvbench_ffmpeg_decode_") as tmp:
+        frame_path = Path(tmp) / "frame_001.png"
+        result = run(
+            [
+                ffmpeg,
+                "-hide_banner",
+                "-loglevel",
+                "error",
+                "-i",
+                str(path),
+                "-frames:v",
+                "1",
+                str(frame_path),
+            ]
+        )
+        return {
+            **result,
+            "frame_exists": frame_path.exists(),
+            "frame_bytes": frame_path.stat().st_size if frame_path.exists() else 0,
+            "ok": result.get("returncode") == 0 and frame_path.exists() and frame_path.stat().st_size > 0,
+        }
+
+
 def pyav_decode(path: Path) -> dict[str, Any]:
     available = module_available("av")
     if not available["available"]:
@@ -121,14 +148,24 @@ def main() -> int:
     with tempfile.TemporaryDirectory(prefix="paperenvbench_video_probe_") as tmp:
         video_path = Path(tmp) / "tiny_probe.mp4"
         ffmpeg_create = make_tiny_video(video_path)
+        ffmpeg_native_decode = (
+            ffmpeg_decode(video_path) if video_path.exists() else {"ok": False, "error": "tiny video was not created"}
+        )
         pyav = pyav_decode(video_path) if video_path.exists() else {"available": False, "error": "tiny video was not created"}
         decord = decord_decode(video_path) if video_path.exists() else {"available": False, "error": "tiny video was not created"}
 
     blockers = []
     if ffmpeg_create.get("returncode") != 0:
         blockers.append({"code": "ffmpeg_video_generation_failed", "evidence": ffmpeg_create})
-    if not (pyav.get("ok") or decord.get("ok")):
-        blockers.append({"code": "video_decode_backend_unavailable", "pyav": pyav, "decord": decord})
+    if not (ffmpeg_native_decode.get("ok") or pyav.get("ok") or decord.get("ok")):
+        blockers.append(
+            {
+                "code": "video_decode_backend_unavailable",
+                "ffmpeg_native_decode": ffmpeg_native_decode,
+                "pyav": pyav,
+                "decord": decord,
+            }
+        )
     torch = torch_cuda_smoke()
     if torch.get("cuda_available") is not True:
         blockers.append({"code": "torch_cuda_unavailable", "torch": torch})
@@ -136,7 +173,7 @@ def main() -> int:
     payload = {
         "generated_at": utc_now(),
         "status": "pass" if not blockers else "blocked",
-        "ffmpeg": {"path": shutil.which("ffmpeg"), "create_tiny_video": ffmpeg_create},
+        "ffmpeg": {"path": shutil.which("ffmpeg"), "create_tiny_video": ffmpeg_create, "decode_tiny_video": ffmpeg_native_decode},
         "pyav": pyav,
         "decord": decord,
         "torch": torch,

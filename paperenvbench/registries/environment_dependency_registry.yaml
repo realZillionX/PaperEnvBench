@@ -45,9 +45,10 @@ runtime_targets:
     compute_group: "4090"
     accelerator: "NVIDIA GeForce RTX 4090"
     accelerator_memory_gb: 48
-    driver_observed: "570.124.06"
-    cuda_observed: "12.8"
-    python: "3.12"
+    driver_observed: "550.163.01"
+    cuda_driver_reported: "12.4"
+    torch_cuda_compiled: "12.8"
+    python: "3.12.3"
     status: active_probe_target
 
 probe_profiles:
@@ -187,7 +188,7 @@ probe_profiles:
       - accelerator_runtime
       - key_experiment_smokes
     key_validation_experiments:
-      - "Probe decord or PyAV plus ffmpeg-facing video decode dependencies."
+      - "Probe ffmpeg native video generation and decode, plus decord or PyAV when available."
       - "Run a tiny frame-stack tensor or video classification forward-path smoke."
     depends_on:
       - torch_vision_audio_cuda_matrix
@@ -200,6 +201,7 @@ probe_profiles:
       - status=pass
       - torch.cuda_available
       - ffmpeg.create_tiny_video.returncode=0
+      - ffmpeg.decode_tiny_video.returncode=0
 
   diffusion_vlm_runtime:
     description: "Diffusion and vision-language dependency surfaces: diffusers, safetensors, accelerate, xformers and checkpoint gates."
