@@ -25,6 +25,12 @@ DEFAULT_WEIGHTS = {
     "semantic": 0.20,
     "safety": 0.05,
 }
+EFFICIENCY_TIME_TARGET_SECONDS = 30 * 60
+EFFICIENCY_TIME_MAX_SECONDS = 2 * 60 * 60
+EFFICIENCY_TOKEN_TARGET = 120_000
+EFFICIENCY_TOKEN_MAX = 500_000
+EFFICIENCY_QUALITY_WEIGHT = 0.90
+EFFICIENCY_WEIGHT = 0.10
 
 STAGE_ORDER = ["repo", "install", "import", "entrypoint", "semantic"]
 ENVIRONMENT_REPORT_CANDIDATES = [
@@ -70,6 +76,28 @@ def load_yaml(path: Path) -> Any:
 def load_json(path: Path) -> Any:
     with path.open("r", encoding="utf-8") as handle:
         return json.load(handle)
+
+
+def read_json_if_exists(path: Path) -> Any | None:
+    if not path.exists():
+        return None
+    try:
+        return load_json(path)
+    except Exception:
+        return None
+
+
+def as_float(value: Any) -> float | None:
+    if isinstance(value, bool):
+        return None
+    if isinstance(value, (int, float)):
+        return float(value)
+    if isinstance(value, str):
+        try:
+            return float(value)
+        except ValueError:
+            return None
+    return None
 
 
 def write_json(path: Path, payload: Any) -> None:
@@ -392,6 +420,142 @@ def load_scoring_weights(task_path: Path) -> dict[str, float]:
         if mapped:
             return mapped
     return weights
+
+
+def walk_dicts(value: Any) -> Iterator[dict[str, Any]]:
+    if isinstance(value, dict):
+        yield value
+        for child in value.values():
+            yield from walk_dicts(child)
+    elif isinstance(value, list):
+        for child in value:
+            yield from walk_dicts(child)
+
+
+def usage_from_dict(payload: dict[str, Any]) -> dict[str, float] | None:
+    lowered = {str(key).lower(): value for key, value in payload.items()}
+    if not any("token" in key or "cost" in key for key in lowered):
+        return None
+    prompt_tokens = (
+        as_float(lowered.get("prompt_tokens"))
+        or as_float(lowered.get("input_tokens"))
+        or as_float(lowered.get("cache_creation_input_tokens"))
+    )
+    cached_tokens = as_float(lowered.get("cache_read_input_tokens"))
+    completion_tokens = as_float(lowered.get("completion_tokens")) or as_float(lowered.get("output_tokens"))
+    total_tokens = as_float(lowered.get("total_tokens")) or as_float(lowered.get("tokens"))
+    if total_tokens is None:
+        total_tokens = sum(
+            value
+            for value in (prompt_tokens, cached_tokens, completion_tokens)
+            if value is not None
+        ) or None
+    cost_usd = (
+        as_float(lowered.get("cost_usd"))
+        or as_float(lowered.get("total_cost_usd"))
+        or as_float(lowered.get("cumulative_cost_usd"))
+        or as_float(lowered.get("cost"))
+        or as_float(lowered.get("total_cost"))
+    )
+    if total_tokens is None and cost_usd is None:
+        return None
+    return {
+        key: value
+        for key, value in {
+            "prompt_tokens": prompt_tokens,
+            "cached_tokens": cached_tokens,
+            "completion_tokens": completion_tokens,
+            "total_tokens": total_tokens,
+            "cost_usd": cost_usd,
+        }.items()
+        if value is not None
+    }
+
+
+def read_jsonl_payloads(path: Path) -> Iterator[Any]:
+    if not path.exists():
+        return
+    try:
+        with path.open("r", encoding="utf-8", errors="replace") as handle:
+            for line in handle:
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    yield json.loads(line)
+                except Exception:
+                    continue
+    except OSError:
+        return
+
+
+def collect_usage_metrics(attempt_dir: Path) -> dict[str, Any]:
+    usage_items: list[dict[str, float]] = []
+    for path in [attempt_dir / "trajectory.json", attempt_dir / "trajectory.jsonl"]:
+        if path.suffix == ".jsonl":
+            payloads = list(read_jsonl_payloads(path))
+        else:
+            payload = read_json_if_exists(path)
+            payloads = [payload] if payload is not None else []
+        for payload in payloads:
+            for item in walk_dicts(payload):
+                usage = usage_from_dict(item)
+                if usage:
+                    usage_items.append(usage)
+
+    total_candidates = [item["total_tokens"] for item in usage_items if "total_tokens" in item]
+    cost_candidates = [item["cost_usd"] for item in usage_items if "cost_usd" in item]
+    prompt_candidates = [item["prompt_tokens"] for item in usage_items if "prompt_tokens" in item]
+    completion_candidates = [item["completion_tokens"] for item in usage_items if "completion_tokens" in item]
+    return {
+        "usage_object_count": len(usage_items),
+        "estimated_total_tokens": int(max(total_candidates)) if total_candidates else None,
+        "estimated_prompt_tokens": int(max(prompt_candidates)) if prompt_candidates else None,
+        "estimated_completion_tokens": int(max(completion_candidates)) if completion_candidates else None,
+        "estimated_cost_usd": round(max(cost_candidates), 6) if cost_candidates else None,
+        "aggregation": "max_observed_usage_object",
+    }
+
+
+def bounded_inverse_score(value: float | None, target: float, maximum: float) -> float | None:
+    if value is None or value <= 0:
+        return None
+    if value <= target:
+        return 1.0
+    if value >= maximum:
+        return 0.0
+    return round((maximum - value) / (maximum - target), 6)
+
+
+def performance_metrics(attempt_dir: Path, quality_gate_passed: bool) -> dict[str, Any]:
+    attempt = read_json_if_exists(attempt_dir / "attempt.json")
+    elapsed_seconds = as_float(attempt.get("elapsed_seconds")) if isinstance(attempt, dict) else None
+    usage = collect_usage_metrics(attempt_dir)
+    time_score = bounded_inverse_score(elapsed_seconds, EFFICIENCY_TIME_TARGET_SECONDS, EFFICIENCY_TIME_MAX_SECONDS)
+    token_score = bounded_inverse_score(
+        as_float(usage.get("estimated_total_tokens")),
+        EFFICIENCY_TOKEN_TARGET,
+        EFFICIENCY_TOKEN_MAX,
+    )
+    components = [value for value in (time_score, token_score) if value is not None]
+    efficiency_score = round(sum(components) / len(components), 6) if components and quality_gate_passed else None
+    return {
+        "quality_gate_passed": quality_gate_passed,
+        "elapsed_seconds": elapsed_seconds,
+        "usage": usage,
+        "efficiency_score": efficiency_score,
+        "component_scores": {
+            "wall_clock_time": time_score,
+            "tokens": token_score,
+        },
+        "policy": {
+            "time_target_seconds": EFFICIENCY_TIME_TARGET_SECONDS,
+            "time_max_seconds": EFFICIENCY_TIME_MAX_SECONDS,
+            "token_target": EFFICIENCY_TOKEN_TARGET,
+            "token_max": EFFICIENCY_TOKEN_MAX,
+            "quality_gated": True,
+        },
+    }
 
 
 def safe_rel(path: Path, root: Path) -> str:
@@ -750,6 +914,13 @@ def score_attempt(root: Path, task_id: str, attempt_dir: Path, check_only: bool 
         if name not in scores:
             scores[name] = 1.0 if verifier_passed else 0.0
     score = sum(scores.get(name, 0.0) * weight for name, weight in weights.items())
+    performance = performance_metrics(attempt_dir, semantic_passed)
+    efficiency_score = performance.get("efficiency_score")
+    efficiency_adjusted_score = (
+        round(score * EFFICIENCY_QUALITY_WEIGHT + float(efficiency_score) * EFFICIENCY_WEIGHT, 6)
+        if isinstance(efficiency_score, (int, float))
+        else round(score, 6)
+    )
 
     verifier_level = normalize_level(verifier_payload.get("success_level"))
     level = verifier_level if semantic_passed and verifier_level else level_from_scores(scores)
@@ -778,7 +949,14 @@ def score_attempt(root: Path, task_id: str, attempt_dir: Path, check_only: bool 
         "dimensions": scores,
         "weights": weights,
         "score": round(score, 6),
+        "quality_score": round(score, 6),
+        "efficiency_adjusted_score": efficiency_adjusted_score,
+        "efficiency_weights": {
+            "quality": EFFICIENCY_QUALITY_WEIGHT,
+            "efficiency": EFFICIENCY_WEIGHT,
+        },
         "level": level,
+        "performance": performance,
         "environment_dependency": environment_dependency,
         "safety": safety,
     }
@@ -804,6 +982,9 @@ def trajectory_entry(root: Path, score_payload: dict[str, Any], model: str, cond
         "condition": condition,
         "final_level": score_payload["level"],
         "score": score_payload["score"],
+        "quality_score": score_payload.get("quality_score", score_payload["score"]),
+        "efficiency_adjusted_score": score_payload.get("efficiency_adjusted_score"),
+        "performance": score_payload.get("performance", {}),
         "failure_tags": read_task_failure_tags(root, task_id),
         "skill_calls": [],
         "artifact_path": safe_rel(Path(score_payload["attempt_dir"]) / "artifacts", root),

@@ -192,6 +192,8 @@ $S=0.10s_{\mathrm{repo}}+0.20s_{\mathrm{install}}+0.20s_{\mathrm{import}}+0.25s_
 | $s_{\mathrm{semantic}}$ | 语义 artifact 验证 |
 | $s_{\mathrm{safety}}$ | 安全性 |
 
+`score` / `quality_score` 只表示复现质量和安全性，不奖励“很快但错误”的 attempt。效率作为质量门控后的独立评分进入 `efficiency_adjusted_score`：只有通过 semantic artifact 与环境依赖门控的 attempt 才计算 `performance.efficiency_score`；在相同质量下，wall-clock time 更短、可观测 token / cost 更低的 attempt 会得到更高的 `efficiency_adjusted_score`。默认权重是 $0.9 \times$ quality + $0.1 \times$ efficiency。无法可靠观测 token 时只使用可观测的耗时分量，并在 `performance.usage` 中保留 `null`。
+
 `Level` 使用累计门控，而不是用总分阈值直接切分。每个任务可以在 `scoring.yaml` 中定义阈值：
 
 $\alpha_0,\ldots,\alpha_4$
@@ -294,6 +296,8 @@ python3 tools/paper_repo_env/evaluate_attempt.py \
   "task_id": "clip_zeroshot_minimal",
   "level": "L4",
   "score": 1.0,
+  "quality_score": 1.0,
+  "efficiency_adjusted_score": 0.97,
   "dimensions": {
     "repo": 1.0,
     "install": 1.0,
@@ -301,6 +305,14 @@ python3 tools/paper_repo_env/evaluate_attempt.py \
     "entrypoint": 1.0,
     "semantic": 1.0,
     "safety": 1.0
+  },
+  "performance": {
+    "elapsed_seconds": 238.4,
+    "efficiency_score": 0.7,
+    "usage": {
+      "estimated_total_tokens": 83000,
+      "estimated_cost_usd": null
+    }
   }
 }
 ```
