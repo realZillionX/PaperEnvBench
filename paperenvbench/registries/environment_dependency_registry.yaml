@@ -40,9 +40,9 @@ policy:
 runtime_targets:
   internet_accelerator_4090_cuda128:
     workspace: "可上网GPU资源"
-    notebook: paperenvbench-4
+    notebook: paperenvbench
     project: "CI-情境智能"
-    compute_group: "4090-cuda12.8-2"
+    compute_group: "4090"
     accelerator: "NVIDIA GeForce RTX 4090"
     accelerator_memory_gb: 48
     driver_observed: "570.124.06"
